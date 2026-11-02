@@ -1,0 +1,272 @@
+# -*- coding: utf-8 -*-
+"""English catalog part: dsv2 — signal_viewer.py from HelpWindow through the main window's builders
+(toolstrip, address bar, Folder panel, Plotted Signals table, Signal Properties tabs, root-folder scan, CSV add,
+inline cell edit). Keys are the Traditional Chinese source strings. PreferencesDialog keys live in i18n_en_core."""
+CATALOG = {
+    # --- HelpWindow -------------------------------------------------------------------------------------
+    "說明": "Help",
+    "# 找不到 README.md\n\n請把 README.md 放在 signal_viewer.py 同一個資料夾（打包時用 --add-data 加入）。":
+        "# README.md not found\n\nPut README.md in the same folder as signal_viewer.py (add it with --add-data when packaging).",
+    # --- DiagWindow -------------------------------------------------------------------------------------
+    "診斷資訊": "Diagnostics",
+    "複製到剪貼板": "Copy to Clipboard",
+    "重新整理": "Refresh",
+    "鍵盤輸入測試：": "Keyboard test:",
+    "（在左邊框按鍵）": "(press a key in the box on the left)",
+    "複製": "Copy",
+    # --- _MODEL_DESC (undo descriptions for data tips / annotations) ------------------------------------
+    "新增資料提示": "Add data tip",
+    "刪除資料提示": "Delete data tip",
+    "清除資料提示": "Clear data tips",
+    "移動資料提示": "Move data tip",
+    "插入標註": "Insert annotation",
+    "編輯標註": "Edit annotation",
+    "刪除標註": "Delete annotation",
+    "移動標註": "Move annotation",
+    # --- SignalViewer: table heading, vars, _build_ui ---------------------------------------------------
+    "顯示": "Show",
+    "目前修正：{n} 點": "Spikes fixed: {n}",
+    "⚠ 偵測到在 IPython / Spyder kernel 裡執行：事件迴圈可能被 kernel 搶走，建議用獨立行程重開。":
+        "⚠ Running inside an IPython / Spyder kernel: the kernel may take over the event loop; relaunching as a standalone process is recommended.",
+    "用獨立行程重開": "Relaunch Standalone",
+    "展開全部": "Expand All",
+    "收合全部": "Collapse All",
+    "圖": "Figure",
+    "已繪訊號": "Plotted Signals",
+    "移除選取的訊號": "Remove selected signals",
+    "依名稱排序": "Sort by Name",
+    "訊號屬性": "Signal Properties",
+    # --- Toolstrip: Home ---------------------------------------------------------------------------------
+    "首頁": "Home",
+    "檔案": "File",
+    "匯入 CSV / MAT…": "Import CSV / MAT…",
+    "匯入…": "Import…",
+    "匯出…": "Export…",
+    "把選取的訊號存成文字檔（TXT，每個訊號一個檔）": "Save the selected signals as text files (TXT, one file per signal)",
+    "已複製 {n} 條訊號：點主圖的某個 panel 再按 Ctrl+V（macOS ⌘V）貼到那個 panel；在圖片視窗按 Ctrl+V 疊圖":
+        "Copied {n} signal(s): click a panel in the main plot and press Ctrl+V (⌘V on macOS) to paste there; Ctrl+V in a figure window overlays them",
+    "剪下訊號": "Cut Signals",
+    "剪下 {n} 條": "Cut {n}",
+    "剪下 {n} 條訊號": "Cut {n} signal(s)",
+    "已剪下 {n} 條訊號：點主圖的某個 panel 再按 Ctrl+V（macOS ⌘V）貼過去": "Cut {n} signal(s): click a panel in the main plot and press Ctrl+V (⌘V on macOS) to move them there",
+    "目前 panel：P{p}（Ctrl+V／⌘V 貼上剪貼簿的 {n} 條訊號）": "Current panel: P{p} (Ctrl+V / ⌘V pastes the {n} signal(s) on the clipboard)",
+    "剪貼簿是空的：先選訊號按 Ctrl+C（或 Ctrl+X）。": "The clipboard is empty: select signals and press Ctrl+C (or Ctrl+X) first.",
+    "P{p} 已經有這些訊號，沒有貼上": "P{p} already has these signals; nothing pasted",
+    "貼上 {n} 條到 P{p}": "Paste {n} into P{p}",
+    "貼上 {n} 條訊號到 P{p}": "Paste {n} signal(s) into P{p}",
+    "已貼上 {n} 條訊號到 P{p}": "Pasted {n} signal(s) into P{p}",
+    "（{k} 條已存在、略過）": " ({k} already there, skipped)",
+    "貼上訊號到 P{p}": "Paste Signals into P{p}",
+    "匯入 CSV / MAT": "Import CSV / MAT",
+    "CSV 或 MATLAB MAT": "CSV or MATLAB MAT",
+    "選一個 CSV 或 MATLAB .mat（-v6／-v7）檔，勾要畫的欄位／變數加入訊號；.mat 的複數拆成 real()/imag()、struct 展開成 s.field":
+        "Pick a CSV or MATLAB .mat (-v6 / -v7) file and tick the columns / variables to plot; complex .mat variables become real()/imag(), structs expand to s.field",
+    "從 CSV 選欄位加入訊號": "Add signals from CSV columns",
+    "匯出 TXT": "Export TXT",
+    "把選取的訊號存成文字檔": "Save the selected signals as text files",
+    "匯出設定": "Export Settings",
+    "匯入設定": "Import Settings",
+    "自動還原上次": "Auto-restore Last Session",
+    "瀏覽…": "Browse…",
+    "重新掃描": "Rescan",
+    "加入選取的": "Add Selected",
+    "把資料夾面板裡選取的檔案加進已繪訊號": "Add the files selected in the Folder panel to Plotted Signals",
+    "加入全部顯示的": "Add All Shown",
+    "全部顯示\n(Home)": "Show All\n(Home)",
+    "資料提示": "Data Tips",
+    "開著時點線條會釘住資料提示；拖曳移動、Delete 刪除": "When on, clicking a line pins a data tip; drag to move, Delete to remove",
+    "診斷": "Diagnostics",
+    # --- Toolstrip: Signal -------------------------------------------------------------------------------
+    "訊號": "Signals",
+    "排列": "Arrange",
+    "上移": "Move Up",
+    "把清單裡選取的訊號往上移一列（需要先在「已繪訊號」選取）": "Move the selected signals up one row (select them in Plotted Signals first)",
+    "下移": "Move Down",
+    "把清單裡選取的訊號往下移一列（需要先在「已繪訊號」選取）": "Move the selected signals down one row (select them in Plotted Signals first)",
+    "依名稱排序": "Sort by Name",
+    "把全部訊號依名稱排序（panel 編號不變）": "Sort all signals by name (panel numbers are kept)",
+    "編輯": "Edit",
+    "移除": "Remove",
+    "把選取的訊號從圖和清單移掉（Delete）；Ctrl+Z 可復原": "Remove the selected signals from the plot and the list (Delete); Ctrl+Z undoes",
+    "清空": "Clear",
+    "移除全部訊號（會先確認；Ctrl+Z 可復原）": "Remove all signals (asks first; Ctrl+Z undoes)",
+    "全選": "Select All",
+    "選取「已繪訊號」清單裡的全部訊號（Ctrl+A）": "Select every signal in the Plotted Signals list (Ctrl+A)",
+    "復原": "Undo",
+    "復原上一個動作（Ctrl+Z）": "Undo the last action (Ctrl+Z)",
+    "重做": "Redo",
+    "重做剛復原的動作（Ctrl+Y）": "Redo the action you just undid (Ctrl+Y)",
+    "版面": "Layout",
+    "合併成一張圖": "Merge into One Panel",
+    "把選取的訊號放進同一個 panel（疊在一張圖上）；沒有選取時合併全部": "Put the selected signals in one panel (overlaid in one plot); with nothing selected, merges all",
+    "拆成各自一張": "Split into Panels",
+    "把選取的訊號各放一個 panel（每條一張圖）；沒有選取時拆開全部": "Give each selected signal its own panel (one plot each); with nothing selected, splits all",
+    "樣式": "Style",
+    "顏色…": "Color…",
+    "改選取訊號的線色（先在清單選取，或在圖上 Shift＋點線條；關掉資料提示時雙擊線條也行）":
+        "Change the line color of the selected signals (select them in the list, or Shift+click a line in the plot; with Data Tips off, double-clicking a line works too)",
+    "也可以在圖上 Shift＋點選取後按；關掉資料提示時直接雙擊線條也行": "You can also Shift+click a line in the figure and then press this; with Data Tips off, double-clicking a line works too",
+    "線寬…": "Line Width…",
+    "改選取訊號的線寬（點）": "Change the line width of the selected signals (points)",
+    "標記大小…": "Marker Size…",
+    "改選取訊號的標記（marker）大小；標記種類在清單右鍵選單「標記」": "Change the marker size of the selected signals; pick the marker shape from the list's right-click menu “Marker”",
+    "Marker 大小…": "Marker Size…",
+    "重設樣式": "Reset Style",
+    "把選取訊號的顏色、線寬、線型、標記全部恢復成自動": "Reset color, line width, line style and marker of the selected signals to automatic",
+    "剪貼簿": "Clipboard",
+    "複製訊號": "Copy Signals",
+    "把選取的訊號複製到剪貼簿（Ctrl+C）；到圖片視窗按 Ctrl+V 疊圖": "Copy the selected signals to the clipboard (Ctrl+C); press Ctrl+V in a figure window to overlay",
+    "Ctrl+C；到圖片視窗按 Ctrl+V 疊圖": "Ctrl+C; press Ctrl+V in a figure window to overlay",
+    "複製到新圖片視窗": "Copy to New Figure Window",
+    "把選取的訊號複製並直接開在一個新的圖片視窗（一步完成複製＋貼上）": "Copy the selected signals straight into a new figure window (copy + paste in one step)",
+    "開新圖片視窗": "New Figure Window",
+    "開一個空的圖片視窗；之後選訊號按 Ctrl+C、到該視窗按 Ctrl+V 疊圖": "Open an empty figure window; then select signals, press Ctrl+C, and Ctrl+V in that window to overlay",
+    "貼到圖片視窗": "Paste into Figure Window",
+    "把剪貼簿裡的訊號貼到最近使用的圖片視窗（沒有就開新的）（Ctrl+V）": "Paste the signals on the clipboard into the most recently used figure window (opens one if there is none) (Ctrl+V)",
+    # --- Toolstrip: Analyze ------------------------------------------------------------------------------
+    "分析": "Analyze",
+    "頻譜": "Spectrum",
+    "頻譜…": "Spectrum…",
+    "突波抑制": "Despike",
+    "開頻譜視窗（Welch 法）：算清單裡選取的訊號，沒有選取時算全部。\n分析範圍＝主圖目前的 x 範圍；主圖縮放後到視窗按「重新計算」":
+        "Open the spectrum window (Welch): uses the signals selected in the list, or all of them when nothing is selected.\n"
+        "The analysis range is the main plot's current x range; after zooming the main plot, click Recompute in the window",
+    "開 GFSK 鑑頻視窗：需要 I、Q 兩條訊號——選取 2 條，或讓名稱含 adc i／adc q 自動配對\n（沒有選取時從全部訊號找配對）；fs = SPS × symbol rate，x 軸秒、y 軸 Hz":
+        "Open the GFSK discriminator window: needs an I and a Q signal — select 2 signals, or name them adc i / adc q to pair automatically\n"
+        "(with nothing selected, pairs are searched among all signals); fs = SPS × symbol rate, x in seconds, y in Hz",
+    "開啟突波抑制": "Enable Despike",
+    "把清單選取的訊號打開突波抑制：修掉單點／短暫跳到 0 或滿刻度的錯誤值，修正的點用 × 標示。\n沒有選取時套用到全部訊號；參數（k、門檻、最小偏差）在「訊號屬性 → 突波抑制」":
+        "Turn despiking on for the signals selected in the list: fixes single-sample / short glitches to 0 or full scale and marks the fixed points with ×.\n"
+        "Applies to all signals when nothing is selected; the parameters (k, threshold, min deviation) are under Signal Properties → Despike",
+    "停用": "Disable",
+    "停用突波抑制": "Disable Despike",
+    "把清單選取的訊號關掉突波抑制、還原原始值；沒有選取時套用到全部訊號":
+        "Turn despiking off for the selected signals and restore the raw values; applies to all signals when nothing is selected",
+    "圖上標示修正的點": "Mark Fixed Points on Plot",
+    "開著時被突波抑制修掉的點在圖上用紅色 × 標出來\n（只有已開啟突波抑制且真的有修正的訊號才看得到）":
+        "When on, the points fixed by despiking are marked with a red × on the plot\n(visible only for signals with despiking on that actually had fixes)",
+    "差異": "Diff",
+    "上一個差異": "Previous Diff",
+    "跳到畫面中心左邊最近的一段差異並放大；全部顯示時＝最後一段，連按往前一段一段走。\n需要同一張圖（panel）有 2 條以上訊號並勾選「標示差異區間」":
+        "Jump to the nearest diff region left of the view centre and zoom in; when everything is shown this is the last region, and repeated clicks step back one region at a time.\n"
+        "Needs 2 or more signals in the same panel with \"Highlight Diff Regions\" on",
+    "下一個差異": "Next Diff",
+    "跳到畫面中心右邊最近的一段差異並放大；全部顯示時＝第 1 段，連按往後一段一段走。\n需要同一張圖（panel）有 2 條以上訊號並勾選「標示差異區間」":
+        "Jump to the nearest diff region right of the view centre and zoom in; when everything is shown this is the first region, and repeated clicks step forward one region at a time.\n"
+        "Needs 2 or more signals in the same panel with \"Highlight Diff Regions\" on",
+    "標示差異區間": "Highlight Diff Regions",
+    "同一張圖（panel）裡 2 條以上訊號值不同的地方畫半透明紅色區間，狀態列顯示每張圖的段數與比例。\n容許誤差在「訊號屬性 → 檢視 / 差異」；關掉就不比、上一個／下一個差異也會變灰":
+        "Shade the places where 2 or more signals in the same panel differ with translucent red; the status bar shows the number of regions and the ratio per panel.\n"
+        "The tolerance is under Signal Properties → View / Diff; when off nothing is compared and Previous / Next Diff are greyed out",
+    "虛線區分": "Dashed Lines",
+    "同一張圖的第 2、3… 條線改用不同虛線畫，疊在一起時分得出哪條是哪條":
+        "Draw the 2nd, 3rd… lines of each panel with different dash patterns so overlapping lines can be told apart",
+    # --- Toolstrip: View ---------------------------------------------------------------------------------
+    "檢視": "View",
+    "滾輪縮放": "Wheel Zoom",
+    "Shift 只縮 x、Ctrl 只縮 y；Alt+滾輪捲動畫布": "Shift: x only, Ctrl: y only; Alt+wheel scrolls the canvas",
+    "風格": "Style",
+    "匯出": "Export",
+    "複製圖到剪貼簿": "Copy Figure to Clipboard",
+    "存成圖檔…": "Save Figure As…",
+    "匯出設定…": "Export Settings…",
+    "復原 (Ctrl+Z)": "Undo (Ctrl+Z)",
+    "重做 (Ctrl+Y)": "Redo (Ctrl+Y)",
+    # --- Address bar / Folder panel / Plotted Signals table -----------------------------------------------
+    "根資料夾": "Root folder",
+    "上一層資料夾": "Up one folder",
+    "搜尋": "Search",
+    "點 ☑ 切換顯示；雙擊格子改值；右鍵更多。圖上：點線條選取、雙擊改色、滾輪縮放、拖曳平移、雙擊空白還原、雙擊圖例改名；Ctrl+Z/Y 復原重做":
+        "Click ☑ to toggle visibility; double-click a cell to edit; right-click for more. In the figure: click a line to select, "
+        "double-click to change its color, wheel to zoom, drag to pan, double-click an empty area to reset the view, "
+        "double-click a legend entry to rename; Ctrl+Z/Y to undo/redo",
+    # --- Signal Properties: Signal Parameters tab ---------------------------------------------------------
+    "訊號參數": "Signal Parameters",
+    "SPS（samples per symbol）": "SPS (samples per symbol)",
+    "例如 64M、1.5G、500k": "e.g. 64M, 1.5G, 500k",
+    "單位": "Unit",
+    "數值：顯示值 = (原始值 + shift) × scale": "Value: displayed = (raw + shift) × scale",
+    "（改格式會重新讀檔）": "(changing the format re-reads the file)",
+    # --- Signal Properties: Despike tab ---------------------------------------------------------------------
+    "最長連續突波 k": "Max spike run k",
+    "最小偏差": "Min deviation",
+    "門檻 × 雜訊 σ": "Threshold × noise σ",
+    "對選取的訊號開啟": "Enable for Selected Signals",
+    "用來修 FPGA 擷取時單點 / 短暫跳到 0 或滿刻度的錯誤值；\n門檻 = max(最小偏差, 倍率 × 1.4826 × median)。沒有選取時套用到全部訊號。":
+        "Fixes single-sample / brief glitches to 0 or full scale in FPGA captures;\n"
+        "threshold = max(min deviation, factor × 1.4826 × median). Applies to all signals when nothing is selected.",
+    # --- Signal Properties: View / Diff tab -------------------------------------------------------------------
+    "檢視 / 差異": "View / Diff",
+    "x 範圍（顯示單位）": "x range (display units)",
+    "x 從": "x from",
+    "到": "to",
+    "套用 x 範圍": "Apply x Range",
+    "全部顯示": "Show All",
+    "容許誤差": "Tolerance",
+    "疊圖 y 位移": "y-stack offset",
+    "◀ 上一個差異": "◀ Previous Diff",
+    "下一個差異 ▶": "Next Diff ▶",
+    "以畫面中心為基準跳到下一段並放大": "Jumps to the next region from the view center and zooms in",
+    # --- Plot toolbar -----------------------------------------------------------------------------------------
+    "資料提示模式：點線條釘住資料提示": "Data tip mode: click a line to pin a data tip",
+    # --- Root folder scan / file tree / CSV add --------------------------------------------------------------
+    "選擇根資料夾": "Select Root Folder",
+    "資料夾不存在：{path}": "Folder does not exist: {path}",
+    "掃描失敗": "Scan failed",
+    "無法讀取 {n} 個資料夾（沒有權限？macOS 請到「系統設定 → 隱私權與安全性 → 檔案與資料夾」允許本程式）：\n{list}":
+        "Cannot read {n} folder(s) (no permission? On macOS allow this app under System Settings → Privacy & Security → Files and Folders):\n{list}",
+    "掃描 {path}": "Scan {path}",
+    "加入訊號": "Add Signals",
+    "請先在檔案樹選取檔案或欄位。": "Select a file or column in the file tree first.",
+    "沒有可加入的檔案。": "No files to add.",
+    "加入文字檔 {key}": "Add text file {key}",
+    "加入 CSV 欄位 {key}": "Add CSV column {key}",
+    "讀取 CSV 失敗": "Failed to read CSV",
+    "匯入 CSV": "Import CSV",
+    "這個 CSV 沒有可用的資料欄位。": "This CSV has no usable data columns.",
+    "所有檔案": "All Files",
+    # --- Plotted Signals inline edit ----------------------------------------------------------------------------
+    "名稱": "Name",
+    "編輯 {field}": "Edit {field}",
+    "{field}（套用到 {n} 條訊號）：": "{field} (applied to {n} signals):",
+    "Panel 必須是 ≥ 1 的整數。": "Panel must be an integer ≥ 1.",
+    "SPS 無法解析：{value}": "Cannot parse SPS: {value}",
+    "Offset 無法解析：{value}": "Cannot parse offset: {value}",
+    "編輯 {name} {field}={value}": "Edit {name} {field}={value}",
+    "點 ☑ 切換顯示；雙擊格子改值；右鍵更多。圖上：點線條釘資料提示、Shift＋點選取、滾輪縮放、拖曳平移、雙擊空白還原、雙擊圖例改名；Ctrl+Z/Y 復原重做":
+        "Click ☑ to toggle visibility; double-click a cell to edit; right-click for more. In the figure: click a line to pin a data tip, "
+        "Shift+click to select, wheel to zoom, drag to pan, double-click an empty area to reset the view, "
+        "double-click a legend entry to rename; Ctrl+Z/Y to undo/redo",
+    "開著（預設）時點線條釘住資料提示、Shift＋點選取；關掉後點線條＝選取。提示可拖曳、Delete 刪除":
+        "When on (default), clicking a line pins a data tip and Shift+click selects; when off, clicking a line selects it. "
+        "Tips can be dragged and removed with Delete",
+    # --- Toolstrip: Home — tooltips / toggles / feedback (button review 2026-10-23) ---------------------------
+    "選一個 CSV 檔、挑欄位加進已繪訊號（會先開欄位對話框，加入後自動重畫）": "Pick a CSV file and choose columns to add to Plotted Signals (a column dialog opens first; the plot refreshes after adding)",
+    "把已繪訊號存成文字檔（每條一個 .txt）：清單有選取時只匯出選取的，沒選取就全部；完成後開啟該資料夾": "Save plotted signals as text files (one .txt per signal): only the selected rows when the list has a selection, otherwise all; opens the folder when done",
+    "把目前的工作階段（根資料夾、訊號與參數、版面、檢視設定）存成 JSON 檔": "Save the current session (root folder, signals and their parameters, layout, view settings) as a JSON file",
+    "讀入先前「匯出設定」存的 JSON 檔，取代目前的訊號與設定": "Load a JSON file saved earlier with Export Settings, replacing the current signals and settings",
+    "開關。開：關閉程式時自動存整個工作階段，下次開啟自動載入；關：只記住偏好（語言、主題…），不還原訊號": "Toggle. On: the whole session is saved when the program closes and restored on next start; off: only preferences (language, theme…) are kept and signals are not restored",
+    "選根資料夾：資料夾面板會列出裡面（含子資料夾）的 .txt／.dat／.log／.csv": "Choose the root folder: the Folder panel lists its .txt / .dat / .log / .csv files (subfolders included)",
+    "重新讀取根資料夾的檔案清單（檔案有新增、刪除或改名時按；位址列按 Enter 也一樣）": "Re-read the file list of the root folder (press after files were added, deleted or renamed; Enter in the address bar does the same)",
+    "把資料夾面板裡選取的檔案或 CSV 欄位加進已繪訊號並重畫（要先在資料夾面板點選；雙擊檔案或按 Enter 也可以）": "Add the files or CSV columns selected in the Folder panel to Plotted Signals and redraw (select them in the Folder panel first; double-clicking a file or pressing Enter also works)",
+    "把資料夾面板目前列出的檔案全部加進已繪訊號（有搜尋條件時只加顯示的；CSV 直接加所有欄位，不開對話框）": "Add every file currently listed in the Folder panel to Plotted Signals (only the shown ones when a search filter is active; CSV files add all columns without a dialog)",
+    "開關。開：掃描後資料夾面板的資料夾收起來（檔案多時好找）；切換會立刻套用到目前的樹": "Toggle. On: folders in the Folder panel are collapsed after a scan (easier with many files); toggling applies to the current tree immediately",
+    "重新讀檔並重畫全部訊號（檔案被改寫過會重新載入；改了參數後也按這個）。快速鍵 F5": "Re-read and redraw all signals (files that were rewritten are reloaded; press this after changing parameters too). Shortcut F5",
+    "x 軸回到全部範圍（取消縮放與平移）。Home 鍵、雙擊空白、圖工具列的 Home 則是回到第一次縮放／平移前的原始視圖":
+        "Reset the x axis to the full range (undo zoom and pan). The Home key, double-clicking an empty area and the plot toolbar's Home instead return to the original view before the first zoom/pan",
+    "開啟使用說明（README）；已經開著就帶到最前面": "Open the user guide (README); brings it to the front if it is already open",
+    "環境、訊號參數、動作記錄與鍵盤測試；回報問題時按「複製到剪貼板」貼給開發者": "Environment, signal parameters, action history and a keyboard test; when reporting a problem press Copy to Clipboard and paste it to the developer",
+    "已重畫：目前沒有訊號——用「加入選取的」、「加入全部顯示的」或「匯入 CSV…」加入": "Redrawn: no signals yet — add some with Add Selected, Add All Shown or Import CSV…",
+    "已重新讀取 {k} 個改過的檔案並重畫 {n} 條訊號": "Reloaded {k} modified files and redrew {n} signals",
+    "已重畫 {n} 條訊號": "Redrew {n} signals",
+    "自動還原上次：開——關閉程式時存整個工作階段（根資料夾、訊號、版面），下次開啟自動載入": "Auto-restore last session: on — the whole session (root folder, signals, layout) is saved on close and loaded on next start",
+    "自動還原上次：關——關閉程式時只存偏好設定，下次開啟不還原訊號": "Auto-restore last session: off — only preferences are saved on close; signals are not restored next time",
+    "開啟時收合資料夾：開——掃描後資料夾收起來（已套用到目前的樹）": "Collapse folders on open: on — folders are collapsed after a scan (applied to the current tree)",
+    "開啟時收合資料夾：關——掃描後資料夾展開（已套用到目前的樹）": "Collapse folders on open: off — folders are expanded after a scan (applied to the current tree)",
+    "請先選根資料夾：按「瀏覽…」或在位址列輸入路徑後按 Enter": "Choose a root folder first: press Browse… or type a path in the address bar and press Enter",
+    "已掃描 {path}：{d} 個資料夾、{n} 個檔案": "Scanned {path}: {d} folders, {n} files",
+    "請先在資料夾面板選取檔案或 CSV 欄位（可多選），再按「加入選取的」": "Select files or CSV columns in the Folder panel first (multiple allowed), then press Add Selected",
+    "資料夾面板沒有可加入的檔案：先用「瀏覽…」選根資料夾，或清掉搜尋條件": "The Folder panel has no files to add: choose a root folder with Browse… first, or clear the search filter",
+    "已加入 {n} 條訊號": "Added {n} signals",
+    "沒有新增訊號（選取的都已在已繪訊號裡，或已取消）": "No signals added (the selection is already in Plotted Signals, or the dialog was cancelled)",
+}

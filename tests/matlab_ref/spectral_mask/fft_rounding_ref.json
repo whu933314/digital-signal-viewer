@@ -1,0 +1,1095 @@
+{
+ "note": "High-precision reference for the analyzer spectrum model (rounding + window budget of the spectral-mask selftest).\n\nFor each of the 10 distinct displayed spectra captured from the R2025a spectrumAnalyzer (tests/matlab_ref/scope/spectral_mask/\ncaptures.json: stored_spectra), the model \"Hann periodic window, NFFT = max(1024, WL), 'power' = |FFT(w.x)|^2 / sum(w)^2 (x2 on\ninterior one-sided bins), running average lambda = (N-1)/(N+1) (double), dBm = 10 log10 + 30\" is evaluated with mpmath at 40 digits\n(mixed-radix DFT, exact window sum, exact averaging) and rounded to double once at the end -- TWICE, with two sets of window doubles:\n  dsvwin   dsv_spectrum.design_window('hann', L) = 0.5 - 0.5 cos(2 pi n / L) evaluated in double by numpy (what DSV multiplies by)\n  mwin     MATLAB R2025a hann(L, 'periodic') doubles (hann_periodic_{L}.txt written by hann_periodic_ref.m; what the scope and\n           w4000_fft_ref.m multiply by). The two differ at the ulp level (round 6 review), which shifts the exact model value of\n           every bin by up to window_effect.max_abs_diff_dB -- so part of the scope-vs-model residual is the window, not the FFT.\nEvery available double-precision implementation of the same model is then compared bin by bin (|impl - exact| in double) with the\nexact values of ITS OWN window:\n  scope         the analyzer's own displayed spectrum (stored capture files)       -- mwin;   platform independent, pinned\n  matlab_fft    MATLAB fft(w.*x) periodogram (w4000_fft_call{k}.txt, WL 4000 only)  -- mwin;   platform independent, pinned\n  dsv_numpy_*   dsv_mask.scope_spectra() dumped by dump_dsv_spectra.py under one numpy version each (sampled FFT implementations)\n                                                                                     -- dsvwin; platform dependent, sampled\nPer WindowLength the JSON then gives the rounding + window bound used by the selftest:\n  bound = delta_scope (max |scope - exact_mwin|) + delta_window (max |exact_mwin - exact_dsvwin|) + delta_dsv (max over the sampled\n          numpy versions of |DSV - exact_dsvwin|)          -- by the triangle inequality every sampled |DSV - scope| <= bound\n  tol   = 2 * bound rounded up to two significant digits    -- the selftest TOL (2x margin for other numpy / FFT implementations)\nThis is a mathematical ground truth computed by mpmath, NOT a MATLAB measurement; the MATLAB numbers are the stored files.\nUsage (relative paths; run from anywhere with a python that has numpy and mpmath):\n    python exact_periodogram.py <ref_dir> <ui_dir> <out_json> [<dsv_dump_dir> ...]\ne.g. from tests/matlab_ref/spectral_mask:  python exact_periodogram.py .. ../../.. fft_rounding_ref.json <dumps>/dsv_numpy_2.4.6 ...",
+ "precision_digits": 40,
+ "windows": {
+  "dsvwin": "dsv_spectrum.design_window('hann', L) = 0.5 - 0.5*cos(2*pi*n/L), n = 0..L-1, numpy double (sampled platform below)",
+  "mwin": "MATLAB 25.1.0.2943329 (R2025a) hann(L, 'periodic') doubles: hann_periodic_<L>.txt (hann_periodic_ref.m)",
+  "diff": {
+   "1000": {
+    "n_values": 1000,
+    "n_differ": 337,
+    "max_abs_diff": 4.440892098500626e-16,
+    "max_ulp_diff": 128.0,
+    "max_rel_diff": 1.737794626115739e-14,
+    "argmax_abs_diff_n": 663,
+    "fsum_dsvwin": 500.0,
+    "fsum_mwin": 500.0,
+    "matlab_sum_reported": 500,
+    "symmetric_2_to_end_dsvwin": false,
+    "symmetric_2_to_end_mwin": true,
+    "sha256_dsvwin_17g": "87f0e4ac1a1dfa17a3a1e10dc24a35902a269a4dea031d31b88e13ac967c431e",
+    "sha256_mwin_file": "7b5c3b329484bf39a665a2d3cc559ceb15cefbafad8b06a765413ea4f6c5c810"
+   },
+   "4000": {
+    "n_values": 4000,
+    "n_differ": 1393,
+    "max_abs_diff": 6.106226635438361e-16,
+    "max_ulp_diff": 512.0,
+    "max_rel_diff": 6.233934411197321e-14,
+    "argmax_abs_diff_n": 3026,
+    "fsum_dsvwin": 2000.0,
+    "fsum_mwin": 2000.0,
+    "matlab_sum_reported": 2000.0000000000002,
+    "symmetric_2_to_end_dsvwin": false,
+    "symmetric_2_to_end_mwin": true,
+    "sha256_dsvwin_17g": "f4d9f12277244546bd6229dcb8aca2be141c869e2256a1adc5181579d4dd5171",
+    "sha256_mwin_file": "87124688fc390f95db7448f1d92515f9b8f3d8f94ac4f03e52371e825a7177f7"
+   }
+  }
+ },
+ "reference_window_per_implementation": {
+  "scope": "mwin",
+  "matlab_fft": "mwin",
+  "dsv_numpy_*": "dsvwin"
+ },
+ "matlab_version_of_captures": "25.1.0.2943329 (R2025a)",
+ "w4000_fft_matlab_version": "25.1.0.2943329 (R2025a)",
+ "hann_matlab_version": "25.1.0.2943329 (R2025a)",
+ "implementations": [
+  "dsv_numpy_1.26.4",
+  "dsv_numpy_2.4.6",
+  "matlab_fft",
+  "scope"
+ ],
+ "sampled_dsv_platform": "Darwin arm64 (the dsv_numpy_* rows and the dsvwin doubles; scope and matlab_fft rows are file-derived)",
+ "summary": {
+  "1000": {
+   "delta_scope_dB": 5.684341886080801e-13,
+   "delta_matlab_fft_dB": null,
+   "delta_window_dB": 3.5114684930602795e-13,
+   "delta_dsv_dB": 4.050093593832571e-13,
+   "delta_dsv_by_impl_dB": {
+    "dsv_numpy_2.4.6": 4.050093593832571e-13,
+    "dsv_numpy_1.26.4": 3.339550858072471e-13
+   },
+   "bound_dB": 1.3245903972973652e-12,
+   "tol_dB": 2.7e-12,
+   "max_abs_diff_vs_scope_dB": {
+    "dsv_numpy_2.4.6": 7.034373084024992e-13,
+    "dsv_numpy_1.26.4": 6.394884621840902e-13
+   },
+   "margin_tol_over_max_sampled_residual": 3.838295136963491
+  },
+  "4000": {
+   "delta_scope_dB": 3.716138508025324e-12,
+   "delta_matlab_fft_dB": 3.581135388230905e-12,
+   "delta_window_dB": 4.128641626170376e-12,
+   "delta_dsv_dB": 3.886668764607748e-12,
+   "delta_dsv_by_impl_dB": {
+    "dsv_numpy_2.4.6": 2.2453150450019166e-12,
+    "dsv_numpy_1.26.4": 3.886668764607748e-12
+   },
+   "bound_dB": 1.1731448898803448e-11,
+   "tol_dB": 2.4e-11,
+   "max_abs_diff_vs_scope_dB": {
+    "dsv_numpy_2.4.6": 6.139089236967266e-12,
+    "dsv_numpy_1.26.4": 6.707523425575346e-12
+   },
+   "margin_tol_over_max_sampled_residual": 3.5780717378473224
+  }
+ },
+ "spectra": [
+  {
+   "file": "spectra/mask_A_doc_upper_call1_S.txt",
+   "dataset": "A",
+   "window_length": 1000,
+   "nfft": 1024,
+   "averages": 4,
+   "two_sided": false,
+   "complex_input": false,
+   "k": 1,
+   "segments_so_far": 4,
+   "nbins": 513,
+   "nch": 2,
+   "peak_bin": 102,
+   "peak_ch": 2,
+   "peak_dBm_exact_mwin": "27.1852552102702219810426164019",
+   "peak_dBm_exact_dsvwin": "27.1852552102702215504911963715",
+   "window_effect": {
+    "max_abs_diff_dB": 9.169803551822793e-14,
+    "signed_diff_dB_mwin_minus_dsvwin": -9.169803551822793e-14,
+    "bin": 242,
+    "ch": 1,
+    "level_rel_peak_dB": -55.14331029370982,
+    "n_bins_where_double_values_differ": 746,
+    "numel": 1026
+   },
+   "pinned_bins": [
+    {
+     "bin": 26,
+     "ch": 1,
+     "exact_dBm_mwin": "-27.2277748605535044231499595149",
+     "exact_dBm_dsvwin": "-27.2277748605535131544564854628"
+    },
+    {
+     "bin": 102,
+     "ch": 2,
+     "exact_dBm_mwin": "27.1852552102702219810426164019",
+     "exact_dBm_dsvwin": "27.1852552102702215504911963715"
+    },
+    {
+     "bin": 242,
+     "ch": 1,
+     "exact_dBm_mwin": "-27.9580550834395939333392127808",
+     "exact_dBm_dsvwin": "-27.9580550834395022353036945528"
+    },
+    {
+     "bin": 377,
+     "ch": 2,
+     "exact_dBm_mwin": "-31.9036579523272356538715735162",
+     "exact_dBm_dsvwin": "-31.9036579523272519251304865797"
+    }
+   ],
+   "impl": {
+    "scope": {
+     "reference_window": "mwin",
+     "max_abs_diff_dB": 1.8829382497642655e-13,
+     "bin": 26,
+     "ch": 1,
+     "impl_dBm": -27.227774860553694,
+     "exact_dBm_at_bin": "-27.2277748605535044231499595149",
+     "level_rel_peak_dB": -54.41303007082372,
+     "bit_identical_bins": 145,
+     "numel": 1026,
+     "max_abs_diff_vs_dsvwin_dB": 1.8118839761882555e-13
+    },
+    "dsv_numpy_2.4.6": {
+     "reference_window": "dsvwin",
+     "max_abs_diff_dB": 1.1368683772161603e-13,
+     "bin": 377,
+     "ch": 2,
+     "impl_dBm": -31.903657952327364,
+     "exact_dBm_at_bin": "-31.9036579523272519251304865797",
+     "level_rel_peak_dB": -59.08891316259747,
+     "bit_identical_bins": 137,
+     "numel": 1026,
+     "max_abs_diff_vs_mwin_dB": 1.2789769243681803e-13
+    },
+    "dsv_numpy_1.26.4": {
+     "reference_window": "dsvwin",
+     "max_abs_diff_dB": 1.4921397450962104e-13,
+     "bin": 377,
+     "ch": 2,
+     "impl_dBm": -31.9036579523274,
+     "exact_dBm_at_bin": "-31.9036579523272519251304865797",
+     "level_rel_peak_dB": -59.08891316259747,
+     "bit_identical_bins": 145,
+     "numel": 1026,
+     "max_abs_diff_vs_mwin_dB": 1.6342482922482304e-13
+    }
+   }
+  },
+  {
+   "file": "spectra/mask_A_doc_upper_call2_S.txt",
+   "dataset": "A",
+   "window_length": 1000,
+   "nfft": 1024,
+   "averages": 4,
+   "two_sided": false,
+   "complex_input": false,
+   "k": 2,
+   "segments_so_far": 8,
+   "nbins": 513,
+   "nch": 2,
+   "peak_bin": 102,
+   "peak_ch": 2,
+   "peak_dBm_exact_mwin": "36.2528549441562333657791703149",
+   "peak_dBm_exact_dsvwin": "36.2528549441562329375831807807",
+   "window_effect": {
+    "max_abs_diff_dB": 1.3875513862574006e-13,
+    "signed_diff_dB_mwin_minus_dsvwin": -1.3875513862574006e-13,
+    "bin": 239,
+    "ch": 2,
+    "level_rel_peak_dB": -59.25171668946015,
+    "n_bins_where_double_values_differ": 788,
+    "numel": 1026
+   },
+   "pinned_bins": [
+    {
+     "bin": 102,
+     "ch": 2,
+     "exact_dBm_mwin": "36.2528549441562333657791703149",
+     "exact_dBm_dsvwin": "36.2528549441562329375831807807"
+    },
+    {
+     "bin": 239,
+     "ch": 2,
+     "exact_dBm_mwin": "-22.9988617453039205680419050608",
+     "exact_dBm_dsvwin": "-22.9988617453037818129032793207"
+    },
+    {
+     "bin": 356,
+     "ch": 2,
+     "exact_dBm_mwin": "-25.0915060620927166140620074821",
+     "exact_dBm_dsvwin": "-25.0915060620927289617079333221"
+    },
+    {
+     "bin": 410,
+     "ch": 2,
+     "exact_dBm_mwin": "-21.0379468430259204148870346701",
+     "exact_dBm_dsvwin": "-21.0379468430259421923502178823"
+    },
+    {
+     "bin": 411,
+     "ch": 2,
+     "exact_dBm_mwin": "-19.4872922506447616348764084301",
+     "exact_dBm_dsvwin": "-19.4872922506447236783883388444"
+    }
+   ],
+   "impl": {
+    "scope": {
+     "reference_window": "mwin",
+     "max_abs_diff_dB": 3.730349362740526e-13,
+     "bin": 356,
+     "ch": 2,
+     "impl_dBm": -25.09150606209309,
+     "exact_dBm_at_bin": "-25.0915060620927166140620074821",
+     "level_rel_peak_dB": -61.344361006248946,
+     "bit_identical_bins": 101,
+     "numel": 1026,
+     "max_abs_diff_vs_dsvwin_dB": 3.588240815588506e-13
+    },
+    "dsv_numpy_2.4.6": {
+     "reference_window": "dsvwin",
+     "max_abs_diff_dB": 3.197442310920451e-13,
+     "bin": 410,
+     "ch": 2,
+     "impl_dBm": -21.037946843026262,
+     "exact_dBm_at_bin": "-21.0379468430259421923502178823",
+     "level_rel_peak_dB": -57.290801787182176,
+     "bit_identical_bins": 113,
+     "numel": 1026,
+     "max_abs_diff_vs_mwin_dB": 3.410605131648481e-13
+    },
+    "dsv_numpy_1.26.4": {
+     "reference_window": "dsvwin",
+     "max_abs_diff_dB": 3.232969447708456e-13,
+     "bin": 411,
+     "ch": 2,
+     "impl_dBm": -19.487292250645048,
+     "exact_dBm_at_bin": "-19.4872922506447236783883388444",
+     "level_rel_peak_dB": -55.740147194800954,
+     "bit_identical_bins": 121,
+     "numel": 1026,
+     "max_abs_diff_vs_mwin_dB": 3.126388037344441e-13
+    }
+   }
+  },
+  {
+   "file": "spectra/mask_A_doc_upper_call3_S.txt",
+   "dataset": "A",
+   "window_length": 1000,
+   "nfft": 1024,
+   "averages": 4,
+   "two_sided": false,
+   "complex_input": false,
+   "k": 3,
+   "segments_so_far": 12,
+   "nbins": 513,
+   "nch": 2,
+   "peak_bin": 102,
+   "peak_ch": 2,
+   "peak_dBm_exact_mwin": "29.967415477180346079037157164",
+   "peak_dBm_exact_dsvwin": "29.9674154771803456476305545096",
+   "window_effect": {
+    "max_abs_diff_dB": 5.203452917175649e-14,
+    "signed_diff_dB_mwin_minus_dsvwin": -5.203452917175649e-14,
+    "bin": 71,
+    "ch": 2,
+    "level_rel_peak_dB": -54.3375867967826,
+    "n_bins_where_double_values_differ": 688,
+    "numel": 1026
+   },
+   "pinned_bins": [
+    {
+     "bin": 71,
+     "ch": 2,
+     "exact_dBm_mwin": "-24.3701713196022545076177158977",
+     "exact_dBm_dsvwin": "-24.3701713196022024730885441412"
+    },
+    {
+     "bin": 102,
+     "ch": 2,
+     "exact_dBm_mwin": "29.967415477180346079037157164",
+     "exact_dBm_dsvwin": "29.9674154771803456476305545096"
+    },
+    {
+     "bin": 359,
+     "ch": 2,
+     "exact_dBm_mwin": "-23.3559005572800221703499900587",
+     "exact_dBm_dsvwin": "-23.355900557280019303952858789"
+    },
+    {
+     "bin": 412,
+     "ch": 1,
+     "exact_dBm_mwin": "-18.9311594076407717630962273513",
+     "exact_dBm_dsvwin": "-18.9311594076407652391385852371"
+    }
+   ],
+   "impl": {
+    "scope": {
+     "reference_window": "mwin",
+     "max_abs_diff_dB": 9.592326932761353e-14,
+     "bin": 71,
+     "ch": 2,
+     "impl_dBm": -24.37017131960235,
+     "exact_dBm_at_bin": "-24.3701713196022545076177158977",
+     "level_rel_peak_dB": -54.3375867967826,
+     "bit_identical_bins": 141,
+     "numel": 1026,
+     "max_abs_diff_vs_dsvwin_dB": 1.4566126083082054e-13
+    },
+    "dsv_numpy_2.4.6": {
+     "reference_window": "dsvwin",
+     "max_abs_diff_dB": 1.0302869668521453e-13,
+     "bin": 412,
+     "ch": 1,
+     "impl_dBm": -18.931159407640664,
+     "exact_dBm_at_bin": "-18.9311594076407652391385852371",
+     "level_rel_peak_dB": -48.898574884821116,
+     "bit_identical_bins": 163,
+     "numel": 1026,
+     "max_abs_diff_vs_mwin_dB": 1.0658141036401503e-13
+    },
+    "dsv_numpy_1.26.4": {
+     "reference_window": "dsvwin",
+     "max_abs_diff_dB": 7.460698725481052e-14,
+     "bin": 359,
+     "ch": 2,
+     "impl_dBm": -23.355900557279945,
+     "exact_dBm_at_bin": "-23.355900557280019303952858789",
+     "level_rel_peak_dB": -53.32331603446036,
+     "bit_identical_bins": 163,
+     "numel": 1026,
+     "max_abs_diff_vs_mwin_dB": 7.815970093361102e-14
+    }
+   }
+  },
+  {
+   "file": "spectra/mask_A_doc_upper_call4_S.txt",
+   "dataset": "A",
+   "window_length": 1000,
+   "nfft": 1024,
+   "averages": 4,
+   "two_sided": false,
+   "complex_input": false,
+   "k": 4,
+   "segments_so_far": 16,
+   "nbins": 513,
+   "nch": 2,
+   "peak_bin": 102,
+   "peak_ch": 1,
+   "peak_dBm_exact_mwin": "27.1634941243326143763140461284",
+   "peak_dBm_exact_dsvwin": "27.1634941243326139490839185794",
+   "window_effect": {
+    "max_abs_diff_dB": 4.732699592053634e-14,
+    "signed_diff_dB_mwin_minus_dsvwin": -4.732699592053634e-14,
+    "bin": 176,
+    "ch": 1,
+    "level_rel_peak_dB": -54.06431079621288,
+    "n_bins_where_double_values_differ": 512,
+    "numel": 1026
+   },
+   "pinned_bins": [
+    {
+     "bin": 38,
+     "ch": 1,
+     "exact_dBm_mwin": "-24.1331937616737687550997452088",
+     "exact_dBm_dsvwin": "-24.133193761673765991587170884"
+    },
+    {
+     "bin": 102,
+     "ch": 1,
+     "exact_dBm_mwin": "27.1634941243326143763140461284",
+     "exact_dBm_dsvwin": "27.1634941243326139490839185794"
+    },
+    {
+     "bin": 176,
+     "ch": 1,
+     "exact_dBm_mwin": "-26.9008166718802597322291645141",
+     "exact_dBm_dsvwin": "-26.9008166718802124052332439777"
+    },
+    {
+     "bin": 230,
+     "ch": 1,
+     "exact_dBm_mwin": "-24.023642041432670230701843059",
+     "exact_dBm_dsvwin": "-24.0236420414326642063070034956"
+    },
+    {
+     "bin": 410,
+     "ch": 1,
+     "exact_dBm_mwin": "-22.1998469283160239321566371155",
+     "exact_dBm_dsvwin": "-22.199846928316025211900885606"
+    }
+   ],
+   "impl": {
+    "scope": {
+     "reference_window": "mwin",
+     "max_abs_diff_dB": 8.881784197001252e-14,
+     "bin": 230,
+     "ch": 1,
+     "impl_dBm": -24.02364204143276,
+     "exact_dBm_at_bin": "-24.023642041432670230701843059",
+     "level_rel_peak_dB": -51.18713616576528,
+     "bit_identical_bins": 180,
+     "numel": 1026,
+     "max_abs_diff_vs_dsvwin_dB": 9.237055564881302e-14
+    },
+    "dsv_numpy_2.4.6": {
+     "reference_window": "dsvwin",
+     "max_abs_diff_dB": 8.526512829121202e-14,
+     "bin": 38,
+     "ch": 1,
+     "impl_dBm": -24.13319376167385,
+     "exact_dBm_at_bin": "-24.133193761673765991587170884",
+     "level_rel_peak_dB": -51.29668788600638,
+     "bit_identical_bins": 230,
+     "numel": 1026,
+     "max_abs_diff_vs_mwin_dB": 8.171241461241152e-14
+    },
+    "dsv_numpy_1.26.4": {
+     "reference_window": "dsvwin",
+     "max_abs_diff_dB": 1.0302869668521453e-13,
+     "bin": 410,
+     "ch": 1,
+     "impl_dBm": -22.19984692831592,
+     "exact_dBm_at_bin": "-22.199846928316025211900885606",
+     "level_rel_peak_dB": -49.363341052648636,
+     "bit_identical_bins": 238,
+     "numel": 1026,
+     "max_abs_diff_vs_mwin_dB": 1.0302869668521453e-13
+    }
+   }
+  },
+  {
+   "file": "spectra/mask_A_doc_upper_W4000_call1_S.txt",
+   "dataset": "A",
+   "window_length": 4000,
+   "nfft": 4000,
+   "averages": 1,
+   "two_sided": false,
+   "complex_input": false,
+   "k": 1,
+   "segments_so_far": 1,
+   "nbins": 2001,
+   "nch": 2,
+   "peak_bin": 392,
+   "peak_ch": 2,
+   "peak_dBm_exact_mwin": "27.0021743051632161325052432822",
+   "peak_dBm_exact_dsvwin": "27.002174305163216082292866243",
+   "window_effect": {
+    "max_abs_diff_dB": 1.381832432817661e-12,
+    "signed_diff_dB_mwin_minus_dsvwin": 1.381832432817661e-12,
+    "bin": 764,
+    "ch": 1,
+    "level_rel_peak_dB": -78.23071696381373,
+    "n_bins_where_double_values_differ": 3444,
+    "numel": 4002
+   },
+   "pinned_bins": [
+    {
+     "bin": 192,
+     "ch": 2,
+     "exact_dBm_mwin": "-60.6028200461490886145280408671",
+     "exact_dBm_dsvwin": "-60.6028200461489342917267992239"
+    },
+    {
+     "bin": 392,
+     "ch": 2,
+     "exact_dBm_mwin": "27.0021743051632161325052432822",
+     "exact_dBm_dsvwin": "27.002174305163216082292866243"
+    },
+    {
+     "bin": 560,
+     "ch": 2,
+     "exact_dBm_mwin": "-44.7446643330553154620104770876",
+     "exact_dBm_dsvwin": "-44.7446643330553391898903008019"
+    },
+    {
+     "bin": 764,
+     "ch": 1,
+     "exact_dBm_mwin": "-51.2285426586505273650599721508",
+     "exact_dBm_dsvwin": "-51.2285426586519091974927898116"
+    },
+    {
+     "bin": 2000,
+     "ch": 1,
+     "exact_dBm_mwin": "-44.2787111523264569583967420425",
+     "exact_dBm_dsvwin": "-44.2787111523263743259024905272"
+    },
+    {
+     "bin": 2000,
+     "ch": 2,
+     "exact_dBm_mwin": "-43.4167829933228726018042600515",
+     "exact_dBm_dsvwin": "-43.4167829933228125764513299616"
+    }
+   ],
+   "impl": {
+    "scope": {
+     "reference_window": "mwin",
+     "max_abs_diff_dB": 3.161915174132446e-12,
+     "bin": 2000,
+     "ch": 1,
+     "impl_dBm": -44.27871115232962,
+     "exact_dBm_at_bin": "-44.2787111523264569583967420425",
+     "level_rel_peak_dB": -71.28088545748967,
+     "bit_identical_bins": 468,
+     "numel": 4002,
+     "max_abs_diff_vs_dsvwin_dB": 3.247180302423658e-12
+    },
+    "matlab_fft": {
+     "reference_window": "mwin",
+     "max_abs_diff_dB": 3.581135388230905e-12,
+     "bin": 192,
+     "ch": 2,
+     "impl_dBm": -60.60282004614551,
+     "exact_dBm_at_bin": "-60.6028200461490886145280408671",
+     "level_rel_peak_dB": -87.60499435131231,
+     "bit_identical_bins": 426,
+     "numel": 4002,
+     "max_abs_diff_vs_dsvwin_dB": 3.424815986363683e-12
+    },
+    "dsv_numpy_2.4.6": {
+     "reference_window": "dsvwin",
+     "max_abs_diff_dB": 2.1174173525650986e-12,
+     "bin": 560,
+     "ch": 2,
+     "impl_dBm": -44.74466433305322,
+     "exact_dBm_at_bin": "-44.7446643330553391898903008019",
+     "level_rel_peak_dB": -71.74683863821855,
+     "bit_identical_bins": 428,
+     "numel": 4002,
+     "max_abs_diff_vs_mwin_dB": 2.0961010704922955e-12
+    },
+    "dsv_numpy_1.26.4": {
+     "reference_window": "dsvwin",
+     "max_abs_diff_dB": 2.1742607714259066e-12,
+     "bin": 2000,
+     "ch": 2,
+     "impl_dBm": -43.416782993324986,
+     "exact_dBm_at_bin": "-43.4167829933228125764513299616",
+     "level_rel_peak_dB": -70.41895729848602,
+     "bit_identical_bins": 388,
+     "numel": 4002,
+     "max_abs_diff_vs_mwin_dB": 2.1103119252074976e-12
+    }
+   }
+  },
+  {
+   "file": "spectra/mask_A_doc_upper_W4000_call2_S.txt",
+   "dataset": "A",
+   "window_length": 4000,
+   "nfft": 4000,
+   "averages": 1,
+   "two_sided": false,
+   "complex_input": false,
+   "k": 2,
+   "segments_so_far": 2,
+   "nbins": 2001,
+   "nch": 2,
+   "peak_bin": 392,
+   "peak_ch": 2,
+   "peak_dBm_exact_mwin": "36.5373800906883705435659635033",
+   "peak_dBm_exact_dsvwin": "36.5373800906883704962349481131",
+   "window_effect": {
+    "max_abs_diff_dB": 4.128641626170376e-12,
+    "signed_diff_dB_mwin_minus_dsvwin": 4.128641626170376e-12,
+    "bin": 768,
+    "ch": 2,
+    "level_rel_peak_dB": -84.93137456688069,
+    "n_bins_where_double_values_differ": 3631,
+    "numel": 4002
+   },
+   "pinned_bins": [
+    {
+     "bin": 392,
+     "ch": 2,
+     "exact_dBm_mwin": "36.5373800906883705435659635033",
+     "exact_dBm_dsvwin": "36.5373800906883704962349481131"
+    },
+    {
+     "bin": 768,
+     "ch": 2,
+     "exact_dBm_mwin": "-48.393994476192323004485488296",
+     "exact_dBm_dsvwin": "-48.393994476196451646111658672"
+    },
+    {
+     "bin": 1780,
+     "ch": 2,
+     "exact_dBm_mwin": "-58.5204673159320497489858447579",
+     "exact_dBm_dsvwin": "-58.5204673159301507953022486503"
+    },
+    {
+     "bin": 2000,
+     "ch": 2,
+     "exact_dBm_mwin": "-41.2542068309450131423811842108",
+     "exact_dBm_dsvwin": "-41.2542068309448390934818341743"
+    }
+   ],
+   "impl": {
+    "scope": {
+     "reference_window": "mwin",
+     "max_abs_diff_dB": 3.716138508025324e-12,
+     "bin": 2000,
+     "ch": 2,
+     "impl_dBm": -41.25420683094873,
+     "exact_dBm_at_bin": "-41.2542068309450131423811842108",
+     "level_rel_peak_dB": -77.79158692163338,
+     "bit_identical_bins": 282,
+     "numel": 4002,
+     "max_abs_diff_vs_dsvwin_dB": 5.314859663485549e-12
+    },
+    "matlab_fft": {
+     "reference_window": "mwin",
+     "max_abs_diff_dB": 2.8279600883251987e-12,
+     "bin": 1780,
+     "ch": 2,
+     "impl_dBm": -58.52046731593488,
+     "exact_dBm_at_bin": "-58.5204673159320497489858447579",
+     "level_rel_peak_dB": -95.05784740662043,
+     "bit_identical_bins": 264,
+     "numel": 4002,
+     "max_abs_diff_vs_dsvwin_dB": 4.732214620162267e-12
+    },
+    "dsv_numpy_2.4.6": {
+     "reference_window": "dsvwin",
+     "max_abs_diff_dB": 2.2453150450019166e-12,
+     "bin": 2000,
+     "ch": 2,
+     "impl_dBm": -41.25420683094259,
+     "exact_dBm_at_bin": "-41.2542068309448390934818341743",
+     "level_rel_peak_dB": -77.79158692163321,
+     "bit_identical_bins": 293,
+     "numel": 4002,
+     "max_abs_diff_vs_mwin_dB": 4.192202140984591e-12
+    },
+    "dsv_numpy_1.26.4": {
+     "reference_window": "dsvwin",
+     "max_abs_diff_dB": 2.8137492336099967e-12,
+     "bin": 2000,
+     "ch": 2,
+     "impl_dBm": -41.254206830942024,
+     "exact_dBm_at_bin": "-41.2542068309448390934818341743",
+     "level_rel_peak_dB": -77.79158692163321,
+     "bit_identical_bins": 268,
+     "numel": 4002,
+     "max_abs_diff_vs_mwin_dB": 4.135358722123783e-12
+    }
+   }
+  },
+  {
+   "file": "spectra/mask_A_doc_upper_W4000_call3_S.txt",
+   "dataset": "A",
+   "window_length": 4000,
+   "nfft": 4000,
+   "averages": 1,
+   "two_sided": false,
+   "complex_input": false,
+   "k": 3,
+   "segments_so_far": 3,
+   "nbins": 2001,
+   "nch": 2,
+   "peak_bin": 392,
+   "peak_ch": 1,
+   "peak_dBm_exact_mwin": "27.0032703737455872978761289977",
+   "peak_dBm_exact_dsvwin": "27.003270373745587253635268315",
+   "window_effect": {
+    "max_abs_diff_dB": 2.5162092485444717e-12,
+    "signed_diff_dB_mwin_minus_dsvwin": -2.5162092485444717e-12,
+    "bin": 1559,
+    "ch": 1,
+    "level_rel_peak_dB": -80.81131494633892,
+    "n_bins_where_double_values_differ": 3499,
+    "numel": 4002
+   },
+   "pinned_bins": [
+    {
+     "bin": 392,
+     "ch": 1,
+     "exact_dBm_mwin": "27.0032703737455872978761289977",
+     "exact_dBm_dsvwin": "27.003270373745587253635268315"
+    },
+    {
+     "bin": 409,
+     "ch": 1,
+     "exact_dBm_mwin": "-43.531114400887407914414121172",
+     "exact_dBm_dsvwin": "-43.5311144008874601608123452485"
+    },
+    {
+     "bin": 1288,
+     "ch": 2,
+     "exact_dBm_mwin": "-56.5783694893866522227631107183",
+     "exact_dBm_dsvwin": "-56.5783694893868078578975790212"
+    },
+    {
+     "bin": 1424,
+     "ch": 2,
+     "exact_dBm_mwin": "-52.4000960411020818053016618631",
+     "exact_dBm_dsvwin": "-52.4000960411019278925681378127"
+    },
+    {
+     "bin": 1559,
+     "ch": 1,
+     "exact_dBm_mwin": "-53.8080445725933393519735266489",
+     "exact_dBm_dsvwin": "-53.808044572590823142724982177"
+    },
+    {
+     "bin": 2000,
+     "ch": 2,
+     "exact_dBm_mwin": "-35.5425534091310300412060012566",
+     "exact_dBm_dsvwin": "-35.5425534091310582012491295213"
+    }
+   ],
+   "impl": {
+    "scope": {
+     "reference_window": "mwin",
+     "max_abs_diff_dB": 1.5489831639570184e-12,
+     "bin": 2000,
+     "ch": 2,
+     "impl_dBm": -35.54255340912948,
+     "exact_dBm_at_bin": "-35.5425534091310300412060012566",
+     "level_rel_peak_dB": -62.54582378287662,
+     "bit_identical_bins": 429,
+     "numel": 4002,
+     "max_abs_diff_vs_dsvwin_dB": 2.9345414986892138e-12
+    },
+    "matlab_fft": {
+     "reference_window": "mwin",
+     "max_abs_diff_dB": 1.4992451724538114e-12,
+     "bin": 1424,
+     "ch": 2,
+     "impl_dBm": -52.40009604110058,
+     "exact_dBm_at_bin": "-52.4000960411020818053016618631",
+     "level_rel_peak_dB": -79.40336641484767,
+     "bit_identical_bins": 405,
+     "numel": 4002,
+     "max_abs_diff_vs_dsvwin_dB": 1.8687273950490635e-12
+    },
+    "dsv_numpy_2.4.6": {
+     "reference_window": "dsvwin",
+     "max_abs_diff_dB": 8.597567102697212e-13,
+     "bin": 1288,
+     "ch": 2,
+     "impl_dBm": -56.57836948938767,
+     "exact_dBm_at_bin": "-56.5783694893868078578975790212",
+     "level_rel_peak_dB": -83.5816398631324,
+     "bit_identical_bins": 436,
+     "numel": 4002,
+     "max_abs_diff_vs_mwin_dB": 2.5366375666635577e-12
+    },
+    "dsv_numpy_1.26.4": {
+     "reference_window": "dsvwin",
+     "max_abs_diff_dB": 1.7621459846850485e-12,
+     "bin": 409,
+     "ch": 1,
+     "impl_dBm": -43.53111440088922,
+     "exact_dBm_at_bin": "-43.5311144008874601608123452485",
+     "level_rel_peak_dB": -70.53438477463305,
+     "bit_identical_bins": 446,
+     "numel": 4002,
+     "max_abs_diff_vs_mwin_dB": 1.9539925233402755e-12
+    }
+   }
+  },
+  {
+   "file": "spectra/mask_A_doc_upper_W4000_call4_S.txt",
+   "dataset": "A",
+   "window_length": 4000,
+   "nfft": 4000,
+   "averages": 1,
+   "two_sided": false,
+   "complex_input": false,
+   "k": 4,
+   "segments_so_far": 4,
+   "nbins": 2001,
+   "nch": 2,
+   "peak_bin": 400,
+   "peak_ch": 1,
+   "peak_dBm_exact_mwin": "26.9758012784886522841986546993",
+   "peak_dBm_exact_dsvwin": "26.9758012784886522446321262767",
+   "window_effect": {
+    "max_abs_diff_dB": 6.164681301950444e-13,
+    "signed_diff_dB_mwin_minus_dsvwin": -6.164681301950444e-13,
+    "bin": 763,
+    "ch": 1,
+    "level_rel_peak_dB": -78.5479366414977,
+    "n_bins_where_double_values_differ": 2823,
+    "numel": 4002
+   },
+   "pinned_bins": [
+    {
+     "bin": 400,
+     "ch": 1,
+     "exact_dBm_mwin": "26.9758012784886522841986546993",
+     "exact_dBm_dsvwin": "26.9758012784886522446321262767"
+    },
+    {
+     "bin": 763,
+     "ch": 1,
+     "exact_dBm_mwin": "-51.5721353630090539036138340428",
+     "exact_dBm_dsvwin": "-51.5721353630084374354836389985"
+    },
+    {
+     "bin": 856,
+     "ch": 1,
+     "exact_dBm_mwin": "-59.1249177351534563196883066378",
+     "exact_dBm_dsvwin": "-59.1249177351535520120866380392"
+    },
+    {
+     "bin": 1192,
+     "ch": 2,
+     "exact_dBm_mwin": "-56.3117328264673274133215499773",
+     "exact_dBm_dsvwin": "-56.3117328264674222796500377062"
+    },
+    {
+     "bin": 1992,
+     "ch": 1,
+     "exact_dBm_mwin": "-51.5546743382266853645073123883",
+     "exact_dBm_dsvwin": "-51.5546743382266249177312569118"
+    }
+   ],
+   "impl": {
+    "scope": {
+     "reference_window": "mwin",
+     "max_abs_diff_dB": 2.6716406864579767e-12,
+     "bin": 856,
+     "ch": 1,
+     "impl_dBm": -59.12491773515613,
+     "exact_dBm_at_bin": "-59.1249177351534563196883066378",
+     "level_rel_peak_dB": -86.1007190136421,
+     "bit_identical_bins": 735,
+     "numel": 4002,
+     "max_abs_diff_vs_dsvwin_dB": 2.5792701308091637e-12
+    },
+    "matlab_fft": {
+     "reference_window": "mwin",
+     "max_abs_diff_dB": 2.2239987629291136e-12,
+     "bin": 1992,
+     "ch": 1,
+     "impl_dBm": -51.55467433822891,
+     "exact_dBm_at_bin": "-51.5546743382266853645073123883",
+     "level_rel_peak_dB": -78.53047561671534,
+     "bit_identical_bins": 745,
+     "numel": 4002,
+     "max_abs_diff_vs_dsvwin_dB": 2.2808421817899216e-12
+    },
+    "dsv_numpy_2.4.6": {
+     "reference_window": "dsvwin",
+     "max_abs_diff_dB": 1.9895196601282805e-12,
+     "bin": 1192,
+     "ch": 2,
+     "impl_dBm": -56.31173282646941,
+     "exact_dBm_at_bin": "-56.3117328264674222796500377062",
+     "level_rel_peak_dB": -83.28753410495608,
+     "bit_identical_bins": 735,
+     "numel": 4002,
+     "max_abs_diff_vs_mwin_dB": 2.0818902157770935e-12
+    },
+    "dsv_numpy_1.26.4": {
+     "reference_window": "dsvwin",
+     "max_abs_diff_dB": 3.886668764607748e-12,
+     "bin": 1992,
+     "ch": 1,
+     "impl_dBm": -51.55467433822274,
+     "exact_dBm_at_bin": "-51.5546743382266249177312569118",
+     "level_rel_peak_dB": -78.53047561671528,
+     "bit_identical_bins": 723,
+     "numel": 4002,
+     "max_abs_diff_vs_mwin_dB": 3.943512183468556e-12
+    }
+   }
+  },
+  {
+   "file": "spectra/mask_B_twosided_call1_S.txt",
+   "dataset": "B",
+   "window_length": 1000,
+   "nfft": 1024,
+   "averages": 4,
+   "two_sided": true,
+   "complex_input": true,
+   "k": 1,
+   "segments_so_far": 4,
+   "nbins": 1024,
+   "nch": 1,
+   "peak_bin": 357,
+   "peak_ch": 1,
+   "peak_dBm_exact_mwin": "29.1375132563418545896676896539",
+   "peak_dBm_exact_dsvwin": "29.137513256341854493462252475",
+   "window_effect": {
+    "max_abs_diff_dB": 2.1848577029944337e-13,
+    "signed_diff_dB_mwin_minus_dsvwin": 2.1848577029944337e-13,
+    "bin": 528,
+    "ch": 1,
+    "level_rel_peak_dB": -57.985581963526315,
+    "n_bins_where_double_values_differ": 788,
+    "numel": 1024
+   },
+   "pinned_bins": [
+    {
+     "bin": 357,
+     "ch": 1,
+     "exact_dBm_mwin": "29.1375132563418545896676896539",
+     "exact_dBm_dsvwin": "29.137513256341854493462252475"
+    },
+    {
+     "bin": 528,
+     "ch": 1,
+     "exact_dBm_mwin": "-28.8480687071844649189056820909",
+     "exact_dBm_dsvwin": "-28.8480687071846834046759815343"
+    },
+    {
+     "bin": 550,
+     "ch": 1,
+     "exact_dBm_mwin": "-33.0223304205848495653235974762",
+     "exact_dBm_dsvwin": "-33.0223304205848653376597670261"
+    },
+    {
+     "bin": 613,
+     "ch": 1,
+     "exact_dBm_mwin": "-26.1711591960998435509847302523",
+     "exact_dBm_dsvwin": "-26.1711591960998429651425632324"
+    },
+    {
+     "bin": 870,
+     "ch": 1,
+     "exact_dBm_mwin": "-26.0086890382361535930001463224",
+     "exact_dBm_dsvwin": "-26.0086890382360957821644711033"
+    }
+   ],
+   "impl": {
+    "scope": {
+     "reference_window": "mwin",
+     "max_abs_diff_dB": 2.3447910280083306e-13,
+     "bin": 613,
+     "ch": 1,
+     "impl_dBm": -26.17115919609961,
+     "exact_dBm_at_bin": "-26.1711591960998435509847302523",
+     "level_rel_peak_dB": -55.3086724524417,
+     "bit_identical_bins": 144,
+     "numel": 1024,
+     "max_abs_diff_vs_dsvwin_dB": 2.3447910280083306e-13
+    },
+    "dsv_numpy_2.4.6": {
+     "reference_window": "dsvwin",
+     "max_abs_diff_dB": 1.1368683772161603e-13,
+     "bin": 550,
+     "ch": 1,
+     "impl_dBm": -33.02233042058475,
+     "exact_dBm_at_bin": "-33.0223304205848653376597670261",
+     "level_rel_peak_dB": -62.15984367692672,
+     "bit_identical_bins": 158,
+     "numel": 1024,
+     "max_abs_diff_vs_mwin_dB": 2.1671553440683056e-13
+    },
+    "dsv_numpy_1.26.4": {
+     "reference_window": "dsvwin",
+     "max_abs_diff_dB": 2.8066438062523957e-13,
+     "bin": 870,
+     "ch": 1,
+     "impl_dBm": -26.008689038236376,
+     "exact_dBm_at_bin": "-26.0086890382360957821644711033",
+     "level_rel_peak_dB": -55.14620229457795,
+     "bit_identical_bins": 152,
+     "numel": 1024,
+     "max_abs_diff_vs_mwin_dB": 2.6290081223123707e-13
+    }
+   }
+  },
+  {
+   "file": "spectra/mask_B_twosided_call2_S.txt",
+   "dataset": "B",
+   "window_length": 1000,
+   "nfft": 1024,
+   "averages": 4,
+   "two_sided": true,
+   "complex_input": true,
+   "k": 2,
+   "segments_so_far": 8,
+   "nbins": 1024,
+   "nch": 1,
+   "peak_bin": 357,
+   "peak_ch": 1,
+   "peak_dBm_exact_mwin": "38.2150291150594927304078477431",
+   "peak_dBm_exact_dsvwin": "38.2150291150594926406244985554",
+   "window_effect": {
+    "max_abs_diff_dB": 3.5114684930602795e-13,
+    "signed_diff_dB_mwin_minus_dsvwin": 3.5114684930602795e-13,
+    "bin": 638,
+    "ch": 1,
+    "level_rel_peak_dB": -65.94801646596014,
+    "n_bins_where_double_values_differ": 905,
+    "numel": 1024
+   },
+   "pinned_bins": [
+    {
+     "bin": 102,
+     "ch": 1,
+     "exact_dBm_mwin": "-29.103159686039254955268577707",
+     "exact_dBm_dsvwin": "-29.1031596860392690561060980033"
+    },
+    {
+     "bin": 357,
+     "ch": 1,
+     "exact_dBm_mwin": "38.2150291150594927304078477431",
+     "exact_dBm_dsvwin": "38.2150291150594926406244985554"
+    },
+    {
+     "bin": 613,
+     "ch": 1,
+     "exact_dBm_mwin": "-23.7541448204162206478515898169",
+     "exact_dBm_dsvwin": "-23.75414482041622279279962101"
+    },
+    {
+     "bin": 638,
+     "ch": 1,
+     "exact_dBm_mwin": "-27.7329873509006429009500407741",
+     "exact_dBm_dsvwin": "-27.732987350900994047799346802"
+    },
+    {
+     "bin": 870,
+     "ch": 1,
+     "exact_dBm_mwin": "-23.2260932173562321639397732723",
+     "exact_dBm_dsvwin": "-23.2260932173563444139495302877"
+    }
+   ],
+   "impl": {
+    "scope": {
+     "reference_window": "mwin",
+     "max_abs_diff_dB": 5.684341886080801e-13,
+     "bin": 102,
+     "ch": 1,
+     "impl_dBm": -29.103159686039824,
+     "exact_dBm_at_bin": "-29.103159686039254955268577707",
+     "level_rel_peak_dB": -67.31818880109876,
+     "bit_identical_bins": 85,
+     "numel": 1024,
+     "max_abs_diff_vs_dsvwin_dB": 5.542233338928781e-13
+    },
+    "dsv_numpy_2.4.6": {
+     "reference_window": "dsvwin",
+     "max_abs_diff_dB": 4.050093593832571e-13,
+     "bin": 613,
+     "ch": 1,
+     "impl_dBm": -23.754144820415817,
+     "exact_dBm_at_bin": "-23.75414482041622279279962101",
+     "level_rel_peak_dB": -61.969173935475716,
+     "bit_identical_bins": 76,
+     "numel": 1024,
+     "max_abs_diff_vs_mwin_dB": 4.050093593832571e-13
+    },
+    "dsv_numpy_1.26.4": {
+     "reference_window": "dsvwin",
+     "max_abs_diff_dB": 3.339550858072471e-13,
+     "bin": 870,
+     "ch": 1,
+     "impl_dBm": -23.226093217356677,
+     "exact_dBm_at_bin": "-23.2260932173563444139495302877",
+     "level_rel_peak_dB": -61.44112233241584,
+     "bit_identical_bins": 63,
+     "numel": 1024,
+     "max_abs_diff_vs_mwin_dB": 4.440892098500626e-13
+    }
+   }
+  }
+ ]
+}

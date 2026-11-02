@@ -1,0 +1,29 @@
+{
+  "matlab_version": "25.1.0.2943329 (R2025a)",
+  "windows": [
+    {
+      "L": 1000,
+      "file": "hann_periodic_1000.txt",
+      "sum": 500,
+      "first_values": [
+        0,
+        9.8695719314423336E-6,
+        3.947789809194413E-5,
+        8.8823809595517389E-5
+      ],
+      "symmetric_w2_to_end": true
+    },
+    {
+      "L": 4000,
+      "file": "hann_periodic_4000.txt",
+      "sum": 2000.0000000000002,
+      "first_values": [
+        0,
+        6.1685014823842366E-7,
+        2.467399070893439E-6,
+        5.5516422020063239E-6
+      ],
+      "symmetric_w2_to_end": true
+    }
+  ]
+}

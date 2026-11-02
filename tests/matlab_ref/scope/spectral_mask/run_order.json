@@ -1,0 +1,534 @@
+{
+ "source": "scope_capture.m progress lines in its two logs (run.log: first run, captures 1-72 'ok', interrupted during 73; run2.log: resume, 1-72 'skipped (already captured)', 73-88 'ok'). MATLAB R2025a 25.1.0.2943329.",
+ "note": "Execution order of the 88 spectrumAnalyzer captures. One scope object per run (release(sa) between captures), so within a run the 'previous capture' of capture k is capture k-1. Used by dsv_mask selftest to tell which lagging displays could reuse the previous capture's frequency grid.",
+ "captures": [
+  {
+   "index": 1,
+   "group": "obw",
+   "name": "obw_real_2s_autospan_defaults",
+   "run": 1
+  },
+  {
+   "index": 2,
+   "group": "obw",
+   "name": "obw_real_1s_autospan_defaults",
+   "run": 1
+  },
+  {
+   "index": 3,
+   "group": "obw",
+   "name": "obw_real_2s_span1250_2000_P99",
+   "run": 1
+  },
+  {
+   "index": 4,
+   "group": "obw",
+   "name": "obw_real_2s_span1250_2000_P90",
+   "run": 1
+  },
+  {
+   "index": 5,
+   "group": "obw",
+   "name": "obw_real_2s_span1250_2000_P50",
+   "run": 1
+  },
+  {
+   "index": 6,
+   "group": "obw",
+   "name": "obw_real_2s_startstop_500_3000_P99",
+   "run": 1
+  },
+  {
+   "index": 7,
+   "group": "obw",
+   "name": "obw_real_2s_startstop_1000_1500_P90",
+   "run": 1
+  },
+  {
+   "index": 8,
+   "group": "obw",
+   "name": "obw_real_2s_startstop_offgrid_P99",
+   "run": 1
+  },
+  {
+   "index": 9,
+   "group": "obw",
+   "name": "obw_real_2s_startstop_full_m5000_5000_P99",
+   "run": 1
+  },
+  {
+   "index": 10,
+   "group": "obw",
+   "name": "obw_real_1s_span1250_2000_P99",
+   "run": 1
+  },
+  {
+   "index": 11,
+   "group": "obw",
+   "name": "obw_real_1s_startstop_500_3000_P99",
+   "run": 1
+  },
+  {
+   "index": 12,
+   "group": "obw",
+   "name": "obw_real_1s_startstop_0_5000_P99",
+   "run": 1
+  },
+  {
+   "index": 13,
+   "group": "obw",
+   "name": "obw_real_2s_psd_span1250_2000_P99",
+   "run": 1
+  },
+  {
+   "index": 14,
+   "group": "obw",
+   "name": "obw_cplx_2s_span900_3000_P99",
+   "run": 1
+  },
+  {
+   "index": 15,
+   "group": "obw",
+   "name": "obw_cplx_2s_span900_3000_P90",
+   "run": 1
+  },
+  {
+   "index": 16,
+   "group": "obw",
+   "name": "obw_cplx_2s_span900_3000_P50",
+   "run": 1
+  },
+  {
+   "index": 17,
+   "group": "obw",
+   "name": "obw_cplx_2s_startstop_m500_2500_P99",
+   "run": 1
+  },
+  {
+   "index": 18,
+   "group": "obw",
+   "name": "obw_cplx_2s_startstop_400_1400_P80",
+   "run": 1
+  },
+  {
+   "index": 19,
+   "group": "obw",
+   "name": "obw_real_2s_span4500_2000_outside",
+   "run": 1
+  },
+  {
+   "index": 20,
+   "group": "obw",
+   "name": "obw_real_2s_startstop_4000_6000_outside",
+   "run": 1
+  },
+  {
+   "index": 21,
+   "group": "obw",
+   "name": "obw_real_1s_span0_2000_outside",
+   "run": 1
+  },
+  {
+   "index": 22,
+   "group": "obw",
+   "name": "obw_real_2s_maxhold_2calls",
+   "run": 1
+  },
+  {
+   "index": 23,
+   "group": "acpr",
+   "name": "acpr_cplx_2s_autospan_defaults",
+   "run": 1
+  },
+  {
+   "index": 24,
+   "group": "acpr",
+   "name": "acpr_cplx_2s_default_none",
+   "run": 1
+  },
+  {
+   "index": 25,
+   "group": "acpr",
+   "name": "acpr_cplx_2s_three_pairs_none",
+   "run": 1
+  },
+  {
+   "index": 26,
+   "group": "acpr",
+   "name": "acpr_cplx_2s_qpsk_tight_none",
+   "run": 1
+  },
+  {
+   "index": 27,
+   "group": "acpr",
+   "name": "acpr_cplx_2s_edge_bins_none",
+   "run": 1
+  },
+  {
+   "index": 28,
+   "group": "acpr",
+   "name": "acpr_cplx_2s_default_rrc_0p5",
+   "run": 1
+  },
+  {
+   "index": 29,
+   "group": "acpr",
+   "name": "acpr_cplx_2s_default_gaussian_0p5",
+   "run": 1
+  },
+  {
+   "index": 30,
+   "group": "acpr",
+   "name": "acpr_cplx_2s_default_rrc_0p0",
+   "run": 1
+  },
+  {
+   "index": 31,
+   "group": "acpr",
+   "name": "acpr_cplx_2s_default_rrc_0p25",
+   "run": 1
+  },
+  {
+   "index": 32,
+   "group": "acpr",
+   "name": "acpr_cplx_2s_default_rrc_1p0",
+   "run": 1
+  },
+  {
+   "index": 33,
+   "group": "acpr",
+   "name": "acpr_cplx_2s_default_gaussian_0p25",
+   "run": 1
+  },
+  {
+   "index": 34,
+   "group": "acpr",
+   "name": "acpr_cplx_2s_default_gaussian_1p0",
+   "run": 1
+  },
+  {
+   "index": 35,
+   "group": "acpr",
+   "name": "acpr_cplx_2s_qpsk_tight_rrc_0p35",
+   "run": 1
+  },
+  {
+   "index": 36,
+   "group": "acpr",
+   "name": "acpr_cplx_2s_qpsk_tight_gaussian_0p3",
+   "run": 1
+  },
+  {
+   "index": 37,
+   "group": "acpr",
+   "name": "acpr_cplx_2s_startstop_m1000_1000_none",
+   "run": 1
+  },
+  {
+   "index": 38,
+   "group": "acpr",
+   "name": "acpr_cplx_2s_startstop_m500_1500_none",
+   "run": 1
+  },
+  {
+   "index": 39,
+   "group": "acpr",
+   "name": "acpr_cplx_2s_beyond_range",
+   "run": 1
+  },
+  {
+   "index": 40,
+   "group": "acpr",
+   "name": "acpr_real_1s_auto1side_none",
+   "run": 1
+  },
+  {
+   "index": 41,
+   "group": "acpr",
+   "name": "acpr_real_1s_2k_none",
+   "run": 1
+  },
+  {
+   "index": 42,
+   "group": "acpr",
+   "name": "acpr_real_2s_2k_none",
+   "run": 1
+  },
+  {
+   "index": 43,
+   "group": "acpr",
+   "name": "acpr_cplx_2s_psd_default_none",
+   "run": 1
+  },
+  {
+   "index": 44,
+   "group": "acpr",
+   "name": "acpr_cplx_welch1024_psd_default_none",
+   "run": 1
+  },
+  {
+   "index": 45,
+   "group": "acpr",
+   "name": "acpr_cplx_welch1024_psd_three_pairs_none",
+   "run": 1
+  },
+  {
+   "index": 46,
+   "group": "distortion",
+   "name": "dist_h_offbin_1s_N6",
+   "run": 1
+  },
+  {
+   "index": 47,
+   "group": "distortion",
+   "name": "dist_h_offbin_2s_N6",
+   "run": 1
+  },
+  {
+   "index": 48,
+   "group": "distortion",
+   "name": "dist_h_offbin_1s_N10",
+   "run": 1
+  },
+  {
+   "index": 49,
+   "group": "distortion",
+   "name": "dist_h_offbin_1s_N2",
+   "run": 1
+  },
+  {
+   "index": 50,
+   "group": "distortion",
+   "name": "dist_h_offbin_1s_psd_N6",
+   "run": 1
+  },
+  {
+   "index": 51,
+   "group": "distortion",
+   "name": "dist_h_offbin_1s_span_0_6000_N6",
+   "run": 1
+  },
+  {
+   "index": 52,
+   "group": "distortion",
+   "name": "dist_h_offbin_1s_span_1000_24000_N6",
+   "run": 1
+  },
+  {
+   "index": 53,
+   "group": "distortion",
+   "name": "dist_h_bin_1s_N6",
+   "run": 1
+  },
+  {
+   "index": 54,
+   "group": "distortion",
+   "name": "dist_h_noisy_1s_N6",
+   "run": 1
+  },
+  {
+   "index": 55,
+   "group": "distortion",
+   "name": "dist_h_alias_1s_N6",
+   "run": 1
+  },
+  {
+   "index": 56,
+   "group": "distortion",
+   "name": "dist_h_lowf_1s_N6",
+   "run": 1
+  },
+  {
+   "index": 57,
+   "group": "distortion",
+   "name": "dist_h_noiseless_1s_N6",
+   "run": 1
+  },
+  {
+   "index": 58,
+   "group": "distortion",
+   "name": "dist_h_odd_1s_N6",
+   "run": 1
+  },
+  {
+   "index": 59,
+   "group": "distortion",
+   "name": "dist_h_maxhold_2calls",
+   "run": 1
+  },
+  {
+   "index": 60,
+   "group": "distortion",
+   "name": "dist_cplx_obw_2s_harmonic_N6",
+   "run": 1
+  },
+  {
+   "index": 61,
+   "group": "distortion",
+   "name": "dist_toi_doc_1s",
+   "run": 1
+  },
+  {
+   "index": 62,
+   "group": "distortion",
+   "name": "dist_toi_doc_2s",
+   "run": 1
+  },
+  {
+   "index": 63,
+   "group": "distortion",
+   "name": "dist_toi_bin_1s",
+   "run": 1
+  },
+  {
+   "index": 64,
+   "group": "distortion",
+   "name": "dist_toi_unequal_1s",
+   "run": 1
+  },
+  {
+   "index": 65,
+   "group": "distortion",
+   "name": "dist_toi_lowimd_dc_1s",
+   "run": 1
+  },
+  {
+   "index": 66,
+   "group": "mask",
+   "name": "mask_A_doc_upper",
+   "run": 1
+  },
+  {
+   "index": 67,
+   "group": "mask",
+   "name": "mask_A_status_upper_lower",
+   "run": 1
+  },
+  {
+   "index": 68,
+   "group": "mask",
+   "name": "mask_A_lower_only_fail",
+   "run": 1
+  },
+  {
+   "index": 69,
+   "group": "mask",
+   "name": "mask_A_scalar_upper20_ref10",
+   "run": 1
+  },
+  {
+   "index": 70,
+   "group": "mask",
+   "name": "mask_A_peak_ref_ch1",
+   "run": 1
+  },
+  {
+   "index": 71,
+   "group": "mask",
+   "name": "mask_A_peak_ref_ch2",
+   "run": 1
+  },
+  {
+   "index": 72,
+   "group": "mask",
+   "name": "mask_A_mask_freq_offset_50",
+   "run": 1
+  },
+  {
+   "index": 73,
+   "group": "mask",
+   "name": "mask_A_partial_range_200_300",
+   "run": 2
+  },
+  {
+   "index": 74,
+   "group": "mask",
+   "name": "mask_A_nan_segment",
+   "run": 2
+  },
+  {
+   "index": 75,
+   "group": "mask",
+   "name": "mask_A_sloped",
+   "run": 2
+  },
+  {
+   "index": 76,
+   "group": "mask",
+   "name": "mask_A_inf_freq_ends",
+   "run": 2
+  },
+  {
+   "index": 77,
+   "group": "mask",
+   "name": "mask_A_minus_inf_first_bp",
+   "run": 2
+  },
+  {
+   "index": 78,
+   "group": "mask",
+   "name": "mask_A_finite_first_bp",
+   "run": 2
+  },
+  {
+   "index": 79,
+   "group": "mask",
+   "name": "mask_A_scalar_m12_full",
+   "run": 2
+  },
+  {
+   "index": 80,
+   "group": "mask",
+   "name": "mask_A_scalar_m12_xlim_120_480_startstop",
+   "run": 2
+  },
+  {
+   "index": 81,
+   "group": "mask",
+   "name": "mask_A_scalar_m12_xlim_cf300_span360",
+   "run": 2
+  },
+  {
+   "index": 82,
+   "group": "mask",
+   "name": "mask_A_matrix_xlim_120_480_startstop",
+   "run": 2
+  },
+  {
+   "index": 83,
+   "group": "mask",
+   "name": "mask_A_scope_freq_offset_1000",
+   "run": 2
+  },
+  {
+   "index": 84,
+   "group": "mask",
+   "name": "mask_A_none",
+   "run": 2
+  },
+  {
+   "index": 85,
+   "group": "mask",
+   "name": "mask_A_doc_upper_W4000",
+   "run": 2
+  },
+  {
+   "index": 86,
+   "group": "mask",
+   "name": "mask_A_status_upper_lower_W4000",
+   "run": 2
+  },
+  {
+   "index": 87,
+   "group": "mask",
+   "name": "mask_B_twosided",
+   "run": 2
+  },
+  {
+   "index": 88,
+   "group": "mask",
+   "name": "mask_B_peak_ref",
+   "run": 2
+  }
+ ]
+}

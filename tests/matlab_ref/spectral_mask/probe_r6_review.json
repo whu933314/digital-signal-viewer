@@ -1,0 +1,83 @@
+{
+  "matlab_version": "25.1.0.2943329 (R2025a)",
+  "cases": [
+    {
+      "value": "[1 2;3 4]",
+      "ok": false,
+      "id": "MATLAB:expectedVector",
+      "msg": "Expected FrequencyOffset to be a vector."
+    },
+    {
+      "value": "[true false]",
+      "ok": false,
+      "id": "MATLAB:invalidType",
+      "msg": "Expected FrequencyOffset to be one of these types:\n\ndouble\n\nInstead its type was logical."
+    },
+    {
+      "value": "zeros(1,0)",
+      "ok": true,
+      "id": "",
+      "msg": "zeros(1,0)"
+    },
+    {
+      "value": "zeros(0,1)",
+      "ok": true,
+      "id": "",
+      "msg": "zeros(0,1)"
+    },
+    {
+      "value": "\"abc\"",
+      "ok": false,
+      "id": "MATLAB:invalidType",
+      "msg": "Expected FrequencyOffset to be one of these types:\n\ndouble\n\nInstead its type was string."
+    },
+    {
+      "value": "{5}",
+      "ok": false,
+      "id": "MATLAB:invalidType",
+      "msg": "Expected FrequencyOffset to be one of these types:\n\ndouble\n\nInstead its type was cell."
+    },
+    {
+      "value": "uint8(3)",
+      "ok": false,
+      "id": "MATLAB:invalidType",
+      "msg": "Expected FrequencyOffset to be one of these types:\n\ndouble\n\nInstead its type was uint8."
+    },
+    {
+      "value": "single([1 2])",
+      "ok": false,
+      "id": "MATLAB:invalidType",
+      "msg": "Expected FrequencyOffset to be one of these types:\n\ndouble\n\nInstead its type was single."
+    },
+    {
+      "value": "[1 2]'",
+      "ok": true,
+      "id": "",
+      "msg": "[1;2]"
+    },
+    {
+      "value": "1",
+      "ok": true,
+      "id": "",
+      "msg": "1"
+    },
+    {
+      "value": "-0",
+      "ok": true,
+      "id": "",
+      "msg": "0"
+    },
+    {
+      "value": "0.5",
+      "ok": true,
+      "id": "",
+      "msg": "0.5"
+    },
+    {
+      "value": "[NaN NaN]",
+      "ok": false,
+      "id": "MATLAB:expectedFinite",
+      "msg": "Expected FrequencyOffset to be finite."
+    }
+  ]
+}

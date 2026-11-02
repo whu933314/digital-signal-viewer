@@ -1,0 +1,60 @@
+# -*- coding: utf-8 -*-
+"""English catalog part: keys — the keyboard-shortcut system (dsv_keys.py, Preferences ▸ Keyboard, action names).
+Keys are the Traditional Chinese source strings, byte for byte.  Names follow MATLAB R2025a (Preferences ▸ Keyboard ▸ Shortcuts).
+"""
+CATALOG = {
+    # --- action names (toolstrip actions that have no button of the same name) ---
+    "匯出 TXT…": "Export TXT…",
+    "瀏覽根資料夾…": "Browse Root Folder…",
+    "匯入設定…": "Import Settings…",
+    "偏好設定…": "Preferences…",
+    "剪下訊號": "Cut Signals",
+    "貼上訊號": "Paste Signals",
+    "移除選取的訊號": "Remove Selected Signals",
+    "量測面板": "Measurements Panel",
+    "面板：{name}": "Panel: {name}",
+    "還原視圖": "Restore View",
+    "放大": "Zoom In",
+    "縮小": "Zoom Out",
+    "往左平移": "Pan Left",
+    "往右平移": "Pan Right",
+    "往上平移": "Pan Up",
+    "往下平移": "Pan Down",
+    "編輯": "Edit",
+    # --- tooltips that used to hard-code the key (the live shortcut is appended automatically) ---
+    "復原上一個動作": "Undo the last action",
+    "重做剛復原的動作": "Redo the action you just undid",
+    "選取「已繪訊號」清單裡的全部訊號": "Select every signal in the Plotted Signals list",
+    "把選取的訊號從圖和清單移掉；可復原": "Remove the selected signals from the plot and the list; undoable",
+    "把選取的訊號複製到剪貼簿；到圖片視窗貼上疊圖": "Copy the selected signals to the clipboard; paste in a figure window to overlay them",
+    "把剪貼簿裡的訊號貼到最近使用的圖片視窗（沒有就開新的）": "Paste the clipboard signals into the most recently used figure window (opens one if none)",
+    # --- Preferences ▸ Keyboard ---
+    "鍵盤": "Keyboard",
+    "搜尋": "Search",
+    "動作": "Action",
+    "快速鍵": "Shortcut",
+    "分類": "Category",
+    "這個動作的快速鍵": "Shortcuts for this action",
+    "按下新的快速鍵：": "Press a new shortcut:",
+    "（在這裡按鍵）": "(press keys here)",
+    "新增": "Add",
+    "移除選取的快速鍵": "Remove Selected Shortcut",
+    "還原這個動作的預設": "Restore Default for This Action",
+    "全部還原預設": "Restore All Defaults",
+    "匯入…": "Import…",
+    "匯出…": "Export…",
+    "點一個動作，在「按下新的快速鍵」框裡按組合鍵再按「新增」（Esc 清除）。同一個鍵只能給一個動作；輸入框有焦點時 ⌘C／⌘V／⌘Z 這類文字編輯鍵仍交給輸入框。":
+        "Select an action, press the key combination in the \"Press a new shortcut\" box, then click Add (Esc clears). "
+        "A key can belong to only one action; while a text field has focus, editing keys such as ⌘C / ⌘V / ⌘Z still go to the field.",
+    "有 {n} 個快速鍵綁了多個動作": "{n} shortcut(s) are bound to more than one action",
+    "先點一個動作，再在框裡按新的快速鍵": "Select an action first, then press the new shortcut in the box",
+    "快速鍵已被使用": "Shortcut Already Used",
+    "{key} 目前是「{other}」的快速鍵。改成給「{this}」？": "{key} is currently the shortcut for \"{other}\". Reassign it to \"{this}\"?",
+    "把所有動作的快速鍵都還原成預設？": "Restore the default shortcuts for every action?",
+    "匯出快速鍵": "Export Shortcuts",
+    "匯入快速鍵": "Import Shortcuts",
+    "快速鍵設定": "Shortcut settings",
+    "所有檔案": "All files",
+    "已匯出到 {name}": "Exported to {name}",
+    "已匯入 {n} 個動作的快速鍵": "Imported shortcuts for {n} action(s)",
+}

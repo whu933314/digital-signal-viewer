@@ -1,0 +1,2788 @@
+{
+  "version": "25.1.0.2943329 (R2025a)",
+  "cases": [
+    {
+      "name": "obw_1sample_vec",
+      "ok": false,
+      "id": "signal:computeperiodogram:NDMatrixUnsupported",
+      "message": "The input must be a non-empty column vector or two-dimensional matrix.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_1sample_scalar",
+      "ok": false,
+      "id": "signal:computeperiodogram:NDMatrixUnsupported",
+      "message": "The input must be a non-empty column vector or two-dimensional matrix.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_1sample_nofs",
+      "ok": false,
+      "id": "signal:computeperiodogram:NDMatrixUnsupported",
+      "message": "The input must be a non-empty column vector or two-dimensional matrix.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "powerbw_1sample",
+      "ok": false,
+      "id": "signal:computeperiodogram:NDMatrixUnsupported",
+      "message": "The input must be a non-empty column vector or two-dimensional matrix.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "powerbw_1sample_vec",
+      "ok": false,
+      "id": "signal:computeperiodogram:NDMatrixUnsupported",
+      "message": "The input must be a non-empty column vector or two-dimensional matrix.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_1sample_badrange",
+      "ok": false,
+      "id": "signal:computeperiodogram:NDMatrixUnsupported",
+      "message": "The input must be a non-empty column vector or two-dimensional matrix.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_2sample_col",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "4861.1111111111095"
+        ],
+        [
+          "13.888888888888889"
+        ],
+        [
+          "4874.9999999999982"
+        ],
+        [
+          "2.4750000000000001"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "obw_2sample_row",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "4861.1111111111095"
+        ],
+        [
+          "13.888888888888889"
+        ],
+        [
+          "4874.9999999999982"
+        ],
+        [
+          "2.4750000000000001"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "powerbw_2sample_col",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "1577.3243839286438"
+        ],
+        [
+          "0"
+        ],
+        [
+          "1577.3243839286438"
+        ],
+        [
+          "1.4195919455357795"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "obw_3sample_row",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "3265.2777777777769"
+        ],
+        [
+          "9.7222222222222214"
+        ],
+        [
+          "3274.9999999999991"
+        ],
+        [
+          "4.6199999999999992"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "obw_3sample_col",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "3265.2777777777769"
+        ],
+        [
+          "9.7222222222222214"
+        ],
+        [
+          "3274.9999999999991"
+        ],
+        [
+          "4.6199999999999992"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "obw_empty_00",
+      "ok": false,
+      "id": "MATLAB:periodogram:expectedNonempty",
+      "message": "Expected X to be nonempty.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_empty_01",
+      "ok": false,
+      "id": "MATLAB:periodogram:expectedNonempty",
+      "message": "Expected X to be nonempty.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_empty_10",
+      "ok": false,
+      "id": "MATLAB:periodogram:expectedNonempty",
+      "message": "Expected X to be nonempty.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_empty_50",
+      "ok": false,
+      "id": "MATLAB:periodogram:expectedNonempty",
+      "message": "Expected X to be nonempty.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "powerbw_empty_00",
+      "ok": false,
+      "id": "MATLAB:periodogram:expectedNonempty",
+      "message": "Expected X to be nonempty.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "powerbw_empty_50",
+      "ok": false,
+      "id": "MATLAB:periodogram:expectedNonempty",
+      "message": "Expected X to be nonempty.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_P_nan",
+      "ok": false,
+      "id": "MATLAB:obw:notLess",
+      "message": "Expected P to be a scalar with value < 100.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_P_nan2",
+      "ok": false,
+      "id": "MATLAB:obw:expectedScalar",
+      "message": "Expected P to be a scalar.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_P_inf",
+      "ok": false,
+      "id": "MATLAB:obw:notLess",
+      "message": "Expected P to be a scalar with value < 100.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "powerbw_R_nan",
+      "ok": false,
+      "id": "MATLAB:powerbw:expectedFinite",
+      "message": "Expected R to be finite.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "powerbw_R_zero",
+      "ok": false,
+      "id": "MATLAB:powerbw:expectedNonZero",
+      "message": "Expected R to be nonzero.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_pxx_nan",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "NaN"
+        ],
+        [
+          "NaN"
+        ],
+        [
+          "NaN"
+        ],
+        [
+          "NaN"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "powerbw_pxx_nan",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "27.567854875858615"
+        ],
+        [
+          "-0.0031469021983124373"
+        ],
+        [
+          "27.564707973660301"
+        ],
+        [
+          "NaN"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "obw_pxx_nan_range",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "NaN"
+        ],
+        [
+          "NaN"
+        ],
+        [
+          "NaN"
+        ],
+        [
+          "NaN"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "powerbw_pxx_nan_range",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "40"
+        ],
+        [
+          "0"
+        ],
+        [
+          "40"
+        ],
+        [
+          "NaN"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "powerbw_pxx_allnan",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "20"
+        ],
+        [
+          "0"
+        ],
+        [
+          "20"
+        ],
+        [
+          "NaN"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "powerbw_pxx_nanpeak",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "40"
+        ],
+        [
+          "0"
+        ],
+        [
+          "40"
+        ],
+        [
+          "NaN"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "powerbw_pxx_nan_twocol",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "27.567854875858615",
+          "15.129415947320602"
+        ],
+        [
+          "-0.0031469021983124373",
+          "12.435292026339699"
+        ],
+        [
+          "27.564707973660301",
+          "27.564707973660301"
+        ],
+        [
+          "NaN",
+          "60.258831894641212"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          2
+        ]
+      ]
+    },
+    {
+      "name": "obw_pxx_inf",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "NaN"
+        ],
+        [
+          "NaN"
+        ],
+        [
+          "NaN"
+        ],
+        [
+          "NaN"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "powerbw_pxx_inf",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "NaN"
+        ],
+        [
+          "NaN"
+        ],
+        [
+          "NaN"
+        ],
+        [
+          "NaN"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "obw_sxx_nan_rbw",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "NaN"
+        ],
+        [
+          "NaN"
+        ],
+        [
+          "NaN"
+        ],
+        [
+          "NaN"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "powerbw_huge_R1e4",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "40"
+        ],
+        [
+          "0"
+        ],
+        [
+          "40"
+        ],
+        [
+          "NaN"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "powerbw_time_huge_R1e4",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "1.2"
+        ],
+        [
+          "0"
+        ],
+        [
+          "1.2"
+        ],
+        [
+          "NaN"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "bandpower_pxx_nan",
+      "ok": false,
+      "id": "MATLAB:bandpower:expectedFinite",
+      "message": "Expected input number 1, Pxx, to be finite.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_P_char",
+      "ok": false,
+      "id": "MATLAB:obw:invalidType",
+      "message": "Expected P to be one of these types:\n\ndouble, single, uint8, uint16, uint32, uint64, int8, int16, int32, int64",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_P_cell",
+      "ok": false,
+      "id": "MATLAB:obw:invalidType",
+      "message": "Expected P to be one of these types:\n\ndouble, single, uint8, uint16, uint32, uint64, int8, int16, int32, int64\n\nInstead its type was cell.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_range_cell",
+      "ok": false,
+      "id": "MATLAB:obw:invalidType",
+      "message": "Expected input number 3, FREQRANGE, to be one of these types:\n\ndouble, single, uint8, uint16, uint32, uint64, int8, int16, int32, int64\n\nInstead its type was cell.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_F_char",
+      "ok": false,
+      "id": "MATLAB:obw:invalidType",
+      "message": "Expected input number 2, F, to be one of these types:\n\ndouble, single",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_F_logical",
+      "ok": false,
+      "id": "MATLAB:obw:invalidType",
+      "message": "Expected input number 2, F, to be one of these types:\n\ndouble, single\n\nInstead its type was logical.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_X_char",
+      "ok": false,
+      "id": "MATLAB:obw:invalidType",
+      "message": "Expected input number 1, X, to be one of these types:\n\ndouble, single",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "powerbw_Fs_char1",
+      "ok": false,
+      "id": "MATLAB:powerbw:invalidType",
+      "message": "Expected input number 2, Fs, to be one of these types:\n\ndouble, single, uint8, uint16, uint32, uint64, int8, int16, int32, int64",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "powerbw_Fs_logical1",
+      "ok": false,
+      "id": "MATLAB:powerbw:invalidType",
+      "message": "Expected input number 2, Fs, to be one of these types:\n\ndouble, single, uint8, uint16, uint32, uint64, int8, int16, int32, int64\n\nInstead its type was logical.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "powerbw_time_range_cell",
+      "ok": false,
+      "id": "MATLAB:powerbw:invalidType",
+      "message": "Expected FREQRANGE to be one of these types:\n\ndouble, single, uint8, uint16, uint32, uint64, int8, int16, int32, int64\n\nInstead its type was cell.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_time_range_scalar",
+      "ok": false,
+      "id": "MATLAB:obw:incorrectSize",
+      "message": "Expected FREQRANGE to be of size 1x2, but it is of size 1x1.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_power_range_scalar",
+      "ok": false,
+      "id": "MATLAB:obw:incorrectSize",
+      "message": "Expected input number 3, FREQRANGE, to be of size 1x2, but it is of size 1x1.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_rbw_complex",
+      "ok": false,
+      "id": "MATLAB:obw:expectedReal",
+      "message": "Expected input number 3, RBW, to be real.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_Fs_complex",
+      "ok": false,
+      "id": "MATLAB:obw:expectedReal",
+      "message": "Expected input number 2, Fs, to be real.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "powerbw_Fs_neg",
+      "ok": false,
+      "id": "MATLAB:powerbw:expectedPositive",
+      "message": "Expected input number 2, Fs, to be positive.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "bandpower_F_cell",
+      "ok": false,
+      "id": "MATLAB:bandpower:invalidType",
+      "message": "Expected input number 2, F, to be one of these types:\n\ndouble, single, uint8, uint16, uint32, uint64, int8, int16, int32, int64\n\nInstead its type was cell.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "bandpower_X_logical",
+      "ok": false,
+      "id": "MATLAB:bandpower:invalidType",
+      "message": "Expected input number 1, X, to be one of these types:\n\ndouble, single\n\nInstead its type was logical.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "bandpower_range_cell",
+      "ok": false,
+      "id": "MATLAB:bandpower:invalidType",
+      "message": "Expected input number 3, FREQRANGE, to be one of these types:\n\ndouble, single, uint8, uint16, uint32, uint64, int8, int16, int32, int64\n\nInstead its type was cell.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_fs_vector",
+      "ok": false,
+      "id": "MATLAB:obw:expectedNonnegative",
+      "message": "Expected input number 1, Pxx, to be nonnegative.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "powerbw_fs_char3",
+      "ok": false,
+      "id": "MATLAB:powerbw:expectedNonnegative",
+      "message": "Expected input number 1, Pxx, to be nonnegative.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_fs_cell2",
+      "ok": false,
+      "id": "MATLAB:obw:expectedNonnegative",
+      "message": "Expected input number 1, Pxx, to be nonnegative.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_pxx_F_empty",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "2.4602812753692525"
+        ],
+        [
+          "0.0045436257386629242"
+        ],
+        [
+          "2.4648249011079155"
+        ],
+        [
+          "6.9299999999999988"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "obw_pxx_F_scalar",
+      "ok": false,
+      "id": "MATLAB:obw:expectedPositive",
+      "message": "Expected input number 2, Fs, to be positive.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_rbw_vector",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "9.8775000000000013"
+        ],
+        [
+          "20.035"
+        ],
+        [
+          "29.912500000000001"
+        ],
+        [
+          "34.649999999999999"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "obw_rbw_empty",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "39.450000000000003"
+        ],
+        [
+          "0.27500000000000002"
+        ],
+        [
+          "39.725000000000001"
+        ],
+        [
+          "108.90000000000001"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "obw_range_scalar_psd",
+      "ok": false,
+      "id": "MATLAB:obw:incorrectSize",
+      "message": "Expected input number 3, FREQRANGE, to be of size 1x2, but it is of size 1x1.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_fs_double_empty",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "2.6658424709910373"
+        ],
+        [
+          "0.0083437851943644788"
+        ],
+        [
+          "2.674186256185402"
+        ],
+        [
+          "0.36973880722266111"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "obw_fs_logical_empty",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "0.42428200676253724"
+        ],
+        [
+          "0.0013279546577800966"
+        ],
+        [
+          "0.42560996142031732"
+        ],
+        [
+          "0.36973880722266195"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "obw_fs_char_empty",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "2.5456920405752235"
+        ],
+        [
+          "0.0079677279466805803"
+        ],
+        [
+          "2.553659768521904"
+        ],
+        [
+          "0.36973880722266195"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "obw_fs_single_empty",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "2.6658425451748688"
+        ],
+        [
+          "0.0083437854265515816"
+        ],
+        [
+          "2.6741863306014206"
+        ],
+        [
+          "0.36973880722266195"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "obw_fs_int8_empty",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "2.5456920405752235"
+        ],
+        [
+          "0.0079677279466805803"
+        ],
+        [
+          "2.553659768521904"
+        ],
+        [
+          "0.36973880722266195"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "obw_fs_uint16_empty",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "2.5456920405752235"
+        ],
+        [
+          "0.0079677279466805803"
+        ],
+        [
+          "2.553659768521904"
+        ],
+        [
+          "0.36973880722266195"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "obw_fs_complex_empty",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "2.6658424709910373"
+        ],
+        [
+          "0.0083437851943644788"
+        ],
+        [
+          "2.674186256185402"
+        ],
+        [
+          "0.36973880722266111"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "obw_fs_cell_empty",
+      "ok": false,
+      "id": "MATLAB:cast:UnsupportedPrototype",
+      "message": "Unsupported data conversion from 'double' to 'cell'.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_fs_6",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "2.5456920405752235"
+        ],
+        [
+          "0.0079677279466805803"
+        ],
+        [
+          "2.553659768521904"
+        ],
+        [
+          "0.36973880722266195"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "obw_fs_1",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "0.42428200676253724"
+        ],
+        [
+          "0.0013279546577800966"
+        ],
+        [
+          "0.42560996142031732"
+        ],
+        [
+          "0.36973880722266195"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "obw_fs_single2pi",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "2.6658425451748688"
+        ],
+        [
+          "0.0083437854265515816"
+        ],
+        [
+          "2.6741863306014206"
+        ],
+        [
+          "0.36973880722266195"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "powerbw_fs_logical_empty",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "5.8951873286181011e-05"
+        ],
+        [
+          "0.12497114132975944"
+        ],
+        [
+          "0.12503009320304562"
+        ],
+        [
+          "0.029436503911972528"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "powerbw_fs_char_empty",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "0.00035371123971716933"
+        ],
+        [
+          "0.74982684797855659"
+        ],
+        [
+          "0.75018055921827376"
+        ],
+        [
+          "0.029436503911979467"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "obw_fs_half_empty",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "2.6650213549771871"
+        ],
+        [
+          "0.0083412151941812309"
+        ],
+        [
+          "2.6733625701713684"
+        ],
+        [
+          "0.36973880722266195"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "bandpower_char",
+      "ok": false,
+      "id": "signal:bandpower:IncorrectStringPsd",
+      "message": "Unrecognized input option. 'psd' is the only supported input option.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "bandpower_char_psd",
+      "ok": false,
+      "id": "signal:bandpower:FreqVectorMissing",
+      "message": "You must specify a frequency vector, F, when using the 'psd' option.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "bandpower_char_PSD",
+      "ok": false,
+      "id": "signal:bandpower:FreqVectorMissing",
+      "message": "You must specify a frequency vector, F, when using the 'psd' option.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "bandpower_char_empty",
+      "ok": false,
+      "id": "signal:bandpower:IncorrectStringPsd",
+      "message": "Unrecognized input option. 'psd' is the only supported input option.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "bandpower_pxx_char",
+      "ok": false,
+      "id": "signal:bandpower:IncorrectStringPsd",
+      "message": "Unrecognized input option. 'psd' is the only supported input option.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "bandpower_F_char",
+      "ok": false,
+      "id": "signal:bandpower:IncorrectStringPsd",
+      "message": "Unrecognized input option. 'psd' is the only supported input option.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "bandpower_range_char",
+      "ok": false,
+      "id": "signal:bandpower:IncorrectStringPsd",
+      "message": "Unrecognized input option. 'psd' is the only supported input option.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "bandpower_F_psd",
+      "ok": false,
+      "id": "MATLAB:bandpower:invalidType",
+      "message": "Expected input number 2, F, to be one of these types:\n\ndouble, single, uint8, uint16, uint32, uint64, int8, int16, int32, int64",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "bandpower_pxx_psd",
+      "ok": false,
+      "id": "MATLAB:bandpower:invalidType",
+      "message": "Expected input number 1, Pxx, to be one of these types:\n\ndouble, single",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "bandpower_range_psd",
+      "ok": false,
+      "id": "MATLAB:bandpower:invalidType",
+      "message": "Expected input number 3, FREQRANGE, to be one of these types:\n\ndouble, single, uint8, uint16, uint32, uint64, int8, int16, int32, int64",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "bandpower_empty_00",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        []
+      ],
+      "sizes": [
+        [
+          1,
+          0
+        ]
+      ]
+    },
+    {
+      "name": "bandpower_empty_10",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "NaN"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "bandpower_empty_01",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "NaN"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "bandpower_empty_02",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "NaN",
+          "NaN"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          2
+        ]
+      ]
+    },
+    {
+      "name": "bandpower_empty_30",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        []
+      ],
+      "sizes": [
+        [
+          1,
+          0
+        ]
+      ]
+    },
+    {
+      "name": "bandpower_scalar",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "9"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "obw_P_string",
+      "ok": false,
+      "id": "MATLAB:obw:invalidType",
+      "message": "Expected P to be one of these types:\n\ndouble, single, uint8, uint16, uint32, uint64, int8, int16, int32, int64\n\nInstead its type was string.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_P_logical",
+      "ok": false,
+      "id": "MATLAB:obw:invalidType",
+      "message": "Expected P to be one of these types:\n\ndouble, single, uint8, uint16, uint32, uint64, int8, int16, int32, int64\n\nInstead its type was logical.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_P_datetime",
+      "ok": false,
+      "id": "MATLAB:obw:invalidType",
+      "message": "Expected P to be one of these types:\n\ndouble, single, uint8, uint16, uint32, uint64, int8, int16, int32, int64\n\nInstead its type was datetime.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_P_duration",
+      "ok": false,
+      "id": "MATLAB:obw:invalidType",
+      "message": "Expected P to be one of these types:\n\ndouble, single, uint8, uint16, uint32, uint64, int8, int16, int32, int64\n\nInstead its type was duration.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_P_struct",
+      "ok": false,
+      "id": "MATLAB:obw:invalidType",
+      "message": "Expected P to be one of these types:\n\ndouble, single, uint8, uint16, uint32, uint64, int8, int16, int32, int64\n\nInstead its type was struct.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_P_char1",
+      "ok": false,
+      "id": "MATLAB:obw:invalidType",
+      "message": "Expected P to be one of these types:\n\ndouble, single, uint8, uint16, uint32, uint64, int8, int16, int32, int64",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_P_char_empty",
+      "ok": false,
+      "id": "MATLAB:obw:invalidType",
+      "message": "Expected P to be one of these types:\n\ndouble, single, uint8, uint16, uint32, uint64, int8, int16, int32, int64",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_power_F_char",
+      "ok": false,
+      "id": "MATLAB:obw:invalidType",
+      "message": "Expected input number 2, F, to be one of these types:\n\ndouble, single",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_pxx_F_char1",
+      "ok": false,
+      "id": "MATLAB:obw:invalidType",
+      "message": "Expected input number 2, Fs, to be one of these types:\n\ndouble, single, uint8, uint16, uint32, uint64, int8, int16, int32, int64",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_pxx_char",
+      "ok": false,
+      "id": "MATLAB:obw:invalidType",
+      "message": "Expected input number 1, Pxx, to be one of these types:\n\ndouble, single",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_range_char_empty",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "39.450000000000003"
+        ],
+        [
+          "0.27500000000000002"
+        ],
+        [
+          "39.725000000000001"
+        ],
+        [
+          "108.90000000000001"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "obw_rbw_fmt_1",
+      "ok": false,
+      "id": "MATLAB:obw:notGreaterEqual",
+      "message": "Expected input number 3, RBW, to be a scalar with value >= 0.333333.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_rbw_fmt_2",
+      "ok": false,
+      "id": "MATLAB:obw:notGreaterEqual",
+      "message": "Expected input number 3, RBW, to be a scalar with value >= 33333.3.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_rbw_fmt_3",
+      "ok": false,
+      "id": "MATLAB:obw:notGreaterEqual",
+      "message": "Expected input number 3, RBW, to be a scalar with value >= 3.33333e-08.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_rbw_fmt_4",
+      "ok": false,
+      "id": "MATLAB:obw:notGreaterEqual",
+      "message": "Expected input number 3, RBW, to be a scalar with value >= 3.33333e+19.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_rbw_fmt_5",
+      "ok": false,
+      "id": "MATLAB:obw:notGreaterEqual",
+      "message": "Expected input number 3, RBW, to be a scalar with value >= 1.23457e+08.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_rbw_fmt_6",
+      "ok": false,
+      "id": "MATLAB:obw:notGreaterEqual",
+      "message": "Expected input number 3, RBW, to be a scalar with value >= 0.1.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_rbw_fmt_7",
+      "ok": false,
+      "id": "MATLAB:obw:notGreaterEqual",
+      "message": "Expected input number 3, RBW, to be a scalar with value >= 0.000666667.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_rbw_fmt_inf",
+      "ok": false,
+      "id": "MATLAB:obw:notGreaterEqual",
+      "message": "Expected input number 3, RBW, to be a scalar with value >= inf.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_rbw_nan_df",
+      "ok": false,
+      "id": "MATLAB:validateattributes:badComparison",
+      "message": "Value for >= must be a real scalar.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "bandpower_F_empty",
+      "ok": false,
+      "id": "MATLAB:bandpower:expectedVector",
+      "message": "Expected input number 2, F, to be a vector.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "bandpower_range_empty",
+      "ok": false,
+      "id": "MATLAB:bandpower:expectedVector",
+      "message": "Expected input number 3, FREQRANGE, to be a vector.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_fs_datetime_empty",
+      "ok": false,
+      "id": "MATLAB:cast:UnsupportedPrototype",
+      "message": "Unsupported data conversion from 'double' to 'datetime'.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_fs_duration_empty",
+      "ok": false,
+      "id": "MATLAB:cast:UnsupportedPrototype",
+      "message": "Unsupported data conversion from 'double' to 'duration'.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_fs_string_empty",
+      "ok": false,
+      "id": "MATLAB:cast:UnsupportedPrototype",
+      "message": "Unsupported data conversion from 'double' to 'string'.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_fs_struct_empty",
+      "ok": false,
+      "id": "MATLAB:cast:UnsupportedPrototype",
+      "message": "Unsupported data conversion from 'double' to 'struct'.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_fs_csingle_empty",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "2.6658425451748688"
+        ],
+        [
+          "0.0083437854265515816"
+        ],
+        [
+          "2.6741863306014206"
+        ],
+        [
+          "0.36973880722266195"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "obw_fs_uint8_empty",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "2.5456920405752235"
+        ],
+        [
+          "0.0079677279466805803"
+        ],
+        [
+          "2.553659768521904"
+        ],
+        [
+          "0.36973880722266195"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "obw_rbw_inf",
+      "ok": false,
+      "id": "MATLAB:obw:expectedFinite",
+      "message": "Expected input number 3, RBW, to be finite.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_rbw_neg",
+      "ok": false,
+      "id": "MATLAB:obw:expectedPositive",
+      "message": "Expected input number 3, RBW, to be positive.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_rbw_nan",
+      "ok": false,
+      "id": "MATLAB:obw:expectedFinite",
+      "message": "Expected input number 3, RBW, to be finite.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "bandpower_one_bin",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "NaN"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "obw_zero_psd",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "NaN"
+        ],
+        [
+          "NaN"
+        ],
+        [
+          "NaN"
+        ],
+        [
+          "0"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "powerbw_zero_psd",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "NaN"
+        ],
+        [
+          "NaN"
+        ],
+        [
+          "NaN"
+        ],
+        [
+          "NaN"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "powerbw_zero_col",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "15.129415947320602",
+          "NaN"
+        ],
+        [
+          "12.435292026339699",
+          "NaN"
+        ],
+        [
+          "27.564707973660301",
+          "NaN"
+        ],
+        [
+          "60.258831894641212",
+          "NaN"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          2
+        ]
+      ]
+    },
+    {
+      "name": "powerbw_zero_in_range",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "NaN"
+        ],
+        [
+          "NaN"
+        ],
+        [
+          "NaN"
+        ],
+        [
+          "NaN"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "obw_huge_psd",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "NaN"
+        ],
+        [
+          "NaN"
+        ],
+        [
+          "NaN"
+        ],
+        [
+          "NaN"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "powerbw_huge_psd",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "NaN"
+        ],
+        [
+          "NaN"
+        ],
+        [
+          "NaN"
+        ],
+        [
+          "NaN"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "bandpower_huge_psd",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "Inf"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "bandpower_huge_time",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "Inf"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "obw_huge_grid",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "NaN"
+        ],
+        [
+          "NaN"
+        ],
+        [
+          "NaN"
+        ],
+        [
+          "NaN"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "powerbw_huge_grid",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "7.5647079736603005e+307"
+        ],
+        [
+          "-3.7823539868301502e+307"
+        ],
+        [
+          "3.7823539868301502e+307"
+        ],
+        [
+          "NaN"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "bandpower_huge_grid",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "Inf"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "obw_huge_grid_range",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "NaN"
+        ],
+        [
+          "NaN"
+        ],
+        [
+          "NaN"
+        ],
+        [
+          "NaN"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "obw_P_vector",
+      "ok": false,
+      "id": "MATLAB:obw:expectedScalar",
+      "message": "Expected P to be a scalar.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_P_empty",
+      "ok": false,
+      "id": "MATLAB:obw:expectedNonempty",
+      "message": "Expected P to be nonempty.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_range_3",
+      "ok": false,
+      "id": "MATLAB:obw:incorrectSize",
+      "message": "Expected input number 3, FREQRANGE, to be of size 1x2, but it is of size 1x3.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_range_nan",
+      "ok": false,
+      "id": "MATLAB:obw:expectedFinite",
+      "message": "Expected input number 3, FREQRANGE, to be finite.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_F_short",
+      "ok": false,
+      "id": "signal:psdparserange:FreqVectorMismatch",
+      "message": "F must be a vector of the same length as the spectrum estimate.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_F_matrix",
+      "ok": false,
+      "id": "MATLAB:obw:expectedVector",
+      "message": "Expected input number 2, F, to be a vector.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "powerbw_F_char",
+      "ok": false,
+      "id": "MATLAB:powerbw:invalidType",
+      "message": "Expected input number 2, F, to be one of these types:\n\ndouble, single",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "powerbw_X_char",
+      "ok": false,
+      "id": "MATLAB:powerbw:invalidType",
+      "message": "Expected input number 1, X, to be one of these types:\n\ndouble, single",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "powerbw_X_inf",
+      "ok": false,
+      "id": "MATLAB:powerbw:expectedFinite",
+      "message": "Expected input number 1, X, to be finite.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "bandpower_X_inf",
+      "ok": false,
+      "id": "MATLAB:bandpower:expectedFinite",
+      "message": "Expected input number 1, X, to be finite.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "bandpower_X_3d",
+      "ok": false,
+      "id": "MATLAB:bandpower:expected2D",
+      "message": "Expected input number 1, X, to be two-dimensional.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_F_cell",
+      "ok": false,
+      "id": "MATLAB:obw:invalidType",
+      "message": "Expected input number 2, F, to be one of these types:\n\ndouble, single\n\nInstead its type was cell.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_pxx_cell",
+      "ok": false,
+      "id": "MATLAB:obw:invalidType",
+      "message": "Expected input number 1, Pxx, to be one of these types:\n\ndouble, single\n\nInstead its type was cell.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_X_cell",
+      "ok": false,
+      "id": "MATLAB:obw:invalidType",
+      "message": "Expected input number 1, X, to be one of these types:\n\ndouble, single\n\nInstead its type was cell.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "powerbw_range_cell",
+      "ok": false,
+      "id": "MATLAB:powerbw:invalidType",
+      "message": "Expected input number 3, FREQRANGE, to be one of these types:\n\ndouble, single, uint8, uint16, uint32, uint64, int8, int16, int32, int64\n\nInstead its type was cell.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "bandpower_X_cell",
+      "ok": false,
+      "id": "MATLAB:bandpower:invalidType",
+      "message": "Expected input number 1, X, to be one of these types:\n\ndouble, single\n\nInstead its type was cell.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_pxx_3d",
+      "ok": false,
+      "id": "MATLAB:obw:expected2D",
+      "message": "Expected input number 1, Pxx, to be two-dimensional.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_pxx_complex",
+      "ok": false,
+      "id": "MATLAB:obw:expectedReal",
+      "message": "Expected input number 1, Pxx, to be real.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "powerbw_R_vector",
+      "ok": false,
+      "id": "MATLAB:powerbw:expectedScalar",
+      "message": "Expected R to be a scalar.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "powerbw_extra",
+      "ok": false,
+      "id": "signal:powerbw:UnrecognizedAdditionalArguments",
+      "message": "Unrecognized input arguments after dB reference, R.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "powerbw_time_extra",
+      "ok": false,
+      "id": "signal:powerbw:UnrecognizedAdditionalArguments",
+      "message": "Unrecognized input arguments after dB reference, R.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "bandpower_range_out",
+      "ok": false,
+      "id": "signal:bandpower:FreqRangeOutOfBounds",
+      "message": "The frequency range must be within the range of F for the specified input.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "bandpower_pxx_inf",
+      "ok": false,
+      "id": "MATLAB:bandpower:expectedFinite",
+      "message": "Expected input number 1, Pxx, to be finite.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "bandpower_pxx_complex",
+      "ok": false,
+      "id": "MATLAB:bandpower:expectedReal",
+      "message": "Expected input number 1, Pxx, to be real.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "bandpower_F_decreasing",
+      "ok": false,
+      "id": "MATLAB:bandpower:expectedIncreasing",
+      "message": "Expected input number 2, F, to be strictly increasing.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "bandpower_F_short",
+      "ok": false,
+      "id": "MATLAB:bandpower:incorrectNumel",
+      "message": "Expected input number 2, F, to be an array with number of elements equal to 5.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "bandpower_range_3",
+      "ok": false,
+      "id": "MATLAB:bandpower:incorrectNumel",
+      "message": "Expected input number 3, FREQRANGE, to be an array with number of elements equal to 2.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "bandpower_range_equal",
+      "ok": false,
+      "id": "MATLAB:bandpower:expectedIncreasing",
+      "message": "Expected input number 3, FREQRANGE, to be strictly increasing.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "obw_Fs_cell1",
+      "ok": false,
+      "id": "MATLAB:obw:invalidType",
+      "message": "Expected input number 2, Fs, to be one of these types:\n\ndouble, single, uint8, uint16, uint32, uint64, int8, int16, int32, int64\n\nInstead its type was cell.",
+      "vals": [],
+      "sizes": []
+    },
+    {
+      "name": "bandpower_neg_psd",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "-110"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "bandpower_pos_psd",
+      "ok": true,
+      "id": "",
+      "message": "",
+      "vals": [
+        [
+          "110"
+        ]
+      ],
+      "sizes": [
+        [
+          1,
+          1
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "matlab_version": "25.1.0.2943329 (R2025a)",
+  "cases": [
+    {
+      "value": "NaN",
+      "ok": false,
+      "id": "MATLAB:expectedFinite",
+      "msg": "Expected FrequencyOffset to be finite."
+    },
+    {
+      "value": "Inf",
+      "ok": false,
+      "id": "MATLAB:expectedFinite",
+      "msg": "Expected FrequencyOffset to be finite."
+    },
+    {
+      "value": "-Inf",
+      "ok": false,
+      "id": "MATLAB:expectedFinite",
+      "msg": "Expected FrequencyOffset to be finite."
+    },
+    {
+      "value": "[0 NaN]",
+      "ok": false,
+      "id": "MATLAB:expectedFinite",
+      "msg": "Expected FrequencyOffset to be finite."
+    },
+    {
+      "value": "[0 10]",
+      "ok": true,
+      "id": "",
+      "msg": ""
+    },
+    {
+      "value": "0",
+      "ok": true,
+      "id": "",
+      "msg": ""
+    }
+  ]
+}

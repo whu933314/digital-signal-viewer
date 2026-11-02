@@ -1,0 +1,7800 @@
+{
+ "dark": {
+  "dark": true,
+  "elements": {
+   "PkDark.Horizontal.Scrollbar.thumb": [
+    [
+     [],
+     {
+      "draw": null,
+      "fill": "#616161",
+      "h": 12,
+      "inset": 2,
+      "outline": null,
+      "radius": 6,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "pressed"
+     ],
+     {
+      "draw": null,
+      "fill": "#888888",
+      "h": 12,
+      "inset": 2,
+      "outline": null,
+      "radius": 6,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "active"
+     ],
+     {
+      "draw": null,
+      "fill": "#7d7d7d",
+      "h": 12,
+      "inset": 2,
+      "outline": null,
+      "radius": 6,
+      "w": 24
+     }
+    ]
+   ],
+   "PkDark.Horizontal.Scrollbar.trough": [
+    [
+     [],
+     {
+      "draw": null,
+      "fill": "#212121",
+      "h": 12,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 24
+     }
+    ]
+   ],
+   "PkDark.Scale.slider": [
+    [
+     [],
+     {
+      "draw": null,
+      "fill": "#888888",
+      "h": 14,
+      "inset": 0,
+      "outline": null,
+      "radius": 7,
+      "w": 14
+     }
+    ],
+    [
+     [
+      "pressed"
+     ],
+     {
+      "draw": null,
+      "fill": "#d9d9d9",
+      "h": 14,
+      "inset": 0,
+      "outline": null,
+      "radius": 7,
+      "w": 14
+     }
+    ],
+    [
+     [
+      "active"
+     ],
+     {
+      "draw": null,
+      "fill": "#d9d9d9",
+      "h": 14,
+      "inset": 0,
+      "outline": null,
+      "radius": 7,
+      "w": 14
+     }
+    ]
+   ],
+   "PkDark.Scale.trough": [
+    [
+     [],
+     {
+      "draw": null,
+      "fill": "#616161",
+      "h": 4,
+      "inset": 0,
+      "outline": null,
+      "radius": 2,
+      "w": 24
+     }
+    ]
+   ],
+   "PkDark.Vertical.Scrollbar.thumb": [
+    [
+     [],
+     {
+      "draw": null,
+      "fill": "#616161",
+      "h": 24,
+      "inset": 2,
+      "outline": null,
+      "radius": 6,
+      "w": 12
+     }
+    ],
+    [
+     [
+      "pressed"
+     ],
+     {
+      "draw": null,
+      "fill": "#888888",
+      "h": 24,
+      "inset": 2,
+      "outline": null,
+      "radius": 6,
+      "w": 12
+     }
+    ],
+    [
+     [
+      "active"
+     ],
+     {
+      "draw": null,
+      "fill": "#7d7d7d",
+      "h": 24,
+      "inset": 2,
+      "outline": null,
+      "radius": 6,
+      "w": 12
+     }
+    ]
+   ],
+   "PkDark.Vertical.Scrollbar.trough": [
+    [
+     [],
+     {
+      "draw": null,
+      "fill": "#212121",
+      "h": 24,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 12
+     }
+    ]
+   ],
+   "PkDark.axestool": [
+    [
+     [],
+     {
+      "draw": null,
+      "fill": null,
+      "h": 24,
+      "inset": 0,
+      "outline": null,
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "disabled"
+     ],
+     {
+      "draw": null,
+      "fill": null,
+      "h": 24,
+      "inset": 0,
+      "outline": null,
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "pressed"
+     ],
+     {
+      "draw": null,
+      "fill": "#000000",
+      "h": 24,
+      "inset": 0,
+      "outline": "#7d7d7d",
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "selected",
+      "active"
+     ],
+     {
+      "draw": null,
+      "fill": "#0b2f5c",
+      "h": 24,
+      "inset": 0,
+      "outline": "#7d7d7d",
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "selected"
+     ],
+     {
+      "draw": null,
+      "fill": "#0b2f5c",
+      "h": 24,
+      "inset": 0,
+      "outline": "#7d7d7d",
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "active"
+     ],
+     {
+      "draw": null,
+      "fill": "#333333",
+      "h": 24,
+      "inset": 0,
+      "outline": "#7d7d7d",
+      "radius": 3,
+      "w": 24
+     }
+    ]
+   ],
+   "PkDark.button": [
+    [
+     [],
+     {
+      "draw": null,
+      "fill": "#212121",
+      "h": 24,
+      "inset": 0,
+      "outline": "#7d7d7d",
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "disabled"
+     ],
+     {
+      "draw": null,
+      "fill": "#212121",
+      "h": 24,
+      "inset": 0,
+      "outline": "#616161",
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "pressed"
+     ],
+     {
+      "draw": null,
+      "fill": "#000000",
+      "h": 24,
+      "inset": 0,
+      "outline": "#bfbfbf",
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "selected"
+     ],
+     {
+      "draw": null,
+      "fill": "#000000",
+      "h": 24,
+      "inset": 0,
+      "outline": "#7d7d7d",
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "active"
+     ],
+     {
+      "draw": null,
+      "fill": "#333333",
+      "h": 24,
+      "inset": 0,
+      "outline": "#bfbfbf",
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "focus"
+     ],
+     {
+      "draw": null,
+      "fill": "#212121",
+      "h": 24,
+      "inset": 0,
+      "outline": "#268cdd",
+      "radius": 3,
+      "w": 24
+     }
+    ]
+   ],
+   "PkDark.check": [
+    [
+     [],
+     {
+      "draw": {
+       "bg": "#121212",
+       "border": "#a6a6a6",
+       "checked": false,
+       "fg": "#d9d9d9",
+       "kind": "check",
+       "s": 14
+      },
+      "fill": null,
+      "h": 14,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 20
+     }
+    ],
+    [
+     [
+      "disabled",
+      "selected"
+     ],
+     {
+      "draw": {
+       "bg": "#333333",
+       "border": "#616161",
+       "checked": true,
+       "fg": "#888888",
+       "kind": "check",
+       "s": 14
+      },
+      "fill": null,
+      "h": 14,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 20
+     }
+    ],
+    [
+     [
+      "disabled"
+     ],
+     {
+      "draw": {
+       "bg": "#333333",
+       "border": "#616161",
+       "checked": false,
+       "fg": "#888888",
+       "kind": "check",
+       "s": 14
+      },
+      "fill": null,
+      "h": 14,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 20
+     }
+    ],
+    [
+     [
+      "selected",
+      "active"
+     ],
+     {
+      "draw": {
+       "bg": "#121212",
+       "border": "#268cdd",
+       "checked": true,
+       "fg": "#d9d9d9",
+       "kind": "check",
+       "s": 14
+      },
+      "fill": null,
+      "h": 14,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 20
+     }
+    ],
+    [
+     [
+      "selected"
+     ],
+     {
+      "draw": {
+       "bg": "#121212",
+       "border": "#a6a6a6",
+       "checked": true,
+       "fg": "#d9d9d9",
+       "kind": "check",
+       "s": 14
+      },
+      "fill": null,
+      "h": 14,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 20
+     }
+    ],
+    [
+     [
+      "active"
+     ],
+     {
+      "draw": {
+       "bg": "#121212",
+       "border": "#268cdd",
+       "checked": false,
+       "fg": "#d9d9d9",
+       "kind": "check",
+       "s": 14
+      },
+      "fill": null,
+      "h": 14,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 20
+     }
+    ]
+   ],
+   "PkDark.downarrow": [
+    [
+     [],
+     {
+      "draw": {
+       "color": "#d9d9d9",
+       "direction": "down",
+       "s": 12
+      },
+      "fill": null,
+      "h": 12,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 12
+     }
+    ],
+    [
+     [
+      "disabled"
+     ],
+     {
+      "draw": {
+       "color": "#888888",
+       "direction": "down",
+       "s": 12
+      },
+      "fill": null,
+      "h": 12,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 12
+     }
+    ]
+   ],
+   "PkDark.downarrow_s": [
+    [
+     [],
+     {
+      "draw": {
+       "color": "#d9d9d9",
+       "direction": "down",
+       "s": 10
+      },
+      "fill": null,
+      "h": 10,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 10
+     }
+    ],
+    [
+     [
+      "disabled"
+     ],
+     {
+      "draw": {
+       "color": "#888888",
+       "direction": "down",
+       "s": 10
+      },
+      "fill": null,
+      "h": 10,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 10
+     }
+    ]
+   ],
+   "PkDark.field": [
+    [
+     [],
+     {
+      "draw": null,
+      "fill": "#121212",
+      "h": 24,
+      "inset": 0,
+      "outline": "#7d7d7d",
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "disabled"
+     ],
+     {
+      "draw": null,
+      "fill": "#333333",
+      "h": 24,
+      "inset": 0,
+      "outline": "#616161",
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "invalid"
+     ],
+     {
+      "draw": null,
+      "fill": "#2e1e1e",
+      "h": 24,
+      "inset": 0,
+      "outline": "#ff7a74",
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "focus"
+     ],
+     {
+      "draw": null,
+      "fill": "#121212",
+      "h": 24,
+      "inset": 0,
+      "outline": "#268cdd",
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "readonly",
+      "active"
+     ],
+     {
+      "draw": null,
+      "fill": "#333333",
+      "h": 24,
+      "inset": 0,
+      "outline": "#bfbfbf",
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "readonly"
+     ],
+     {
+      "draw": null,
+      "fill": "#212121",
+      "h": 24,
+      "inset": 0,
+      "outline": "#7d7d7d",
+      "radius": 3,
+      "w": 24
+     }
+    ]
+   ],
+   "PkDark.primary": [
+    [
+     [],
+     {
+      "draw": null,
+      "fill": "#1171be",
+      "h": 24,
+      "inset": 0,
+      "outline": "#1171be",
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "disabled"
+     ],
+     {
+      "draw": null,
+      "fill": "#333333",
+      "h": 24,
+      "inset": 0,
+      "outline": "#616161",
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "pressed"
+     ],
+     {
+      "draw": null,
+      "fill": "#0b2f5c",
+      "h": 24,
+      "inset": 0,
+      "outline": "#0b2f5c",
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "active"
+     ],
+     {
+      "draw": null,
+      "fill": "#268cdd",
+      "h": 24,
+      "inset": 0,
+      "outline": "#268cdd",
+      "radius": 3,
+      "w": 24
+     }
+    ]
+   ],
+   "PkDark.qab": [
+    [
+     [],
+     {
+      "draw": null,
+      "fill": null,
+      "h": 24,
+      "inset": 0,
+      "outline": null,
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "disabled"
+     ],
+     {
+      "draw": null,
+      "fill": null,
+      "h": 24,
+      "inset": 0,
+      "outline": null,
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "pressed"
+     ],
+     {
+      "draw": null,
+      "fill": "#00243e",
+      "h": 24,
+      "inset": 0,
+      "outline": "#00243e",
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "active"
+     ],
+     {
+      "draw": null,
+      "fill": "#0b2f5c",
+      "h": 24,
+      "inset": 0,
+      "outline": "#0b2f5c",
+      "radius": 3,
+      "w": 24
+     }
+    ]
+   ],
+   "PkDark.radio": [
+    [
+     [],
+     {
+      "draw": {
+       "bg": "#121212",
+       "border": "#a6a6a6",
+       "checked": false,
+       "fg": "#d9d9d9",
+       "kind": "radio",
+       "s": 14
+      },
+      "fill": null,
+      "h": 14,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 20
+     }
+    ],
+    [
+     [
+      "disabled",
+      "selected"
+     ],
+     {
+      "draw": {
+       "bg": "#333333",
+       "border": "#616161",
+       "checked": true,
+       "fg": "#888888",
+       "kind": "radio",
+       "s": 14
+      },
+      "fill": null,
+      "h": 14,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 20
+     }
+    ],
+    [
+     [
+      "disabled"
+     ],
+     {
+      "draw": {
+       "bg": "#333333",
+       "border": "#616161",
+       "checked": false,
+       "fg": "#888888",
+       "kind": "radio",
+       "s": 14
+      },
+      "fill": null,
+      "h": 14,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 20
+     }
+    ],
+    [
+     [
+      "selected",
+      "active"
+     ],
+     {
+      "draw": {
+       "bg": "#121212",
+       "border": "#268cdd",
+       "checked": true,
+       "fg": "#d9d9d9",
+       "kind": "radio",
+       "s": 14
+      },
+      "fill": null,
+      "h": 14,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 20
+     }
+    ],
+    [
+     [
+      "selected"
+     ],
+     {
+      "draw": {
+       "bg": "#121212",
+       "border": "#a6a6a6",
+       "checked": true,
+       "fg": "#d9d9d9",
+       "kind": "radio",
+       "s": 14
+      },
+      "fill": null,
+      "h": 14,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 20
+     }
+    ],
+    [
+     [
+      "active"
+     ],
+     {
+      "draw": {
+       "bg": "#121212",
+       "border": "#268cdd",
+       "checked": false,
+       "fg": "#d9d9d9",
+       "kind": "radio",
+       "s": 14
+      },
+      "fill": null,
+      "h": 14,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 20
+     }
+    ]
+   ],
+   "PkDark.tool": [
+    [
+     [],
+     {
+      "draw": null,
+      "fill": null,
+      "h": 24,
+      "inset": 0,
+      "outline": null,
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "disabled"
+     ],
+     {
+      "draw": null,
+      "fill": null,
+      "h": 24,
+      "inset": 0,
+      "outline": null,
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "pressed"
+     ],
+     {
+      "draw": null,
+      "fill": "#000000",
+      "h": 24,
+      "inset": 0,
+      "outline": "#7d7d7d",
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "selected",
+      "active"
+     ],
+     {
+      "draw": null,
+      "fill": "#000000",
+      "h": 24,
+      "inset": 0,
+      "outline": "#7d7d7d",
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "selected"
+     ],
+     {
+      "draw": null,
+      "fill": "#000000",
+      "h": 24,
+      "inset": 0,
+      "outline": "#7d7d7d",
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "active"
+     ],
+     {
+      "draw": null,
+      "fill": "#333333",
+      "h": 24,
+      "inset": 0,
+      "outline": "#7d7d7d",
+      "radius": 3,
+      "w": 24
+     }
+    ]
+   ],
+   "PkDark.treeind": [
+    [
+     [],
+     {
+      "draw": {
+       "color": "#d9d9d9",
+       "direction": "right",
+       "s": 10,
+       "w_": 14
+      },
+      "fill": null,
+      "h": 10,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 14
+     }
+    ],
+    [
+     [
+      "user2"
+     ],
+     {
+      "draw": null,
+      "fill": null,
+      "h": 10,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 14
+     }
+    ],
+    [
+     [
+      "user1"
+     ],
+     {
+      "draw": {
+       "color": "#d9d9d9",
+       "direction": "down",
+       "s": 10,
+       "w_": 14
+      },
+      "fill": null,
+      "h": 10,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 14
+     }
+    ]
+   ],
+   "PkDark.uparrow": [
+    [
+     [],
+     {
+      "draw": {
+       "color": "#d9d9d9",
+       "direction": "up",
+       "s": 10
+      },
+      "fill": null,
+      "h": 10,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 10
+     }
+    ],
+    [
+     [
+      "disabled"
+     ],
+     {
+      "draw": {
+       "color": "#888888",
+       "direction": "up",
+       "s": 10
+      },
+      "fill": null,
+      "h": 10,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 10
+     }
+    ]
+   ]
+  },
+  "icon_palette": {
+   "accent": "#268cdd",
+   "fg": "#d9d9d9",
+   "fg2": "#888888",
+   "fill": "#333333",
+   "green": "#49db40",
+   "orange": "#f57729",
+   "red": "#ff7a74",
+   "white": "#f5f5f5"
+  },
+  "icon_palette_strip": {
+   "accent": "#ffffff",
+   "fg": "#ffffff",
+   "fg2": "#c9e7ff",
+   "fill": "#1a4f85",
+   "green": "#cbffbe",
+   "orange": "#ffd19e",
+   "red": "#ffcbcb",
+   "white": "#004073"
+  },
+  "menu_active_fg": "#ffffff",
+  "menu_bg": "#333333",
+  "option_db": [
+   [
+    "*TCombobox*Listbox.background",
+    "#121212",
+    null
+   ],
+   [
+    "*TCombobox*Listbox.foreground",
+    "#d9d9d9",
+    null
+   ],
+   [
+    "*TCombobox*Listbox.selectBackground",
+    "#0b2f5c",
+    null
+   ],
+   [
+    "*TCombobox*Listbox.selectForeground",
+    "#d9d9d9",
+    null
+   ],
+   [
+    "*TCombobox*Listbox.font",
+    "PkDefault",
+    null
+   ],
+   [
+    "*TCombobox*Listbox.borderWidth",
+    "1",
+    null
+   ],
+   [
+    "*TCombobox*Listbox.relief",
+    "solid",
+    null
+   ],
+   [
+    "*Text.background",
+    "#121212",
+    null
+   ],
+   [
+    "*Text.foreground",
+    "#d9d9d9",
+    null
+   ],
+   [
+    "*Text.selectBackground",
+    "#0b2f5c",
+    null
+   ],
+   [
+    "*Text.selectForeground",
+    "#d9d9d9",
+    null
+   ],
+   [
+    "*Text.highlightThickness",
+    "0",
+    null
+   ],
+   [
+    "*Text.borderWidth",
+    "0",
+    null
+   ],
+   [
+    "*Text.relief",
+    "flat",
+    null
+   ],
+   [
+    "*Listbox.background",
+    "#121212",
+    null
+   ],
+   [
+    "*Listbox.foreground",
+    "#d9d9d9",
+    null
+   ],
+   [
+    "*Listbox.selectBackground",
+    "#0b2f5c",
+    null
+   ],
+   [
+    "*Listbox.selectForeground",
+    "#d9d9d9",
+    null
+   ],
+   [
+    "*Listbox.highlightThickness",
+    "0",
+    null
+   ],
+   [
+    "*Listbox.borderWidth",
+    "0",
+    null
+   ],
+   [
+    "*Listbox.relief",
+    "flat",
+    null
+   ],
+   [
+    "*Entry.background",
+    "#121212",
+    null
+   ],
+   [
+    "*Entry.foreground",
+    "#d9d9d9",
+    null
+   ],
+   [
+    "*Entry.selectBackground",
+    "#0b2f5c",
+    null
+   ],
+   [
+    "*Entry.selectForeground",
+    "#d9d9d9",
+    null
+   ],
+   [
+    "*Entry.highlightThickness",
+    "0",
+    null
+   ],
+   [
+    "*Entry.borderWidth",
+    "0",
+    null
+   ],
+   [
+    "*Entry.relief",
+    "flat",
+    null
+   ],
+   [
+    "*Spinbox.background",
+    "#121212",
+    null
+   ],
+   [
+    "*Spinbox.foreground",
+    "#d9d9d9",
+    null
+   ],
+   [
+    "*Spinbox.selectBackground",
+    "#0b2f5c",
+    null
+   ],
+   [
+    "*Spinbox.selectForeground",
+    "#d9d9d9",
+    null
+   ],
+   [
+    "*Spinbox.highlightThickness",
+    "0",
+    null
+   ],
+   [
+    "*Spinbox.borderWidth",
+    "0",
+    null
+   ],
+   [
+    "*Spinbox.relief",
+    "flat",
+    null
+   ],
+   [
+    "*Text.insertBackground",
+    "#d9d9d9",
+    null
+   ],
+   [
+    "*Text.inactiveSelectBackground",
+    "#616161",
+    null
+   ],
+   [
+    "*Entry.insertBackground",
+    "#d9d9d9",
+    null
+   ],
+   [
+    "*Entry.inactiveSelectBackground",
+    "#616161",
+    null
+   ],
+   [
+    "*Spinbox.insertBackground",
+    "#d9d9d9",
+    null
+   ],
+   [
+    "*Spinbox.inactiveSelectBackground",
+    "#616161",
+    null
+   ],
+   [
+    "*Listbox.selectBorderWidth",
+    "0",
+    null
+   ],
+   [
+    "*Listbox.activeStyle",
+    "none",
+    null
+   ],
+   [
+    "*Text.padX",
+    "8",
+    null
+   ],
+   [
+    "*Text.padY",
+    "6",
+    null
+   ],
+   [
+    "*Frame.background",
+    "#212121",
+    null
+   ],
+   [
+    "*Toplevel.background",
+    "#212121",
+    null
+   ],
+   [
+    "*Label.background",
+    "#212121",
+    null
+   ],
+   [
+    "*Canvas.background",
+    "#212121",
+    null
+   ],
+   [
+    "*Checkbutton.background",
+    "#212121",
+    null
+   ],
+   [
+    "*Radiobutton.background",
+    "#212121",
+    null
+   ],
+   [
+    "*Scale.background",
+    "#212121",
+    null
+   ],
+   [
+    "*Message.background",
+    "#212121",
+    null
+   ],
+   [
+    "*LabelFrame.background",
+    "#212121",
+    null
+   ],
+   [
+    "*Label.foreground",
+    "#d9d9d9",
+    null
+   ],
+   [
+    "*Checkbutton.foreground",
+    "#d9d9d9",
+    null
+   ],
+   [
+    "*Radiobutton.foreground",
+    "#d9d9d9",
+    null
+   ],
+   [
+    "*Message.foreground",
+    "#d9d9d9",
+    null
+   ],
+   [
+    "*LabelFrame.foreground",
+    "#d9d9d9",
+    null
+   ],
+   [
+    "*Scale.foreground",
+    "#d9d9d9",
+    null
+   ],
+   [
+    "*Canvas.highlightThickness",
+    "0",
+    null
+   ],
+   [
+    "*Button.background",
+    "#212121",
+    null
+   ],
+   [
+    "*Button.foreground",
+    "#d9d9d9",
+    null
+   ],
+   [
+    "*Button.activeBackground",
+    "#333333",
+    null
+   ],
+   [
+    "*Button.activeForeground",
+    "#d9d9d9",
+    null
+   ],
+   [
+    "*Button.highlightThickness",
+    "0",
+    null
+   ],
+   [
+    "*Button.relief",
+    "flat",
+    null
+   ],
+   [
+    "*Menu.background",
+    "#333333",
+    null
+   ],
+   [
+    "*Menu.foreground",
+    "#d9d9d9",
+    null
+   ],
+   [
+    "*Menu.activeBackground",
+    "#0b2f5c",
+    null
+   ],
+   [
+    "*Menu.activeForeground",
+    "#ffffff",
+    null
+   ],
+   [
+    "*Menu.disabledForeground",
+    "#888888",
+    null
+   ],
+   [
+    "*Menu.selectColor",
+    "#d9d9d9",
+    null
+   ],
+   [
+    "*Menu.borderWidth",
+    "1",
+    null
+   ],
+   [
+    "*Menu.activeBorderWidth",
+    "0",
+    null
+   ],
+   [
+    "*Menu.relief",
+    "solid",
+    null
+   ],
+   [
+    "*Menu.tearOff",
+    "0",
+    null
+   ],
+   [
+    "*Menu.font",
+    "PkDefault",
+    null
+   ],
+   [
+    "*Scrollbar.background",
+    "#616161",
+    null
+   ],
+   [
+    "*Scrollbar.troughColor",
+    "#212121",
+    null
+   ]
+  ],
+  "radius": 3,
+  "root_bg": "#212121",
+  "styles": {
+   "AxesTool.TCheckbutton": {
+    "configure": {
+     "anchor": "center",
+     "background": "#212121",
+     "justify": "center",
+     "padding": "6 3"
+    },
+    "layout": [
+     [
+      "PkDark.axestool",
+      {
+       "children": [
+        [
+         "Checkbutton.padding",
+         {
+          "children": [
+           [
+            "Checkbutton.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {
+     "background": [
+      [
+       "disabled",
+       "#212121"
+      ],
+      [
+       "pressed",
+       "#000000"
+      ],
+      [
+       "selected",
+       "#0b2f5c"
+      ],
+      [
+       "active",
+       "#333333"
+      ]
+     ],
+     "foreground": [
+      [
+       "disabled",
+       "#888888"
+      ],
+      [
+       "pressed",
+       "#ffffff"
+      ],
+      [
+       "selected",
+       "#d9d9d9"
+      ]
+     ]
+    }
+   },
+   "Big.Tool.TButton": {
+    "configure": {
+     "anchor": "center",
+     "font": "PkSmall",
+     "justify": "center",
+     "padding": "8 6"
+    },
+    "layout": [
+     [
+      "PkDark.tool",
+      {
+       "children": [
+        [
+         "Button.padding",
+         {
+          "children": [
+           [
+            "Button.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "Big.Tool.TCheckbutton": {
+    "configure": {
+     "anchor": "center",
+     "font": "PkSmall",
+     "justify": "center",
+     "padding": "8 6"
+    },
+    "layout": [
+     [
+      "PkDark.tool",
+      {
+       "children": [
+        [
+         "Checkbutton.padding",
+         {
+          "children": [
+           [
+            "Checkbutton.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "Bold.TLabel": {
+    "configure": {
+     "font": "PkBold"
+    },
+    "layout": [
+     [
+      "Label.border",
+      {
+       "border": "1",
+       "children": [
+        [
+         "Label.padding",
+         {
+          "border": "1",
+          "children": [
+           [
+            "Label.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "Border.TFrame": {
+    "configure": {
+     "background": "#7d7d7d"
+    },
+    "layout": [
+     [
+      "Frame.border",
+      {
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "Compact.Contextual.StripTab.TRadiobutton": {
+    "configure": {
+     "anchor": "center",
+     "background": "#1171be",
+     "font": "PkSmall",
+     "foreground": "#ffffff",
+     "padding": "6 7",
+     "width": 0
+    },
+    "layout": [
+     [
+      "Radiobutton.padding",
+      {
+       "children": [
+        [
+         "Radiobutton.label",
+         {
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {
+     "background": [
+      [
+       "selected",
+       "#212121"
+      ],
+      [
+       "active",
+       "#268cdd"
+      ]
+     ],
+     "foreground": [
+      [
+       "selected",
+       "#d9d9d9"
+      ],
+      [
+       "disabled",
+       "#9ec5e8"
+      ]
+     ]
+    }
+   },
+   "Compact.StripTab.TRadiobutton": {
+    "configure": {
+     "anchor": "center",
+     "background": "#004073",
+     "font": "PkSmall",
+     "foreground": "#ffffff",
+     "padding": "6 7",
+     "width": 0
+    },
+    "layout": [
+     [
+      "Radiobutton.padding",
+      {
+       "children": [
+        [
+         "Radiobutton.label",
+         {
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {
+     "background": [
+      [
+       "selected",
+       "#212121"
+      ],
+      [
+       "active",
+       "#268cdd"
+      ]
+     ],
+     "foreground": [
+      [
+       "selected",
+       "#d9d9d9"
+      ],
+      [
+       "disabled",
+       "#9ec5e8"
+      ]
+     ]
+    }
+   },
+   "Contextual.StripTab.TRadiobutton": {
+    "configure": {
+     "anchor": "center",
+     "background": "#1171be",
+     "font": "PkSmall",
+     "foreground": "#ffffff",
+     "padding": "8 7",
+     "width": 11
+    },
+    "layout": [
+     [
+      "Radiobutton.padding",
+      {
+       "children": [
+        [
+         "Radiobutton.label",
+         {
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {
+     "background": [
+      [
+       "selected",
+       "#212121"
+      ],
+      [
+       "active",
+       "#268cdd"
+      ]
+     ],
+     "foreground": [
+      [
+       "selected",
+       "#d9d9d9"
+      ]
+     ]
+    }
+   },
+   "Error.TLabel": {
+    "configure": {
+     "foreground": "#ff7a74"
+    },
+    "layout": [
+     [
+      "Label.border",
+      {
+       "border": "1",
+       "children": [
+        [
+         "Label.padding",
+         {
+          "border": "1",
+          "children": [
+           [
+            "Label.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "Hint.TLabel": {
+    "configure": {
+     "foreground": "#888888"
+    },
+    "layout": [
+     [
+      "Label.border",
+      {
+       "border": "1",
+       "children": [
+        [
+         "Label.padding",
+         {
+          "border": "1",
+          "children": [
+           [
+            "Label.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "Horizontal.TScale": {
+    "configure": {
+     "background": "#888888",
+     "bordercolor": "#616161",
+     "borderwidth": 0,
+     "darkcolor": "#888888",
+     "lightcolor": "#888888",
+     "sliderlength": 14,
+     "sliderthickness": 14,
+     "troughcolor": "#616161"
+    },
+    "layout": [
+     [
+      "PkDark.Scale.trough",
+      {
+       "children": [
+        [
+         "PkDark.Scale.slider",
+         {
+          "side": "left",
+          "sticky": ""
+         }
+        ]
+       ],
+       "sticky": "we"
+      }
+     ]
+    ],
+    "map": {
+     "background": [
+      [
+       "active",
+       "#d9d9d9"
+      ]
+     ],
+     "darkcolor": [
+      [
+       "active",
+       "#d9d9d9"
+      ]
+     ],
+     "lightcolor": [
+      [
+       "active",
+       "#d9d9d9"
+      ]
+     ]
+    }
+   },
+   "Horizontal.TScrollbar": {
+    "configure": {
+     "arrowsize": 12,
+     "background": "#616161",
+     "bordercolor": "#212121",
+     "borderwidth": 0,
+     "darkcolor": "#616161",
+     "gripcount": 0,
+     "lightcolor": "#616161",
+     "relief": "flat",
+     "troughcolor": "#212121",
+     "width": 12
+    },
+    "layout": [
+     [
+      "PkDark.Horizontal.Scrollbar.trough",
+      {
+       "children": [
+        [
+         "PkDark.Horizontal.Scrollbar.thumb",
+         {
+          "expand": "1",
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "we"
+      }
+     ]
+    ],
+    "map": {
+     "background": [
+      [
+       "pressed",
+       "#888888"
+      ],
+      [
+       "active",
+       "#7d7d7d"
+      ]
+     ],
+     "darkcolor": [
+      [
+       "pressed",
+       "#888888"
+      ],
+      [
+       "active",
+       "#7d7d7d"
+      ]
+     ],
+     "lightcolor": [
+      [
+       "pressed",
+       "#888888"
+      ],
+      [
+       "active",
+       "#7d7d7d"
+      ]
+     ]
+    }
+   },
+   "Input.TFrame": {
+    "configure": {
+     "background": "#121212"
+    },
+    "layout": [
+     [
+      "Frame.border",
+      {
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "PanelTitle.TFrame": {
+    "configure": {
+     "background": "#000000"
+    },
+    "layout": [
+     [
+      "Frame.border",
+      {
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "PanelTitle.TLabel": {
+    "configure": {
+     "background": "#000000",
+     "font": "PkTitle",
+     "foreground": "#d9d9d9",
+     "padding": "6 0"
+    },
+    "layout": [
+     [
+      "Label.border",
+      {
+       "border": "1",
+       "children": [
+        [
+         "Label.padding",
+         {
+          "border": "1",
+          "children": [
+           [
+            "Label.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "PanelTitleSel.TFrame": {
+    "configure": {
+     "background": "#1171be"
+    },
+    "layout": [
+     [
+      "Frame.border",
+      {
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "PanelTitleSel.TLabel": {
+    "configure": {
+     "background": "#1171be",
+     "font": "PkTitle",
+     "foreground": "#ffffff",
+     "padding": "6 0"
+    },
+    "layout": [
+     [
+      "Label.border",
+      {
+       "border": "1",
+       "children": [
+        [
+         "Label.padding",
+         {
+          "border": "1",
+          "children": [
+           [
+            "Label.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "PanelTool.TButton": {
+    "configure": {
+     "background": "#000000",
+     "padding": "5 3"
+    },
+    "layout": [
+     [
+      "PkDark.tool",
+      {
+       "children": [
+        [
+         "Button.padding",
+         {
+          "children": [
+           [
+            "Button.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {
+     "background": [
+      [
+       "active",
+       "#333333"
+      ],
+      [
+       "pressed",
+       "#000000"
+      ]
+     ]
+    }
+   },
+   "PanelToolSel.TButton": {
+    "configure": {
+     "background": "#1171be",
+     "foreground": "#ffffff",
+     "padding": "5 3"
+    },
+    "layout": [
+     [
+      "PkDark.tool",
+      {
+       "children": [
+        [
+         "Button.padding",
+         {
+          "children": [
+           [
+            "Button.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {
+     "background": [
+      [
+       "active",
+       "#268cdd"
+      ],
+      [
+       "pressed",
+       "#00243e"
+      ]
+     ]
+    }
+   },
+   "Primary.TButton": {
+    "configure": {
+     "background": "#1171be",
+     "font": "PkBold",
+     "foreground": "#ffffff",
+     "padding": "14 4"
+    },
+    "layout": [
+     [
+      "PkDark.primary",
+      {
+       "children": [
+        [
+         "Button.padding",
+         {
+          "children": [
+           [
+            "Button.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {
+     "background": [
+      [
+       "disabled",
+       "#333333"
+      ],
+      [
+       "pressed",
+       "#0b2f5c"
+      ],
+      [
+       "active",
+       "#268cdd"
+      ]
+     ],
+     "foreground": [
+      [
+       "disabled",
+       "#888888"
+      ]
+     ]
+    }
+   },
+   "Qab.TButton": {
+    "configure": {
+     "background": "#004073",
+     "foreground": "#ffffff",
+     "padding": "6 4"
+    },
+    "layout": [
+     [
+      "PkDark.qab",
+      {
+       "children": [
+        [
+         "Button.padding",
+         {
+          "children": [
+           [
+            "Button.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {
+     "background": [
+      [
+       "disabled",
+       "#004073"
+      ],
+      [
+       "pressed",
+       "#00243e"
+      ],
+      [
+       "active",
+       "#0b2f5c"
+      ]
+     ],
+     "foreground": [
+      [
+       "disabled",
+       "#9ec5e8"
+      ]
+     ]
+    }
+   },
+   "Section.TLabel": {
+    "configure": {
+     "anchor": "center",
+     "font": "PkSmall",
+     "foreground": "#888888",
+     "padding": "3 0"
+    },
+    "layout": [
+     [
+      "Label.border",
+      {
+       "border": "1",
+       "children": [
+        [
+         "Label.padding",
+         {
+          "border": "1",
+          "children": [
+           [
+            "Label.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "Small.TLabel": {
+    "configure": {
+     "font": "PkSmall",
+     "foreground": "#888888"
+    },
+    "layout": [
+     [
+      "Label.border",
+      {
+       "border": "1",
+       "children": [
+        [
+         "Label.padding",
+         {
+          "border": "1",
+          "children": [
+           [
+            "Label.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "Small.Tool.TButton": {
+    "configure": {
+     "anchor": "w",
+     "padding": "6 3"
+    },
+    "layout": [
+     [
+      "PkDark.tool",
+      {
+       "children": [
+        [
+         "Button.padding",
+         {
+          "children": [
+           [
+            "Button.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "Small.Tool.TCheckbutton": {
+    "configure": {
+     "anchor": "w",
+     "padding": "6 3"
+    },
+    "layout": [
+     [
+      "PkDark.tool",
+      {
+       "children": [
+        [
+         "Checkbutton.padding",
+         {
+          "children": [
+           [
+            "Checkbutton.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "Status.TLabel": {
+    "configure": {
+     "background": "#333333",
+     "foreground": "#d9d9d9",
+     "padding": "6 3"
+    },
+    "layout": [
+     [
+      "Label.border",
+      {
+       "border": "1",
+       "children": [
+        [
+         "Label.padding",
+         {
+          "border": "1",
+          "children": [
+           [
+            "Label.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "Strip.TFrame": {
+    "configure": {
+     "background": "#004073"
+    },
+    "layout": [
+     [
+      "Frame.border",
+      {
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "Strip.TLabel": {
+    "configure": {
+     "background": "#004073",
+     "foreground": "#ffffff"
+    },
+    "layout": [
+     [
+      "Label.border",
+      {
+       "border": "1",
+       "children": [
+        [
+         "Label.padding",
+         {
+          "border": "1",
+          "children": [
+           [
+            "Label.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "StripArrow.TButton": {
+    "configure": {
+     "anchor": "center",
+     "background": "#333333",
+     "font": "PkSmall",
+     "foreground": "#d9d9d9",
+     "padding": "0 0",
+     "width": 0
+    },
+    "layout": [
+     [
+      "PkDark.tool",
+      {
+       "children": [
+        [
+         "Button.padding",
+         {
+          "children": [
+           [
+            "Button.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {
+     "background": [
+      [
+       "pressed",
+       "#616161"
+      ],
+      [
+       "active",
+       "#333333"
+      ]
+     ]
+    }
+   },
+   "StripArrowTab.TButton": {
+    "configure": {
+     "anchor": "center",
+     "background": "#004073",
+     "font": "PkSmall",
+     "foreground": "#ffffff",
+     "padding": "0 0",
+     "width": 0
+    },
+    "layout": [
+     [
+      "PkDark.tool",
+      {
+       "children": [
+        [
+         "Button.padding",
+         {
+          "children": [
+           [
+            "Button.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {
+     "background": [
+      [
+       "pressed",
+       "#00243e"
+      ],
+      [
+       "active",
+       "#268cdd"
+      ]
+     ]
+    }
+   },
+   "StripBody.TFrame": {
+    "configure": {
+     "background": "#212121"
+    },
+    "layout": [
+     [
+      "Frame.border",
+      {
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "StripTab.TRadiobutton": {
+    "configure": {
+     "anchor": "center",
+     "background": "#004073",
+     "font": "PkSmall",
+     "foreground": "#ffffff",
+     "padding": "8 7",
+     "width": 11
+    },
+    "layout": [
+     [
+      "Radiobutton.padding",
+      {
+       "children": [
+        [
+         "Radiobutton.label",
+         {
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {
+     "background": [
+      [
+       "selected",
+       "#212121"
+      ],
+      [
+       "active",
+       "#268cdd"
+      ]
+     ],
+     "foreground": [
+      [
+       "selected",
+       "#d9d9d9"
+      ],
+      [
+       "disabled",
+       "#9ec5e8"
+      ]
+     ]
+    }
+   },
+   "TButton": {
+    "configure": {
+     "anchor": "center",
+     "background": "#212121",
+     "bordercolor": "#7d7d7d",
+     "darkcolor": "#212121",
+     "foreground": "#d9d9d9",
+     "lightcolor": "#212121",
+     "padding": "10 3",
+     "relief": "flat",
+     "shiftrelief": 0,
+     "width": 0
+    },
+    "layout": [
+     [
+      "PkDark.button",
+      {
+       "children": [
+        [
+         "Button.padding",
+         {
+          "children": [
+           [
+            "Button.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {
+     "background": [
+      [
+       "disabled",
+       "#212121"
+      ],
+      [
+       "pressed",
+       "#000000"
+      ],
+      [
+       "selected",
+       "#000000"
+      ],
+      [
+       "active",
+       "#333333"
+      ]
+     ],
+     "bordercolor": [
+      [
+       "active",
+       "#bfbfbf"
+      ]
+     ],
+     "darkcolor": [
+      [
+       "active",
+       "#333333"
+      ]
+     ],
+     "foreground": [
+      [
+       "disabled",
+       "#888888"
+      ],
+      [
+       "pressed",
+       "#ffffff"
+      ]
+     ],
+     "lightcolor": [
+      [
+       "active",
+       "#333333"
+      ]
+     ]
+    }
+   },
+   "TCheckbutton": {
+    "configure": {
+     "background": "#212121",
+     "foreground": "#d9d9d9",
+     "indicatorcolor": "#121212",
+     "indicatormargin": "0 0 6 0",
+     "padding": "2 2"
+    },
+    "layout": [
+     [
+      "Checkbutton.padding",
+      {
+       "children": [
+        [
+         "PkDark.check",
+         {
+          "side": "left",
+          "sticky": ""
+         }
+        ],
+        [
+         "Checkbutton.label",
+         {
+          "side": "left",
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {
+     "background": [
+      [
+       "active",
+       "#212121"
+      ]
+     ],
+     "foreground": [
+      [
+       "disabled",
+       "#888888"
+      ]
+     ],
+     "indicatorcolor": [
+      [
+       "selected",
+       "#d9d9d9"
+      ]
+     ]
+    }
+   },
+   "TCombobox": {
+    "configure": {
+     "arrowcolor": "#d9d9d9",
+     "background": "#212121",
+     "bordercolor": "#7d7d7d",
+     "darkcolor": "#121212",
+     "fieldbackground": "#121212",
+     "foreground": "#d9d9d9",
+     "insertcolor": "#d9d9d9",
+     "lightcolor": "#121212",
+     "padding": "5 3 2 3",
+     "selectbackground": "#0b2f5c",
+     "selectforeground": "#d9d9d9"
+    },
+    "layout": [
+     [
+      "PkDark.field",
+      {
+       "children": [
+        [
+         "PkDark.downarrow",
+         {
+          "side": "right",
+          "sticky": ""
+         }
+        ],
+        [
+         "Combobox.padding",
+         {
+          "children": [
+           [
+            "Combobox.textarea",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "expand": "1",
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {
+     "arrowcolor": [
+      [
+       "disabled",
+       "#888888"
+      ]
+     ],
+     "background": [
+      [
+       "readonly",
+       "active",
+       "#333333"
+      ]
+     ],
+     "bordercolor": [
+      [
+       "invalid",
+       "#ff7a74"
+      ]
+     ],
+     "darkcolor": [
+      [
+       "invalid",
+       "#ff7a74"
+      ]
+     ],
+     "fieldbackground": [
+      [
+       "readonly",
+       "#212121"
+      ],
+      [
+       "disabled",
+       "#333333"
+      ],
+      [
+       "invalid",
+       "#2e1e1e"
+      ]
+     ],
+     "foreground": [
+      [
+       "disabled",
+       "#888888"
+      ]
+     ],
+     "lightcolor": [
+      [
+       "invalid",
+       "#ff7a74"
+      ]
+     ],
+     "selectbackground": [
+      [
+       "!focus",
+       "#616161"
+      ]
+     ]
+    }
+   },
+   "TEntry": {
+    "configure": {
+     "arrowcolor": "#d9d9d9",
+     "background": "#212121",
+     "bordercolor": "#7d7d7d",
+     "darkcolor": "#121212",
+     "fieldbackground": "#121212",
+     "foreground": "#d9d9d9",
+     "insertcolor": "#d9d9d9",
+     "lightcolor": "#121212",
+     "padding": "5 3",
+     "selectbackground": "#0b2f5c",
+     "selectforeground": "#d9d9d9"
+    },
+    "layout": [
+     [
+      "PkDark.field",
+      {
+       "children": [
+        [
+         "Entry.padding",
+         {
+          "children": [
+           [
+            "Entry.textarea",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {
+     "arrowcolor": [
+      [
+       "disabled",
+       "#888888"
+      ]
+     ],
+     "background": [
+      [
+       "readonly",
+       "active",
+       "#333333"
+      ]
+     ],
+     "bordercolor": [
+      [
+       "invalid",
+       "#ff7a74"
+      ]
+     ],
+     "darkcolor": [
+      [
+       "invalid",
+       "#ff7a74"
+      ]
+     ],
+     "fieldbackground": [
+      [
+       "readonly",
+       "#212121"
+      ],
+      [
+       "disabled",
+       "#333333"
+      ],
+      [
+       "invalid",
+       "#2e1e1e"
+      ]
+     ],
+     "foreground": [
+      [
+       "disabled",
+       "#888888"
+      ]
+     ],
+     "lightcolor": [
+      [
+       "invalid",
+       "#ff7a74"
+      ]
+     ],
+     "selectbackground": [
+      [
+       "!focus",
+       "#616161"
+      ]
+     ]
+    }
+   },
+   "TFrame": {
+    "configure": {
+     "background": "#212121"
+    },
+    "layout": [
+     [
+      "Frame.border",
+      {
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "TLabel": {
+    "configure": {
+     "background": "#212121",
+     "foreground": "#d9d9d9",
+     "padding": [
+      0
+     ]
+    },
+    "layout": [
+     [
+      "Label.border",
+      {
+       "border": "1",
+       "children": [
+        [
+         "Label.padding",
+         {
+          "border": "1",
+          "children": [
+           [
+            "Label.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "TLabelframe": {
+    "configure": {
+     "background": "#212121",
+     "bordercolor": "#7d7d7d",
+     "borderwidth": 1,
+     "darkcolor": "#212121",
+     "lightcolor": "#212121",
+     "padding": "8 6",
+     "relief": "solid"
+    },
+    "layout": [
+     [
+      "Labelframe.border",
+      {
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "TLabelframe.Label": {
+    "configure": {
+     "background": "#212121",
+     "font": "PkDefault",
+     "foreground": "#d9d9d9"
+    },
+    "layout": [
+     [
+      "Label.fill",
+      {
+       "children": [
+        [
+         "Label.text",
+         {
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "TMenubutton": {
+    "configure": {
+     "arrowcolor": "#d9d9d9",
+     "background": "#212121",
+     "foreground": "#d9d9d9",
+     "padding": "8 3"
+    },
+    "layout": [
+     [
+      "Menubutton.border",
+      {
+       "children": [
+        [
+         "Menubutton.focus",
+         {
+          "children": [
+           [
+            "Menubutton.indicator",
+            {
+             "side": "right",
+             "sticky": ""
+            }
+           ],
+           [
+            "Menubutton.padding",
+            {
+             "children": [
+              [
+               "Menubutton.label",
+               {
+                "side": "left",
+                "sticky": ""
+               }
+              ]
+             ],
+             "sticky": "we"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {
+     "background": [
+      [
+       "active",
+       "#333333"
+      ]
+     ]
+    }
+   },
+   "TNotebook": {
+    "configure": {
+     "background": "#212121",
+     "bordercolor": "#616161",
+     "borderwidth": 1,
+     "darkcolor": "#212121",
+     "lightcolor": "#212121",
+     "tabmargins": "0 0 0 0",
+     "tabposition": "nw"
+    },
+    "layout": [
+     [
+      "Notebook.client",
+      {
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "TNotebook.Tab": {
+    "configure": {
+     "background": "#333333",
+     "bordercolor": "#616161",
+     "darkcolor": "#333333",
+     "focuscolor": "#333333",
+     "font": "PkDefault",
+     "foreground": "#d9d9d9",
+     "lightcolor": "#333333",
+     "padding": "12 2"
+    },
+    "layout": [
+     [
+      "Notebook.tab",
+      {
+       "children": [
+        [
+         "Notebook.padding",
+         {
+          "children": [
+           [
+            "Notebook.label",
+            {
+             "side": "top",
+             "sticky": ""
+            }
+           ]
+          ],
+          "side": "top",
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {
+     "background": [
+      [
+       "selected",
+       "#212121"
+      ],
+      [
+       "active",
+       "#333333"
+      ]
+     ],
+     "darkcolor": [
+      [
+       "selected",
+       "#212121"
+      ]
+     ],
+     "expand": [
+      [
+       "selected",
+       "0 0 0 0"
+      ]
+     ],
+     "foreground": [
+      [
+       "disabled",
+       "#888888"
+      ]
+     ],
+     "lightcolor": [
+      [
+       "selected",
+       "#212121"
+      ]
+     ]
+    }
+   },
+   "TPanedwindow": {
+    "configure": {
+     "background": "#212121"
+    },
+    "layout": [
+     [
+      "Panedwindow.background",
+      {
+       "sticky": ""
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "TProgressbar": {
+    "configure": {
+     "background": "#268cdd",
+     "bordercolor": "#333333",
+     "darkcolor": "#268cdd",
+     "lightcolor": "#268cdd",
+     "troughcolor": "#333333"
+    },
+    "layout": null,
+    "map": {}
+   },
+   "TRadiobutton": {
+    "configure": {
+     "background": "#212121",
+     "foreground": "#d9d9d9",
+     "indicatorcolor": "#121212",
+     "indicatormargin": "0 0 6 0",
+     "padding": "2 2"
+    },
+    "layout": [
+     [
+      "Radiobutton.padding",
+      {
+       "children": [
+        [
+         "PkDark.radio",
+         {
+          "side": "left",
+          "sticky": ""
+         }
+        ],
+        [
+         "Radiobutton.label",
+         {
+          "side": "left",
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {
+     "background": [
+      [
+       "active",
+       "#212121"
+      ]
+     ],
+     "foreground": [
+      [
+       "disabled",
+       "#888888"
+      ]
+     ],
+     "indicatorcolor": [
+      [
+       "selected",
+       "#d9d9d9"
+      ]
+     ]
+    }
+   },
+   "TScale": {
+    "configure": {},
+    "layout": null,
+    "map": {}
+   },
+   "TScrollbar": {
+    "configure": {
+     "arrowsize": 12,
+     "background": "#616161",
+     "bordercolor": "#212121",
+     "borderwidth": 0,
+     "darkcolor": "#616161",
+     "gripcount": 0,
+     "lightcolor": "#616161",
+     "relief": "flat",
+     "troughcolor": "#212121",
+     "width": 12
+    },
+    "layout": null,
+    "map": {
+     "background": [
+      [
+       "pressed",
+       "#888888"
+      ],
+      [
+       "active",
+       "#7d7d7d"
+      ]
+     ],
+     "darkcolor": [
+      [
+       "pressed",
+       "#888888"
+      ],
+      [
+       "active",
+       "#7d7d7d"
+      ]
+     ],
+     "lightcolor": [
+      [
+       "pressed",
+       "#888888"
+      ],
+      [
+       "active",
+       "#7d7d7d"
+      ]
+     ]
+    }
+   },
+   "TSeparator": {
+    "configure": {
+     "background": "#616161"
+    },
+    "layout": [
+     [
+      "Separator.separator",
+      {
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "TSpinbox": {
+    "configure": {
+     "arrowcolor": "#d9d9d9",
+     "background": "#212121",
+     "bordercolor": "#7d7d7d",
+     "darkcolor": "#121212",
+     "fieldbackground": "#121212",
+     "foreground": "#d9d9d9",
+     "insertcolor": "#d9d9d9",
+     "lightcolor": "#121212",
+     "padding": "5 3",
+     "selectbackground": "#0b2f5c",
+     "selectforeground": "#d9d9d9"
+    },
+    "layout": [
+     [
+      "PkDark.field",
+      {
+       "children": [
+        [
+         "null",
+         {
+          "children": [
+           [
+            "PkDark.uparrow",
+            {
+             "side": "top",
+             "sticky": "e"
+            }
+           ],
+           [
+            "PkDark.downarrow_s",
+            {
+             "side": "bottom",
+             "sticky": "e"
+            }
+           ]
+          ],
+          "side": "right",
+          "sticky": "nswe"
+         }
+        ],
+        [
+         "Spinbox.padding",
+         {
+          "children": [
+           [
+            "Spinbox.textarea",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {
+     "arrowcolor": [
+      [
+       "disabled",
+       "#888888"
+      ]
+     ],
+     "background": [
+      [
+       "readonly",
+       "active",
+       "#333333"
+      ]
+     ],
+     "bordercolor": [
+      [
+       "invalid",
+       "#ff7a74"
+      ]
+     ],
+     "darkcolor": [
+      [
+       "invalid",
+       "#ff7a74"
+      ]
+     ],
+     "fieldbackground": [
+      [
+       "readonly",
+       "#212121"
+      ],
+      [
+       "disabled",
+       "#333333"
+      ],
+      [
+       "invalid",
+       "#2e1e1e"
+      ]
+     ],
+     "foreground": [
+      [
+       "disabled",
+       "#888888"
+      ]
+     ],
+     "lightcolor": [
+      [
+       "invalid",
+       "#ff7a74"
+      ]
+     ],
+     "selectbackground": [
+      [
+       "!focus",
+       "#616161"
+      ]
+     ]
+    }
+   },
+   "Title.TLabel": {
+    "configure": {
+     "font": "PkTitle"
+    },
+    "layout": [
+     [
+      "Label.border",
+      {
+       "border": "1",
+       "children": [
+        [
+         "Label.padding",
+         {
+          "border": "1",
+          "children": [
+           [
+            "Label.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "Tool.TButton": {
+    "configure": {
+     "anchor": "center",
+     "background": "#212121",
+     "justify": "center",
+     "padding": "6 3"
+    },
+    "layout": [
+     [
+      "PkDark.tool",
+      {
+       "children": [
+        [
+         "Button.padding",
+         {
+          "children": [
+           [
+            "Button.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {
+     "background": [
+      [
+       "disabled",
+       "#212121"
+      ],
+      [
+       "pressed",
+       "#000000"
+      ],
+      [
+       "selected",
+       "#000000"
+      ],
+      [
+       "active",
+       "#333333"
+      ]
+     ],
+     "foreground": [
+      [
+       "disabled",
+       "#888888"
+      ],
+      [
+       "pressed",
+       "#ffffff"
+      ],
+      [
+       "selected",
+       "#ffffff"
+      ]
+     ]
+    }
+   },
+   "Tool.TCheckbutton": {
+    "configure": {
+     "anchor": "center",
+     "background": "#212121",
+     "justify": "center",
+     "padding": "6 3"
+    },
+    "layout": [
+     [
+      "PkDark.tool",
+      {
+       "children": [
+        [
+         "Checkbutton.padding",
+         {
+          "children": [
+           [
+            "Checkbutton.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {
+     "background": [
+      [
+       "disabled",
+       "#212121"
+      ],
+      [
+       "pressed",
+       "#000000"
+      ],
+      [
+       "selected",
+       "#000000"
+      ],
+      [
+       "active",
+       "#333333"
+      ]
+     ],
+     "foreground": [
+      [
+       "disabled",
+       "#888888"
+      ],
+      [
+       "pressed",
+       "#ffffff"
+      ],
+      [
+       "selected",
+       "#ffffff"
+      ]
+     ]
+    }
+   },
+   "Vertical.TScrollbar": {
+    "configure": {
+     "arrowsize": 12,
+     "background": "#616161",
+     "bordercolor": "#212121",
+     "borderwidth": 0,
+     "darkcolor": "#616161",
+     "gripcount": 0,
+     "lightcolor": "#616161",
+     "relief": "flat",
+     "troughcolor": "#212121",
+     "width": 12
+    },
+    "layout": [
+     [
+      "PkDark.Vertical.Scrollbar.trough",
+      {
+       "children": [
+        [
+         "PkDark.Vertical.Scrollbar.thumb",
+         {
+          "expand": "1",
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "ns"
+      }
+     ]
+    ],
+    "map": {
+     "background": [
+      [
+       "pressed",
+       "#888888"
+      ],
+      [
+       "active",
+       "#7d7d7d"
+      ]
+     ],
+     "darkcolor": [
+      [
+       "pressed",
+       "#888888"
+      ],
+      [
+       "active",
+       "#7d7d7d"
+      ]
+     ],
+     "lightcolor": [
+      [
+       "pressed",
+       "#888888"
+      ],
+      [
+       "active",
+       "#7d7d7d"
+      ]
+     ]
+    }
+   },
+   "Warn.TLabel": {
+    "configure": {
+     "font": "PkBold",
+     "foreground": "#ff7a74"
+    },
+    "layout": [
+     [
+      "Label.border",
+      {
+       "border": "1",
+       "children": [
+        [
+         "Label.padding",
+         {
+          "border": "1",
+          "children": [
+           [
+            "Label.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   }
+  },
+  "tokens": {
+   "accent": "#268cdd",
+   "bg": "#212121",
+   "bg2": "#333333",
+   "bg3": "#000000",
+   "border": "#7d7d7d",
+   "border2": "#616161",
+   "border3": "#a6a6a6",
+   "border_hover": "#bfbfbf",
+   "error": "#ff7a74",
+   "focus": "#268cdd",
+   "green": "#49db40",
+   "hover": "#333333",
+   "icon_fg": "#d9d9d9",
+   "icon_fg2": "#888888",
+   "icon_fill": "#333333",
+   "input": "#121212",
+   "link": "#54b6ff",
+   "list_hover": "#7d7d7d",
+   "orange": "#f57729",
+   "panel_header_sel": "#1171be",
+   "plot_style": "matlab-dark",
+   "qab_active": "#00243e",
+   "qab_hover": "#0b2f5c",
+   "red": "#ff7a74",
+   "scroll": "#616161",
+   "scroll_active": "#888888",
+   "scroll_hover": "#7d7d7d",
+   "selected": "#616161",
+   "selected_focus": "#0b2f5c",
+   "strip": "#004073",
+   "strip_hover": "#268cdd",
+   "strip_selected": "#1171be",
+   "stripe": "#121212",
+   "success": "#94ef84",
+   "tab": "#333333",
+   "tab_selected": "#212121",
+   "text": "#d9d9d9",
+   "text2": "#888888",
+   "text3": "#ffffff",
+   "text_selected": "#e6e6e6",
+   "toggle_on": "#000000",
+   "toolbar_on": "#0b2f5c",
+   "warning": "#edb120"
+  },
+  "tooltip_bg": "#333333"
+ },
+ "light": {
+  "dark": false,
+  "elements": {
+   "PkLight.Horizontal.Scrollbar.thumb": [
+    [
+     [],
+     {
+      "draw": null,
+      "fill": "#bfbfbf",
+      "h": 12,
+      "inset": 2,
+      "outline": null,
+      "radius": 6,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "pressed"
+     ],
+     {
+      "draw": null,
+      "fill": "#888888",
+      "h": 12,
+      "inset": 2,
+      "outline": null,
+      "radius": 6,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "active"
+     ],
+     {
+      "draw": null,
+      "fill": "#a6a6a6",
+      "h": 12,
+      "inset": 2,
+      "outline": null,
+      "radius": 6,
+      "w": 24
+     }
+    ]
+   ],
+   "PkLight.Horizontal.Scrollbar.trough": [
+    [
+     [],
+     {
+      "draw": null,
+      "fill": "#f5f5f5",
+      "h": 12,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 24
+     }
+    ]
+   ],
+   "PkLight.Scale.slider": [
+    [
+     [],
+     {
+      "draw": null,
+      "fill": "#616161",
+      "h": 14,
+      "inset": 0,
+      "outline": null,
+      "radius": 7,
+      "w": 14
+     }
+    ],
+    [
+     [
+      "pressed"
+     ],
+     {
+      "draw": null,
+      "fill": "#212121",
+      "h": 14,
+      "inset": 0,
+      "outline": null,
+      "radius": 7,
+      "w": 14
+     }
+    ],
+    [
+     [
+      "active"
+     ],
+     {
+      "draw": null,
+      "fill": "#212121",
+      "h": 14,
+      "inset": 0,
+      "outline": null,
+      "radius": 7,
+      "w": 14
+     }
+    ]
+   ],
+   "PkLight.Scale.trough": [
+    [
+     [],
+     {
+      "draw": null,
+      "fill": "#bfbfbf",
+      "h": 4,
+      "inset": 0,
+      "outline": null,
+      "radius": 2,
+      "w": 24
+     }
+    ]
+   ],
+   "PkLight.Vertical.Scrollbar.thumb": [
+    [
+     [],
+     {
+      "draw": null,
+      "fill": "#bfbfbf",
+      "h": 24,
+      "inset": 2,
+      "outline": null,
+      "radius": 6,
+      "w": 12
+     }
+    ],
+    [
+     [
+      "pressed"
+     ],
+     {
+      "draw": null,
+      "fill": "#888888",
+      "h": 24,
+      "inset": 2,
+      "outline": null,
+      "radius": 6,
+      "w": 12
+     }
+    ],
+    [
+     [
+      "active"
+     ],
+     {
+      "draw": null,
+      "fill": "#a6a6a6",
+      "h": 24,
+      "inset": 2,
+      "outline": null,
+      "radius": 6,
+      "w": 12
+     }
+    ]
+   ],
+   "PkLight.Vertical.Scrollbar.trough": [
+    [
+     [],
+     {
+      "draw": null,
+      "fill": "#f5f5f5",
+      "h": 24,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 12
+     }
+    ]
+   ],
+   "PkLight.axestool": [
+    [
+     [],
+     {
+      "draw": null,
+      "fill": null,
+      "h": 24,
+      "inset": 0,
+      "outline": null,
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "disabled"
+     ],
+     {
+      "draw": null,
+      "fill": null,
+      "h": 24,
+      "inset": 0,
+      "outline": null,
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "pressed"
+     ],
+     {
+      "draw": null,
+      "fill": "#d9d9d9",
+      "h": 24,
+      "inset": 0,
+      "outline": "#7d7d7d",
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "selected",
+      "active"
+     ],
+     {
+      "draw": null,
+      "fill": "#b4deff",
+      "h": 24,
+      "inset": 0,
+      "outline": "#7d7d7d",
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "selected"
+     ],
+     {
+      "draw": null,
+      "fill": "#b4deff",
+      "h": 24,
+      "inset": 0,
+      "outline": "#7d7d7d",
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "active"
+     ],
+     {
+      "draw": null,
+      "fill": "#ffffff",
+      "h": 24,
+      "inset": 0,
+      "outline": "#7d7d7d",
+      "radius": 3,
+      "w": 24
+     }
+    ]
+   ],
+   "PkLight.button": [
+    [
+     [],
+     {
+      "draw": null,
+      "fill": "#f5f5f5",
+      "h": 24,
+      "inset": 0,
+      "outline": "#7d7d7d",
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "disabled"
+     ],
+     {
+      "draw": null,
+      "fill": "#f5f5f5",
+      "h": 24,
+      "inset": 0,
+      "outline": "#bfbfbf",
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "pressed"
+     ],
+     {
+      "draw": null,
+      "fill": "#d9d9d9",
+      "h": 24,
+      "inset": 0,
+      "outline": "#333333",
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "selected"
+     ],
+     {
+      "draw": null,
+      "fill": "#d9d9d9",
+      "h": 24,
+      "inset": 0,
+      "outline": "#7d7d7d",
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "active"
+     ],
+     {
+      "draw": null,
+      "fill": "#ffffff",
+      "h": 24,
+      "inset": 0,
+      "outline": "#333333",
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "focus"
+     ],
+     {
+      "draw": null,
+      "fill": "#f5f5f5",
+      "h": 24,
+      "inset": 0,
+      "outline": "#268cdd",
+      "radius": 3,
+      "w": 24
+     }
+    ]
+   ],
+   "PkLight.check": [
+    [
+     [],
+     {
+      "draw": {
+       "bg": "#ffffff",
+       "border": "#616161",
+       "checked": false,
+       "fg": "#212121",
+       "kind": "check",
+       "s": 14
+      },
+      "fill": null,
+      "h": 14,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 20
+     }
+    ],
+    [
+     [
+      "disabled",
+      "selected"
+     ],
+     {
+      "draw": {
+       "bg": "#e6e6e6",
+       "border": "#bfbfbf",
+       "checked": true,
+       "fg": "#616161",
+       "kind": "check",
+       "s": 14
+      },
+      "fill": null,
+      "h": 14,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 20
+     }
+    ],
+    [
+     [
+      "disabled"
+     ],
+     {
+      "draw": {
+       "bg": "#e6e6e6",
+       "border": "#bfbfbf",
+       "checked": false,
+       "fg": "#616161",
+       "kind": "check",
+       "s": 14
+      },
+      "fill": null,
+      "h": 14,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 20
+     }
+    ],
+    [
+     [
+      "selected",
+      "active"
+     ],
+     {
+      "draw": {
+       "bg": "#ffffff",
+       "border": "#268cdd",
+       "checked": true,
+       "fg": "#212121",
+       "kind": "check",
+       "s": 14
+      },
+      "fill": null,
+      "h": 14,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 20
+     }
+    ],
+    [
+     [
+      "selected"
+     ],
+     {
+      "draw": {
+       "bg": "#ffffff",
+       "border": "#616161",
+       "checked": true,
+       "fg": "#212121",
+       "kind": "check",
+       "s": 14
+      },
+      "fill": null,
+      "h": 14,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 20
+     }
+    ],
+    [
+     [
+      "active"
+     ],
+     {
+      "draw": {
+       "bg": "#ffffff",
+       "border": "#268cdd",
+       "checked": false,
+       "fg": "#212121",
+       "kind": "check",
+       "s": 14
+      },
+      "fill": null,
+      "h": 14,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 20
+     }
+    ]
+   ],
+   "PkLight.downarrow": [
+    [
+     [],
+     {
+      "draw": {
+       "color": "#212121",
+       "direction": "down",
+       "s": 12
+      },
+      "fill": null,
+      "h": 12,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 12
+     }
+    ],
+    [
+     [
+      "disabled"
+     ],
+     {
+      "draw": {
+       "color": "#616161",
+       "direction": "down",
+       "s": 12
+      },
+      "fill": null,
+      "h": 12,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 12
+     }
+    ]
+   ],
+   "PkLight.downarrow_s": [
+    [
+     [],
+     {
+      "draw": {
+       "color": "#212121",
+       "direction": "down",
+       "s": 10
+      },
+      "fill": null,
+      "h": 10,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 10
+     }
+    ],
+    [
+     [
+      "disabled"
+     ],
+     {
+      "draw": {
+       "color": "#616161",
+       "direction": "down",
+       "s": 10
+      },
+      "fill": null,
+      "h": 10,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 10
+     }
+    ]
+   ],
+   "PkLight.field": [
+    [
+     [],
+     {
+      "draw": null,
+      "fill": "#ffffff",
+      "h": 24,
+      "inset": 0,
+      "outline": "#7d7d7d",
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "disabled"
+     ],
+     {
+      "draw": null,
+      "fill": "#e6e6e6",
+      "h": 24,
+      "inset": 0,
+      "outline": "#bfbfbf",
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "invalid"
+     ],
+     {
+      "draw": null,
+      "fill": "#f6e6e6",
+      "h": 24,
+      "inset": 0,
+      "outline": "#b7312c",
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "focus"
+     ],
+     {
+      "draw": null,
+      "fill": "#ffffff",
+      "h": 24,
+      "inset": 0,
+      "outline": "#268cdd",
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "readonly",
+      "active"
+     ],
+     {
+      "draw": null,
+      "fill": "#ffffff",
+      "h": 24,
+      "inset": 0,
+      "outline": "#333333",
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "readonly"
+     ],
+     {
+      "draw": null,
+      "fill": "#f5f5f5",
+      "h": 24,
+      "inset": 0,
+      "outline": "#7d7d7d",
+      "radius": 3,
+      "w": 24
+     }
+    ]
+   ],
+   "PkLight.primary": [
+    [
+     [],
+     {
+      "draw": null,
+      "fill": "#1171be",
+      "h": 24,
+      "inset": 0,
+      "outline": "#1171be",
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "disabled"
+     ],
+     {
+      "draw": null,
+      "fill": "#e6e6e6",
+      "h": 24,
+      "inset": 0,
+      "outline": "#bfbfbf",
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "pressed"
+     ],
+     {
+      "draw": null,
+      "fill": "#0b2f5c",
+      "h": 24,
+      "inset": 0,
+      "outline": "#0b2f5c",
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "active"
+     ],
+     {
+      "draw": null,
+      "fill": "#268cdd",
+      "h": 24,
+      "inset": 0,
+      "outline": "#268cdd",
+      "radius": 3,
+      "w": 24
+     }
+    ]
+   ],
+   "PkLight.qab": [
+    [
+     [],
+     {
+      "draw": null,
+      "fill": null,
+      "h": 24,
+      "inset": 0,
+      "outline": null,
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "disabled"
+     ],
+     {
+      "draw": null,
+      "fill": null,
+      "h": 24,
+      "inset": 0,
+      "outline": null,
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "pressed"
+     ],
+     {
+      "draw": null,
+      "fill": "#00243e",
+      "h": 24,
+      "inset": 0,
+      "outline": "#00243e",
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "active"
+     ],
+     {
+      "draw": null,
+      "fill": "#0b2f5c",
+      "h": 24,
+      "inset": 0,
+      "outline": "#0b2f5c",
+      "radius": 3,
+      "w": 24
+     }
+    ]
+   ],
+   "PkLight.radio": [
+    [
+     [],
+     {
+      "draw": {
+       "bg": "#ffffff",
+       "border": "#616161",
+       "checked": false,
+       "fg": "#212121",
+       "kind": "radio",
+       "s": 14
+      },
+      "fill": null,
+      "h": 14,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 20
+     }
+    ],
+    [
+     [
+      "disabled",
+      "selected"
+     ],
+     {
+      "draw": {
+       "bg": "#e6e6e6",
+       "border": "#bfbfbf",
+       "checked": true,
+       "fg": "#616161",
+       "kind": "radio",
+       "s": 14
+      },
+      "fill": null,
+      "h": 14,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 20
+     }
+    ],
+    [
+     [
+      "disabled"
+     ],
+     {
+      "draw": {
+       "bg": "#e6e6e6",
+       "border": "#bfbfbf",
+       "checked": false,
+       "fg": "#616161",
+       "kind": "radio",
+       "s": 14
+      },
+      "fill": null,
+      "h": 14,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 20
+     }
+    ],
+    [
+     [
+      "selected",
+      "active"
+     ],
+     {
+      "draw": {
+       "bg": "#ffffff",
+       "border": "#268cdd",
+       "checked": true,
+       "fg": "#212121",
+       "kind": "radio",
+       "s": 14
+      },
+      "fill": null,
+      "h": 14,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 20
+     }
+    ],
+    [
+     [
+      "selected"
+     ],
+     {
+      "draw": {
+       "bg": "#ffffff",
+       "border": "#616161",
+       "checked": true,
+       "fg": "#212121",
+       "kind": "radio",
+       "s": 14
+      },
+      "fill": null,
+      "h": 14,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 20
+     }
+    ],
+    [
+     [
+      "active"
+     ],
+     {
+      "draw": {
+       "bg": "#ffffff",
+       "border": "#268cdd",
+       "checked": false,
+       "fg": "#212121",
+       "kind": "radio",
+       "s": 14
+      },
+      "fill": null,
+      "h": 14,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 20
+     }
+    ]
+   ],
+   "PkLight.tool": [
+    [
+     [],
+     {
+      "draw": null,
+      "fill": null,
+      "h": 24,
+      "inset": 0,
+      "outline": null,
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "disabled"
+     ],
+     {
+      "draw": null,
+      "fill": null,
+      "h": 24,
+      "inset": 0,
+      "outline": null,
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "pressed"
+     ],
+     {
+      "draw": null,
+      "fill": "#d9d9d9",
+      "h": 24,
+      "inset": 0,
+      "outline": "#7d7d7d",
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "selected",
+      "active"
+     ],
+     {
+      "draw": null,
+      "fill": "#d9d9d9",
+      "h": 24,
+      "inset": 0,
+      "outline": "#7d7d7d",
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "selected"
+     ],
+     {
+      "draw": null,
+      "fill": "#d9d9d9",
+      "h": 24,
+      "inset": 0,
+      "outline": "#7d7d7d",
+      "radius": 3,
+      "w": 24
+     }
+    ],
+    [
+     [
+      "active"
+     ],
+     {
+      "draw": null,
+      "fill": "#ffffff",
+      "h": 24,
+      "inset": 0,
+      "outline": "#7d7d7d",
+      "radius": 3,
+      "w": 24
+     }
+    ]
+   ],
+   "PkLight.treeind": [
+    [
+     [],
+     {
+      "draw": {
+       "color": "#212121",
+       "direction": "right",
+       "s": 10,
+       "w_": 14
+      },
+      "fill": null,
+      "h": 10,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 14
+     }
+    ],
+    [
+     [
+      "user2"
+     ],
+     {
+      "draw": null,
+      "fill": null,
+      "h": 10,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 14
+     }
+    ],
+    [
+     [
+      "user1"
+     ],
+     {
+      "draw": {
+       "color": "#212121",
+       "direction": "down",
+       "s": 10,
+       "w_": 14
+      },
+      "fill": null,
+      "h": 10,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 14
+     }
+    ]
+   ],
+   "PkLight.uparrow": [
+    [
+     [],
+     {
+      "draw": {
+       "color": "#212121",
+       "direction": "up",
+       "s": 10
+      },
+      "fill": null,
+      "h": 10,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 10
+     }
+    ],
+    [
+     [
+      "disabled"
+     ],
+     {
+      "draw": {
+       "color": "#616161",
+       "direction": "up",
+       "s": 10
+      },
+      "fill": null,
+      "h": 10,
+      "inset": 0,
+      "outline": null,
+      "radius": 0,
+      "w": 10
+     }
+    ]
+   ]
+  },
+  "icon_palette": {
+   "accent": "#1171be",
+   "fg": "#616161",
+   "fg2": "#888888",
+   "fill": "#d9d9d9",
+   "green": "#3baa32",
+   "orange": "#dd5400",
+   "red": "#b7312c",
+   "white": "#ffffff"
+  },
+  "icon_palette_strip": {
+   "accent": "#ffffff",
+   "fg": "#ffffff",
+   "fg2": "#c9e7ff",
+   "fill": "#1a4f85",
+   "green": "#cbffbe",
+   "orange": "#ffd19e",
+   "red": "#ffcbcb",
+   "white": "#004073"
+  },
+  "menu_active_fg": "#212121",
+  "menu_bg": "#ffffff",
+  "option_db": [
+   [
+    "*TCombobox*Listbox.background",
+    "#ffffff",
+    null
+   ],
+   [
+    "*TCombobox*Listbox.foreground",
+    "#212121",
+    null
+   ],
+   [
+    "*TCombobox*Listbox.selectBackground",
+    "#b4deff",
+    null
+   ],
+   [
+    "*TCombobox*Listbox.selectForeground",
+    "#212121",
+    null
+   ],
+   [
+    "*TCombobox*Listbox.font",
+    "PkDefault",
+    null
+   ],
+   [
+    "*TCombobox*Listbox.borderWidth",
+    "1",
+    null
+   ],
+   [
+    "*TCombobox*Listbox.relief",
+    "solid",
+    null
+   ],
+   [
+    "*Text.background",
+    "#ffffff",
+    null
+   ],
+   [
+    "*Text.foreground",
+    "#212121",
+    null
+   ],
+   [
+    "*Text.selectBackground",
+    "#b4deff",
+    null
+   ],
+   [
+    "*Text.selectForeground",
+    "#212121",
+    null
+   ],
+   [
+    "*Text.highlightThickness",
+    "0",
+    null
+   ],
+   [
+    "*Text.borderWidth",
+    "0",
+    null
+   ],
+   [
+    "*Text.relief",
+    "flat",
+    null
+   ],
+   [
+    "*Listbox.background",
+    "#ffffff",
+    null
+   ],
+   [
+    "*Listbox.foreground",
+    "#212121",
+    null
+   ],
+   [
+    "*Listbox.selectBackground",
+    "#b4deff",
+    null
+   ],
+   [
+    "*Listbox.selectForeground",
+    "#212121",
+    null
+   ],
+   [
+    "*Listbox.highlightThickness",
+    "0",
+    null
+   ],
+   [
+    "*Listbox.borderWidth",
+    "0",
+    null
+   ],
+   [
+    "*Listbox.relief",
+    "flat",
+    null
+   ],
+   [
+    "*Entry.background",
+    "#ffffff",
+    null
+   ],
+   [
+    "*Entry.foreground",
+    "#212121",
+    null
+   ],
+   [
+    "*Entry.selectBackground",
+    "#b4deff",
+    null
+   ],
+   [
+    "*Entry.selectForeground",
+    "#212121",
+    null
+   ],
+   [
+    "*Entry.highlightThickness",
+    "0",
+    null
+   ],
+   [
+    "*Entry.borderWidth",
+    "0",
+    null
+   ],
+   [
+    "*Entry.relief",
+    "flat",
+    null
+   ],
+   [
+    "*Spinbox.background",
+    "#ffffff",
+    null
+   ],
+   [
+    "*Spinbox.foreground",
+    "#212121",
+    null
+   ],
+   [
+    "*Spinbox.selectBackground",
+    "#b4deff",
+    null
+   ],
+   [
+    "*Spinbox.selectForeground",
+    "#212121",
+    null
+   ],
+   [
+    "*Spinbox.highlightThickness",
+    "0",
+    null
+   ],
+   [
+    "*Spinbox.borderWidth",
+    "0",
+    null
+   ],
+   [
+    "*Spinbox.relief",
+    "flat",
+    null
+   ],
+   [
+    "*Text.insertBackground",
+    "#212121",
+    null
+   ],
+   [
+    "*Text.inactiveSelectBackground",
+    "#bfbfbf",
+    null
+   ],
+   [
+    "*Entry.insertBackground",
+    "#212121",
+    null
+   ],
+   [
+    "*Entry.inactiveSelectBackground",
+    "#bfbfbf",
+    null
+   ],
+   [
+    "*Spinbox.insertBackground",
+    "#212121",
+    null
+   ],
+   [
+    "*Spinbox.inactiveSelectBackground",
+    "#bfbfbf",
+    null
+   ],
+   [
+    "*Listbox.selectBorderWidth",
+    "0",
+    null
+   ],
+   [
+    "*Listbox.activeStyle",
+    "none",
+    null
+   ],
+   [
+    "*Text.padX",
+    "8",
+    null
+   ],
+   [
+    "*Text.padY",
+    "6",
+    null
+   ],
+   [
+    "*Frame.background",
+    "#f5f5f5",
+    null
+   ],
+   [
+    "*Toplevel.background",
+    "#f5f5f5",
+    null
+   ],
+   [
+    "*Label.background",
+    "#f5f5f5",
+    null
+   ],
+   [
+    "*Canvas.background",
+    "#f5f5f5",
+    null
+   ],
+   [
+    "*Checkbutton.background",
+    "#f5f5f5",
+    null
+   ],
+   [
+    "*Radiobutton.background",
+    "#f5f5f5",
+    null
+   ],
+   [
+    "*Scale.background",
+    "#f5f5f5",
+    null
+   ],
+   [
+    "*Message.background",
+    "#f5f5f5",
+    null
+   ],
+   [
+    "*LabelFrame.background",
+    "#f5f5f5",
+    null
+   ],
+   [
+    "*Label.foreground",
+    "#212121",
+    null
+   ],
+   [
+    "*Checkbutton.foreground",
+    "#212121",
+    null
+   ],
+   [
+    "*Radiobutton.foreground",
+    "#212121",
+    null
+   ],
+   [
+    "*Message.foreground",
+    "#212121",
+    null
+   ],
+   [
+    "*LabelFrame.foreground",
+    "#212121",
+    null
+   ],
+   [
+    "*Scale.foreground",
+    "#212121",
+    null
+   ],
+   [
+    "*Canvas.highlightThickness",
+    "0",
+    null
+   ],
+   [
+    "*Button.background",
+    "#f5f5f5",
+    null
+   ],
+   [
+    "*Button.foreground",
+    "#212121",
+    null
+   ],
+   [
+    "*Button.activeBackground",
+    "#ffffff",
+    null
+   ],
+   [
+    "*Button.activeForeground",
+    "#212121",
+    null
+   ],
+   [
+    "*Button.highlightThickness",
+    "0",
+    null
+   ],
+   [
+    "*Button.relief",
+    "flat",
+    null
+   ],
+   [
+    "*Menu.background",
+    "#ffffff",
+    null
+   ],
+   [
+    "*Menu.foreground",
+    "#212121",
+    null
+   ],
+   [
+    "*Menu.activeBackground",
+    "#b4deff",
+    null
+   ],
+   [
+    "*Menu.activeForeground",
+    "#212121",
+    null
+   ],
+   [
+    "*Menu.disabledForeground",
+    "#616161",
+    null
+   ],
+   [
+    "*Menu.selectColor",
+    "#212121",
+    null
+   ],
+   [
+    "*Menu.borderWidth",
+    "1",
+    null
+   ],
+   [
+    "*Menu.activeBorderWidth",
+    "0",
+    null
+   ],
+   [
+    "*Menu.relief",
+    "solid",
+    null
+   ],
+   [
+    "*Menu.tearOff",
+    "0",
+    null
+   ],
+   [
+    "*Menu.font",
+    "PkDefault",
+    null
+   ],
+   [
+    "*Scrollbar.background",
+    "#bfbfbf",
+    null
+   ],
+   [
+    "*Scrollbar.troughColor",
+    "#f5f5f5",
+    null
+   ]
+  ],
+  "radius": 3,
+  "root_bg": "#f5f5f5",
+  "styles": {
+   "AxesTool.TCheckbutton": {
+    "configure": {
+     "anchor": "center",
+     "background": "#f5f5f5",
+     "justify": "center",
+     "padding": "6 3"
+    },
+    "layout": [
+     [
+      "PkLight.axestool",
+      {
+       "children": [
+        [
+         "Checkbutton.padding",
+         {
+          "children": [
+           [
+            "Checkbutton.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {
+     "background": [
+      [
+       "disabled",
+       "#f5f5f5"
+      ],
+      [
+       "pressed",
+       "#d9d9d9"
+      ],
+      [
+       "selected",
+       "#b4deff"
+      ],
+      [
+       "active",
+       "#ffffff"
+      ]
+     ],
+     "foreground": [
+      [
+       "disabled",
+       "#616161"
+      ],
+      [
+       "pressed",
+       "#212121"
+      ],
+      [
+       "selected",
+       "#212121"
+      ]
+     ]
+    }
+   },
+   "Big.Tool.TButton": {
+    "configure": {
+     "anchor": "center",
+     "font": "PkSmall",
+     "justify": "center",
+     "padding": "8 6"
+    },
+    "layout": [
+     [
+      "PkLight.tool",
+      {
+       "children": [
+        [
+         "Button.padding",
+         {
+          "children": [
+           [
+            "Button.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "Big.Tool.TCheckbutton": {
+    "configure": {
+     "anchor": "center",
+     "font": "PkSmall",
+     "justify": "center",
+     "padding": "8 6"
+    },
+    "layout": [
+     [
+      "PkLight.tool",
+      {
+       "children": [
+        [
+         "Checkbutton.padding",
+         {
+          "children": [
+           [
+            "Checkbutton.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "Bold.TLabel": {
+    "configure": {
+     "font": "PkBold"
+    },
+    "layout": [
+     [
+      "Label.border",
+      {
+       "border": "1",
+       "children": [
+        [
+         "Label.padding",
+         {
+          "border": "1",
+          "children": [
+           [
+            "Label.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "Border.TFrame": {
+    "configure": {
+     "background": "#7d7d7d"
+    },
+    "layout": [
+     [
+      "Frame.border",
+      {
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "Compact.Contextual.StripTab.TRadiobutton": {
+    "configure": {
+     "anchor": "center",
+     "background": "#1171be",
+     "font": "PkSmall",
+     "foreground": "#ffffff",
+     "padding": "6 7",
+     "width": 0
+    },
+    "layout": [
+     [
+      "Radiobutton.padding",
+      {
+       "children": [
+        [
+         "Radiobutton.label",
+         {
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {
+     "background": [
+      [
+       "selected",
+       "#f5f5f5"
+      ],
+      [
+       "active",
+       "#268cdd"
+      ]
+     ],
+     "foreground": [
+      [
+       "selected",
+       "#212121"
+      ],
+      [
+       "disabled",
+       "#9ec5e8"
+      ]
+     ]
+    }
+   },
+   "Compact.StripTab.TRadiobutton": {
+    "configure": {
+     "anchor": "center",
+     "background": "#004073",
+     "font": "PkSmall",
+     "foreground": "#ffffff",
+     "padding": "6 7",
+     "width": 0
+    },
+    "layout": [
+     [
+      "Radiobutton.padding",
+      {
+       "children": [
+        [
+         "Radiobutton.label",
+         {
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {
+     "background": [
+      [
+       "selected",
+       "#f5f5f5"
+      ],
+      [
+       "active",
+       "#268cdd"
+      ]
+     ],
+     "foreground": [
+      [
+       "selected",
+       "#212121"
+      ],
+      [
+       "disabled",
+       "#9ec5e8"
+      ]
+     ]
+    }
+   },
+   "Contextual.StripTab.TRadiobutton": {
+    "configure": {
+     "anchor": "center",
+     "background": "#1171be",
+     "font": "PkSmall",
+     "foreground": "#ffffff",
+     "padding": "8 7",
+     "width": 11
+    },
+    "layout": [
+     [
+      "Radiobutton.padding",
+      {
+       "children": [
+        [
+         "Radiobutton.label",
+         {
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {
+     "background": [
+      [
+       "selected",
+       "#f5f5f5"
+      ],
+      [
+       "active",
+       "#268cdd"
+      ]
+     ],
+     "foreground": [
+      [
+       "selected",
+       "#212121"
+      ]
+     ]
+    }
+   },
+   "Error.TLabel": {
+    "configure": {
+     "foreground": "#b7312c"
+    },
+    "layout": [
+     [
+      "Label.border",
+      {
+       "border": "1",
+       "children": [
+        [
+         "Label.padding",
+         {
+          "border": "1",
+          "children": [
+           [
+            "Label.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "Hint.TLabel": {
+    "configure": {
+     "foreground": "#616161"
+    },
+    "layout": [
+     [
+      "Label.border",
+      {
+       "border": "1",
+       "children": [
+        [
+         "Label.padding",
+         {
+          "border": "1",
+          "children": [
+           [
+            "Label.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "Horizontal.TScale": {
+    "configure": {
+     "background": "#616161",
+     "bordercolor": "#bfbfbf",
+     "borderwidth": 0,
+     "darkcolor": "#616161",
+     "lightcolor": "#616161",
+     "sliderlength": 14,
+     "sliderthickness": 14,
+     "troughcolor": "#bfbfbf"
+    },
+    "layout": [
+     [
+      "PkLight.Scale.trough",
+      {
+       "children": [
+        [
+         "PkLight.Scale.slider",
+         {
+          "side": "left",
+          "sticky": ""
+         }
+        ]
+       ],
+       "sticky": "we"
+      }
+     ]
+    ],
+    "map": {
+     "background": [
+      [
+       "active",
+       "#212121"
+      ]
+     ],
+     "darkcolor": [
+      [
+       "active",
+       "#212121"
+      ]
+     ],
+     "lightcolor": [
+      [
+       "active",
+       "#212121"
+      ]
+     ]
+    }
+   },
+   "Horizontal.TScrollbar": {
+    "configure": {
+     "arrowsize": 12,
+     "background": "#bfbfbf",
+     "bordercolor": "#f5f5f5",
+     "borderwidth": 0,
+     "darkcolor": "#bfbfbf",
+     "gripcount": 0,
+     "lightcolor": "#bfbfbf",
+     "relief": "flat",
+     "troughcolor": "#f5f5f5",
+     "width": 12
+    },
+    "layout": [
+     [
+      "PkLight.Horizontal.Scrollbar.trough",
+      {
+       "children": [
+        [
+         "PkLight.Horizontal.Scrollbar.thumb",
+         {
+          "expand": "1",
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "we"
+      }
+     ]
+    ],
+    "map": {
+     "background": [
+      [
+       "pressed",
+       "#888888"
+      ],
+      [
+       "active",
+       "#a6a6a6"
+      ]
+     ],
+     "darkcolor": [
+      [
+       "pressed",
+       "#888888"
+      ],
+      [
+       "active",
+       "#a6a6a6"
+      ]
+     ],
+     "lightcolor": [
+      [
+       "pressed",
+       "#888888"
+      ],
+      [
+       "active",
+       "#a6a6a6"
+      ]
+     ]
+    }
+   },
+   "Input.TFrame": {
+    "configure": {
+     "background": "#ffffff"
+    },
+    "layout": [
+     [
+      "Frame.border",
+      {
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "PanelTitle.TFrame": {
+    "configure": {
+     "background": "#ffffff"
+    },
+    "layout": [
+     [
+      "Frame.border",
+      {
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "PanelTitle.TLabel": {
+    "configure": {
+     "background": "#ffffff",
+     "font": "PkTitle",
+     "foreground": "#212121",
+     "padding": "6 0"
+    },
+    "layout": [
+     [
+      "Label.border",
+      {
+       "border": "1",
+       "children": [
+        [
+         "Label.padding",
+         {
+          "border": "1",
+          "children": [
+           [
+            "Label.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "PanelTitleSel.TFrame": {
+    "configure": {
+     "background": "#004073"
+    },
+    "layout": [
+     [
+      "Frame.border",
+      {
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "PanelTitleSel.TLabel": {
+    "configure": {
+     "background": "#004073",
+     "font": "PkTitle",
+     "foreground": "#ffffff",
+     "padding": "6 0"
+    },
+    "layout": [
+     [
+      "Label.border",
+      {
+       "border": "1",
+       "children": [
+        [
+         "Label.padding",
+         {
+          "border": "1",
+          "children": [
+           [
+            "Label.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "PanelTool.TButton": {
+    "configure": {
+     "background": "#ffffff",
+     "padding": "5 3"
+    },
+    "layout": [
+     [
+      "PkLight.tool",
+      {
+       "children": [
+        [
+         "Button.padding",
+         {
+          "children": [
+           [
+            "Button.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {
+     "background": [
+      [
+       "active",
+       "#ffffff"
+      ],
+      [
+       "pressed",
+       "#d9d9d9"
+      ]
+     ]
+    }
+   },
+   "PanelToolSel.TButton": {
+    "configure": {
+     "background": "#004073",
+     "foreground": "#ffffff",
+     "padding": "5 3"
+    },
+    "layout": [
+     [
+      "PkLight.tool",
+      {
+       "children": [
+        [
+         "Button.padding",
+         {
+          "children": [
+           [
+            "Button.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {
+     "background": [
+      [
+       "active",
+       "#268cdd"
+      ],
+      [
+       "pressed",
+       "#00243e"
+      ]
+     ]
+    }
+   },
+   "Primary.TButton": {
+    "configure": {
+     "background": "#1171be",
+     "font": "PkBold",
+     "foreground": "#ffffff",
+     "padding": "14 4"
+    },
+    "layout": [
+     [
+      "PkLight.primary",
+      {
+       "children": [
+        [
+         "Button.padding",
+         {
+          "children": [
+           [
+            "Button.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {
+     "background": [
+      [
+       "disabled",
+       "#e6e6e6"
+      ],
+      [
+       "pressed",
+       "#0b2f5c"
+      ],
+      [
+       "active",
+       "#268cdd"
+      ]
+     ],
+     "foreground": [
+      [
+       "disabled",
+       "#616161"
+      ]
+     ]
+    }
+   },
+   "Qab.TButton": {
+    "configure": {
+     "background": "#004073",
+     "foreground": "#ffffff",
+     "padding": "6 4"
+    },
+    "layout": [
+     [
+      "PkLight.qab",
+      {
+       "children": [
+        [
+         "Button.padding",
+         {
+          "children": [
+           [
+            "Button.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {
+     "background": [
+      [
+       "disabled",
+       "#004073"
+      ],
+      [
+       "pressed",
+       "#00243e"
+      ],
+      [
+       "active",
+       "#0b2f5c"
+      ]
+     ],
+     "foreground": [
+      [
+       "disabled",
+       "#9ec5e8"
+      ]
+     ]
+    }
+   },
+   "Section.TLabel": {
+    "configure": {
+     "anchor": "center",
+     "font": "PkSmall",
+     "foreground": "#616161",
+     "padding": "3 0"
+    },
+    "layout": [
+     [
+      "Label.border",
+      {
+       "border": "1",
+       "children": [
+        [
+         "Label.padding",
+         {
+          "border": "1",
+          "children": [
+           [
+            "Label.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "Small.TLabel": {
+    "configure": {
+     "font": "PkSmall",
+     "foreground": "#616161"
+    },
+    "layout": [
+     [
+      "Label.border",
+      {
+       "border": "1",
+       "children": [
+        [
+         "Label.padding",
+         {
+          "border": "1",
+          "children": [
+           [
+            "Label.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "Small.Tool.TButton": {
+    "configure": {
+     "anchor": "w",
+     "padding": "6 3"
+    },
+    "layout": [
+     [
+      "PkLight.tool",
+      {
+       "children": [
+        [
+         "Button.padding",
+         {
+          "children": [
+           [
+            "Button.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "Small.Tool.TCheckbutton": {
+    "configure": {
+     "anchor": "w",
+     "padding": "6 3"
+    },
+    "layout": [
+     [
+      "PkLight.tool",
+      {
+       "children": [
+        [
+         "Checkbutton.padding",
+         {
+          "children": [
+           [
+            "Checkbutton.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "Status.TLabel": {
+    "configure": {
+     "background": "#e6e6e6",
+     "foreground": "#212121",
+     "padding": "6 3"
+    },
+    "layout": [
+     [
+      "Label.border",
+      {
+       "border": "1",
+       "children": [
+        [
+         "Label.padding",
+         {
+          "border": "1",
+          "children": [
+           [
+            "Label.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "Strip.TFrame": {
+    "configure": {
+     "background": "#004073"
+    },
+    "layout": [
+     [
+      "Frame.border",
+      {
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "Strip.TLabel": {
+    "configure": {
+     "background": "#004073",
+     "foreground": "#ffffff"
+    },
+    "layout": [
+     [
+      "Label.border",
+      {
+       "border": "1",
+       "children": [
+        [
+         "Label.padding",
+         {
+          "border": "1",
+          "children": [
+           [
+            "Label.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "StripArrow.TButton": {
+    "configure": {
+     "anchor": "center",
+     "background": "#e6e6e6",
+     "font": "PkSmall",
+     "foreground": "#212121",
+     "padding": "0 0",
+     "width": 0
+    },
+    "layout": [
+     [
+      "PkLight.tool",
+      {
+       "children": [
+        [
+         "Button.padding",
+         {
+          "children": [
+           [
+            "Button.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {
+     "background": [
+      [
+       "pressed",
+       "#bfbfbf"
+      ],
+      [
+       "active",
+       "#ffffff"
+      ]
+     ]
+    }
+   },
+   "StripArrowTab.TButton": {
+    "configure": {
+     "anchor": "center",
+     "background": "#004073",
+     "font": "PkSmall",
+     "foreground": "#ffffff",
+     "padding": "0 0",
+     "width": 0
+    },
+    "layout": [
+     [
+      "PkLight.tool",
+      {
+       "children": [
+        [
+         "Button.padding",
+         {
+          "children": [
+           [
+            "Button.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {
+     "background": [
+      [
+       "pressed",
+       "#00243e"
+      ],
+      [
+       "active",
+       "#268cdd"
+      ]
+     ]
+    }
+   },
+   "StripBody.TFrame": {
+    "configure": {
+     "background": "#f5f5f5"
+    },
+    "layout": [
+     [
+      "Frame.border",
+      {
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "StripTab.TRadiobutton": {
+    "configure": {
+     "anchor": "center",
+     "background": "#004073",
+     "font": "PkSmall",
+     "foreground": "#ffffff",
+     "padding": "8 7",
+     "width": 11
+    },
+    "layout": [
+     [
+      "Radiobutton.padding",
+      {
+       "children": [
+        [
+         "Radiobutton.label",
+         {
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {
+     "background": [
+      [
+       "selected",
+       "#f5f5f5"
+      ],
+      [
+       "active",
+       "#268cdd"
+      ]
+     ],
+     "foreground": [
+      [
+       "selected",
+       "#212121"
+      ],
+      [
+       "disabled",
+       "#9ec5e8"
+      ]
+     ]
+    }
+   },
+   "TButton": {
+    "configure": {
+     "anchor": "center",
+     "background": "#f5f5f5",
+     "bordercolor": "#7d7d7d",
+     "darkcolor": "#f5f5f5",
+     "foreground": "#212121",
+     "lightcolor": "#f5f5f5",
+     "padding": "10 3",
+     "relief": "flat",
+     "shiftrelief": 0,
+     "width": 0
+    },
+    "layout": [
+     [
+      "PkLight.button",
+      {
+       "children": [
+        [
+         "Button.padding",
+         {
+          "children": [
+           [
+            "Button.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {
+     "background": [
+      [
+       "disabled",
+       "#f5f5f5"
+      ],
+      [
+       "pressed",
+       "#d9d9d9"
+      ],
+      [
+       "selected",
+       "#d9d9d9"
+      ],
+      [
+       "active",
+       "#ffffff"
+      ]
+     ],
+     "bordercolor": [
+      [
+       "active",
+       "#333333"
+      ]
+     ],
+     "darkcolor": [
+      [
+       "active",
+       "#ffffff"
+      ]
+     ],
+     "foreground": [
+      [
+       "disabled",
+       "#616161"
+      ],
+      [
+       "pressed",
+       "#212121"
+      ]
+     ],
+     "lightcolor": [
+      [
+       "active",
+       "#ffffff"
+      ]
+     ]
+    }
+   },
+   "TCheckbutton": {
+    "configure": {
+     "background": "#f5f5f5",
+     "foreground": "#212121",
+     "indicatorcolor": "#ffffff",
+     "indicatormargin": "0 0 6 0",
+     "padding": "2 2"
+    },
+    "layout": [
+     [
+      "Checkbutton.padding",
+      {
+       "children": [
+        [
+         "PkLight.check",
+         {
+          "side": "left",
+          "sticky": ""
+         }
+        ],
+        [
+         "Checkbutton.label",
+         {
+          "side": "left",
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {
+     "background": [
+      [
+       "active",
+       "#f5f5f5"
+      ]
+     ],
+     "foreground": [
+      [
+       "disabled",
+       "#616161"
+      ]
+     ],
+     "indicatorcolor": [
+      [
+       "selected",
+       "#212121"
+      ]
+     ]
+    }
+   },
+   "TCombobox": {
+    "configure": {
+     "arrowcolor": "#212121",
+     "background": "#f5f5f5",
+     "bordercolor": "#7d7d7d",
+     "darkcolor": "#ffffff",
+     "fieldbackground": "#ffffff",
+     "foreground": "#212121",
+     "insertcolor": "#212121",
+     "lightcolor": "#ffffff",
+     "padding": "5 3 2 3",
+     "selectbackground": "#b4deff",
+     "selectforeground": "#212121"
+    },
+    "layout": [
+     [
+      "PkLight.field",
+      {
+       "children": [
+        [
+         "PkLight.downarrow",
+         {
+          "side": "right",
+          "sticky": ""
+         }
+        ],
+        [
+         "Combobox.padding",
+         {
+          "children": [
+           [
+            "Combobox.textarea",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "expand": "1",
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {
+     "arrowcolor": [
+      [
+       "disabled",
+       "#616161"
+      ]
+     ],
+     "background": [
+      [
+       "readonly",
+       "active",
+       "#ffffff"
+      ]
+     ],
+     "bordercolor": [
+      [
+       "invalid",
+       "#b7312c"
+      ]
+     ],
+     "darkcolor": [
+      [
+       "invalid",
+       "#b7312c"
+      ]
+     ],
+     "fieldbackground": [
+      [
+       "readonly",
+       "#f5f5f5"
+      ],
+      [
+       "disabled",
+       "#e6e6e6"
+      ],
+      [
+       "invalid",
+       "#f6e6e6"
+      ]
+     ],
+     "foreground": [
+      [
+       "disabled",
+       "#616161"
+      ]
+     ],
+     "lightcolor": [
+      [
+       "invalid",
+       "#b7312c"
+      ]
+     ],
+     "selectbackground": [
+      [
+       "!focus",
+       "#bfbfbf"
+      ]
+     ]
+    }
+   },
+   "TEntry": {
+    "configure": {
+     "arrowcolor": "#212121",
+     "background": "#f5f5f5",
+     "bordercolor": "#7d7d7d",
+     "darkcolor": "#ffffff",
+     "fieldbackground": "#ffffff",
+     "foreground": "#212121",
+     "insertcolor": "#212121",
+     "lightcolor": "#ffffff",
+     "padding": "5 3",
+     "selectbackground": "#b4deff",
+     "selectforeground": "#212121"
+    },
+    "layout": [
+     [
+      "PkLight.field",
+      {
+       "children": [
+        [
+         "Entry.padding",
+         {
+          "children": [
+           [
+            "Entry.textarea",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {
+     "arrowcolor": [
+      [
+       "disabled",
+       "#616161"
+      ]
+     ],
+     "background": [
+      [
+       "readonly",
+       "active",
+       "#ffffff"
+      ]
+     ],
+     "bordercolor": [
+      [
+       "invalid",
+       "#b7312c"
+      ]
+     ],
+     "darkcolor": [
+      [
+       "invalid",
+       "#b7312c"
+      ]
+     ],
+     "fieldbackground": [
+      [
+       "readonly",
+       "#f5f5f5"
+      ],
+      [
+       "disabled",
+       "#e6e6e6"
+      ],
+      [
+       "invalid",
+       "#f6e6e6"
+      ]
+     ],
+     "foreground": [
+      [
+       "disabled",
+       "#616161"
+      ]
+     ],
+     "lightcolor": [
+      [
+       "invalid",
+       "#b7312c"
+      ]
+     ],
+     "selectbackground": [
+      [
+       "!focus",
+       "#bfbfbf"
+      ]
+     ]
+    }
+   },
+   "TFrame": {
+    "configure": {
+     "background": "#f5f5f5"
+    },
+    "layout": [
+     [
+      "Frame.border",
+      {
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "TLabel": {
+    "configure": {
+     "background": "#f5f5f5",
+     "foreground": "#212121",
+     "padding": [
+      0
+     ]
+    },
+    "layout": [
+     [
+      "Label.border",
+      {
+       "border": "1",
+       "children": [
+        [
+         "Label.padding",
+         {
+          "border": "1",
+          "children": [
+           [
+            "Label.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "TLabelframe": {
+    "configure": {
+     "background": "#f5f5f5",
+     "bordercolor": "#7d7d7d",
+     "borderwidth": 1,
+     "darkcolor": "#f5f5f5",
+     "lightcolor": "#f5f5f5",
+     "padding": "8 6",
+     "relief": "solid"
+    },
+    "layout": [
+     [
+      "Labelframe.border",
+      {
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "TLabelframe.Label": {
+    "configure": {
+     "background": "#f5f5f5",
+     "font": "PkDefault",
+     "foreground": "#212121"
+    },
+    "layout": [
+     [
+      "Label.fill",
+      {
+       "children": [
+        [
+         "Label.text",
+         {
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "TMenubutton": {
+    "configure": {
+     "arrowcolor": "#212121",
+     "background": "#f5f5f5",
+     "foreground": "#212121",
+     "padding": "8 3"
+    },
+    "layout": [
+     [
+      "Menubutton.border",
+      {
+       "children": [
+        [
+         "Menubutton.focus",
+         {
+          "children": [
+           [
+            "Menubutton.indicator",
+            {
+             "side": "right",
+             "sticky": ""
+            }
+           ],
+           [
+            "Menubutton.padding",
+            {
+             "children": [
+              [
+               "Menubutton.label",
+               {
+                "side": "left",
+                "sticky": ""
+               }
+              ]
+             ],
+             "sticky": "we"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {
+     "background": [
+      [
+       "active",
+       "#ffffff"
+      ]
+     ]
+    }
+   },
+   "TNotebook": {
+    "configure": {
+     "background": "#f5f5f5",
+     "bordercolor": "#bfbfbf",
+     "borderwidth": 1,
+     "darkcolor": "#f5f5f5",
+     "lightcolor": "#f5f5f5",
+     "tabmargins": "0 0 0 0",
+     "tabposition": "nw"
+    },
+    "layout": [
+     [
+      "Notebook.client",
+      {
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "TNotebook.Tab": {
+    "configure": {
+     "background": "#e6e6e6",
+     "bordercolor": "#bfbfbf",
+     "darkcolor": "#e6e6e6",
+     "focuscolor": "#e6e6e6",
+     "font": "PkDefault",
+     "foreground": "#212121",
+     "lightcolor": "#e6e6e6",
+     "padding": "12 2"
+    },
+    "layout": [
+     [
+      "Notebook.tab",
+      {
+       "children": [
+        [
+         "Notebook.padding",
+         {
+          "children": [
+           [
+            "Notebook.label",
+            {
+             "side": "top",
+             "sticky": ""
+            }
+           ]
+          ],
+          "side": "top",
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {
+     "background": [
+      [
+       "selected",
+       "#f5f5f5"
+      ],
+      [
+       "active",
+       "#ffffff"
+      ]
+     ],
+     "darkcolor": [
+      [
+       "selected",
+       "#f5f5f5"
+      ]
+     ],
+     "expand": [
+      [
+       "selected",
+       "0 0 0 0"
+      ]
+     ],
+     "foreground": [
+      [
+       "disabled",
+       "#616161"
+      ]
+     ],
+     "lightcolor": [
+      [
+       "selected",
+       "#f5f5f5"
+      ]
+     ]
+    }
+   },
+   "TPanedwindow": {
+    "configure": {
+     "background": "#f5f5f5"
+    },
+    "layout": [
+     [
+      "Panedwindow.background",
+      {
+       "sticky": ""
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "TProgressbar": {
+    "configure": {
+     "background": "#1171be",
+     "bordercolor": "#e6e6e6",
+     "darkcolor": "#1171be",
+     "lightcolor": "#1171be",
+     "troughcolor": "#e6e6e6"
+    },
+    "layout": null,
+    "map": {}
+   },
+   "TRadiobutton": {
+    "configure": {
+     "background": "#f5f5f5",
+     "foreground": "#212121",
+     "indicatorcolor": "#ffffff",
+     "indicatormargin": "0 0 6 0",
+     "padding": "2 2"
+    },
+    "layout": [
+     [
+      "Radiobutton.padding",
+      {
+       "children": [
+        [
+         "PkLight.radio",
+         {
+          "side": "left",
+          "sticky": ""
+         }
+        ],
+        [
+         "Radiobutton.label",
+         {
+          "side": "left",
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {
+     "background": [
+      [
+       "active",
+       "#f5f5f5"
+      ]
+     ],
+     "foreground": [
+      [
+       "disabled",
+       "#616161"
+      ]
+     ],
+     "indicatorcolor": [
+      [
+       "selected",
+       "#212121"
+      ]
+     ]
+    }
+   },
+   "TScale": {
+    "configure": {},
+    "layout": null,
+    "map": {}
+   },
+   "TScrollbar": {
+    "configure": {
+     "arrowsize": 12,
+     "background": "#bfbfbf",
+     "bordercolor": "#f5f5f5",
+     "borderwidth": 0,
+     "darkcolor": "#bfbfbf",
+     "gripcount": 0,
+     "lightcolor": "#bfbfbf",
+     "relief": "flat",
+     "troughcolor": "#f5f5f5",
+     "width": 12
+    },
+    "layout": null,
+    "map": {
+     "background": [
+      [
+       "pressed",
+       "#888888"
+      ],
+      [
+       "active",
+       "#a6a6a6"
+      ]
+     ],
+     "darkcolor": [
+      [
+       "pressed",
+       "#888888"
+      ],
+      [
+       "active",
+       "#a6a6a6"
+      ]
+     ],
+     "lightcolor": [
+      [
+       "pressed",
+       "#888888"
+      ],
+      [
+       "active",
+       "#a6a6a6"
+      ]
+     ]
+    }
+   },
+   "TSeparator": {
+    "configure": {
+     "background": "#bfbfbf"
+    },
+    "layout": [
+     [
+      "Separator.separator",
+      {
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "TSpinbox": {
+    "configure": {
+     "arrowcolor": "#212121",
+     "background": "#f5f5f5",
+     "bordercolor": "#7d7d7d",
+     "darkcolor": "#ffffff",
+     "fieldbackground": "#ffffff",
+     "foreground": "#212121",
+     "insertcolor": "#212121",
+     "lightcolor": "#ffffff",
+     "padding": "5 3",
+     "selectbackground": "#b4deff",
+     "selectforeground": "#212121"
+    },
+    "layout": [
+     [
+      "PkLight.field",
+      {
+       "children": [
+        [
+         "null",
+         {
+          "children": [
+           [
+            "PkLight.uparrow",
+            {
+             "side": "top",
+             "sticky": "e"
+            }
+           ],
+           [
+            "PkLight.downarrow_s",
+            {
+             "side": "bottom",
+             "sticky": "e"
+            }
+           ]
+          ],
+          "side": "right",
+          "sticky": "nswe"
+         }
+        ],
+        [
+         "Spinbox.padding",
+         {
+          "children": [
+           [
+            "Spinbox.textarea",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {
+     "arrowcolor": [
+      [
+       "disabled",
+       "#616161"
+      ]
+     ],
+     "background": [
+      [
+       "readonly",
+       "active",
+       "#ffffff"
+      ]
+     ],
+     "bordercolor": [
+      [
+       "invalid",
+       "#b7312c"
+      ]
+     ],
+     "darkcolor": [
+      [
+       "invalid",
+       "#b7312c"
+      ]
+     ],
+     "fieldbackground": [
+      [
+       "readonly",
+       "#f5f5f5"
+      ],
+      [
+       "disabled",
+       "#e6e6e6"
+      ],
+      [
+       "invalid",
+       "#f6e6e6"
+      ]
+     ],
+     "foreground": [
+      [
+       "disabled",
+       "#616161"
+      ]
+     ],
+     "lightcolor": [
+      [
+       "invalid",
+       "#b7312c"
+      ]
+     ],
+     "selectbackground": [
+      [
+       "!focus",
+       "#bfbfbf"
+      ]
+     ]
+    }
+   },
+   "Title.TLabel": {
+    "configure": {
+     "font": "PkTitle"
+    },
+    "layout": [
+     [
+      "Label.border",
+      {
+       "border": "1",
+       "children": [
+        [
+         "Label.padding",
+         {
+          "border": "1",
+          "children": [
+           [
+            "Label.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   },
+   "Tool.TButton": {
+    "configure": {
+     "anchor": "center",
+     "background": "#f5f5f5",
+     "justify": "center",
+     "padding": "6 3"
+    },
+    "layout": [
+     [
+      "PkLight.tool",
+      {
+       "children": [
+        [
+         "Button.padding",
+         {
+          "children": [
+           [
+            "Button.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {
+     "background": [
+      [
+       "disabled",
+       "#f5f5f5"
+      ],
+      [
+       "pressed",
+       "#d9d9d9"
+      ],
+      [
+       "selected",
+       "#d9d9d9"
+      ],
+      [
+       "active",
+       "#ffffff"
+      ]
+     ],
+     "foreground": [
+      [
+       "disabled",
+       "#616161"
+      ],
+      [
+       "pressed",
+       "#212121"
+      ],
+      [
+       "selected",
+       "#212121"
+      ]
+     ]
+    }
+   },
+   "Tool.TCheckbutton": {
+    "configure": {
+     "anchor": "center",
+     "background": "#f5f5f5",
+     "justify": "center",
+     "padding": "6 3"
+    },
+    "layout": [
+     [
+      "PkLight.tool",
+      {
+       "children": [
+        [
+         "Checkbutton.padding",
+         {
+          "children": [
+           [
+            "Checkbutton.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {
+     "background": [
+      [
+       "disabled",
+       "#f5f5f5"
+      ],
+      [
+       "pressed",
+       "#d9d9d9"
+      ],
+      [
+       "selected",
+       "#d9d9d9"
+      ],
+      [
+       "active",
+       "#ffffff"
+      ]
+     ],
+     "foreground": [
+      [
+       "disabled",
+       "#616161"
+      ],
+      [
+       "pressed",
+       "#212121"
+      ],
+      [
+       "selected",
+       "#212121"
+      ]
+     ]
+    }
+   },
+   "Vertical.TScrollbar": {
+    "configure": {
+     "arrowsize": 12,
+     "background": "#bfbfbf",
+     "bordercolor": "#f5f5f5",
+     "borderwidth": 0,
+     "darkcolor": "#bfbfbf",
+     "gripcount": 0,
+     "lightcolor": "#bfbfbf",
+     "relief": "flat",
+     "troughcolor": "#f5f5f5",
+     "width": 12
+    },
+    "layout": [
+     [
+      "PkLight.Vertical.Scrollbar.trough",
+      {
+       "children": [
+        [
+         "PkLight.Vertical.Scrollbar.thumb",
+         {
+          "expand": "1",
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "ns"
+      }
+     ]
+    ],
+    "map": {
+     "background": [
+      [
+       "pressed",
+       "#888888"
+      ],
+      [
+       "active",
+       "#a6a6a6"
+      ]
+     ],
+     "darkcolor": [
+      [
+       "pressed",
+       "#888888"
+      ],
+      [
+       "active",
+       "#a6a6a6"
+      ]
+     ],
+     "lightcolor": [
+      [
+       "pressed",
+       "#888888"
+      ],
+      [
+       "active",
+       "#a6a6a6"
+      ]
+     ]
+    }
+   },
+   "Warn.TLabel": {
+    "configure": {
+     "font": "PkBold",
+     "foreground": "#b7312c"
+    },
+    "layout": [
+     [
+      "Label.border",
+      {
+       "border": "1",
+       "children": [
+        [
+         "Label.padding",
+         {
+          "border": "1",
+          "children": [
+           [
+            "Label.label",
+            {
+             "sticky": "nswe"
+            }
+           ]
+          ],
+          "sticky": "nswe"
+         }
+        ]
+       ],
+       "sticky": "nswe"
+      }
+     ]
+    ],
+    "map": {}
+   }
+  },
+  "tokens": {
+   "accent": "#1171be",
+   "bg": "#f5f5f5",
+   "bg2": "#e6e6e6",
+   "bg3": "#ffffff",
+   "border": "#7d7d7d",
+   "border2": "#bfbfbf",
+   "border3": "#616161",
+   "border_hover": "#333333",
+   "error": "#b7312c",
+   "focus": "#268cdd",
+   "green": "#3baa32",
+   "hover": "#ffffff",
+   "icon_fg": "#616161",
+   "icon_fg2": "#888888",
+   "icon_fill": "#d9d9d9",
+   "input": "#ffffff",
+   "link": "#1171be",
+   "list_hover": "#d9d9d9",
+   "orange": "#dd5400",
+   "panel_header_sel": "#004073",
+   "plot_style": "matlab",
+   "qab_active": "#00243e",
+   "qab_hover": "#0b2f5c",
+   "red": "#b7312c",
+   "scroll": "#bfbfbf",
+   "scroll_active": "#888888",
+   "scroll_hover": "#a6a6a6",
+   "selected": "#bfbfbf",
+   "selected_focus": "#b4deff",
+   "strip": "#004073",
+   "strip_hover": "#268cdd",
+   "strip_selected": "#1171be",
+   "stripe": "#f5f5f5",
+   "success": "#008013",
+   "tab": "#e6e6e6",
+   "tab_selected": "#f5f5f5",
+   "text": "#212121",
+   "text2": "#616161",
+   "text3": "#ffffff",
+   "text_selected": "#212121",
+   "toggle_on": "#d9d9d9",
+   "toolbar_on": "#b4deff",
+   "warning": "#edb120"
+  },
+  "tooltip_bg": "#ffffff"
+ },
+ "meta": {
+  "scale": 1.0,
+  "src": "0.9.14 (20a4492)"
+ },
+ "plot_styles": {
+  "default": {
+   "annotation_box": "white",
+   "annotation_color": "#444444",
+   "annotation_fontsize": 10,
+   "axes_edge": "black",
+   "axes_face": "white",
+   "axes_lw": 0.8,
+   "box": true,
+   "colors": [
+    "#1f77b4",
+    "#ff7f0e",
+    "#2ca02c",
+    "#d62728",
+    "#9467bd",
+    "#8c564b",
+    "#e377c2",
+    "#7f7f7f",
+    "#bcbd22",
+    "#17becf"
+   ],
+   "fig_face": "white",
+   "fonts": [
+    "Microsoft JhengHei",
+    "Microsoft YaHei",
+    "PingFang TC",
+    "Heiti TC",
+    "Noto Sans CJK TC",
+    "Noto Sans TC",
+    "Arial Unicode MS",
+    "DejaVu Sans"
+   ],
+   "fontsize": 10.0,
+   "grid": {
+    "alpha": 0.3,
+    "color": "#b0b0b0",
+    "ls": "-",
+    "lw": 0.8
+   },
+   "label": {
+    "scale": 1.0
+   },
+   "legend": {
+    "fontsize": 8,
+    "frameon": true,
+    "loc": "upper right"
+   },
+   "lw": 1.0,
+   "ms": 4.0,
+   "name": "default",
+   "selected_lw_scale": 2.5,
+   "text_color": "black",
+   "tick_dir": "out",
+   "tip": {
+    "ec": "#7d7d7d",
+    "ec_selected": "#268cdd",
+    "fc": "white",
+    "fontsize": 10,
+    "lw": 1.0,
+    "marker_edge": "#ffffdc",
+    "marker_face": "#212121",
+    "ms": 5.0,
+    "text": "black"
+   },
+   "title": {
+    "scale": 1.0,
+    "weight": "normal"
+   }
+  },
+  "matlab": {
+   "annotation_box": "white",
+   "annotation_color": "#212121",
+   "annotation_fontsize": 10,
+   "axes_edge": "#212121",
+   "axes_face": "white",
+   "axes_lw": 0.5,
+   "box": true,
+   "colors": [
+    "#1171be",
+    "#dd5400",
+    "#edb120",
+    "#8516d1",
+    "#3baa32",
+    "#2fbeef",
+    "#d1048b"
+   ],
+   "fig_face": "#f5f5f5",
+   "fonts": [
+    "Arial",
+    "Helvetica",
+    "Microsoft JhengHei",
+    "Microsoft YaHei",
+    "PingFang TC",
+    "Heiti TC",
+    "Noto Sans CJK TC",
+    "Noto Sans TC",
+    "Arial Unicode MS",
+    "DejaVu Sans"
+   ],
+   "fontsize": 10.0,
+   "grid": {
+    "alpha": 0.15,
+    "color": "#212121",
+    "ls": "-",
+    "lw": 0.5
+   },
+   "label": {
+    "scale": 1.1
+   },
+   "legend": {
+    "edgecolor": "#212121",
+    "facecolor": "white",
+    "fancybox": false,
+    "fontsize": 9,
+    "framealpha": 1.0,
+    "frameon": true,
+    "loc": "upper right",
+    "lw": 0.5,
+    "textcolor": "#212121"
+   },
+   "lw": 0.5,
+   "ms": 6.0,
+   "name": "matlab",
+   "selected_lw_scale": 2.5,
+   "text_color": "#212121",
+   "tick_dir": "in",
+   "tip": {
+    "ec": "#7d7d7d",
+    "ec_selected": "#268cdd",
+    "fc": "white",
+    "fontsize": 10,
+    "lw": 1.0,
+    "marker_edge": "#ffffdc",
+    "marker_face": "#212121",
+    "ms": 5.0,
+    "text": "#212121"
+   },
+   "title": {
+    "scale": 1.1,
+    "weight": "bold"
+   }
+  },
+  "matlab-dark": {
+   "annotation_box": "#212121",
+   "annotation_color": "#d9d9d9",
+   "annotation_fontsize": 10,
+   "axes_edge": "#d9d9d9",
+   "axes_face": "#121212",
+   "axes_lw": 0.5,
+   "box": true,
+   "colors": [
+    "#268cdd",
+    "#f57729",
+    "#ffe864",
+    "#c05cfb",
+    "#49db40",
+    "#6cf4ff",
+    "#f267c5"
+   ],
+   "fig_face": "#212121",
+   "fonts": [
+    "Arial",
+    "Helvetica",
+    "Microsoft JhengHei",
+    "Microsoft YaHei",
+    "PingFang TC",
+    "Heiti TC",
+    "Noto Sans CJK TC",
+    "Noto Sans TC",
+    "Arial Unicode MS",
+    "DejaVu Sans"
+   ],
+   "fontsize": 10.0,
+   "grid": {
+    "alpha": 0.25,
+    "color": "#ffffff",
+    "ls": "-",
+    "lw": 0.5
+   },
+   "label": {
+    "scale": 1.1
+   },
+   "legend": {
+    "edgecolor": "#d9d9d9",
+    "facecolor": "#121212",
+    "fancybox": false,
+    "fontsize": 9,
+    "framealpha": 1.0,
+    "frameon": true,
+    "loc": "upper right",
+    "lw": 0.5,
+    "textcolor": "#d9d9d9"
+   },
+   "lw": 0.5,
+   "ms": 6.0,
+   "name": "matlab-dark",
+   "selected_lw_scale": 2.5,
+   "text_color": "#d9d9d9",
+   "tick_dir": "in",
+   "tip": {
+    "ec": "#7d7d7d",
+    "ec_selected": "#268cdd",
+    "fc": "#121212",
+    "fontsize": 10,
+    "lw": 1.0,
+    "marker_edge": "#ffffdc",
+    "marker_face": "#121212",
+    "ms": 5.0,
+    "text": "#d9d9d9"
+   },
+   "title": {
+    "scale": 1.1,
+    "weight": "bold"
+   }
+  }
+ }
+}

@@ -1,0 +1,6474 @@
+{
+ "note": "MATLAB R2025a spectrumAnalyzer captures (scope_capture.m, run 1 = run.log, run 2 = run2.log resume with a NEW scope object) of the SPECTRAL MASK test: every field of getSpectralMaskStatus after each sa() call, plus the SimulationTime of the getSpectrumData row of that call (spectrum_simulation_time). Only the configuration, the status numbers, the signal reference and the 10 distinct displayed spectra are kept here; rules in b34/scope_capture/ANALYSIS_mask.md / rules_mask.json (analyze_mask.py).",
+ "matlab_version": "25.1.0.2943329 (R2025a)",
+ "fs": 1000,
+ "signals": {
+  "A": {
+   "files": [
+    "mask_A_update1_ch1_ch2.txt",
+    "mask_A_update2_ch1_ch2.txt",
+    "mask_A_update3_ch1_ch2.txt",
+    "mask_A_update4_ch1_ch2.txt"
+   ],
+   "layout": "4000 rows per call, columns ch1 ch2 (%.17g)",
+   "n_channels": 2,
+   "complex": false,
+   "amp2_per_call": [
+    1,
+    3,
+    1,
+    0.2
+   ],
+   "regenerated_from": "spectral_mask_ref.m rng(20261024,\"twister\") in scope_capture.m",
+   "regeneration_check_max_abs_dB_vs_research_spectra": 0
+  },
+  "B": {
+   "files": [
+    "mask_B_update1_re_im.txt",
+    "mask_B_update2_re_im.txt"
+   ],
+   "layout": "4000 rows per call, columns re im (%.17g)",
+   "n_channels": 1,
+   "complex": true,
+   "regenerated_from": "spectral_mask_ref.m rng(20261024,\"twister\") in scope_capture.m",
+   "regeneration_check_max_abs_dB_vs_research_spectra": 0
+  }
+ },
+ "spectrum_model": {
+  "window": "hann periodic, length WindowLength, OverlapPercent 0",
+  "nfft": "max(1024, WindowLength) (FFTLengthSource auto; observed for 1000 -> 1024 and 4000 -> 4000)",
+  "scaling": "'power': |fft(w.*x)|^2 / sum(w)^2, one-sided interior bins x2; dBm = 10*log10(P) + 30 (ReferenceLoad 1)",
+  "grid": "one-sided k*fs/nfft, k = 0..nfft/2; two-sided k = -(nfft/2-1)..nfft/2 (Nyquist at the end); plus scope FrequencyOffset",
+  "averaging": "AveragingMethod 'running', SpectralAverages N: normalised exponential average of all segment periodograms since release(), lambda = (N-1)/(N+1); one displayed spectrum (= one test) per sa() call",
+  "parity_max_abs_dB": {
+   "WL1000_N4": 7.034373084024992e-13,
+   "WL4000_N1": 6.139089236967266e-12
+  },
+  "simulation_time": "status SimulationTime = time of the last processed sample, accumulated per call since release: t_k = t_{k-1} + n_k/fs with t_0 = -1/fs (3.999, 7.9990000000000006, 11.999, 15.999)"
+ },
+ "stored_spectra": [
+  "spectra/mask_A_doc_upper_W4000_call1_S.txt",
+  "spectra/mask_A_doc_upper_W4000_call2_S.txt",
+  "spectra/mask_A_doc_upper_W4000_call3_S.txt",
+  "spectra/mask_A_doc_upper_W4000_call4_S.txt",
+  "spectra/mask_A_doc_upper_call1_S.txt",
+  "spectra/mask_A_doc_upper_call2_S.txt",
+  "spectra/mask_A_doc_upper_call3_S.txt",
+  "spectra/mask_A_doc_upper_call4_S.txt",
+  "spectra/mask_B_twosided_call1_S.txt",
+  "spectra/mask_B_twosided_call2_S.txt"
+ ],
+ "stored_grids": [
+  "spectra/mask_A_doc_upper_W4000_f.txt",
+  "spectra/mask_A_doc_upper_f.txt",
+  "spectra/mask_A_scope_freq_offset_1000_f.txt",
+  "spectra/mask_B_twosided_f.txt"
+ ],
+ "sessions": [
+  {
+   "run": 1,
+   "captures": [
+    "mask_A_doc_upper",
+    "mask_A_status_upper_lower",
+    "mask_A_lower_only_fail",
+    "mask_A_scalar_upper20_ref10",
+    "mask_A_peak_ref_ch1",
+    "mask_A_peak_ref_ch2",
+    "mask_A_mask_freq_offset_50"
+   ],
+   "status_before_first": [],
+   "note": "first mask captures after 65 non-mask captures on the run-1 scope"
+  },
+  {
+   "run": 2,
+   "captures": [
+    "mask_A_partial_range_200_300",
+    "mask_A_nan_segment",
+    "mask_A_sloped",
+    "mask_A_inf_freq_ends",
+    "mask_A_minus_inf_first_bp",
+    "mask_A_finite_first_bp",
+    "mask_A_scalar_m12_full",
+    "mask_A_scalar_m12_xlim_120_480_startstop",
+    "mask_A_scalar_m12_xlim_cf300_span360",
+    "mask_A_matrix_xlim_120_480_startstop",
+    "mask_A_scope_freq_offset_1000",
+    "mask_A_none",
+    "mask_A_doc_upper_W4000",
+    "mask_A_status_upper_lower_W4000",
+    "mask_B_twosided",
+    "mask_B_peak_ref"
+   ],
+   "status_before_first": [],
+   "note": "new scope object (resume run); counters start at 0"
+  }
+ ],
+ "mask_status_reset_check": {
+  "before_reset": {
+   "IsCurrentlyPassing": false,
+   "NumPassedTests": 14,
+   "NumTotalTests": 56,
+   "SuccessRate": 25,
+   "FailingMasks": "Upper and lower",
+   "FailingChannels": 1,
+   "SimulationTime": 7.9990000000000006
+  },
+  "after_reset": {
+   "IsCurrentlyPassing": false,
+   "NumPassedTests": 14,
+   "NumTotalTests": 56,
+   "SuccessRate": 25,
+   "FailingMasks": "Upper and lower",
+   "FailingChannels": 1,
+   "SimulationTime": 7.9990000000000006
+  }
+ },
+ "captures": [
+  {
+   "name": "mask_A_doc_upper",
+   "run": 1,
+   "description": "doc-example upper mask, custom ref 0, 2 channels, 4 calls x (4 segments of 1000) -> expected +4 tests per call if 1 test = 1 spectral update",
+   "dataset": "A",
+   "signal": {
+    "n_samples": 4000,
+    "n_channels": 2,
+    "is_complex": false,
+    "n_calls": 4,
+    "fs": 1000
+   },
+   "window_length": 1000,
+   "spectral_averages": 4,
+   "two_sided": false,
+   "spectrum_type": "power",
+   "units": "dBm",
+   "nfft": 1024,
+   "nbins": 513,
+   "frequency_grid_file": "spectra/mask_A_doc_upper_f.txt",
+   "scope_props_requested": {},
+   "scope_state_readback": {
+    "SampleRate": 1000,
+    "Method": "welch",
+    "Window": "hann",
+    "OverlapPercent": 0,
+    "FrequencyResolutionMethod": "window-length",
+    "WindowLength": 1000,
+    "FFTLengthSource": "auto",
+    "FFTLength": 1024,
+    "RBW": 9.76,
+    "PlotAsTwoSidedSpectrum": false,
+    "AveragingMethod": "running",
+    "SpectralAverages": 4,
+    "SpectrumType": "power",
+    "SpectrumUnits": "dBm",
+    "ReferenceLoad": 1,
+    "FrequencySpan": "full",
+    "Span": 24000,
+    "CenterFrequency": 12000,
+    "StartFrequency": 1000,
+    "StopFrequency": 24000,
+    "FrequencyOffset": 0
+   },
+   "mask_config": {
+    "EnabledMasks": "upper",
+    "UpperMask": [
+     [
+      0,
+      -17
+     ],
+     [
+      90,
+      -17
+     ],
+     [
+      90,
+      30
+     ],
+     [
+      110,
+      30
+     ],
+     [
+      110,
+      -17
+     ],
+     [
+      500,
+      -17
+     ]
+    ],
+    "LowerMask": -Infinity,
+    "ReferenceLevel": "custom",
+    "CustomReferenceLevel": 0,
+    "SelectedChannel": 1,
+    "MaskFrequencyOffset": 0,
+    "Enabled": true
+   },
+   "config_errors": [
+    {
+     "target": "PhaseNoise",
+     "property": "Enabled",
+     "error_id": "MATLAB:noSuchMethodOrField"
+    }
+   ],
+   "mask_status_before_calls": [],
+   "mask_status_final": {
+    "IsCurrentlyPassing": false,
+    "NumPassedTests": 0,
+    "NumTotalTests": 4,
+    "SuccessRate": 0,
+    "FailingMasks": "Upper and lower",
+    "FailingChannels": [
+     1,
+     2
+    ],
+    "SimulationTime": 15.999
+   },
+   "calls": [
+    {
+     "k": 1,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update1_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 0,
+      "NumTotalTests": 1,
+      "SuccessRate": 0,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 3.999
+     },
+     "spectrum_file_original": "mask_A_doc_upper_call1_S.txt",
+     "spectrum_sha256": "2f8c0ac93305eaefe808ac29f4751fff8814eb07eeb89e070032e8bbcf932d6f",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call1_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1,
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": 1.519564296508861,
+        "n_upper_fail_bins": 4,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 1.2278187822389839,
+        "n_upper_fail_bins": 4,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.3500311979441904e-13
+     },
+     "spectrum_simulation_time": 3.999
+    },
+    {
+     "k": 2,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update2_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 0,
+      "NumTotalTests": 2,
+      "SuccessRate": 0,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 7.9990000000000006
+     },
+     "spectrum_file_original": "mask_A_doc_upper_call2_S.txt",
+     "spectrum_sha256": "f126a3851880ca074b80ea37a560fac174be65068c4779a6729612c6de15a0fb",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call2_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1,
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": 0.5140048776430248,
+        "n_upper_fail_bins": 3,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 6.252854944156233,
+        "n_upper_fail_bins": 7,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 4.050093593832571e-13
+     },
+     "spectrum_simulation_time": 7.9990000000000006
+    },
+    {
+     "k": 3,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update3_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 0,
+      "NumTotalTests": 3,
+      "SuccessRate": 0,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": 2,
+      "SimulationTime": 11.999
+     },
+     "spectrum_file_original": "mask_A_doc_upper_call3_S.txt",
+     "spectrum_sha256": "487b3e5a6327c05687be187d4ffe8271527ef325047b737144bf34b556722a38",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call3_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": -0.06682980695654805,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 1.008346364670686,
+        "n_upper_fail_bins": 8,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.2789769243681803e-13
+     },
+     "spectrum_simulation_time": 11.999
+    },
+    {
+     "k": 4,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update4_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 0,
+      "NumTotalTests": 4,
+      "SuccessRate": 0,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 15.999
+     },
+     "spectrum_file_original": "mask_A_doc_upper_call4_S.txt",
+     "spectrum_sha256": "1d112f5e56041276494307cdfc91cd701edecadac1e46eaf8b070acfb98a9363",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call4_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1,
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": 1.6555356641557992,
+        "n_upper_fail_bins": 6,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 1.2303397863539658,
+        "n_upper_fail_bins": 6,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.2079226507921703e-13
+     },
+     "spectrum_simulation_time": 15.999
+    }
+   ]
+  },
+  {
+   "name": "mask_A_status_upper_lower",
+   "run": 1,
+   "description": "getSpectralMaskStatus doc masks (upper statUpper, lower -55): research predicts pass/fail/pass/pass per call -> counters move",
+   "dataset": "A",
+   "signal": {
+    "n_samples": 4000,
+    "n_channels": 2,
+    "is_complex": false,
+    "n_calls": 4,
+    "fs": 1000
+   },
+   "window_length": 1000,
+   "spectral_averages": 4,
+   "two_sided": false,
+   "spectrum_type": "power",
+   "units": "dBm",
+   "nfft": 1024,
+   "nbins": 513,
+   "frequency_grid_file": "spectra/mask_A_doc_upper_f.txt",
+   "scope_props_requested": {},
+   "scope_state_readback": {
+    "SampleRate": 1000,
+    "Method": "welch",
+    "Window": "hann",
+    "OverlapPercent": 0,
+    "FrequencyResolutionMethod": "window-length",
+    "WindowLength": 1000,
+    "FFTLengthSource": "auto",
+    "FFTLength": 1024,
+    "RBW": 9.76,
+    "PlotAsTwoSidedSpectrum": false,
+    "AveragingMethod": "running",
+    "SpectralAverages": 4,
+    "SpectrumType": "power",
+    "SpectrumUnits": "dBm",
+    "ReferenceLoad": 1,
+    "FrequencySpan": "full",
+    "Span": 24000,
+    "CenterFrequency": 12000,
+    "StartFrequency": 1000,
+    "StopFrequency": 24000,
+    "FrequencyOffset": 0
+   },
+   "mask_config": {
+    "EnabledMasks": "upper-and-lower",
+    "UpperMask": [
+     [
+      0,
+      -10
+     ],
+     [
+      90,
+      -10
+     ],
+     [
+      90,
+      30
+     ],
+     [
+      110,
+      30
+     ],
+     [
+      110,
+      -10
+     ],
+     [
+      500,
+      -10
+     ]
+    ],
+    "LowerMask": -55,
+    "ReferenceLevel": "custom",
+    "CustomReferenceLevel": 0,
+    "SelectedChannel": 1,
+    "MaskFrequencyOffset": 0,
+    "Enabled": true
+   },
+   "config_errors": [
+    {
+     "target": "PhaseNoise",
+     "property": "Enabled",
+     "error_id": "MATLAB:noSuchMethodOrField"
+    }
+   ],
+   "mask_status_before_calls": {
+    "IsCurrentlyPassing": false,
+    "NumPassedTests": 0,
+    "NumTotalTests": 4,
+    "SuccessRate": 0,
+    "FailingMasks": "Upper and lower",
+    "FailingChannels": [
+     1,
+     2
+    ],
+    "SimulationTime": 15.999
+   },
+   "mask_status_final": {
+    "IsCurrentlyPassing": true,
+    "NumPassedTests": 3,
+    "NumTotalTests": 8,
+    "SuccessRate": 37.5,
+    "FailingMasks": "",
+    "FailingChannels": [],
+    "SimulationTime": 15.999
+   },
+   "calls": [
+    {
+     "k": 1,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update1_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": true,
+      "NumPassedTests": 1,
+      "NumTotalTests": 5,
+      "SuccessRate": 20,
+      "FailingMasks": "",
+      "FailingChannels": [],
+      "SimulationTime": 3.999
+     },
+     "spectrum_file_original": "mask_A_status_upper_lower_call1_S.txt",
+     "spectrum_sha256": "2f8c0ac93305eaefe808ac29f4751fff8814eb07eeb89e070032e8bbcf932d6f",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call1_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": true,
+      "failingChannels": [],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": -2.8200211213687467,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": 22.851339269873264,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": -2.8147447897297795,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": 22.912329993615216,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.3500311979441904e-13
+     },
+     "spectrum_simulation_time": 3.999
+    },
+    {
+     "k": 2,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update2_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 1,
+      "NumTotalTests": 6,
+      "SuccessRate": 16.666666666666664,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": 2,
+      "SimulationTime": 7.9990000000000006
+     },
+     "spectrum_file_original": "mask_A_status_upper_lower_call2_S.txt",
+     "spectrum_sha256": "f126a3851880ca074b80ea37a560fac174be65068c4779a6729612c6de15a0fb",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call2_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": -2.833700452508346,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": 26.277571536796067,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 6.252854944156233,
+        "n_upper_fail_bins": 4,
+        "lower_min_margin_dB": 26.40273049865609,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 4.050093593832571e-13
+     },
+     "spectrum_simulation_time": 7.9990000000000006
+    },
+    {
+     "k": 3,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update3_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": true,
+      "NumPassedTests": 2,
+      "NumTotalTests": 7,
+      "SuccessRate": 28.57142857142857,
+      "FailingMasks": "",
+      "FailingChannels": [],
+      "SimulationTime": 11.999
+     },
+     "spectrum_file_original": "mask_A_status_upper_lower_call3_S.txt",
+     "spectrum_sha256": "487b3e5a6327c05687be187d4ffe8271527ef325047b737144bf34b556722a38",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call3_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": true,
+      "failingChannels": [],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": -2.821794192564411,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": 25.293384815963968,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": -0.032584522819657735,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": 26.383561394268682,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.2789769243681803e-13
+     },
+     "spectrum_simulation_time": 11.999
+    },
+    {
+     "k": 4,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update4_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": true,
+      "NumPassedTests": 3,
+      "NumTotalTests": 8,
+      "SuccessRate": 37.5,
+      "FailingMasks": "",
+      "FailingChannels": [],
+      "SimulationTime": 15.999
+     },
+     "spectrum_file_original": "mask_A_status_upper_lower_call4_S.txt",
+     "spectrum_sha256": "1d112f5e56041276494307cdfc91cd701edecadac1e46eaf8b070acfb98a9363",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call4_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": true,
+      "failingChannels": [],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": -2.836505875667388,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": 26.2836335278758,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": -5.769660213646034,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": 26.5656982413351,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.2079226507921703e-13
+     },
+     "spectrum_simulation_time": 15.999
+    }
+   ]
+  },
+  {
+   "name": "mask_A_lower_only_fail",
+   "run": 1,
+   "description": "lower mask only (-20 dBm), upper Inf",
+   "dataset": "A",
+   "signal": {
+    "n_samples": 4000,
+    "n_channels": 2,
+    "is_complex": false,
+    "n_calls": 4,
+    "fs": 1000
+   },
+   "window_length": 1000,
+   "spectral_averages": 4,
+   "two_sided": false,
+   "spectrum_type": "power",
+   "units": "dBm",
+   "nfft": 1024,
+   "nbins": 513,
+   "frequency_grid_file": "spectra/mask_A_doc_upper_f.txt",
+   "scope_props_requested": {},
+   "scope_state_readback": {
+    "SampleRate": 1000,
+    "Method": "welch",
+    "Window": "hann",
+    "OverlapPercent": 0,
+    "FrequencyResolutionMethod": "window-length",
+    "WindowLength": 1000,
+    "FFTLengthSource": "auto",
+    "FFTLength": 1024,
+    "RBW": 9.76,
+    "PlotAsTwoSidedSpectrum": false,
+    "AveragingMethod": "running",
+    "SpectralAverages": 4,
+    "SpectrumType": "power",
+    "SpectrumUnits": "dBm",
+    "ReferenceLoad": 1,
+    "FrequencySpan": "full",
+    "Span": 24000,
+    "CenterFrequency": 12000,
+    "StartFrequency": 1000,
+    "StopFrequency": 24000,
+    "FrequencyOffset": 0
+   },
+   "mask_config": {
+    "EnabledMasks": "lower",
+    "UpperMask": Infinity,
+    "LowerMask": -20,
+    "ReferenceLevel": "custom",
+    "CustomReferenceLevel": 0,
+    "SelectedChannel": 1,
+    "MaskFrequencyOffset": 0,
+    "Enabled": true
+   },
+   "config_errors": [
+    {
+     "target": "PhaseNoise",
+     "property": "Enabled",
+     "error_id": "MATLAB:noSuchMethodOrField"
+    }
+   ],
+   "mask_status_before_calls": {
+    "IsCurrentlyPassing": true,
+    "NumPassedTests": 3,
+    "NumTotalTests": 8,
+    "SuccessRate": 37.5,
+    "FailingMasks": "",
+    "FailingChannels": [],
+    "SimulationTime": 15.999
+   },
+   "mask_status_final": {
+    "IsCurrentlyPassing": false,
+    "NumPassedTests": 3,
+    "NumTotalTests": 12,
+    "SuccessRate": 25,
+    "FailingMasks": "Upper and lower",
+    "FailingChannels": [
+     1,
+     2
+    ],
+    "SimulationTime": 15.999
+   },
+   "calls": [
+    {
+     "k": 1,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update1_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 3,
+      "NumTotalTests": 9,
+      "SuccessRate": 33.33333333333333,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 3.999
+     },
+     "spectrum_file_original": "mask_A_lower_only_fail_call1_S.txt",
+     "spectrum_sha256": "2f8c0ac93305eaefe808ac29f4751fff8814eb07eeb89e070032e8bbcf932d6f",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call1_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1,
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": NaN,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": -12.148660730126736,
+        "n_lower_fail_bins": 397
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": NaN,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": -12.087670006384784,
+        "n_lower_fail_bins": 385
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.3500311979441904e-13
+     },
+     "spectrum_simulation_time": 3.999
+    },
+    {
+     "k": 2,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update2_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 3,
+      "NumTotalTests": 10,
+      "SuccessRate": 30,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 7.9990000000000006
+     },
+     "spectrum_file_original": "mask_A_lower_only_fail_call2_S.txt",
+     "spectrum_sha256": "f126a3851880ca074b80ea37a560fac174be65068c4779a6729612c6de15a0fb",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call2_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1,
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": NaN,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": -8.722428463203933,
+        "n_lower_fail_bins": 400
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": NaN,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": -8.59726950134391,
+        "n_lower_fail_bins": 388
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 4.050093593832571e-13
+     },
+     "spectrum_simulation_time": 7.9990000000000006
+    },
+    {
+     "k": 3,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update3_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 3,
+      "NumTotalTests": 11,
+      "SuccessRate": 27.27272727272727,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 11.999
+     },
+     "spectrum_file_original": "mask_A_lower_only_fail_call3_S.txt",
+     "spectrum_sha256": "487b3e5a6327c05687be187d4ffe8271527ef325047b737144bf34b556722a38",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call3_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1,
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": NaN,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": -9.706615184036032,
+        "n_lower_fail_bins": 392
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": NaN,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": -8.616438605731318,
+        "n_lower_fail_bins": 396
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.2789769243681803e-13
+     },
+     "spectrum_simulation_time": 11.999
+    },
+    {
+     "k": 4,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update4_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 3,
+      "NumTotalTests": 12,
+      "SuccessRate": 25,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 15.999
+     },
+     "spectrum_file_original": "mask_A_lower_only_fail_call4_S.txt",
+     "spectrum_sha256": "1d112f5e56041276494307cdfc91cd701edecadac1e46eaf8b070acfb98a9363",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call4_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1,
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": NaN,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": -8.7163664721242,
+        "n_lower_fail_bins": 394
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": NaN,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": -8.434301758664901,
+        "n_lower_fail_bins": 399
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.2079226507921703e-13
+     },
+     "spectrum_simulation_time": 15.999
+    }
+   ]
+  },
+  {
+   "name": "mask_A_scalar_upper20_ref10",
+   "run": 1,
+   "description": "SCALAR upper mask 20 with CustomReferenceLevel 10 (scalar mask case)",
+   "dataset": "A",
+   "signal": {
+    "n_samples": 4000,
+    "n_channels": 2,
+    "is_complex": false,
+    "n_calls": 4,
+    "fs": 1000
+   },
+   "window_length": 1000,
+   "spectral_averages": 4,
+   "two_sided": false,
+   "spectrum_type": "power",
+   "units": "dBm",
+   "nfft": 1024,
+   "nbins": 513,
+   "frequency_grid_file": "spectra/mask_A_doc_upper_f.txt",
+   "scope_props_requested": {},
+   "scope_state_readback": {
+    "SampleRate": 1000,
+    "Method": "welch",
+    "Window": "hann",
+    "OverlapPercent": 0,
+    "FrequencyResolutionMethod": "window-length",
+    "WindowLength": 1000,
+    "FFTLengthSource": "auto",
+    "FFTLength": 1024,
+    "RBW": 9.76,
+    "PlotAsTwoSidedSpectrum": false,
+    "AveragingMethod": "running",
+    "SpectralAverages": 4,
+    "SpectrumType": "power",
+    "SpectrumUnits": "dBm",
+    "ReferenceLoad": 1,
+    "FrequencySpan": "full",
+    "Span": 24000,
+    "CenterFrequency": 12000,
+    "StartFrequency": 1000,
+    "StopFrequency": 24000,
+    "FrequencyOffset": 0
+   },
+   "mask_config": {
+    "EnabledMasks": "upper",
+    "UpperMask": 20,
+    "LowerMask": -Infinity,
+    "ReferenceLevel": "custom",
+    "CustomReferenceLevel": 10,
+    "SelectedChannel": 1,
+    "MaskFrequencyOffset": 0,
+    "Enabled": true
+   },
+   "config_errors": [
+    {
+     "target": "PhaseNoise",
+     "property": "Enabled",
+     "error_id": "MATLAB:noSuchMethodOrField"
+    }
+   ],
+   "mask_status_before_calls": {
+    "IsCurrentlyPassing": false,
+    "NumPassedTests": 3,
+    "NumTotalTests": 12,
+    "SuccessRate": 25,
+    "FailingMasks": "Upper and lower",
+    "FailingChannels": [
+     1,
+     2
+    ],
+    "SimulationTime": 15.999
+   },
+   "mask_status_final": {
+    "IsCurrentlyPassing": true,
+    "NumPassedTests": 6,
+    "NumTotalTests": 16,
+    "SuccessRate": 37.5,
+    "FailingMasks": "",
+    "FailingChannels": [],
+    "SimulationTime": 15.999
+   },
+   "calls": [
+    {
+     "k": 1,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update1_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": true,
+      "NumPassedTests": 4,
+      "NumTotalTests": 13,
+      "SuccessRate": 30.76923076923077,
+      "FailingMasks": "",
+      "FailingChannels": [],
+      "SimulationTime": 3.999
+     },
+     "spectrum_file_original": "mask_A_scalar_upper20_ref10_call1_S.txt",
+     "spectrum_sha256": "2f8c0ac93305eaefe808ac29f4751fff8814eb07eeb89e070032e8bbcf932d6f",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call1_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 10,
+      "pass": true,
+      "failingChannels": [],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": -2.8200211213687467,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": -2.8147447897297795,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.3500311979441904e-13
+     },
+     "spectrum_simulation_time": 3.999
+    },
+    {
+     "k": 2,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update2_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 4,
+      "NumTotalTests": 14,
+      "SuccessRate": 28.57142857142857,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": 2,
+      "SimulationTime": 7.9990000000000006
+     },
+     "spectrum_file_original": "mask_A_scalar_upper20_ref10_call2_S.txt",
+     "spectrum_sha256": "f126a3851880ca074b80ea37a560fac174be65068c4779a6729612c6de15a0fb",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call2_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 10,
+      "pass": false,
+      "failingChannels": [
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": -2.833700452508346,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 6.252854944156233,
+        "n_upper_fail_bins": 4,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 4.050093593832571e-13
+     },
+     "spectrum_simulation_time": 7.9990000000000006
+    },
+    {
+     "k": 3,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update3_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": true,
+      "NumPassedTests": 5,
+      "NumTotalTests": 15,
+      "SuccessRate": 33.33333333333333,
+      "FailingMasks": "",
+      "FailingChannels": [],
+      "SimulationTime": 11.999
+     },
+     "spectrum_file_original": "mask_A_scalar_upper20_ref10_call3_S.txt",
+     "spectrum_sha256": "487b3e5a6327c05687be187d4ffe8271527ef325047b737144bf34b556722a38",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call3_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 10,
+      "pass": true,
+      "failingChannels": [],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": -2.821794192564411,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": -0.032584522819657735,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.2789769243681803e-13
+     },
+     "spectrum_simulation_time": 11.999
+    },
+    {
+     "k": 4,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update4_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": true,
+      "NumPassedTests": 6,
+      "NumTotalTests": 16,
+      "SuccessRate": 37.5,
+      "FailingMasks": "",
+      "FailingChannels": [],
+      "SimulationTime": 15.999
+     },
+     "spectrum_file_original": "mask_A_scalar_upper20_ref10_call4_S.txt",
+     "spectrum_sha256": "1d112f5e56041276494307cdfc91cd701edecadac1e46eaf8b070acfb98a9363",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call4_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 10,
+      "pass": true,
+      "failingChannels": [],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": -2.836505875667388,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": -8.326011814498493,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.2079226507921703e-13
+     },
+     "spectrum_simulation_time": 15.999
+    }
+   ]
+  },
+  {
+   "name": "mask_A_peak_ref_ch1",
+   "run": 1,
+   "description": "ReferenceLevel spectrum-peak, SelectedChannel 1",
+   "dataset": "A",
+   "signal": {
+    "n_samples": 4000,
+    "n_channels": 2,
+    "is_complex": false,
+    "n_calls": 4,
+    "fs": 1000
+   },
+   "window_length": 1000,
+   "spectral_averages": 4,
+   "two_sided": false,
+   "spectrum_type": "power",
+   "units": "dBm",
+   "nfft": 1024,
+   "nbins": 513,
+   "frequency_grid_file": "spectra/mask_A_doc_upper_f.txt",
+   "scope_props_requested": {},
+   "scope_state_readback": {
+    "SampleRate": 1000,
+    "Method": "welch",
+    "Window": "hann",
+    "OverlapPercent": 0,
+    "FrequencyResolutionMethod": "window-length",
+    "WindowLength": 1000,
+    "FFTLengthSource": "auto",
+    "FFTLength": 1024,
+    "RBW": 9.76,
+    "PlotAsTwoSidedSpectrum": false,
+    "AveragingMethod": "running",
+    "SpectralAverages": 4,
+    "SpectrumType": "power",
+    "SpectrumUnits": "dBm",
+    "ReferenceLoad": 1,
+    "FrequencySpan": "full",
+    "Span": 24000,
+    "CenterFrequency": 12000,
+    "StartFrequency": 1000,
+    "StopFrequency": 24000,
+    "FrequencyOffset": 0
+   },
+   "mask_config": {
+    "EnabledMasks": "upper",
+    "UpperMask": [
+     [
+      0,
+      -40
+     ],
+     [
+      90,
+      -40
+     ],
+     [
+      90,
+      0.5
+     ],
+     [
+      110,
+      0.5
+     ],
+     [
+      110,
+      -40
+     ],
+     [
+      500,
+      -40
+     ]
+    ],
+    "LowerMask": -Infinity,
+    "ReferenceLevel": "spectrum-peak",
+    "CustomReferenceLevel": 0,
+    "SelectedChannel": 1,
+    "MaskFrequencyOffset": 0,
+    "Enabled": true
+   },
+   "config_errors": [
+    {
+     "target": "PhaseNoise",
+     "property": "Enabled",
+     "error_id": "MATLAB:noSuchMethodOrField"
+    }
+   ],
+   "mask_status_before_calls": {
+    "IsCurrentlyPassing": true,
+    "NumPassedTests": 6,
+    "NumTotalTests": 16,
+    "SuccessRate": 37.5,
+    "FailingMasks": "",
+    "FailingChannels": [],
+    "SimulationTime": 15.999
+   },
+   "mask_status_final": {
+    "IsCurrentlyPassing": true,
+    "NumPassedTests": 8,
+    "NumTotalTests": 20,
+    "SuccessRate": 40,
+    "FailingMasks": "",
+    "FailingChannels": [],
+    "SimulationTime": 15.999
+   },
+   "calls": [
+    {
+     "k": 1,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update1_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": true,
+      "NumPassedTests": 7,
+      "NumTotalTests": 17,
+      "SuccessRate": 41.17647058823529,
+      "FailingMasks": "",
+      "FailingChannels": [],
+      "SimulationTime": 3.999
+     },
+     "spectrum_file_original": "mask_A_peak_ref_ch1_call1_S.txt",
+     "spectrum_sha256": "2f8c0ac93305eaefe808ac29f4751fff8814eb07eeb89e070032e8bbcf932d6f",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call1_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 27.179978878631253,
+      "pass": true,
+      "failingChannels": [],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": -0.5,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": -0.49472366836103276,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.3500311979441904e-13
+     },
+     "spectrum_simulation_time": 3.999
+    },
+    {
+     "k": 2,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update2_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 7,
+      "NumTotalTests": 18,
+      "SuccessRate": 38.88888888888889,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": 2,
+      "SimulationTime": 7.9990000000000006
+     },
+     "spectrum_file_original": "mask_A_peak_ref_ch1_call2_S.txt",
+     "spectrum_sha256": "f126a3851880ca074b80ea37a560fac174be65068c4779a6729612c6de15a0fb",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call2_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 27.166299547491654,
+      "pass": false,
+      "failingChannels": [
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": -0.5,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 8.58655539666458,
+        "n_upper_fail_bins": 4,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 4.050093593832571e-13
+     },
+     "spectrum_simulation_time": 7.9990000000000006
+    },
+    {
+     "k": 3,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update3_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 7,
+      "NumTotalTests": 19,
+      "SuccessRate": 36.84210526315789,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": 2,
+      "SimulationTime": 11.999
+     },
+     "spectrum_file_original": "mask_A_peak_ref_ch1_call3_S.txt",
+     "spectrum_sha256": "487b3e5a6327c05687be187d4ffe8271527ef325047b737144bf34b556722a38",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call3_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 27.17820580743559,
+      "pass": false,
+      "failingChannels": [
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": -0.5,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 2.2892096697447535,
+        "n_upper_fail_bins": 3,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.2789769243681803e-13
+     },
+     "spectrum_simulation_time": 11.999
+    },
+    {
+     "k": 4,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update4_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": true,
+      "NumPassedTests": 8,
+      "NumTotalTests": 20,
+      "SuccessRate": 40,
+      "FailingMasks": "",
+      "FailingChannels": [],
+      "SimulationTime": 15.999
+     },
+     "spectrum_file_original": "mask_A_peak_ref_ch1_call4_S.txt",
+     "spectrum_sha256": "1d112f5e56041276494307cdfc91cd701edecadac1e46eaf8b070acfb98a9363",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call4_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 27.163494124332612,
+      "pass": true,
+      "failingChannels": [],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": -0.5,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": -2.933154337978646,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.2079226507921703e-13
+     },
+     "spectrum_simulation_time": 15.999
+    }
+   ]
+  },
+  {
+   "name": "mask_A_peak_ref_ch2",
+   "run": 1,
+   "description": "spectrum-peak, SelectedChannel 2, upper+lower (-80): ch2 amplitude changes 1/3/1/0.2 per call",
+   "dataset": "A",
+   "signal": {
+    "n_samples": 4000,
+    "n_channels": 2,
+    "is_complex": false,
+    "n_calls": 4,
+    "fs": 1000
+   },
+   "window_length": 1000,
+   "spectral_averages": 4,
+   "two_sided": false,
+   "spectrum_type": "power",
+   "units": "dBm",
+   "nfft": 1024,
+   "nbins": 513,
+   "frequency_grid_file": "spectra/mask_A_doc_upper_f.txt",
+   "scope_props_requested": {},
+   "scope_state_readback": {
+    "SampleRate": 1000,
+    "Method": "welch",
+    "Window": "hann",
+    "OverlapPercent": 0,
+    "FrequencyResolutionMethod": "window-length",
+    "WindowLength": 1000,
+    "FFTLengthSource": "auto",
+    "FFTLength": 1024,
+    "RBW": 9.76,
+    "PlotAsTwoSidedSpectrum": false,
+    "AveragingMethod": "running",
+    "SpectralAverages": 4,
+    "SpectrumType": "power",
+    "SpectrumUnits": "dBm",
+    "ReferenceLoad": 1,
+    "FrequencySpan": "full",
+    "Span": 24000,
+    "CenterFrequency": 12000,
+    "StartFrequency": 1000,
+    "StopFrequency": 24000,
+    "FrequencyOffset": 0
+   },
+   "mask_config": {
+    "EnabledMasks": "upper-and-lower",
+    "UpperMask": [
+     [
+      0,
+      -40
+     ],
+     [
+      90,
+      -40
+     ],
+     [
+      90,
+      0.5
+     ],
+     [
+      110,
+      0.5
+     ],
+     [
+      110,
+      -40
+     ],
+     [
+      500,
+      -40
+     ]
+    ],
+    "LowerMask": -80,
+    "ReferenceLevel": "spectrum-peak",
+    "CustomReferenceLevel": 0,
+    "SelectedChannel": 2,
+    "MaskFrequencyOffset": 0,
+    "Enabled": true
+   },
+   "config_errors": [
+    {
+     "target": "PhaseNoise",
+     "property": "Enabled",
+     "error_id": "MATLAB:noSuchMethodOrField"
+    }
+   ],
+   "mask_status_before_calls": {
+    "IsCurrentlyPassing": true,
+    "NumPassedTests": 8,
+    "NumTotalTests": 20,
+    "SuccessRate": 40,
+    "FailingMasks": "",
+    "FailingChannels": [],
+    "SimulationTime": 15.999
+   },
+   "mask_status_final": {
+    "IsCurrentlyPassing": false,
+    "NumPassedTests": 11,
+    "NumTotalTests": 24,
+    "SuccessRate": 45.83333333333333,
+    "FailingMasks": "Upper and lower",
+    "FailingChannels": [
+     1,
+     2
+    ],
+    "SimulationTime": 15.999
+   },
+   "calls": [
+    {
+     "k": 1,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update1_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": true,
+      "NumPassedTests": 9,
+      "NumTotalTests": 21,
+      "SuccessRate": 42.857142857142854,
+      "FailingMasks": "",
+      "FailingChannels": [],
+      "SimulationTime": 3.999
+     },
+     "spectrum_file_original": "mask_A_peak_ref_ch2_call1_S.txt",
+     "spectrum_sha256": "2f8c0ac93305eaefe808ac29f4751fff8814eb07eeb89e070032e8bbcf932d6f",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call1_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 27.18525521027022,
+      "pass": true,
+      "failingChannels": [],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": -0.5052763316389672,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": 20.666084059603044,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": -0.5,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": 20.727074783344996,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.3500311979441904e-13
+     },
+     "spectrum_simulation_time": 3.999
+    },
+    {
+     "k": 2,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update2_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": true,
+      "NumPassedTests": 10,
+      "NumTotalTests": 22,
+      "SuccessRate": 45.45454545454545,
+      "FailingMasks": "",
+      "FailingChannels": [],
+      "SimulationTime": 7.9990000000000006
+     },
+     "spectrum_file_original": "mask_A_peak_ref_ch2_call2_S.txt",
+     "spectrum_sha256": "f126a3851880ca074b80ea37a560fac174be65068c4779a6729612c6de15a0fb",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call2_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 36.25285494415623,
+      "pass": true,
+      "failingChannels": [],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": -9.58655539666458,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": 15.024716592639834,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": -0.5,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": 15.149875554499857,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 4.050093593832571e-13
+     },
+     "spectrum_simulation_time": 7.9990000000000006
+    },
+    {
+     "k": 3,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update3_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": true,
+      "NumPassedTests": 11,
+      "NumTotalTests": 23,
+      "SuccessRate": 47.82608695652174,
+      "FailingMasks": "",
+      "FailingChannels": [],
+      "SimulationTime": 11.999
+     },
+     "spectrum_file_original": "mask_A_peak_ref_ch2_call3_S.txt",
+     "spectrum_sha256": "487b3e5a6327c05687be187d4ffe8271527ef325047b737144bf34b556722a38",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call3_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 29.967415477180342,
+      "pass": true,
+      "failingChannels": [],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": -3.2892096697447535,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": 20.32596933878363,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": -0.5,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": 21.416145917088343,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.2789769243681803e-13
+     },
+     "spectrum_simulation_time": 11.999
+    },
+    {
+     "k": 4,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update4_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 11,
+      "NumTotalTests": 24,
+      "SuccessRate": 45.83333333333333,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 15.999
+     },
+     "spectrum_file_original": "mask_A_peak_ref_ch2_call4_S.txt",
+     "spectrum_sha256": "1d112f5e56041276494307cdfc91cd701edecadac1e46eaf8b070acfb98a9363",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call4_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 21.673988185501507,
+      "pass": false,
+      "failingChannels": [
+       1,
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": 4.989505938831105,
+        "n_upper_fail_bins": 22,
+        "lower_min_margin_dB": 29.609645342374293,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 2.5563516008524587,
+        "n_upper_fail_bins": 29,
+        "lower_min_margin_dB": 29.89171005583359,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.2079226507921703e-13
+     },
+     "spectrum_simulation_time": 15.999
+    }
+   ]
+  },
+  {
+   "name": "mask_A_mask_freq_offset_50",
+   "run": 1,
+   "description": "doc upper mask shifted by MaskFrequencyOffset 50 Hz",
+   "dataset": "A",
+   "signal": {
+    "n_samples": 4000,
+    "n_channels": 2,
+    "is_complex": false,
+    "n_calls": 4,
+    "fs": 1000
+   },
+   "window_length": 1000,
+   "spectral_averages": 4,
+   "two_sided": false,
+   "spectrum_type": "power",
+   "units": "dBm",
+   "nfft": 1024,
+   "nbins": 513,
+   "frequency_grid_file": "spectra/mask_A_doc_upper_f.txt",
+   "scope_props_requested": {},
+   "scope_state_readback": {
+    "SampleRate": 1000,
+    "Method": "welch",
+    "Window": "hann",
+    "OverlapPercent": 0,
+    "FrequencyResolutionMethod": "window-length",
+    "WindowLength": 1000,
+    "FFTLengthSource": "auto",
+    "FFTLength": 1024,
+    "RBW": 9.76,
+    "PlotAsTwoSidedSpectrum": false,
+    "AveragingMethod": "running",
+    "SpectralAverages": 4,
+    "SpectrumType": "power",
+    "SpectrumUnits": "dBm",
+    "ReferenceLoad": 1,
+    "FrequencySpan": "full",
+    "Span": 24000,
+    "CenterFrequency": 12000,
+    "StartFrequency": 1000,
+    "StopFrequency": 24000,
+    "FrequencyOffset": 0
+   },
+   "mask_config": {
+    "EnabledMasks": "upper",
+    "UpperMask": [
+     [
+      0,
+      -17
+     ],
+     [
+      90,
+      -17
+     ],
+     [
+      90,
+      30
+     ],
+     [
+      110,
+      30
+     ],
+     [
+      110,
+      -17
+     ],
+     [
+      500,
+      -17
+     ]
+    ],
+    "LowerMask": -Infinity,
+    "ReferenceLevel": "custom",
+    "CustomReferenceLevel": 0,
+    "SelectedChannel": 1,
+    "MaskFrequencyOffset": 50,
+    "Enabled": true
+   },
+   "config_errors": [
+    {
+     "target": "PhaseNoise",
+     "property": "Enabled",
+     "error_id": "MATLAB:noSuchMethodOrField"
+    }
+   ],
+   "mask_status_before_calls": {
+    "IsCurrentlyPassing": false,
+    "NumPassedTests": 11,
+    "NumTotalTests": 24,
+    "SuccessRate": 45.83333333333333,
+    "FailingMasks": "Upper and lower",
+    "FailingChannels": [
+     1,
+     2
+    ],
+    "SimulationTime": 15.999
+   },
+   "mask_status_final": {
+    "IsCurrentlyPassing": false,
+    "NumPassedTests": 11,
+    "NumTotalTests": 28,
+    "SuccessRate": 39.285714285714285,
+    "FailingMasks": "Upper and lower",
+    "FailingChannels": [
+     1,
+     2
+    ],
+    "SimulationTime": 15.999
+   },
+   "calls": [
+    {
+     "k": 1,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update1_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 11,
+      "NumTotalTests": 25,
+      "SuccessRate": 44,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 3.999
+     },
+     "spectrum_file_original": "mask_A_mask_freq_offset_50_call1_S.txt",
+     "spectrum_sha256": "2f8c0ac93305eaefe808ac29f4751fff8814eb07eeb89e070032e8bbcf932d6f",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call1_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1,
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": 44.17997887863125,
+        "n_upper_fail_bins": 14,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 44.18525521027022,
+        "n_upper_fail_bins": 15,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.3500311979441904e-13
+     },
+     "spectrum_simulation_time": 3.999
+    },
+    {
+     "k": 2,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update2_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 11,
+      "NumTotalTests": 26,
+      "SuccessRate": 42.30769230769231,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 7.9990000000000006
+     },
+     "spectrum_file_original": "mask_A_mask_freq_offset_50_call2_S.txt",
+     "spectrum_sha256": "f126a3851880ca074b80ea37a560fac174be65068c4779a6729612c6de15a0fb",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call2_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1,
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": 44.166299547491654,
+        "n_upper_fail_bins": 12,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 53.25285494415623,
+        "n_upper_fail_bins": 17,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 4.050093593832571e-13
+     },
+     "spectrum_simulation_time": 7.9990000000000006
+    },
+    {
+     "k": 3,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update3_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 11,
+      "NumTotalTests": 27,
+      "SuccessRate": 40.74074074074074,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 11.999
+     },
+     "spectrum_file_original": "mask_A_mask_freq_offset_50_call3_S.txt",
+     "spectrum_sha256": "487b3e5a6327c05687be187d4ffe8271527ef325047b737144bf34b556722a38",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call3_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1,
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": 44.17820580743559,
+        "n_upper_fail_bins": 10,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 46.96741547718034,
+        "n_upper_fail_bins": 18,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.2789769243681803e-13
+     },
+     "spectrum_simulation_time": 11.999
+    },
+    {
+     "k": 4,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update4_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 11,
+      "NumTotalTests": 28,
+      "SuccessRate": 39.285714285714285,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 15.999
+     },
+     "spectrum_file_original": "mask_A_mask_freq_offset_50_call4_S.txt",
+     "spectrum_sha256": "1d112f5e56041276494307cdfc91cd701edecadac1e46eaf8b070acfb98a9363",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call4_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1,
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": 44.163494124332615,
+        "n_upper_fail_bins": 14,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 38.67398818550151,
+        "n_upper_fail_bins": 15,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.2079226507921703e-13
+     },
+     "spectrum_simulation_time": 15.999
+    }
+   ]
+  },
+  {
+   "name": "mask_A_partial_range_200_300",
+   "run": 2,
+   "description": "mask defined only over [200 300] Hz: bins outside are untested",
+   "dataset": "A",
+   "signal": {
+    "n_samples": 4000,
+    "n_channels": 2,
+    "is_complex": false,
+    "n_calls": 4,
+    "fs": 1000
+   },
+   "window_length": 1000,
+   "spectral_averages": 4,
+   "two_sided": false,
+   "spectrum_type": "power",
+   "units": "dBm",
+   "nfft": 1024,
+   "nbins": 513,
+   "frequency_grid_file": "spectra/mask_A_doc_upper_f.txt",
+   "scope_props_requested": {},
+   "scope_state_readback": {
+    "SampleRate": 1000,
+    "Method": "welch",
+    "Window": "hann",
+    "OverlapPercent": 0,
+    "FrequencyResolutionMethod": "window-length",
+    "WindowLength": 1000,
+    "FFTLengthSource": "auto",
+    "FFTLength": 1024,
+    "RBW": 9.76,
+    "PlotAsTwoSidedSpectrum": false,
+    "AveragingMethod": "running",
+    "SpectralAverages": 4,
+    "SpectrumType": "power",
+    "SpectrumUnits": "dBm",
+    "ReferenceLoad": 1,
+    "FrequencySpan": "full",
+    "Span": 500,
+    "CenterFrequency": 250,
+    "StartFrequency": 0,
+    "StopFrequency": 500,
+    "FrequencyOffset": 0
+   },
+   "mask_config": {
+    "EnabledMasks": "upper",
+    "UpperMask": [
+     [
+      200,
+      -15
+     ],
+     [
+      300,
+      -15
+     ]
+    ],
+    "LowerMask": -Infinity,
+    "ReferenceLevel": "custom",
+    "CustomReferenceLevel": 0,
+    "SelectedChannel": 1,
+    "MaskFrequencyOffset": 0,
+    "Enabled": true
+   },
+   "config_errors": [
+    {
+     "target": "PhaseNoise",
+     "property": "Enabled",
+     "error_id": "MATLAB:noSuchMethodOrField"
+    }
+   ],
+   "mask_status_before_calls": [],
+   "mask_status_final": {
+    "IsCurrentlyPassing": true,
+    "NumPassedTests": 3,
+    "NumTotalTests": 4,
+    "SuccessRate": 75,
+    "FailingMasks": "",
+    "FailingChannels": [],
+    "SimulationTime": 15.999
+   },
+   "calls": [
+    {
+     "k": 1,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update1_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": true,
+      "NumPassedTests": 1,
+      "NumTotalTests": 1,
+      "SuccessRate": 100,
+      "FailingMasks": "",
+      "FailingChannels": [],
+      "SimulationTime": 3.999
+     },
+     "spectrum_file_original": "mask_A_partial_range_200_300_call1_S.txt",
+     "spectrum_sha256": "2f8c0ac93305eaefe808ac29f4751fff8814eb07eeb89e070032e8bbcf932d6f",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call1_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": true,
+      "failingChannels": [],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": -2.646291071682967,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": -2.3124728676132236,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.3500311979441904e-13
+     },
+     "spectrum_simulation_time": 3.999
+    },
+    {
+     "k": 2,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update2_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 1,
+      "NumTotalTests": 2,
+      "SuccessRate": 50,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": 2,
+      "SimulationTime": 7.9990000000000006
+     },
+     "spectrum_file_original": "mask_A_partial_range_200_300_call2_S.txt",
+     "spectrum_sha256": "f126a3851880ca074b80ea37a560fac174be65068c4779a6729612c6de15a0fb",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call2_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": -1.8936974639125879,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 0.06971083397225897,
+        "n_upper_fail_bins": 1,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 4.050093593832571e-13
+     },
+     "spectrum_simulation_time": 7.9990000000000006
+    },
+    {
+     "k": 3,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update3_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": true,
+      "NumPassedTests": 2,
+      "NumTotalTests": 3,
+      "SuccessRate": 66.66666666666666,
+      "FailingMasks": "",
+      "FailingChannels": [],
+      "SimulationTime": 11.999
+     },
+     "spectrum_file_original": "mask_A_partial_range_200_300_call3_S.txt",
+     "spectrum_sha256": "487b3e5a6327c05687be187d4ffe8271527ef325047b737144bf34b556722a38",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call3_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": true,
+      "failingChannels": [],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": -2.4319581553182132,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": -1.5318395230146464,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.2789769243681803e-13
+     },
+     "spectrum_simulation_time": 11.999
+    },
+    {
+     "k": 4,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update4_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": true,
+      "NumPassedTests": 3,
+      "NumTotalTests": 4,
+      "SuccessRate": 75,
+      "FailingMasks": "",
+      "FailingChannels": [],
+      "SimulationTime": 15.999
+     },
+     "spectrum_file_original": "mask_A_partial_range_200_300_call4_S.txt",
+     "spectrum_sha256": "1d112f5e56041276494307cdfc91cd701edecadac1e46eaf8b070acfb98a9363",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call4_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": true,
+      "failingChannels": [],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": -0.3444643358442008,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": -2.2381961217484445,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.2079226507921703e-13
+     },
+     "spectrum_simulation_time": 15.999
+    }
+   ]
+  },
+  {
+   "name": "mask_A_nan_segment",
+   "run": 2,
+   "description": "NaN levels in the 90-110 Hz segment",
+   "dataset": "A",
+   "signal": {
+    "n_samples": 4000,
+    "n_channels": 2,
+    "is_complex": false,
+    "n_calls": 4,
+    "fs": 1000
+   },
+   "window_length": 1000,
+   "spectral_averages": 4,
+   "two_sided": false,
+   "spectrum_type": "power",
+   "units": "dBm",
+   "nfft": 1024,
+   "nbins": 513,
+   "frequency_grid_file": "spectra/mask_A_doc_upper_f.txt",
+   "scope_props_requested": {},
+   "scope_state_readback": {
+    "SampleRate": 1000,
+    "Method": "welch",
+    "Window": "hann",
+    "OverlapPercent": 0,
+    "FrequencyResolutionMethod": "window-length",
+    "WindowLength": 1000,
+    "FFTLengthSource": "auto",
+    "FFTLength": 1024,
+    "RBW": 9.76,
+    "PlotAsTwoSidedSpectrum": false,
+    "AveragingMethod": "running",
+    "SpectralAverages": 4,
+    "SpectrumType": "power",
+    "SpectrumUnits": "dBm",
+    "ReferenceLoad": 1,
+    "FrequencySpan": "full",
+    "Span": 500,
+    "CenterFrequency": 250,
+    "StartFrequency": 0,
+    "StopFrequency": 500,
+    "FrequencyOffset": 0
+   },
+   "mask_config": {
+    "EnabledMasks": "upper",
+    "UpperMask": [
+     [
+      0,
+      -17
+     ],
+     [
+      90,
+      -17
+     ],
+     [
+      90,
+      NaN
+     ],
+     [
+      110,
+      NaN
+     ],
+     [
+      110,
+      -17
+     ],
+     [
+      500,
+      -17
+     ]
+    ],
+    "LowerMask": -Infinity,
+    "ReferenceLevel": "custom",
+    "CustomReferenceLevel": 0,
+    "SelectedChannel": 1,
+    "MaskFrequencyOffset": 0,
+    "Enabled": true
+   },
+   "config_errors": [
+    {
+     "target": "PhaseNoise",
+     "property": "Enabled",
+     "error_id": "MATLAB:noSuchMethodOrField"
+    }
+   ],
+   "mask_status_before_calls": {
+    "IsCurrentlyPassing": true,
+    "NumPassedTests": 3,
+    "NumTotalTests": 4,
+    "SuccessRate": 75,
+    "FailingMasks": "",
+    "FailingChannels": [],
+    "SimulationTime": 15.999
+   },
+   "mask_status_final": {
+    "IsCurrentlyPassing": false,
+    "NumPassedTests": 3,
+    "NumTotalTests": 8,
+    "SuccessRate": 37.5,
+    "FailingMasks": "Upper and lower",
+    "FailingChannels": [
+     1,
+     2
+    ],
+    "SimulationTime": 15.999
+   },
+   "calls": [
+    {
+     "k": 1,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update1_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 3,
+      "NumTotalTests": 5,
+      "SuccessRate": 60,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 3.999
+     },
+     "spectrum_file_original": "mask_A_nan_segment_call1_S.txt",
+     "spectrum_sha256": "2f8c0ac93305eaefe808ac29f4751fff8814eb07eeb89e070032e8bbcf932d6f",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call1_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1,
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": 1.519564296508861,
+        "n_upper_fail_bins": 4,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 1.2278187822389839,
+        "n_upper_fail_bins": 4,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.3500311979441904e-13
+     },
+     "spectrum_simulation_time": 3.999
+    },
+    {
+     "k": 2,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update2_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 3,
+      "NumTotalTests": 6,
+      "SuccessRate": 50,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 7.9990000000000006
+     },
+     "spectrum_file_original": "mask_A_nan_segment_call2_S.txt",
+     "spectrum_sha256": "f126a3851880ca074b80ea37a560fac174be65068c4779a6729612c6de15a0fb",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call2_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1,
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": 0.5140048776430248,
+        "n_upper_fail_bins": 3,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 2.069710833972259,
+        "n_upper_fail_bins": 3,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 4.050093593832571e-13
+     },
+     "spectrum_simulation_time": 7.9990000000000006
+    },
+    {
+     "k": 3,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update3_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 3,
+      "NumTotalTests": 7,
+      "SuccessRate": 42.857142857142854,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": 2,
+      "SimulationTime": 11.999
+     },
+     "spectrum_file_original": "mask_A_nan_segment_call3_S.txt",
+     "spectrum_sha256": "487b3e5a6327c05687be187d4ffe8271527ef325047b737144bf34b556722a38",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call3_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": -0.06682980695654805,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 1.008346364670686,
+        "n_upper_fail_bins": 8,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.2789769243681803e-13
+     },
+     "spectrum_simulation_time": 11.999
+    },
+    {
+     "k": 4,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update4_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 3,
+      "NumTotalTests": 8,
+      "SuccessRate": 37.5,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 15.999
+     },
+     "spectrum_file_original": "mask_A_nan_segment_call4_S.txt",
+     "spectrum_sha256": "1d112f5e56041276494307cdfc91cd701edecadac1e46eaf8b070acfb98a9363",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call4_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1,
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": 1.6555356641557992,
+        "n_upper_fail_bins": 6,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 1.2303397863539658,
+        "n_upper_fail_bins": 6,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.2079226507921703e-13
+     },
+     "spectrum_simulation_time": 15.999
+    }
+   ]
+  },
+  {
+   "name": "mask_A_sloped",
+   "run": 2,
+   "description": "sloped upper [0 -15; 95 35; 105 35; 500 -25] and lower [0 -60; 500 -40]",
+   "dataset": "A",
+   "signal": {
+    "n_samples": 4000,
+    "n_channels": 2,
+    "is_complex": false,
+    "n_calls": 4,
+    "fs": 1000
+   },
+   "window_length": 1000,
+   "spectral_averages": 4,
+   "two_sided": false,
+   "spectrum_type": "power",
+   "units": "dBm",
+   "nfft": 1024,
+   "nbins": 513,
+   "frequency_grid_file": "spectra/mask_A_doc_upper_f.txt",
+   "scope_props_requested": {},
+   "scope_state_readback": {
+    "SampleRate": 1000,
+    "Method": "welch",
+    "Window": "hann",
+    "OverlapPercent": 0,
+    "FrequencyResolutionMethod": "window-length",
+    "WindowLength": 1000,
+    "FFTLengthSource": "auto",
+    "FFTLength": 1024,
+    "RBW": 9.76,
+    "PlotAsTwoSidedSpectrum": false,
+    "AveragingMethod": "running",
+    "SpectralAverages": 4,
+    "SpectrumType": "power",
+    "SpectrumUnits": "dBm",
+    "ReferenceLoad": 1,
+    "FrequencySpan": "full",
+    "Span": 500,
+    "CenterFrequency": 250,
+    "StartFrequency": 0,
+    "StopFrequency": 500,
+    "FrequencyOffset": 0
+   },
+   "mask_config": {
+    "EnabledMasks": "upper-and-lower",
+    "UpperMask": [
+     [
+      0,
+      -15
+     ],
+     [
+      95,
+      35
+     ],
+     [
+      105,
+      35
+     ],
+     [
+      500,
+      -25
+     ]
+    ],
+    "LowerMask": [
+     [
+      0,
+      -60
+     ],
+     [
+      500,
+      -40
+     ]
+    ],
+    "ReferenceLevel": "custom",
+    "CustomReferenceLevel": 0,
+    "SelectedChannel": 1,
+    "MaskFrequencyOffset": 0,
+    "Enabled": true
+   },
+   "config_errors": [
+    {
+     "target": "PhaseNoise",
+     "property": "Enabled",
+     "error_id": "MATLAB:noSuchMethodOrField"
+    }
+   ],
+   "mask_status_before_calls": {
+    "IsCurrentlyPassing": false,
+    "NumPassedTests": 3,
+    "NumTotalTests": 8,
+    "SuccessRate": 37.5,
+    "FailingMasks": "Upper and lower",
+    "FailingChannels": [
+     1,
+     2
+    ],
+    "SimulationTime": 15.999
+   },
+   "mask_status_final": {
+    "IsCurrentlyPassing": false,
+    "NumPassedTests": 3,
+    "NumTotalTests": 12,
+    "SuccessRate": 25,
+    "FailingMasks": "Upper and lower",
+    "FailingChannels": [
+     1,
+     2
+    ],
+    "SimulationTime": 15.999
+   },
+   "calls": [
+    {
+     "k": 1,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update1_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 3,
+      "NumTotalTests": 9,
+      "SuccessRate": 33.33333333333333,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 3.999
+     },
+     "spectrum_file_original": "mask_A_sloped_call1_S.txt",
+     "spectrum_sha256": "2f8c0ac93305eaefe808ac29f4751fff8814eb07eeb89e070032e8bbcf932d6f",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call1_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1,
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": 3.995094044919263,
+        "n_upper_fail_bins": 25,
+        "lower_min_margin_dB": 8.831755869731232,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 5.533593081233477,
+        "n_upper_fail_bins": 26,
+        "lower_min_margin_dB": 13.369779547672664,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.3500311979441904e-13
+     },
+     "spectrum_simulation_time": 3.999
+    },
+    {
+     "k": 2,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update2_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 3,
+      "NumTotalTests": 10,
+      "SuccessRate": 30,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 7.9990000000000006
+     },
+     "spectrum_file_original": "mask_A_sloped_call2_S.txt",
+     "spectrum_sha256": "f126a3851880ca074b80ea37a560fac174be65068c4779a6729612c6de15a0fb",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call2_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1,
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": 6.38328856517353,
+        "n_upper_fail_bins": 21,
+        "lower_min_margin_dB": 12.677611259935624,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 4.441685934918688,
+        "n_upper_fail_bins": 24,
+        "lower_min_margin_dB": 14.583898469877312,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 4.050093593832571e-13
+     },
+     "spectrum_simulation_time": 7.9990000000000006
+    },
+    {
+     "k": 3,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update3_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 3,
+      "NumTotalTests": 11,
+      "SuccessRate": 27.27272727272727,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 11.999
+     },
+     "spectrum_file_original": "mask_A_sloped_call3_S.txt",
+     "spectrum_sha256": "487b3e5a6327c05687be187d4ffe8271527ef325047b737144bf34b556722a38",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call3_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1,
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": 5.362383877977194,
+        "n_upper_fail_bins": 22,
+        "lower_min_margin_dB": 11.777759815963968,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 5.82306111980666,
+        "n_upper_fail_bins": 24,
+        "lower_min_margin_dB": 14.555574707564645,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.2789769243681803e-13
+     },
+     "spectrum_simulation_time": 11.999
+    },
+    {
+     "k": 4,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update4_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 3,
+      "NumTotalTests": 12,
+      "SuccessRate": 25,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 15.999
+     },
+     "spectrum_file_original": "mask_A_sloped_call4_S.txt",
+     "spectrum_sha256": "1d112f5e56041276494307cdfc91cd701edecadac1e46eaf8b070acfb98a9363",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call4_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1,
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": 5.569305518233541,
+        "n_upper_fail_bins": 23,
+        "lower_min_margin_dB": 15.277624710864266,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 7.079733079854243,
+        "n_upper_fail_bins": 29,
+        "lower_min_margin_dB": 15.507011411382535,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.2079226507921703e-13
+     },
+     "spectrum_simulation_time": 15.999
+    }
+   ]
+  },
+  {
+   "name": "mask_A_inf_freq_ends",
+   "run": 2,
+   "description": "[-Inf -30; Inf -30]: -Inf FIRST BREAKPOINT case (the inferred rule predicts the segment is never tested -> passes although tones are at +27 dBm)",
+   "dataset": "A",
+   "signal": {
+    "n_samples": 4000,
+    "n_channels": 2,
+    "is_complex": false,
+    "n_calls": 4,
+    "fs": 1000
+   },
+   "window_length": 1000,
+   "spectral_averages": 4,
+   "two_sided": false,
+   "spectrum_type": "power",
+   "units": "dBm",
+   "nfft": 1024,
+   "nbins": 513,
+   "frequency_grid_file": "spectra/mask_A_doc_upper_f.txt",
+   "scope_props_requested": {},
+   "scope_state_readback": {
+    "SampleRate": 1000,
+    "Method": "welch",
+    "Window": "hann",
+    "OverlapPercent": 0,
+    "FrequencyResolutionMethod": "window-length",
+    "WindowLength": 1000,
+    "FFTLengthSource": "auto",
+    "FFTLength": 1024,
+    "RBW": 9.76,
+    "PlotAsTwoSidedSpectrum": false,
+    "AveragingMethod": "running",
+    "SpectralAverages": 4,
+    "SpectrumType": "power",
+    "SpectrumUnits": "dBm",
+    "ReferenceLoad": 1,
+    "FrequencySpan": "full",
+    "Span": 500,
+    "CenterFrequency": 250,
+    "StartFrequency": 0,
+    "StopFrequency": 500,
+    "FrequencyOffset": 0
+   },
+   "mask_config": {
+    "EnabledMasks": "upper",
+    "UpperMask": [
+     [
+      -Infinity,
+      -30
+     ],
+     [
+      Infinity,
+      -30
+     ]
+    ],
+    "LowerMask": -Infinity,
+    "ReferenceLevel": "custom",
+    "CustomReferenceLevel": 0,
+    "SelectedChannel": 1,
+    "MaskFrequencyOffset": 0,
+    "Enabled": true
+   },
+   "config_errors": [
+    {
+     "target": "PhaseNoise",
+     "property": "Enabled",
+     "error_id": "MATLAB:noSuchMethodOrField"
+    }
+   ],
+   "mask_status_before_calls": {
+    "IsCurrentlyPassing": false,
+    "NumPassedTests": 3,
+    "NumTotalTests": 12,
+    "SuccessRate": 25,
+    "FailingMasks": "Upper and lower",
+    "FailingChannels": [
+     1,
+     2
+    ],
+    "SimulationTime": 15.999
+   },
+   "mask_status_final": {
+    "IsCurrentlyPassing": true,
+    "NumPassedTests": 7,
+    "NumTotalTests": 16,
+    "SuccessRate": 43.75,
+    "FailingMasks": "",
+    "FailingChannels": [],
+    "SimulationTime": 15.999
+   },
+   "calls": [
+    {
+     "k": 1,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update1_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": true,
+      "NumPassedTests": 4,
+      "NumTotalTests": 13,
+      "SuccessRate": 30.76923076923077,
+      "FailingMasks": "",
+      "FailingChannels": [],
+      "SimulationTime": 3.999
+     },
+     "spectrum_file_original": "mask_A_inf_freq_ends_call1_S.txt",
+     "spectrum_sha256": "2f8c0ac93305eaefe808ac29f4751fff8814eb07eeb89e070032e8bbcf932d6f",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call1_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": true,
+      "failingChannels": [],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": NaN,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": NaN,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.3500311979441904e-13
+     },
+     "spectrum_simulation_time": 3.999
+    },
+    {
+     "k": 2,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update2_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": true,
+      "NumPassedTests": 5,
+      "NumTotalTests": 14,
+      "SuccessRate": 35.714285714285715,
+      "FailingMasks": "",
+      "FailingChannels": [],
+      "SimulationTime": 7.9990000000000006
+     },
+     "spectrum_file_original": "mask_A_inf_freq_ends_call2_S.txt",
+     "spectrum_sha256": "f126a3851880ca074b80ea37a560fac174be65068c4779a6729612c6de15a0fb",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call2_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": true,
+      "failingChannels": [],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": NaN,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": NaN,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 4.050093593832571e-13
+     },
+     "spectrum_simulation_time": 7.9990000000000006
+    },
+    {
+     "k": 3,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update3_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": true,
+      "NumPassedTests": 6,
+      "NumTotalTests": 15,
+      "SuccessRate": 40,
+      "FailingMasks": "",
+      "FailingChannels": [],
+      "SimulationTime": 11.999
+     },
+     "spectrum_file_original": "mask_A_inf_freq_ends_call3_S.txt",
+     "spectrum_sha256": "487b3e5a6327c05687be187d4ffe8271527ef325047b737144bf34b556722a38",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call3_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": true,
+      "failingChannels": [],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": NaN,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": NaN,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.2789769243681803e-13
+     },
+     "spectrum_simulation_time": 11.999
+    },
+    {
+     "k": 4,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update4_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": true,
+      "NumPassedTests": 7,
+      "NumTotalTests": 16,
+      "SuccessRate": 43.75,
+      "FailingMasks": "",
+      "FailingChannels": [],
+      "SimulationTime": 15.999
+     },
+     "spectrum_file_original": "mask_A_inf_freq_ends_call4_S.txt",
+     "spectrum_sha256": "1d112f5e56041276494307cdfc91cd701edecadac1e46eaf8b070acfb98a9363",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call4_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": true,
+      "failingChannels": [],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": NaN,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": NaN,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.2079226507921703e-13
+     },
+     "spectrum_simulation_time": 15.999
+    }
+   ]
+  },
+  {
+   "name": "mask_A_minus_inf_first_bp",
+   "run": 2,
+   "description": "[-Inf -30; 500 -30] (-Inf first breakpoint, finite end)",
+   "dataset": "A",
+   "signal": {
+    "n_samples": 4000,
+    "n_channels": 2,
+    "is_complex": false,
+    "n_calls": 4,
+    "fs": 1000
+   },
+   "window_length": 1000,
+   "spectral_averages": 4,
+   "two_sided": false,
+   "spectrum_type": "power",
+   "units": "dBm",
+   "nfft": 1024,
+   "nbins": 513,
+   "frequency_grid_file": "spectra/mask_A_doc_upper_f.txt",
+   "scope_props_requested": {},
+   "scope_state_readback": {
+    "SampleRate": 1000,
+    "Method": "welch",
+    "Window": "hann",
+    "OverlapPercent": 0,
+    "FrequencyResolutionMethod": "window-length",
+    "WindowLength": 1000,
+    "FFTLengthSource": "auto",
+    "FFTLength": 1024,
+    "RBW": 9.76,
+    "PlotAsTwoSidedSpectrum": false,
+    "AveragingMethod": "running",
+    "SpectralAverages": 4,
+    "SpectrumType": "power",
+    "SpectrumUnits": "dBm",
+    "ReferenceLoad": 1,
+    "FrequencySpan": "full",
+    "Span": 500,
+    "CenterFrequency": 250,
+    "StartFrequency": 0,
+    "StopFrequency": 500,
+    "FrequencyOffset": 0
+   },
+   "mask_config": {
+    "EnabledMasks": "upper",
+    "UpperMask": [
+     [
+      -Infinity,
+      -30
+     ],
+     [
+      500,
+      -30
+     ]
+    ],
+    "LowerMask": -Infinity,
+    "ReferenceLevel": "custom",
+    "CustomReferenceLevel": 0,
+    "SelectedChannel": 1,
+    "MaskFrequencyOffset": 0,
+    "Enabled": true
+   },
+   "config_errors": [
+    {
+     "target": "PhaseNoise",
+     "property": "Enabled",
+     "error_id": "MATLAB:noSuchMethodOrField"
+    }
+   ],
+   "mask_status_before_calls": {
+    "IsCurrentlyPassing": true,
+    "NumPassedTests": 7,
+    "NumTotalTests": 16,
+    "SuccessRate": 43.75,
+    "FailingMasks": "",
+    "FailingChannels": [],
+    "SimulationTime": 15.999
+   },
+   "mask_status_final": {
+    "IsCurrentlyPassing": true,
+    "NumPassedTests": 11,
+    "NumTotalTests": 20,
+    "SuccessRate": 55.00000000000001,
+    "FailingMasks": "",
+    "FailingChannels": [],
+    "SimulationTime": 15.999
+   },
+   "calls": [
+    {
+     "k": 1,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update1_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": true,
+      "NumPassedTests": 8,
+      "NumTotalTests": 17,
+      "SuccessRate": 47.05882352941176,
+      "FailingMasks": "",
+      "FailingChannels": [],
+      "SimulationTime": 3.999
+     },
+     "spectrum_file_original": "mask_A_minus_inf_first_bp_call1_S.txt",
+     "spectrum_sha256": "2f8c0ac93305eaefe808ac29f4751fff8814eb07eeb89e070032e8bbcf932d6f",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call1_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": true,
+      "failingChannels": [],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": NaN,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": NaN,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.3500311979441904e-13
+     },
+     "spectrum_simulation_time": 3.999
+    },
+    {
+     "k": 2,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update2_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": true,
+      "NumPassedTests": 9,
+      "NumTotalTests": 18,
+      "SuccessRate": 50,
+      "FailingMasks": "",
+      "FailingChannels": [],
+      "SimulationTime": 7.9990000000000006
+     },
+     "spectrum_file_original": "mask_A_minus_inf_first_bp_call2_S.txt",
+     "spectrum_sha256": "f126a3851880ca074b80ea37a560fac174be65068c4779a6729612c6de15a0fb",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call2_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": true,
+      "failingChannels": [],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": NaN,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": NaN,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 4.050093593832571e-13
+     },
+     "spectrum_simulation_time": 7.9990000000000006
+    },
+    {
+     "k": 3,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update3_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": true,
+      "NumPassedTests": 10,
+      "NumTotalTests": 19,
+      "SuccessRate": 52.63157894736842,
+      "FailingMasks": "",
+      "FailingChannels": [],
+      "SimulationTime": 11.999
+     },
+     "spectrum_file_original": "mask_A_minus_inf_first_bp_call3_S.txt",
+     "spectrum_sha256": "487b3e5a6327c05687be187d4ffe8271527ef325047b737144bf34b556722a38",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call3_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": true,
+      "failingChannels": [],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": NaN,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": NaN,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.2789769243681803e-13
+     },
+     "spectrum_simulation_time": 11.999
+    },
+    {
+     "k": 4,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update4_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": true,
+      "NumPassedTests": 11,
+      "NumTotalTests": 20,
+      "SuccessRate": 55.00000000000001,
+      "FailingMasks": "",
+      "FailingChannels": [],
+      "SimulationTime": 15.999
+     },
+     "spectrum_file_original": "mask_A_minus_inf_first_bp_call4_S.txt",
+     "spectrum_sha256": "1d112f5e56041276494307cdfc91cd701edecadac1e46eaf8b070acfb98a9363",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call4_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": true,
+      "failingChannels": [],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": NaN,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": NaN,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.2079226507921703e-13
+     },
+     "spectrum_simulation_time": 15.999
+    }
+   ]
+  },
+  {
+   "name": "mask_A_finite_first_bp",
+   "run": 2,
+   "description": "[0 -30; 500 -30] control for the previous case: must FAIL (tones at ~27 dBm)",
+   "dataset": "A",
+   "signal": {
+    "n_samples": 4000,
+    "n_channels": 2,
+    "is_complex": false,
+    "n_calls": 4,
+    "fs": 1000
+   },
+   "window_length": 1000,
+   "spectral_averages": 4,
+   "two_sided": false,
+   "spectrum_type": "power",
+   "units": "dBm",
+   "nfft": 1024,
+   "nbins": 513,
+   "frequency_grid_file": "spectra/mask_A_doc_upper_f.txt",
+   "scope_props_requested": {},
+   "scope_state_readback": {
+    "SampleRate": 1000,
+    "Method": "welch",
+    "Window": "hann",
+    "OverlapPercent": 0,
+    "FrequencyResolutionMethod": "window-length",
+    "WindowLength": 1000,
+    "FFTLengthSource": "auto",
+    "FFTLength": 1024,
+    "RBW": 9.76,
+    "PlotAsTwoSidedSpectrum": false,
+    "AveragingMethod": "running",
+    "SpectralAverages": 4,
+    "SpectrumType": "power",
+    "SpectrumUnits": "dBm",
+    "ReferenceLoad": 1,
+    "FrequencySpan": "full",
+    "Span": 500,
+    "CenterFrequency": 250,
+    "StartFrequency": 0,
+    "StopFrequency": 500,
+    "FrequencyOffset": 0
+   },
+   "mask_config": {
+    "EnabledMasks": "upper",
+    "UpperMask": [
+     [
+      0,
+      -30
+     ],
+     [
+      500,
+      -30
+     ]
+    ],
+    "LowerMask": -Infinity,
+    "ReferenceLevel": "custom",
+    "CustomReferenceLevel": 0,
+    "SelectedChannel": 1,
+    "MaskFrequencyOffset": 0,
+    "Enabled": true
+   },
+   "config_errors": [
+    {
+     "target": "PhaseNoise",
+     "property": "Enabled",
+     "error_id": "MATLAB:noSuchMethodOrField"
+    }
+   ],
+   "mask_status_before_calls": {
+    "IsCurrentlyPassing": true,
+    "NumPassedTests": 11,
+    "NumTotalTests": 20,
+    "SuccessRate": 55.00000000000001,
+    "FailingMasks": "",
+    "FailingChannels": [],
+    "SimulationTime": 15.999
+   },
+   "mask_status_final": {
+    "IsCurrentlyPassing": false,
+    "NumPassedTests": 11,
+    "NumTotalTests": 24,
+    "SuccessRate": 45.83333333333333,
+    "FailingMasks": "Upper and lower",
+    "FailingChannels": [
+     1,
+     2
+    ],
+    "SimulationTime": 15.999
+   },
+   "calls": [
+    {
+     "k": 1,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update1_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 11,
+      "NumTotalTests": 21,
+      "SuccessRate": 52.38095238095239,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 3.999
+     },
+     "spectrum_file_original": "mask_A_finite_first_bp_call1_S.txt",
+     "spectrum_sha256": "2f8c0ac93305eaefe808ac29f4751fff8814eb07eeb89e070032e8bbcf932d6f",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call1_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1,
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": 57.17997887863125,
+        "n_upper_fail_bins": 511,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 57.18525521027022,
+        "n_upper_fail_bins": 511,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.3500311979441904e-13
+     },
+     "spectrum_simulation_time": 3.999
+    },
+    {
+     "k": 2,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update2_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 11,
+      "NumTotalTests": 22,
+      "SuccessRate": 50,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 7.9990000000000006
+     },
+     "spectrum_file_original": "mask_A_finite_first_bp_call2_S.txt",
+     "spectrum_sha256": "f126a3851880ca074b80ea37a560fac174be65068c4779a6729612c6de15a0fb",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call2_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1,
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": 57.166299547491654,
+        "n_upper_fail_bins": 513,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 66.25285494415624,
+        "n_upper_fail_bins": 513,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 4.050093593832571e-13
+     },
+     "spectrum_simulation_time": 7.9990000000000006
+    },
+    {
+     "k": 3,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update3_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 11,
+      "NumTotalTests": 23,
+      "SuccessRate": 47.82608695652174,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 11.999
+     },
+     "spectrum_file_original": "mask_A_finite_first_bp_call3_S.txt",
+     "spectrum_sha256": "487b3e5a6327c05687be187d4ffe8271527ef325047b737144bf34b556722a38",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call3_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1,
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": 57.17820580743559,
+        "n_upper_fail_bins": 513,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 59.96741547718034,
+        "n_upper_fail_bins": 513,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.2789769243681803e-13
+     },
+     "spectrum_simulation_time": 11.999
+    },
+    {
+     "k": 4,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update4_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 11,
+      "NumTotalTests": 24,
+      "SuccessRate": 45.83333333333333,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 15.999
+     },
+     "spectrum_file_original": "mask_A_finite_first_bp_call4_S.txt",
+     "spectrum_sha256": "1d112f5e56041276494307cdfc91cd701edecadac1e46eaf8b070acfb98a9363",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call4_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1,
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": 57.163494124332615,
+        "n_upper_fail_bins": 513,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 51.67398818550151,
+        "n_upper_fail_bins": 513,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.2079226507921703e-13
+     },
+     "spectrum_simulation_time": 15.999
+    }
+   ]
+  },
+  {
+   "name": "mask_A_scalar_m12_full",
+   "run": 2,
+   "description": "scalar upper -12 over the full display [0 500]: control, FAILS",
+   "dataset": "A",
+   "signal": {
+    "n_samples": 4000,
+    "n_channels": 2,
+    "is_complex": false,
+    "n_calls": 4,
+    "fs": 1000
+   },
+   "window_length": 1000,
+   "spectral_averages": 4,
+   "two_sided": false,
+   "spectrum_type": "power",
+   "units": "dBm",
+   "nfft": 1024,
+   "nbins": 513,
+   "frequency_grid_file": "spectra/mask_A_doc_upper_f.txt",
+   "scope_props_requested": {},
+   "scope_state_readback": {
+    "SampleRate": 1000,
+    "Method": "welch",
+    "Window": "hann",
+    "OverlapPercent": 0,
+    "FrequencyResolutionMethod": "window-length",
+    "WindowLength": 1000,
+    "FFTLengthSource": "auto",
+    "FFTLength": 1024,
+    "RBW": 9.76,
+    "PlotAsTwoSidedSpectrum": false,
+    "AveragingMethod": "running",
+    "SpectralAverages": 4,
+    "SpectrumType": "power",
+    "SpectrumUnits": "dBm",
+    "ReferenceLoad": 1,
+    "FrequencySpan": "full",
+    "Span": 500,
+    "CenterFrequency": 250,
+    "StartFrequency": 0,
+    "StopFrequency": 500,
+    "FrequencyOffset": 0
+   },
+   "mask_config": {
+    "EnabledMasks": "upper",
+    "UpperMask": -12,
+    "LowerMask": -Infinity,
+    "ReferenceLevel": "custom",
+    "CustomReferenceLevel": 0,
+    "SelectedChannel": 1,
+    "MaskFrequencyOffset": 0,
+    "Enabled": true
+   },
+   "config_errors": [
+    {
+     "target": "PhaseNoise",
+     "property": "Enabled",
+     "error_id": "MATLAB:noSuchMethodOrField"
+    }
+   ],
+   "mask_status_before_calls": {
+    "IsCurrentlyPassing": false,
+    "NumPassedTests": 11,
+    "NumTotalTests": 24,
+    "SuccessRate": 45.83333333333333,
+    "FailingMasks": "Upper and lower",
+    "FailingChannels": [
+     1,
+     2
+    ],
+    "SimulationTime": 15.999
+   },
+   "mask_status_final": {
+    "IsCurrentlyPassing": false,
+    "NumPassedTests": 11,
+    "NumTotalTests": 28,
+    "SuccessRate": 39.285714285714285,
+    "FailingMasks": "Upper and lower",
+    "FailingChannels": [
+     1,
+     2
+    ],
+    "SimulationTime": 15.999
+   },
+   "calls": [
+    {
+     "k": 1,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update1_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 11,
+      "NumTotalTests": 25,
+      "SuccessRate": 44,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 3.999
+     },
+     "spectrum_file_original": "mask_A_scalar_m12_full_call1_S.txt",
+     "spectrum_sha256": "2f8c0ac93305eaefe808ac29f4751fff8814eb07eeb89e070032e8bbcf932d6f",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call1_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1,
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": 39.17997887863125,
+        "n_upper_fail_bins": 9,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 39.18525521027022,
+        "n_upper_fail_bins": 8,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.3500311979441904e-13
+     },
+     "spectrum_simulation_time": 3.999
+    },
+    {
+     "k": 2,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update2_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 11,
+      "NumTotalTests": 26,
+      "SuccessRate": 42.30769230769231,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 7.9990000000000006
+     },
+     "spectrum_file_original": "mask_A_scalar_m12_full_call2_S.txt",
+     "spectrum_sha256": "f126a3851880ca074b80ea37a560fac174be65068c4779a6729612c6de15a0fb",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call2_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1,
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": 39.166299547491654,
+        "n_upper_fail_bins": 9,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 48.25285494415623,
+        "n_upper_fail_bins": 12,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 4.050093593832571e-13
+     },
+     "spectrum_simulation_time": 7.9990000000000006
+    },
+    {
+     "k": 3,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update3_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 11,
+      "NumTotalTests": 27,
+      "SuccessRate": 40.74074074074074,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 11.999
+     },
+     "spectrum_file_original": "mask_A_scalar_m12_full_call3_S.txt",
+     "spectrum_sha256": "487b3e5a6327c05687be187d4ffe8271527ef325047b737144bf34b556722a38",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call3_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1,
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": 39.17820580743559,
+        "n_upper_fail_bins": 9,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 41.96741547718034,
+        "n_upper_fail_bins": 10,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.2789769243681803e-13
+     },
+     "spectrum_simulation_time": 11.999
+    },
+    {
+     "k": 4,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update4_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 11,
+      "NumTotalTests": 28,
+      "SuccessRate": 39.285714285714285,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 15.999
+     },
+     "spectrum_file_original": "mask_A_scalar_m12_full_call4_S.txt",
+     "spectrum_sha256": "1d112f5e56041276494307cdfc91cd701edecadac1e46eaf8b070acfb98a9363",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call4_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1,
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": 39.163494124332615,
+        "n_upper_fail_bins": 10,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 33.67398818550151,
+        "n_upper_fail_bins": 8,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.2079226507921703e-13
+     },
+     "spectrum_simulation_time": 15.999
+    }
+   ]
+  },
+  {
+   "name": "mask_A_scalar_m12_xlim_120_480_startstop",
+   "run": 2,
+   "description": "scalar upper -12 with the scope FrequencySpan start/stop [120 480]: does the scalar mask range follow the displayed x-limits?",
+   "dataset": "A",
+   "signal": {
+    "n_samples": 4000,
+    "n_channels": 2,
+    "is_complex": false,
+    "n_calls": 4,
+    "fs": 1000
+   },
+   "window_length": 1000,
+   "spectral_averages": 4,
+   "two_sided": false,
+   "spectrum_type": "power",
+   "units": "dBm",
+   "nfft": 1024,
+   "nbins": 513,
+   "frequency_grid_file": "spectra/mask_A_doc_upper_f.txt",
+   "scope_props_requested": {
+    "FrequencySpan": "start-and-stop-frequencies",
+    "StartFrequency": 120,
+    "StopFrequency": 480
+   },
+   "scope_state_readback": {
+    "SampleRate": 1000,
+    "Method": "welch",
+    "Window": "hann",
+    "OverlapPercent": 0,
+    "FrequencyResolutionMethod": "window-length",
+    "WindowLength": 1000,
+    "FFTLengthSource": "auto",
+    "FFTLength": 1024,
+    "RBW": 9.76,
+    "PlotAsTwoSidedSpectrum": false,
+    "AveragingMethod": "running",
+    "SpectralAverages": 4,
+    "SpectrumType": "power",
+    "SpectrumUnits": "dBm",
+    "ReferenceLoad": 1,
+    "FrequencySpan": "start-and-stop-frequencies",
+    "Span": 500,
+    "CenterFrequency": 250,
+    "StartFrequency": 120,
+    "StopFrequency": 480,
+    "FrequencyOffset": 0
+   },
+   "mask_config": {
+    "EnabledMasks": "upper",
+    "UpperMask": -12,
+    "LowerMask": -Infinity,
+    "ReferenceLevel": "custom",
+    "CustomReferenceLevel": 0,
+    "SelectedChannel": 1,
+    "MaskFrequencyOffset": 0,
+    "Enabled": true
+   },
+   "config_errors": [
+    {
+     "target": "PhaseNoise",
+     "property": "Enabled",
+     "error_id": "MATLAB:noSuchMethodOrField"
+    }
+   ],
+   "mask_status_before_calls": {
+    "IsCurrentlyPassing": false,
+    "NumPassedTests": 11,
+    "NumTotalTests": 28,
+    "SuccessRate": 39.285714285714285,
+    "FailingMasks": "Upper and lower",
+    "FailingChannels": [
+     1,
+     2
+    ],
+    "SimulationTime": 15.999
+   },
+   "mask_status_final": {
+    "IsCurrentlyPassing": false,
+    "NumPassedTests": 11,
+    "NumTotalTests": 32,
+    "SuccessRate": 34.375,
+    "FailingMasks": "Upper and lower",
+    "FailingChannels": [
+     1,
+     2
+    ],
+    "SimulationTime": 15.999
+   },
+   "calls": [
+    {
+     "k": 1,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update1_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 11,
+      "NumTotalTests": 29,
+      "SuccessRate": 37.93103448275862,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 3.999
+     },
+     "spectrum_file_original": "mask_A_scalar_m12_xlim_120_480_startstop_call1_S.txt",
+     "spectrum_sha256": "2f8c0ac93305eaefe808ac29f4751fff8814eb07eeb89e070032e8bbcf932d6f",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call1_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1,
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": 39.17997887863125,
+        "n_upper_fail_bins": 9,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 39.18525521027022,
+        "n_upper_fail_bins": 8,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.3500311979441904e-13
+     },
+     "spectrum_simulation_time": 3.999
+    },
+    {
+     "k": 2,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update2_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 11,
+      "NumTotalTests": 30,
+      "SuccessRate": 36.666666666666664,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 7.9990000000000006
+     },
+     "spectrum_file_original": "mask_A_scalar_m12_xlim_120_480_startstop_call2_S.txt",
+     "spectrum_sha256": "f126a3851880ca074b80ea37a560fac174be65068c4779a6729612c6de15a0fb",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call2_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1,
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": 39.166299547491654,
+        "n_upper_fail_bins": 9,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 48.25285494415623,
+        "n_upper_fail_bins": 12,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 4.050093593832571e-13
+     },
+     "spectrum_simulation_time": 7.9990000000000006
+    },
+    {
+     "k": 3,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update3_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 11,
+      "NumTotalTests": 31,
+      "SuccessRate": 35.483870967741936,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 11.999
+     },
+     "spectrum_file_original": "mask_A_scalar_m12_xlim_120_480_startstop_call3_S.txt",
+     "spectrum_sha256": "487b3e5a6327c05687be187d4ffe8271527ef325047b737144bf34b556722a38",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call3_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1,
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": 39.17820580743559,
+        "n_upper_fail_bins": 9,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 41.96741547718034,
+        "n_upper_fail_bins": 10,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.2789769243681803e-13
+     },
+     "spectrum_simulation_time": 11.999
+    },
+    {
+     "k": 4,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update4_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 11,
+      "NumTotalTests": 32,
+      "SuccessRate": 34.375,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 15.999
+     },
+     "spectrum_file_original": "mask_A_scalar_m12_xlim_120_480_startstop_call4_S.txt",
+     "spectrum_sha256": "1d112f5e56041276494307cdfc91cd701edecadac1e46eaf8b070acfb98a9363",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call4_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1,
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": 39.163494124332615,
+        "n_upper_fail_bins": 10,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 33.67398818550151,
+        "n_upper_fail_bins": 8,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.2079226507921703e-13
+     },
+     "spectrum_simulation_time": 15.999
+    }
+   ]
+  },
+  {
+   "name": "mask_A_scalar_m12_xlim_cf300_span360",
+   "run": 2,
+   "description": "same x-limits via span-and-center-frequency (CF 300, Span 360)",
+   "dataset": "A",
+   "signal": {
+    "n_samples": 4000,
+    "n_channels": 2,
+    "is_complex": false,
+    "n_calls": 4,
+    "fs": 1000
+   },
+   "window_length": 1000,
+   "spectral_averages": 4,
+   "two_sided": false,
+   "spectrum_type": "power",
+   "units": "dBm",
+   "nfft": 1024,
+   "nbins": 513,
+   "frequency_grid_file": "spectra/mask_A_doc_upper_f.txt",
+   "scope_props_requested": {
+    "FrequencySpan": "span-and-center-frequency",
+    "CenterFrequency": 300,
+    "Span": 360
+   },
+   "scope_state_readback": {
+    "SampleRate": 1000,
+    "Method": "welch",
+    "Window": "hann",
+    "OverlapPercent": 0,
+    "FrequencyResolutionMethod": "window-length",
+    "WindowLength": 1000,
+    "FFTLengthSource": "auto",
+    "FFTLength": 1024,
+    "RBW": 9.76,
+    "PlotAsTwoSidedSpectrum": false,
+    "AveragingMethod": "running",
+    "SpectralAverages": 4,
+    "SpectrumType": "power",
+    "SpectrumUnits": "dBm",
+    "ReferenceLoad": 1,
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 360,
+    "CenterFrequency": 300,
+    "StartFrequency": 120,
+    "StopFrequency": 480,
+    "FrequencyOffset": 0
+   },
+   "mask_config": {
+    "EnabledMasks": "upper",
+    "UpperMask": -12,
+    "LowerMask": -Infinity,
+    "ReferenceLevel": "custom",
+    "CustomReferenceLevel": 0,
+    "SelectedChannel": 1,
+    "MaskFrequencyOffset": 0,
+    "Enabled": true
+   },
+   "config_errors": [
+    {
+     "target": "PhaseNoise",
+     "property": "Enabled",
+     "error_id": "MATLAB:noSuchMethodOrField"
+    }
+   ],
+   "mask_status_before_calls": {
+    "IsCurrentlyPassing": false,
+    "NumPassedTests": 11,
+    "NumTotalTests": 32,
+    "SuccessRate": 34.375,
+    "FailingMasks": "Upper and lower",
+    "FailingChannels": [
+     1,
+     2
+    ],
+    "SimulationTime": 15.999
+   },
+   "mask_status_final": {
+    "IsCurrentlyPassing": false,
+    "NumPassedTests": 11,
+    "NumTotalTests": 36,
+    "SuccessRate": 30.555555555555557,
+    "FailingMasks": "Upper and lower",
+    "FailingChannels": [
+     1,
+     2
+    ],
+    "SimulationTime": 15.999
+   },
+   "calls": [
+    {
+     "k": 1,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update1_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 11,
+      "NumTotalTests": 33,
+      "SuccessRate": 33.33333333333333,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 3.999
+     },
+     "spectrum_file_original": "mask_A_scalar_m12_xlim_cf300_span360_call1_S.txt",
+     "spectrum_sha256": "2f8c0ac93305eaefe808ac29f4751fff8814eb07eeb89e070032e8bbcf932d6f",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call1_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1,
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": 39.17997887863125,
+        "n_upper_fail_bins": 9,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 39.18525521027022,
+        "n_upper_fail_bins": 8,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.3500311979441904e-13
+     },
+     "spectrum_simulation_time": 3.999
+    },
+    {
+     "k": 2,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update2_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 11,
+      "NumTotalTests": 34,
+      "SuccessRate": 32.35294117647059,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 7.9990000000000006
+     },
+     "spectrum_file_original": "mask_A_scalar_m12_xlim_cf300_span360_call2_S.txt",
+     "spectrum_sha256": "f126a3851880ca074b80ea37a560fac174be65068c4779a6729612c6de15a0fb",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call2_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1,
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": 39.166299547491654,
+        "n_upper_fail_bins": 9,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 48.25285494415623,
+        "n_upper_fail_bins": 12,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 4.050093593832571e-13
+     },
+     "spectrum_simulation_time": 7.9990000000000006
+    },
+    {
+     "k": 3,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update3_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 11,
+      "NumTotalTests": 35,
+      "SuccessRate": 31.428571428571427,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 11.999
+     },
+     "spectrum_file_original": "mask_A_scalar_m12_xlim_cf300_span360_call3_S.txt",
+     "spectrum_sha256": "487b3e5a6327c05687be187d4ffe8271527ef325047b737144bf34b556722a38",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call3_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1,
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": 39.17820580743559,
+        "n_upper_fail_bins": 9,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 41.96741547718034,
+        "n_upper_fail_bins": 10,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.2789769243681803e-13
+     },
+     "spectrum_simulation_time": 11.999
+    },
+    {
+     "k": 4,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update4_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 11,
+      "NumTotalTests": 36,
+      "SuccessRate": 30.555555555555557,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 15.999
+     },
+     "spectrum_file_original": "mask_A_scalar_m12_xlim_cf300_span360_call4_S.txt",
+     "spectrum_sha256": "1d112f5e56041276494307cdfc91cd701edecadac1e46eaf8b070acfb98a9363",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call4_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1,
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": 39.163494124332615,
+        "n_upper_fail_bins": 10,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 33.67398818550151,
+        "n_upper_fail_bins": 8,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.2079226507921703e-13
+     },
+     "spectrum_simulation_time": 15.999
+    }
+   ]
+  },
+  {
+   "name": "mask_A_matrix_xlim_120_480_startstop",
+   "run": 2,
+   "description": "doc upper mask with FrequencySpan [120 480] (matrix mask + restricted display)",
+   "dataset": "A",
+   "signal": {
+    "n_samples": 4000,
+    "n_channels": 2,
+    "is_complex": false,
+    "n_calls": 4,
+    "fs": 1000
+   },
+   "window_length": 1000,
+   "spectral_averages": 4,
+   "two_sided": false,
+   "spectrum_type": "power",
+   "units": "dBm",
+   "nfft": 1024,
+   "nbins": 513,
+   "frequency_grid_file": "spectra/mask_A_doc_upper_f.txt",
+   "scope_props_requested": {
+    "FrequencySpan": "start-and-stop-frequencies",
+    "StartFrequency": 120,
+    "StopFrequency": 480
+   },
+   "scope_state_readback": {
+    "SampleRate": 1000,
+    "Method": "welch",
+    "Window": "hann",
+    "OverlapPercent": 0,
+    "FrequencyResolutionMethod": "window-length",
+    "WindowLength": 1000,
+    "FFTLengthSource": "auto",
+    "FFTLength": 1024,
+    "RBW": 9.76,
+    "PlotAsTwoSidedSpectrum": false,
+    "AveragingMethod": "running",
+    "SpectralAverages": 4,
+    "SpectrumType": "power",
+    "SpectrumUnits": "dBm",
+    "ReferenceLoad": 1,
+    "FrequencySpan": "start-and-stop-frequencies",
+    "Span": 360,
+    "CenterFrequency": 300,
+    "StartFrequency": 120,
+    "StopFrequency": 480,
+    "FrequencyOffset": 0
+   },
+   "mask_config": {
+    "EnabledMasks": "upper",
+    "UpperMask": [
+     [
+      0,
+      -17
+     ],
+     [
+      90,
+      -17
+     ],
+     [
+      90,
+      30
+     ],
+     [
+      110,
+      30
+     ],
+     [
+      110,
+      -17
+     ],
+     [
+      500,
+      -17
+     ]
+    ],
+    "LowerMask": -Infinity,
+    "ReferenceLevel": "custom",
+    "CustomReferenceLevel": 0,
+    "SelectedChannel": 1,
+    "MaskFrequencyOffset": 0,
+    "Enabled": true
+   },
+   "config_errors": [
+    {
+     "target": "PhaseNoise",
+     "property": "Enabled",
+     "error_id": "MATLAB:noSuchMethodOrField"
+    }
+   ],
+   "mask_status_before_calls": {
+    "IsCurrentlyPassing": false,
+    "NumPassedTests": 11,
+    "NumTotalTests": 36,
+    "SuccessRate": 30.555555555555557,
+    "FailingMasks": "Upper and lower",
+    "FailingChannels": [
+     1,
+     2
+    ],
+    "SimulationTime": 15.999
+   },
+   "mask_status_final": {
+    "IsCurrentlyPassing": false,
+    "NumPassedTests": 11,
+    "NumTotalTests": 40,
+    "SuccessRate": 27.500000000000004,
+    "FailingMasks": "Upper and lower",
+    "FailingChannels": [
+     1,
+     2
+    ],
+    "SimulationTime": 15.999
+   },
+   "calls": [
+    {
+     "k": 1,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update1_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 11,
+      "NumTotalTests": 37,
+      "SuccessRate": 29.72972972972973,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 3.999
+     },
+     "spectrum_file_original": "mask_A_matrix_xlim_120_480_startstop_call1_S.txt",
+     "spectrum_sha256": "2f8c0ac93305eaefe808ac29f4751fff8814eb07eeb89e070032e8bbcf932d6f",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call1_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1,
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": 1.519564296508861,
+        "n_upper_fail_bins": 4,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 1.2278187822389839,
+        "n_upper_fail_bins": 4,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.3500311979441904e-13
+     },
+     "spectrum_simulation_time": 3.999
+    },
+    {
+     "k": 2,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update2_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 11,
+      "NumTotalTests": 38,
+      "SuccessRate": 28.947368421052634,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 7.9990000000000006
+     },
+     "spectrum_file_original": "mask_A_matrix_xlim_120_480_startstop_call2_S.txt",
+     "spectrum_sha256": "f126a3851880ca074b80ea37a560fac174be65068c4779a6729612c6de15a0fb",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call2_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1,
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": 0.5140048776430248,
+        "n_upper_fail_bins": 3,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 6.252854944156233,
+        "n_upper_fail_bins": 7,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 4.050093593832571e-13
+     },
+     "spectrum_simulation_time": 7.9990000000000006
+    },
+    {
+     "k": 3,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update3_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 11,
+      "NumTotalTests": 39,
+      "SuccessRate": 28.205128205128204,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": 2,
+      "SimulationTime": 11.999
+     },
+     "spectrum_file_original": "mask_A_matrix_xlim_120_480_startstop_call3_S.txt",
+     "spectrum_sha256": "487b3e5a6327c05687be187d4ffe8271527ef325047b737144bf34b556722a38",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call3_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": -0.06682980695654805,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 1.008346364670686,
+        "n_upper_fail_bins": 8,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.2789769243681803e-13
+     },
+     "spectrum_simulation_time": 11.999
+    },
+    {
+     "k": 4,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update4_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 11,
+      "NumTotalTests": 40,
+      "SuccessRate": 27.500000000000004,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 15.999
+     },
+     "spectrum_file_original": "mask_A_matrix_xlim_120_480_startstop_call4_S.txt",
+     "spectrum_sha256": "1d112f5e56041276494307cdfc91cd701edecadac1e46eaf8b070acfb98a9363",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call4_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1,
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": 1.6555356641557992,
+        "n_upper_fail_bins": 6,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 1.2303397863539658,
+        "n_upper_fail_bins": 6,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.2079226507921703e-13
+     },
+     "spectrum_simulation_time": 15.999
+    }
+   ]
+  },
+  {
+   "name": "mask_A_scope_freq_offset_1000",
+   "run": 2,
+   "description": "scope FrequencyOffset 1000 Hz with the mask written in shifted frequencies",
+   "dataset": "A",
+   "signal": {
+    "n_samples": 4000,
+    "n_channels": 2,
+    "is_complex": false,
+    "n_calls": 4,
+    "fs": 1000
+   },
+   "window_length": 1000,
+   "spectral_averages": 4,
+   "two_sided": false,
+   "spectrum_type": "power",
+   "units": "dBm",
+   "nfft": 1024,
+   "nbins": 513,
+   "frequency_grid_file": "spectra/mask_A_scope_freq_offset_1000_f.txt",
+   "scope_props_requested": {
+    "FrequencyOffset": 1000
+   },
+   "scope_state_readback": {
+    "SampleRate": 1000,
+    "Method": "welch",
+    "Window": "hann",
+    "OverlapPercent": 0,
+    "FrequencyResolutionMethod": "window-length",
+    "WindowLength": 1000,
+    "FFTLengthSource": "auto",
+    "FFTLength": 1024,
+    "RBW": 9.76,
+    "PlotAsTwoSidedSpectrum": false,
+    "AveragingMethod": "running",
+    "SpectralAverages": 4,
+    "SpectrumType": "power",
+    "SpectrumUnits": "dBm",
+    "ReferenceLoad": 1,
+    "FrequencySpan": "full",
+    "Span": 360,
+    "CenterFrequency": 300,
+    "StartFrequency": 120,
+    "StopFrequency": 480,
+    "FrequencyOffset": 1000
+   },
+   "mask_config": {
+    "EnabledMasks": "upper",
+    "UpperMask": [
+     [
+      1000,
+      -17
+     ],
+     [
+      1090,
+      -17
+     ],
+     [
+      1090,
+      30
+     ],
+     [
+      1110,
+      30
+     ],
+     [
+      1110,
+      -17
+     ],
+     [
+      1500,
+      -17
+     ]
+    ],
+    "LowerMask": -Infinity,
+    "ReferenceLevel": "custom",
+    "CustomReferenceLevel": 0,
+    "SelectedChannel": 1,
+    "MaskFrequencyOffset": 0,
+    "Enabled": true
+   },
+   "config_errors": [
+    {
+     "target": "PhaseNoise",
+     "property": "Enabled",
+     "error_id": "MATLAB:noSuchMethodOrField"
+    }
+   ],
+   "mask_status_before_calls": {
+    "IsCurrentlyPassing": false,
+    "NumPassedTests": 11,
+    "NumTotalTests": 40,
+    "SuccessRate": 27.500000000000004,
+    "FailingMasks": "Upper and lower",
+    "FailingChannels": [
+     1,
+     2
+    ],
+    "SimulationTime": 15.999
+   },
+   "mask_status_final": {
+    "IsCurrentlyPassing": false,
+    "NumPassedTests": 11,
+    "NumTotalTests": 44,
+    "SuccessRate": 25,
+    "FailingMasks": "Upper and lower",
+    "FailingChannels": [
+     1,
+     2
+    ],
+    "SimulationTime": 15.999
+   },
+   "calls": [
+    {
+     "k": 1,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update1_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 11,
+      "NumTotalTests": 41,
+      "SuccessRate": 26.82926829268293,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 3.999
+     },
+     "spectrum_file_original": "mask_A_scope_freq_offset_1000_call1_S.txt",
+     "spectrum_sha256": "2f8c0ac93305eaefe808ac29f4751fff8814eb07eeb89e070032e8bbcf932d6f",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call1_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1,
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": 1.519564296508861,
+        "n_upper_fail_bins": 4,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 1.2278187822389839,
+        "n_upper_fail_bins": 4,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.3500311979441904e-13
+     },
+     "spectrum_simulation_time": 3.999
+    },
+    {
+     "k": 2,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update2_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 11,
+      "NumTotalTests": 42,
+      "SuccessRate": 26.190476190476193,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 7.9990000000000006
+     },
+     "spectrum_file_original": "mask_A_scope_freq_offset_1000_call2_S.txt",
+     "spectrum_sha256": "f126a3851880ca074b80ea37a560fac174be65068c4779a6729612c6de15a0fb",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call2_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1,
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": 0.5140048776430248,
+        "n_upper_fail_bins": 3,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 6.252854944156233,
+        "n_upper_fail_bins": 7,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 4.050093593832571e-13
+     },
+     "spectrum_simulation_time": 7.9990000000000006
+    },
+    {
+     "k": 3,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update3_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 11,
+      "NumTotalTests": 43,
+      "SuccessRate": 25.581395348837212,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": 2,
+      "SimulationTime": 11.999
+     },
+     "spectrum_file_original": "mask_A_scope_freq_offset_1000_call3_S.txt",
+     "spectrum_sha256": "487b3e5a6327c05687be187d4ffe8271527ef325047b737144bf34b556722a38",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call3_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": -0.06682980695654805,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 1.008346364670686,
+        "n_upper_fail_bins": 8,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.2789769243681803e-13
+     },
+     "spectrum_simulation_time": 11.999
+    },
+    {
+     "k": 4,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update4_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 11,
+      "NumTotalTests": 44,
+      "SuccessRate": 25,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 15.999
+     },
+     "spectrum_file_original": "mask_A_scope_freq_offset_1000_call4_S.txt",
+     "spectrum_sha256": "1d112f5e56041276494307cdfc91cd701edecadac1e46eaf8b070acfb98a9363",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call4_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1,
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": 1.6555356641557992,
+        "n_upper_fail_bins": 6,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 1.2303397863539658,
+        "n_upper_fail_bins": 6,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.2079226507921703e-13
+     },
+     "spectrum_simulation_time": 15.999
+    }
+   ]
+  },
+  {
+   "name": "mask_A_none",
+   "run": 2,
+   "description": "EnabledMasks none: what getSpectralMaskStatus returns when no mask is enabled",
+   "dataset": "A",
+   "signal": {
+    "n_samples": 4000,
+    "n_channels": 2,
+    "is_complex": false,
+    "n_calls": 4,
+    "fs": 1000
+   },
+   "window_length": 1000,
+   "spectral_averages": 4,
+   "two_sided": false,
+   "spectrum_type": "power",
+   "units": "dBm",
+   "nfft": 1024,
+   "nbins": 513,
+   "frequency_grid_file": "spectra/mask_A_doc_upper_f.txt",
+   "scope_props_requested": {},
+   "scope_state_readback": {
+    "SampleRate": 1000,
+    "Method": "welch",
+    "Window": "hann",
+    "OverlapPercent": 0,
+    "FrequencyResolutionMethod": "window-length",
+    "WindowLength": 1000,
+    "FFTLengthSource": "auto",
+    "FFTLength": 1024,
+    "RBW": 9.76,
+    "PlotAsTwoSidedSpectrum": false,
+    "AveragingMethod": "running",
+    "SpectralAverages": 4,
+    "SpectrumType": "power",
+    "SpectrumUnits": "dBm",
+    "ReferenceLoad": 1,
+    "FrequencySpan": "full",
+    "Span": 360,
+    "CenterFrequency": 300,
+    "StartFrequency": 120,
+    "StopFrequency": 480,
+    "FrequencyOffset": 0
+   },
+   "mask_config": {
+    "EnabledMasks": "none",
+    "UpperMask": [
+     [
+      0,
+      -17
+     ],
+     [
+      90,
+      -17
+     ],
+     [
+      90,
+      30
+     ],
+     [
+      110,
+      30
+     ],
+     [
+      110,
+      -17
+     ],
+     [
+      500,
+      -17
+     ]
+    ],
+    "LowerMask": -55,
+    "ReferenceLevel": "custom",
+    "CustomReferenceLevel": 0,
+    "SelectedChannel": 1,
+    "MaskFrequencyOffset": 0,
+    "Enabled": false
+   },
+   "config_errors": [
+    {
+     "target": "PhaseNoise",
+     "property": "Enabled",
+     "error_id": "MATLAB:noSuchMethodOrField"
+    }
+   ],
+   "mask_status_before_calls": {
+    "IsCurrentlyPassing": false,
+    "NumPassedTests": 11,
+    "NumTotalTests": 44,
+    "SuccessRate": 25,
+    "FailingMasks": "Upper and lower",
+    "FailingChannels": [
+     1,
+     2
+    ],
+    "SimulationTime": 15.999
+   },
+   "mask_status_final": {
+    "IsCurrentlyPassing": false,
+    "NumPassedTests": 11,
+    "NumTotalTests": 44,
+    "SuccessRate": 25,
+    "FailingMasks": "Upper and lower",
+    "FailingChannels": [
+     1,
+     2
+    ],
+    "SimulationTime": 15.999
+   },
+   "calls": [
+    {
+     "k": 1,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update1_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 11,
+      "NumTotalTests": 44,
+      "SuccessRate": 25,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 15.999
+     },
+     "spectrum_file_original": "mask_A_none_call1_S.txt",
+     "spectrum_sha256": "2f8c0ac93305eaefe808ac29f4751fff8814eb07eeb89e070032e8bbcf932d6f",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call1_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": null,
+      "failingChannels": null,
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": NaN,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": NaN,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.3500311979441904e-13
+     },
+     "spectrum_simulation_time": 3.999
+    },
+    {
+     "k": 2,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update2_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 11,
+      "NumTotalTests": 44,
+      "SuccessRate": 25,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 15.999
+     },
+     "spectrum_file_original": "mask_A_none_call2_S.txt",
+     "spectrum_sha256": "f126a3851880ca074b80ea37a560fac174be65068c4779a6729612c6de15a0fb",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call2_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": null,
+      "failingChannels": null,
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": NaN,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": NaN,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 4.050093593832571e-13
+     },
+     "spectrum_simulation_time": 7.9990000000000006
+    },
+    {
+     "k": 3,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update3_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 11,
+      "NumTotalTests": 44,
+      "SuccessRate": 25,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 15.999
+     },
+     "spectrum_file_original": "mask_A_none_call3_S.txt",
+     "spectrum_sha256": "487b3e5a6327c05687be187d4ffe8271527ef325047b737144bf34b556722a38",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call3_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": null,
+      "failingChannels": null,
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": NaN,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": NaN,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.2789769243681803e-13
+     },
+     "spectrum_simulation_time": 11.999
+    },
+    {
+     "k": 4,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update4_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 11,
+      "NumTotalTests": 44,
+      "SuccessRate": 25,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 15.999
+     },
+     "spectrum_file_original": "mask_A_none_call4_S.txt",
+     "spectrum_sha256": "1d112f5e56041276494307cdfc91cd701edecadac1e46eaf8b070acfb98a9363",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_call4_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": null,
+      "failingChannels": null,
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": NaN,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": NaN,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 1.2079226507921703e-13
+     },
+     "spectrum_simulation_time": 15.999
+    }
+   ]
+  },
+  {
+   "name": "mask_A_doc_upper_W4000",
+   "run": 2,
+   "description": "WindowLength 4000, SpectralAverages 1: exactly one spectral update per call -> NumTotalTests should rise by 1 per call",
+   "dataset": "A",
+   "signal": {
+    "n_samples": 4000,
+    "n_channels": 2,
+    "is_complex": false,
+    "n_calls": 4,
+    "fs": 1000
+   },
+   "window_length": 4000,
+   "spectral_averages": 1,
+   "two_sided": false,
+   "spectrum_type": "power",
+   "units": "dBm",
+   "nfft": 4000,
+   "nbins": 2001,
+   "frequency_grid_file": "spectra/mask_A_doc_upper_W4000_f.txt",
+   "scope_props_requested": {},
+   "scope_state_readback": {
+    "SampleRate": 1000,
+    "Method": "welch",
+    "Window": "hann",
+    "OverlapPercent": 0,
+    "FrequencyResolutionMethod": "window-length",
+    "WindowLength": 4000,
+    "FFTLengthSource": "auto",
+    "FFTLength": 1024,
+    "RBW": 9.76,
+    "PlotAsTwoSidedSpectrum": false,
+    "AveragingMethod": "running",
+    "SpectralAverages": 1,
+    "SpectrumType": "power",
+    "SpectrumUnits": "dBm",
+    "ReferenceLoad": 1,
+    "FrequencySpan": "full",
+    "Span": 360,
+    "CenterFrequency": 300,
+    "StartFrequency": 120,
+    "StopFrequency": 480,
+    "FrequencyOffset": 0
+   },
+   "mask_config": {
+    "EnabledMasks": "upper",
+    "UpperMask": [
+     [
+      0,
+      -17
+     ],
+     [
+      90,
+      -17
+     ],
+     [
+      90,
+      30
+     ],
+     [
+      110,
+      30
+     ],
+     [
+      110,
+      -17
+     ],
+     [
+      500,
+      -17
+     ]
+    ],
+    "LowerMask": -Infinity,
+    "ReferenceLevel": "custom",
+    "CustomReferenceLevel": 0,
+    "SelectedChannel": 1,
+    "MaskFrequencyOffset": 0,
+    "Enabled": true
+   },
+   "config_errors": [
+    {
+     "target": "PhaseNoise",
+     "property": "Enabled",
+     "error_id": "MATLAB:noSuchMethodOrField"
+    }
+   ],
+   "mask_status_before_calls": {
+    "IsCurrentlyPassing": false,
+    "NumPassedTests": 11,
+    "NumTotalTests": 44,
+    "SuccessRate": 25,
+    "FailingMasks": "Upper and lower",
+    "FailingChannels": [
+     1,
+     2
+    ],
+    "SimulationTime": 15.999
+   },
+   "mask_status_final": {
+    "IsCurrentlyPassing": true,
+    "NumPassedTests": 14,
+    "NumTotalTests": 48,
+    "SuccessRate": 29.166666666666668,
+    "FailingMasks": "",
+    "FailingChannels": [],
+    "SimulationTime": 15.999
+   },
+   "calls": [
+    {
+     "k": 1,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update1_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": true,
+      "NumPassedTests": 12,
+      "NumTotalTests": 45,
+      "SuccessRate": 26.666666666666668,
+      "FailingMasks": "",
+      "FailingChannels": [],
+      "SimulationTime": 3.999
+     },
+     "spectrum_file_original": "mask_A_doc_upper_W4000_call1_S.txt",
+     "spectrum_sha256": "4357fff274d21bae1545d6acee18ec6f8df372f74a868bcc49e111703a942695",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_W4000_call1_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": true,
+      "failingChannels": [],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": -0.9259473065539439,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": -1.0432686995585527,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 2.4300561562995426e-12
+     },
+     "spectrum_simulation_time": 3.999
+    },
+    {
+     "k": 2,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update2_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 12,
+      "NumTotalTests": 46,
+      "SuccessRate": 26.08695652173913,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": 2,
+      "SimulationTime": 7.9990000000000006
+     },
+     "spectrum_file_original": "mask_A_doc_upper_W4000_call2_S.txt",
+     "spectrum_sha256": "2fc49066e7e5912cacbbf6ccae5f949cc5200085d3baa0a03c29c76f0a19cae7",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_W4000_call2_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": -1.6517227968942763,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 6.537380090688373,
+        "n_upper_fail_bins": 6,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 6.139089236967266e-12
+     },
+     "spectrum_simulation_time": 7.9990000000000006
+    },
+    {
+     "k": 3,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update3_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": true,
+      "NumPassedTests": 13,
+      "NumTotalTests": 47,
+      "SuccessRate": 27.659574468085108,
+      "FailingMasks": "",
+      "FailingChannels": [],
+      "SimulationTime": 11.999
+     },
+     "spectrum_file_original": "mask_A_doc_upper_W4000_call3_S.txt",
+     "spectrum_sha256": "5866591b9bc9cf392bf145fa552ed1aafefc9fe4a101d81eb3a4e463b92c83bd",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_W4000_call3_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": true,
+      "failingChannels": [],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": -1.2225980137003347,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": -1.16247732945628,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 2.9558577807620168e-12
+     },
+     "spectrum_simulation_time": 11.999
+    },
+    {
+     "k": 4,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update4_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": true,
+      "NumPassedTests": 14,
+      "NumTotalTests": 48,
+      "SuccessRate": 29.166666666666668,
+      "FailingMasks": "",
+      "FailingChannels": [],
+      "SimulationTime": 15.999
+     },
+     "spectrum_file_original": "mask_A_doc_upper_W4000_call4_S.txt",
+     "spectrum_sha256": "70e1c6e7073c23784f85554afbb7d092848579cd5ee0c923743f5f2576e4a8ff",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_W4000_call4_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": true,
+      "failingChannels": [],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": -0.9426299724811287,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": -0.8359172484157682,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 4.249045559845399e-12
+     },
+     "spectrum_simulation_time": 15.999
+    }
+   ]
+  },
+  {
+   "name": "mask_A_status_upper_lower_W4000",
+   "run": 2,
+   "description": "status doc masks with one update per call",
+   "dataset": "A",
+   "signal": {
+    "n_samples": 4000,
+    "n_channels": 2,
+    "is_complex": false,
+    "n_calls": 4,
+    "fs": 1000
+   },
+   "window_length": 4000,
+   "spectral_averages": 1,
+   "two_sided": false,
+   "spectrum_type": "power",
+   "units": "dBm",
+   "nfft": 4000,
+   "nbins": 2001,
+   "frequency_grid_file": "spectra/mask_A_doc_upper_W4000_f.txt",
+   "scope_props_requested": {},
+   "scope_state_readback": {
+    "SampleRate": 1000,
+    "Method": "welch",
+    "Window": "hann",
+    "OverlapPercent": 0,
+    "FrequencyResolutionMethod": "window-length",
+    "WindowLength": 4000,
+    "FFTLengthSource": "auto",
+    "FFTLength": 1024,
+    "RBW": 9.76,
+    "PlotAsTwoSidedSpectrum": false,
+    "AveragingMethod": "running",
+    "SpectralAverages": 1,
+    "SpectrumType": "power",
+    "SpectrumUnits": "dBm",
+    "ReferenceLoad": 1,
+    "FrequencySpan": "full",
+    "Span": 360,
+    "CenterFrequency": 300,
+    "StartFrequency": 120,
+    "StopFrequency": 480,
+    "FrequencyOffset": 0
+   },
+   "mask_config": {
+    "EnabledMasks": "upper-and-lower",
+    "UpperMask": [
+     [
+      0,
+      -10
+     ],
+     [
+      90,
+      -10
+     ],
+     [
+      90,
+      30
+     ],
+     [
+      110,
+      30
+     ],
+     [
+      110,
+      -10
+     ],
+     [
+      500,
+      -10
+     ]
+    ],
+    "LowerMask": -55,
+    "ReferenceLevel": "custom",
+    "CustomReferenceLevel": 0,
+    "SelectedChannel": 1,
+    "MaskFrequencyOffset": 0,
+    "Enabled": true
+   },
+   "config_errors": [
+    {
+     "target": "PhaseNoise",
+     "property": "Enabled",
+     "error_id": "MATLAB:noSuchMethodOrField"
+    }
+   ],
+   "mask_status_before_calls": {
+    "IsCurrentlyPassing": true,
+    "NumPassedTests": 14,
+    "NumTotalTests": 48,
+    "SuccessRate": 29.166666666666668,
+    "FailingMasks": "",
+    "FailingChannels": [],
+    "SimulationTime": 15.999
+   },
+   "mask_status_final": {
+    "IsCurrentlyPassing": false,
+    "NumPassedTests": 14,
+    "NumTotalTests": 52,
+    "SuccessRate": 26.923076923076923,
+    "FailingMasks": "Upper and lower",
+    "FailingChannels": [
+     1,
+     2
+    ],
+    "SimulationTime": 15.999
+   },
+   "calls": [
+    {
+     "k": 1,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update1_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 14,
+      "NumTotalTests": 49,
+      "SuccessRate": 28.57142857142857,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 3.999
+     },
+     "spectrum_file_original": "mask_A_status_upper_lower_W4000_call1_S.txt",
+     "spectrum_sha256": "4357fff274d21bae1545d6acee18ec6f8df372f74a868bcc49e111703a942695",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_W4000_call1_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1,
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": -3.0195805379129865,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": -5.723987150594951,
+        "n_lower_fail_bins": 3
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": -2.9978256948367807,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": -5.602820046149873,
+        "n_lower_fail_bins": 4
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 2.4300561562995426e-12
+     },
+     "spectrum_simulation_time": 3.999
+    },
+    {
+     "k": 2,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update2_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 14,
+      "NumTotalTests": 50,
+      "SuccessRate": 28.000000000000004,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 7.9990000000000006
+     },
+     "spectrum_file_original": "mask_A_status_upper_lower_W4000_call2_S.txt",
+     "spectrum_sha256": "2fc49066e7e5912cacbbf6ccae5f949cc5200085d3baa0a03c29c76f0a19cae7",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_W4000_call2_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1,
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": -3.0095306942290634,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": -4.832303143364371,
+        "n_lower_fail_bins": 2
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": 6.537380090688373,
+        "n_upper_fail_bins": 6,
+        "lower_min_margin_dB": -10.228843954866846,
+        "n_lower_fail_bins": 5
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 6.139089236967266e-12
+     },
+     "spectrum_simulation_time": 7.9990000000000006
+    },
+    {
+     "k": 3,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update3_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 14,
+      "NumTotalTests": 51,
+      "SuccessRate": 27.450980392156865,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 11.999
+     },
+     "spectrum_file_original": "mask_A_status_upper_lower_W4000_call3_S.txt",
+     "spectrum_sha256": "5866591b9bc9cf392bf145fa552ed1aafefc9fe4a101d81eb3a4e463b92c83bd",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_W4000_call3_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1,
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": -2.996729626254414,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": -2.0631291209680285,
+        "n_lower_fail_bins": 2
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": -3.0186531881608865,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": -1.5783694893874554,
+        "n_lower_fail_bins": 2
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 2.9558577807620168e-12
+     },
+     "spectrum_simulation_time": 11.999
+    },
+    {
+     "k": 4,
+     "n_samples": 4000,
+     "n_channels": 2,
+     "signal_file": "mask_A_update4_ch1_ch2.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 14,
+      "NumTotalTests": 52,
+      "SuccessRate": 26.923076923076923,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": [
+       1,
+       2
+      ],
+      "SimulationTime": 15.999
+     },
+     "spectrum_file_original": "mask_A_status_upper_lower_W4000_call4_S.txt",
+     "spectrum_sha256": "70e1c6e7073c23784f85554afbb7d092848579cd5ee0c923743f5f2576e4a8ff",
+     "spectrum_identical_to": "spectra/mask_A_doc_upper_W4000_call4_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1,
+       2
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": -3.024198721511347,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": -4.1249177351561315,
+        "n_lower_fail_bins": 2
+       },
+       {
+        "ch": 2,
+        "upper_max_excess_dB": -7.835917248415768,
+        "n_upper_fail_bins": 0,
+        "lower_min_margin_dB": -5.945209949866467,
+        "n_lower_fail_bins": 3
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 4.249045559845399e-12
+     },
+     "spectrum_simulation_time": 15.999
+    }
+   ]
+  },
+  {
+   "name": "mask_B_twosided",
+   "run": 2,
+   "description": "complex signal, two-sided, upper+lower (research B_twosided)",
+   "dataset": "B",
+   "signal": {
+    "n_samples": 4000,
+    "n_channels": 1,
+    "is_complex": true,
+    "n_calls": 2,
+    "fs": 1000
+   },
+   "window_length": 1000,
+   "spectral_averages": 4,
+   "two_sided": true,
+   "spectrum_type": "power",
+   "units": "dBm",
+   "nfft": 1024,
+   "nbins": 1024,
+   "frequency_grid_file": "spectra/mask_B_twosided_f.txt",
+   "scope_props_requested": {},
+   "scope_state_readback": {
+    "SampleRate": 1000,
+    "Method": "welch",
+    "Window": "hann",
+    "OverlapPercent": 0,
+    "FrequencyResolutionMethod": "window-length",
+    "WindowLength": 1000,
+    "FFTLengthSource": "auto",
+    "FFTLength": 1024,
+    "RBW": 9.76,
+    "PlotAsTwoSidedSpectrum": true,
+    "AveragingMethod": "running",
+    "SpectralAverages": 4,
+    "SpectrumType": "power",
+    "SpectrumUnits": "dBm",
+    "ReferenceLoad": 1,
+    "FrequencySpan": "full",
+    "Span": 360,
+    "CenterFrequency": 300,
+    "StartFrequency": 120,
+    "StopFrequency": 480,
+    "FrequencyOffset": 0
+   },
+   "mask_config": {
+    "EnabledMasks": "upper-and-lower",
+    "UpperMask": [
+     [
+      -500,
+      -20
+     ],
+     [
+      -160,
+      -20
+     ],
+     [
+      -160,
+      30
+     ],
+     [
+      -140,
+      30
+     ],
+     [
+      -140,
+      -20
+     ],
+     [
+      190,
+      -20
+     ],
+     [
+      190,
+      0
+     ],
+     [
+      210,
+      0
+     ],
+     [
+      210,
+      -20
+     ],
+     [
+      499,
+      -20
+     ]
+    ],
+    "LowerMask": -60,
+    "ReferenceLevel": "custom",
+    "CustomReferenceLevel": 0,
+    "SelectedChannel": 1,
+    "MaskFrequencyOffset": 0,
+    "Enabled": true
+   },
+   "config_errors": [
+    {
+     "target": "PhaseNoise",
+     "property": "Enabled",
+     "error_id": "MATLAB:noSuchMethodOrField"
+    }
+   ],
+   "mask_status_before_calls": {
+    "IsCurrentlyPassing": false,
+    "NumPassedTests": 14,
+    "NumTotalTests": 52,
+    "SuccessRate": 26.923076923076923,
+    "FailingMasks": "Upper and lower",
+    "FailingChannels": [
+     1,
+     2
+    ],
+    "SimulationTime": 15.999
+   },
+   "mask_status_final": {
+    "IsCurrentlyPassing": false,
+    "NumPassedTests": 14,
+    "NumTotalTests": 54,
+    "SuccessRate": 25.925925925925924,
+    "FailingMasks": "Upper and lower",
+    "FailingChannels": 1,
+    "SimulationTime": 7.9990000000000006
+   },
+   "calls": [
+    {
+     "k": 1,
+     "n_samples": 4000,
+     "n_channels": 1,
+     "signal_file": "mask_B_update1_re_im.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 14,
+      "NumTotalTests": 53,
+      "SuccessRate": 26.41509433962264,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": 1,
+      "SimulationTime": 3.999
+     },
+     "spectrum_file_original": "mask_B_twosided_call1_S.txt",
+     "spectrum_sha256": "6ab7588fb6b8ab47a868ef157bf2c0c0f7aeb02a400a88feba0d2a4d44cf1f22",
+     "spectrum_identical_to": "spectra/mask_B_twosided_call1_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": 23.758294397830667,
+        "n_upper_fail_bins": 13,
+        "lower_min_margin_dB": 26.977669579415164,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 2.1316282072803006e-13
+     },
+     "spectrum_simulation_time": 3.999
+    },
+    {
+     "k": 2,
+     "n_samples": 4000,
+     "n_channels": 1,
+     "signal_file": "mask_B_update2_re_im.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 14,
+      "NumTotalTests": 54,
+      "SuccessRate": 25.925925925925924,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": 1,
+      "SimulationTime": 7.9990000000000006
+     },
+     "spectrum_file_original": "mask_B_twosided_call2_S.txt",
+     "spectrum_sha256": "025aef5026f13b255990498cccb42e933d273e9e24cf97c73ee0b30747296b49",
+     "spectrum_identical_to": "spectra/mask_B_twosided_call2_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 0,
+      "pass": false,
+      "failingChannels": [
+       1
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": 23.763466859835134,
+        "n_upper_fail_bins": 19,
+        "lower_min_margin_dB": 27.853415150200775,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 7.034373084024992e-13
+     },
+     "spectrum_simulation_time": 7.9990000000000006
+    }
+   ]
+  },
+  {
+   "name": "mask_B_peak_ref",
+   "run": 2,
+   "description": "complex, spectrum-peak reference (research B_peak_ref)",
+   "dataset": "B",
+   "signal": {
+    "n_samples": 4000,
+    "n_channels": 1,
+    "is_complex": true,
+    "n_calls": 2,
+    "fs": 1000
+   },
+   "window_length": 1000,
+   "spectral_averages": 4,
+   "two_sided": true,
+   "spectrum_type": "power",
+   "units": "dBm",
+   "nfft": 1024,
+   "nbins": 1024,
+   "frequency_grid_file": "spectra/mask_B_twosided_f.txt",
+   "scope_props_requested": {},
+   "scope_state_readback": {
+    "SampleRate": 1000,
+    "Method": "welch",
+    "Window": "hann",
+    "OverlapPercent": 0,
+    "FrequencyResolutionMethod": "window-length",
+    "WindowLength": 1000,
+    "FFTLengthSource": "auto",
+    "FFTLength": 1024,
+    "RBW": 9.76,
+    "PlotAsTwoSidedSpectrum": true,
+    "AveragingMethod": "running",
+    "SpectralAverages": 4,
+    "SpectrumType": "power",
+    "SpectrumUnits": "dBm",
+    "ReferenceLoad": 1,
+    "FrequencySpan": "full",
+    "Span": 360,
+    "CenterFrequency": 300,
+    "StartFrequency": 120,
+    "StopFrequency": 480,
+    "FrequencyOffset": 0
+   },
+   "mask_config": {
+    "EnabledMasks": "upper",
+    "UpperMask": [
+     [
+      -500,
+      -45
+     ],
+     [
+      -160,
+      -45
+     ],
+     [
+      -160,
+      0.01
+     ],
+     [
+      -140,
+      0.01
+     ],
+     [
+      -140,
+      -45
+     ],
+     [
+      499,
+      -45
+     ]
+    ],
+    "LowerMask": -Infinity,
+    "ReferenceLevel": "spectrum-peak",
+    "CustomReferenceLevel": 0,
+    "SelectedChannel": 1,
+    "MaskFrequencyOffset": 0,
+    "Enabled": true
+   },
+   "config_errors": [
+    {
+     "target": "PhaseNoise",
+     "property": "Enabled",
+     "error_id": "MATLAB:noSuchMethodOrField"
+    }
+   ],
+   "mask_status_before_calls": {
+    "IsCurrentlyPassing": false,
+    "NumPassedTests": 14,
+    "NumTotalTests": 54,
+    "SuccessRate": 25.925925925925924,
+    "FailingMasks": "Upper and lower",
+    "FailingChannels": 1,
+    "SimulationTime": 7.9990000000000006
+   },
+   "mask_status_final": {
+    "IsCurrentlyPassing": false,
+    "NumPassedTests": 14,
+    "NumTotalTests": 56,
+    "SuccessRate": 25,
+    "FailingMasks": "Upper and lower",
+    "FailingChannels": 1,
+    "SimulationTime": 7.9990000000000006
+   },
+   "calls": [
+    {
+     "k": 1,
+     "n_samples": 4000,
+     "n_channels": 1,
+     "signal_file": "mask_B_update1_re_im.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 14,
+      "NumTotalTests": 55,
+      "SuccessRate": 25.454545454545453,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": 1,
+      "SimulationTime": 3.999
+     },
+     "spectrum_file_original": "mask_B_peak_ref_call1_S.txt",
+     "spectrum_sha256": "6ab7588fb6b8ab47a868ef157bf2c0c0f7aeb02a400a88feba0d2a4d44cf1f22",
+     "spectrum_identical_to": "spectra/mask_B_twosided_call1_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 29.13751325634185,
+      "pass": false,
+      "failingChannels": [
+       1
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": 39.62078114148882,
+        "n_upper_fail_bins": 6,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 2.1316282072803006e-13
+     },
+     "spectrum_simulation_time": 3.999
+    },
+    {
+     "k": 2,
+     "n_samples": 4000,
+     "n_channels": 1,
+     "signal_file": "mask_B_update2_re_im.txt",
+     "mask_status": {
+      "IsCurrentlyPassing": false,
+      "NumPassedTests": 14,
+      "NumTotalTests": 56,
+      "SuccessRate": 25,
+      "FailingMasks": "Upper and lower",
+      "FailingChannels": 1,
+      "SimulationTime": 7.9990000000000006
+     },
+     "spectrum_file_original": "mask_B_peak_ref_call2_S.txt",
+     "spectrum_sha256": "025aef5026f13b255990498cccb42e933d273e9e24cf97c73ee0b30747296b49",
+     "spectrum_identical_to": "spectra/mask_B_twosided_call2_S.txt",
+     "from_captured_spectrum": {
+      "note": "analyze_mask.py (inferred rules) on the captured spectrum: reference used, per-channel max(S - limit) for the upper mask (>0 fails), min(S - limit) for the lower mask (<0 fails), failing-bin counts; null = mask not enabled",
+      "reference_dBm": 38.215029115059494,
+      "pass": false,
+      "failingChannels": [
+       1
+      ],
+      "per_channel": [
+       {
+        "ch": 1,
+        "upper_max_excess_dB": 30.54843774477564,
+        "n_upper_fail_bins": 4,
+        "lower_min_margin_dB": NaN,
+        "n_lower_fail_bins": 0
+       }
+      ],
+      "parity_EMA_model_max_abs_dB": 7.034373084024992e-13
+     },
+     "spectrum_simulation_time": 7.9990000000000006
+    }
+   ]
+  }
+ ]
+}

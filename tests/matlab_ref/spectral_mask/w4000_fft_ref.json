@@ -1,0 +1,52 @@
+{
+  "matlab_version": "25.1.0.2943329 (R2025a)",
+  "window": "hann periodic 4000",
+  "nfft": 4000,
+  "model": "10*log10(|fft(w.*x)|^2/sum(w)^2 * (2 for interior one-sided bins)) + 30",
+  "calls": [
+    {
+      "k": 1,
+      "signal_file": "mask_A_update1_ch1_ch2.txt",
+      "scope_spectrum_file": "mask_A_doc_upper_W4000_call1_S.txt",
+      "fft_file": "w4000_fft_call1.txt",
+      "max_abs_diff_dB": 4.3627323975670151E-12,
+      "argmax_bin": 192,
+      "argmax_channel": 2,
+      "bit_identical_bins": 1445,
+      "numel": 4002
+    },
+    {
+      "k": 2,
+      "signal_file": "mask_A_update2_ch1_ch2.txt",
+      "scope_spectrum_file": "mask_A_doc_upper_W4000_call2_S.txt",
+      "fft_file": "w4000_fft_call2.txt",
+      "max_abs_diff_dB": 5.7696070143720135E-12,
+      "argmax_bin": 2000,
+      "argmax_channel": 2,
+      "bit_identical_bins": 1344,
+      "numel": 4002
+    },
+    {
+      "k": 3,
+      "signal_file": "mask_A_update3_ch1_ch2.txt",
+      "scope_spectrum_file": "mask_A_doc_upper_W4000_call3_S.txt",
+      "fft_file": "w4000_fft_call3.txt",
+      "max_abs_diff_dB": 1.7479351299698465E-12,
+      "argmax_bin": 0,
+      "argmax_channel": 2,
+      "bit_identical_bins": 1489,
+      "numel": 4002
+    },
+    {
+      "k": 4,
+      "signal_file": "mask_A_update4_ch1_ch2.txt",
+      "scope_spectrum_file": "mask_A_doc_upper_W4000_call4_S.txt",
+      "fft_file": "w4000_fft_call4.txt",
+      "max_abs_diff_dB": 3.879563337250147E-12,
+      "argmax_bin": 1992,
+      "argmax_channel": 1,
+      "bit_identical_bins": 1876,
+      "numel": 4002
+    }
+  ]
+}

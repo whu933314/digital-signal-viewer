@@ -1,0 +1,4044 @@
+{
+ "source": "MATLAB R2025a spectrumAnalyzer (DSP System Toolbox) measurement captures, scope_capture.m run 2026-10-24 15:43:51-15:48:01 (mode resume; 25.1.0.2943329 (R2025a)); 23 acpr_* captures; analysis in scope_capture/ANALYSIS.md §3 and rules.json (acpr). Extracted by work2/acpr/extract_scope_ref.py.",
+ "matlab_version": "25.1.0.2943329 (R2025a)",
+ "fs": 10000,
+ "signals": {
+  "acpr_sig_cplx.txt": {
+   "dir": "tests/matlab_ref/acpr",
+   "md5": "1df13c8231ce78a77e3789a341ce4a56",
+   "what": "complex QPSK RRC(0.35) + spectral regrowth, 8192 samples, fs 1e4 (identical to research/acpr)"
+  },
+  "acpr_sig_real.txt": {
+   "dir": "tests/matlab_ref/acpr",
+   "md5": "8964460ae000077027602d5c3b9e1ec9",
+   "what": "real passband version at 2 kHz, 8192 samples"
+  }
+ },
+ "scope_common_settings": "Method welch, Window hann, OverlapPercent 0 (50 for welch1024 captures), FrequencyResolutionMethod window-length, WindowLength = N (= 8192, one call = one periodogram; 1024 for welch1024), FFTLengthSource auto, AveragingMethod running, SpectralAverages 1 (15 for welch1024), ReferenceLoad 1, FrequencySpan full, FrequencyOffset 0, PlotNormalTrace only",
+ "config_log_common": "only PhaseNoise/Enabled failed in every capture (property does not exist in R2025a) and SidelobeAttenuation warned 'not applicable' for hann; every measurement property set ok (also the out-of-range bands)",
+ "spectrum_model": {
+  "window": "hann(L,'periodic') = 0.5-0.5cos(2*pi*n/L), n=0..L-1 (dsv_spectrum.design_window('hann', L))",
+  "nfft": "max(1024, WindowLength) (FFTLengthSource auto); scope_state.FFTLength/RBW are inactive stored values",
+  "power": "|X_k|^2/(sum w)^2 (displayed 10log10+30 dBm); power-density: |X_k|^2/(fs*sum w^2) (dBm/Hz); ReferenceLoad 1",
+  "rbw": "ENBW = fs*sum(w^2)/sum(w)^2 = 1.5*fs/L for the periodic Hann (1.8310546875 Hz for L 8192, fs 1e4)",
+  "two_sided_grid": "MATLAB centered for even NFFT: f_k = k*fs/NFFT, k = -NFFT/2+1 .. NFFT/2 (Nyquist at +fs/2, -fs/2 absent)",
+  "one_sided_grid": "k = 0..NFFT/2 (Nyquist included), interior bins doubled, DC/Nyquist not",
+  "measurement_input": "PSD = displayed power / RBW (power mode) or the displayed value itself (power-density mode) = dsv_spectrum.welch(...)['psd'] in both modes",
+  "display_parity": "fresh displays reproduced to <= 7.8e-11 dB (two-sided, 8192 bins) / 5.3e-11 dB (one-sided, 4097 bins)"
+ },
+ "rules": [
+  {
+   "id": "A1",
+   "rule": "same PSD and exact piecewise-constant integration as O1/O2 over main [CF-Span/2, CF+Span/2] (or [Start, Stop]) and lower_k/upper_k = [c -/+ off_k -/+ AdjBW/2] with c = CF or (Start+Stop)/2",
+   "proof": "15 FilterShape=none captures: channel power <= 5.3e-14 dB, lower <= 1.3e-13 dB, upper <= 6.6e-8 dB (acpr_cplx_2s_startstop_m500_1500_none proves c = (Start+Stop)/2)"
+  },
+  {
+   "id": "A2",
+   "rule": "ACPRLower/Upper = 10log10(P_adj/P_main), plain ratio, NO Span/AdjBW normalisation",
+   "proof": "acpr_cplx_2s_default_none (bwnorm 3.01 dB off), acpr_cplx_2s_three_pairs_none (1.76 dB off)"
+  },
+  {
+   "id": "A3",
+   "rule": "ChannelPower = 10log10(P_main)+30 dBm in power and power-density mode; ACPR unchanged in power-density mode",
+   "proof": "acpr_cplx_2s_psd_default_none == acpr_cplx_2s_default_none"
+  },
+  {
+   "id": "A4",
+   "rule": "a band not inside [f_first, f_last] gives NaN for that band only (no error, no clipping); other bands and channel power unaffected",
+   "proof": "acpr_cplx_2s_beyond_range (upper2 [4300 5300] NaN), acpr_real_1s_2k_none (lower2 [-1000 0] NaN on one-sided display; -39.6623011742 dBc on the two-sided display acpr_real_2s_2k_none)"
+  },
+  {
+   "id": "A5",
+   "rule": "FilterShape rrc, FilterCoeff beta: PSD weight W(f) = |H_RRC|^2 = raised-cosine response with symbol rate Rs = Span (main channel span): W=1 for |f-fc| <= (1-beta)Span/2; 0.5(1+cos(pi/(beta*Span)(|f-fc|-(1-beta)Span/2))) up to (1+beta)Span/2; 0 beyond. beta=0 == none",
+   "proof": "acpr_cplx_2s_default_rrc_0p0/0p25/0p5/1p0, acpr_cplx_2s_qpsk_tight_rrc_0p35: <= 2.5e-11 dB"
+  },
+  {
+   "id": "A6",
+   "rule": "FilterShape gaussian, FilterCoeff BT: W(f) = exp(-ln2*((f-fc)/(BT*Span))^2) (GMSK Gaussian |H|^2, B = BT*Span, T = 1/Span)",
+   "proof": "acpr_cplx_2s_default_gaussian_0p25/0p5/1p0, acpr_cplx_2s_qpsk_tight_gaussian_0p3: <= 6.2e-9 dB"
+  },
+  {
+   "id": "A7",
+   "rule": "the same main-Span-scaled filter is centred on each adjacent band (not scaled by AdjacentBW); W evaluated at bin centres; integration over the band [f1,f2] only (rule A1), not over the filter support; unit gain at centre (no energy normalisation); ratios/channel power as A2/A3 on the filtered powers",
+   "proof": "all 9 filtered captures, worst 6.2e-9 dB"
+  }
+ ],
+ "rejected_rules": [
+  {
+   "rule": "bandpower outward bins / inner bins / trapezoid",
+   "residual": "0.21 / 0.039 / 2.0e-3 dB on default_none"
+  },
+  {
+   "rule": "comm.ACPR bandwidth normalisation",
+   "residual": "3.01 dB (Span=2*AdjBW), 1.76 dB (three_pairs)"
+  },
+  {
+   "rule": "weight |H|=RRC amplitude",
+   "residual": "0.69 dB"
+  },
+  {
+   "rule": "W = RC^2",
+   "residual": "1.4 dB"
+  },
+  {
+   "rule": "Rs = Span/(1+beta)",
+   "residual": "1.4 dB"
+  },
+  {
+   "rule": "Rs = 2*Span",
+   "residual": "1.0 dB"
+  },
+  {
+   "rule": "adjacent filters scaled by AdjacentBW",
+   "residual": "1.0-2.7 dB"
+  },
+  {
+   "rule": "unit-energy normalisation",
+   "residual": "3.3 dB"
+  },
+  {
+   "rule": "integration over the whole filter support",
+   "residual": ">= 0.69 dB"
+  }
+ ],
+ "not_assessable": [
+  "acpr_cplx_welch1024_psd_three_pairs_none (display and measurement fetched at different averaging states)"
+ ],
+ "unresolved_relevant": [
+  {
+   "item": "auto-span trigger",
+   "evidence": "applied in obw_real_1s_autospan_defaults (band outside the one-sided display), not in acpr_cplx_2s_autospan_defaults (stale CF 1250 inside the display)"
+  },
+  {
+   "item": "NaN threshold for a band edge in (f_first-df/2, f_first) or (f_last, f_last+df/2)",
+   "evidence": "not covered by any capture"
+  },
+  {
+   "item": "Welch display state when read asynchronously",
+   "evidence": "acpr_cplx_welch1024_psd_* traces match neither the 15-segment mean nor any partial/exponential average; acpr_cplx_welch1024_psd_three_pairs_none not assessable"
+  }
+ ],
+ "residual_note": "the analysis integrated with a cumulative sum (analysis/rules.py band_pc) and reported upper-band residuals up to 6.6e-8 dB; a direct per-band summation of the same piecewise-constant integral reproduces every assessable capture to <= 1.2e-13 dB (work2/acpr/explore.py), so that residual was cancellation in the analysis model, not the scope",
+ "captures": [
+  {
+   "name": "acpr_cplx_2s_autospan_defaults",
+   "description": "ACPR switched on without setting any value: records the auto/initial band values",
+   "run_index": 23,
+   "signal": {
+    "file": "acpr_sig_cplx.txt",
+    "columns": "re im",
+    "is_complex": true,
+    "fs": 10000,
+    "n_samples": 8192,
+    "n_calls": 1,
+    "extra_call_used": false
+   },
+   "scope": {
+    "two_sided": true,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window": "hann",
+    "window_length": 8192,
+    "overlap_percent": 0,
+    "spectral_averages": 1,
+    "averaging_method": "running",
+    "fft_length_source": "auto",
+    "nfft_effective": 8192,
+    "reference_load": 1,
+    "frequency_span": "full",
+    "frequency_offset": 0
+   },
+   "requested_measurement": {
+    "Type": "acpr"
+   },
+   "config": {
+    "Type": "acpr",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 2000,
+    "CenterFrequency": 1250,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "AdjacentBW": 1000,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "Enabled": true
+   },
+   "measurements": {
+    "ChannelPower": 25.12006787937592,
+    "ACPRLower": [
+     -0.08014830281203442,
+     -58.14851579554816
+    ],
+    "ACPRUpper": [
+     -63.43970614379592,
+     null
+    ],
+    "stable": true,
+    "SimulationTime": 0.8191
+   },
+   "display": {
+    "fresh": true,
+    "nbins": 8192,
+    "df_Hz": 1.220703125,
+    "f_first_Hz": -4998.779296875,
+    "f_last_Hz": 5000.0,
+    "nfft_implied": 8192,
+    "RBW_hann_periodic_Hz": 1.8310546874999998,
+    "vs_pwelch_hann_periodic_max_abs_dB": 2.842170943040401e-14,
+    "vs_pwelch_hann_symmetric_max_abs_dB": 0.10743538793030893,
+    "previous_capture_in_run": "obw_real_2s_maxhold_2calls",
+    "samples": {
+     "index": [
+      0,
+      585,
+      1170,
+      1755,
+      2340,
+      2925,
+      3510,
+      4096,
+      4388,
+      4681,
+      5266,
+      5851,
+      6436,
+      7021,
+      7606,
+      8191
+     ],
+     "f_Hz": [
+      -4998.779296875,
+      -4284.66796875,
+      -3570.556640625,
+      -2856.4453125,
+      -2142.333984375,
+      -1428.22265625,
+      -714.111328125,
+      1.220703125,
+      357.666015625,
+      715.33203125,
+      1429.443359375,
+      2143.5546875,
+      2857.666015625,
+      3571.77734375,
+      4285.888671875,
+      5000.0
+     ],
+     "value": [
+      -65.00201122127689,
+      -78.5400575439923,
+      -72.40645544684398,
+      -60.20101074243658,
+      -61.72071216055184,
+      -34.635195006263686,
+      -21.04727232721099,
+      5.415649224985572,
+      13.005898579600036,
+      -22.559980862669924,
+      -37.8024675857565,
+      -74.15168313061359,
+      -62.03152809067255,
+      -63.34933754206034,
+      -71.36630569011717,
+      -86.18132586578297
+     ],
+     "units": "dBm"
+    }
+   },
+   "analysis": {
+    "spectrum_source": "model",
+    "abs_diff_cumsum_model": {
+     "ChannelPower_dB": 5.3290705182007514e-14,
+     "ACPRLower_dB": 1.0658141036401503e-13,
+     "ACPRUpper_dB": 5.2584425702661974e-08
+    },
+    "match": true,
+    "main_band": [
+     250.0,
+     2250.0
+    ],
+    "center": 1250,
+    "lower_bands": [
+     [
+      -1250.0,
+      -250.0
+     ],
+     [
+      -2750.0,
+      -1750.0
+     ]
+    ],
+    "upper_bands": [
+     [
+      2750.0,
+      3750.0
+     ],
+     [
+      4250.0,
+      5250.0
+     ]
+    ],
+    "note": "enabling Type=acpr did NOT re-run the auto-span: CenterFrequency 1250 is left over from the previous capture (obw_real_2s_maxhold_2calls); the auto-span formula would give CF 0 / Span 2000 / AdjBW 1000 / [2000 3500]; with the stale config the rule reproduces the capture; upper2 [4250 5250] is NaN because 5250 > 5000 (ANALYSIS.md §3.3)"
+   }
+  },
+  {
+   "name": "acpr_cplx_2s_beyond_range",
+   "description": "adjacent band beyond the display: offsets [2000 4800], AdjBW 1000 -> upper 2 = [4300 5300] on a +-5000 display",
+   "run_index": 39,
+   "signal": {
+    "file": "acpr_sig_cplx.txt",
+    "columns": "re im",
+    "is_complex": true,
+    "fs": 10000,
+    "n_samples": 8192,
+    "n_calls": 1,
+    "extra_call_used": false
+   },
+   "scope": {
+    "two_sided": true,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window": "hann",
+    "window_length": 8192,
+    "overlap_percent": 0,
+    "spectral_averages": 1,
+    "averaging_method": "running",
+    "fft_length_source": "auto",
+    "nfft_effective": 8192,
+    "reference_load": 1,
+    "frequency_span": "full",
+    "frequency_offset": 0
+   },
+   "requested_measurement": {
+    "Type": "acpr",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 2000,
+    "CenterFrequency": 0,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     4800
+    ],
+    "AdjacentBW": 1000,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5
+   },
+   "config": {
+    "Type": "acpr",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 2000,
+    "CenterFrequency": 0,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "AdjacentBW": 1000,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     4800
+    ],
+    "Enabled": true
+   },
+   "measurements": {
+    "ChannelPower": 30.804391095017923,
+    "ACPRLower": [
+     -49.658937292712714,
+     null
+    ],
+    "ACPRUpper": [
+     -49.934781993092514,
+     null
+    ],
+    "stable": true,
+    "SimulationTime": 0.8191
+   },
+   "display": {
+    "fresh": true,
+    "nbins": 8192,
+    "df_Hz": 1.220703125,
+    "f_first_Hz": -4998.779296875,
+    "f_last_Hz": 5000.0,
+    "nfft_implied": 8192,
+    "RBW_hann_periodic_Hz": 1.8310546874999998,
+    "vs_pwelch_hann_periodic_max_abs_dB": 2.842170943040401e-14,
+    "vs_pwelch_hann_symmetric_max_abs_dB": 0.10743538793030893,
+    "previous_capture_in_run": "acpr_cplx_2s_startstop_m500_1500_none",
+    "samples": {
+     "index": [
+      0,
+      585,
+      1170,
+      1755,
+      2340,
+      2925,
+      3510,
+      4096,
+      4388,
+      4681,
+      5266,
+      5851,
+      6436,
+      7021,
+      7606,
+      8191
+     ],
+     "f_Hz": [
+      -4998.779296875,
+      -4284.66796875,
+      -3570.556640625,
+      -2856.4453125,
+      -2142.333984375,
+      -1428.22265625,
+      -714.111328125,
+      1.220703125,
+      357.666015625,
+      715.33203125,
+      1429.443359375,
+      2143.5546875,
+      2857.666015625,
+      3571.77734375,
+      4285.888671875,
+      5000.0
+     ],
+     "value": [
+      -65.00201122127689,
+      -78.5400575439923,
+      -72.40645544684398,
+      -60.20101074243658,
+      -61.72071216055184,
+      -34.635195006263686,
+      -21.04727232721099,
+      5.415649224985572,
+      13.005898579600036,
+      -22.559980862669924,
+      -37.8024675857565,
+      -74.15168313061359,
+      -62.03152809067255,
+      -63.34933754206034,
+      -71.36630569011717,
+      -86.18132586578297
+     ],
+     "units": "dBm"
+    }
+   },
+   "analysis": {
+    "spectrum_source": "model",
+    "abs_diff_cumsum_model": {
+     "ChannelPower_dB": 0.0,
+     "ACPRLower_dB": 7.105427357601002e-15,
+     "ACPRUpper_dB": 4.5857717623221106e-10
+    },
+    "match": true,
+    "main_band": [
+     -1000.0,
+     1000.0
+    ],
+    "center": 0,
+    "lower_bands": [
+     [
+      -2500.0,
+      -1500.0
+     ],
+     [
+      -5300.0,
+      -4300.0
+     ]
+    ],
+    "upper_bands": [
+     [
+      1500.0,
+      2500.0
+     ],
+     [
+      4300.0,
+      5300.0
+     ]
+    ]
+   }
+  },
+  {
+   "name": "acpr_cplx_2s_default_gaussian_0p25",
+   "description": "gaussian, coeff 0.25",
+   "run_index": 33,
+   "signal": {
+    "file": "acpr_sig_cplx.txt",
+    "columns": "re im",
+    "is_complex": true,
+    "fs": 10000,
+    "n_samples": 8192,
+    "n_calls": 1,
+    "extra_call_used": false
+   },
+   "scope": {
+    "two_sided": true,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window": "hann",
+    "window_length": 8192,
+    "overlap_percent": 0,
+    "spectral_averages": 1,
+    "averaging_method": "running",
+    "fft_length_source": "auto",
+    "nfft_effective": 8192,
+    "reference_load": 1,
+    "frequency_span": "full",
+    "frequency_offset": 0
+   },
+   "requested_measurement": {
+    "Type": "acpr",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 2000,
+    "CenterFrequency": 0,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "AdjacentBW": 1000,
+    "FilterShape": "gaussian",
+    "FilterCoeff": 0.25
+   },
+   "config": {
+    "Type": "acpr",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 2000,
+    "CenterFrequency": 0,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "AdjacentBW": 1000,
+    "FilterShape": "gaussian",
+    "FilterCoeff": 0.25,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "Enabled": true
+   },
+   "measurements": {
+    "ChannelPower": 29.81328471476033,
+    "ACPRLower": [
+     -51.00714136040072,
+     -70.00488870138882
+    ],
+    "ACPRUpper": [
+     -51.2150871371817,
+     -69.34089313868456
+    ],
+    "stable": true,
+    "SimulationTime": 0.8191
+   },
+   "display": {
+    "fresh": true,
+    "nbins": 8192,
+    "df_Hz": 1.220703125,
+    "f_first_Hz": -4998.779296875,
+    "f_last_Hz": 5000.0,
+    "nfft_implied": 8192,
+    "RBW_hann_periodic_Hz": 1.8310546874999998,
+    "vs_pwelch_hann_periodic_max_abs_dB": 2.842170943040401e-14,
+    "vs_pwelch_hann_symmetric_max_abs_dB": 0.10743538793030893,
+    "previous_capture_in_run": "acpr_cplx_2s_default_rrc_1p0",
+    "samples": {
+     "index": [
+      0,
+      585,
+      1170,
+      1755,
+      2340,
+      2925,
+      3510,
+      4096,
+      4388,
+      4681,
+      5266,
+      5851,
+      6436,
+      7021,
+      7606,
+      8191
+     ],
+     "f_Hz": [
+      -4998.779296875,
+      -4284.66796875,
+      -3570.556640625,
+      -2856.4453125,
+      -2142.333984375,
+      -1428.22265625,
+      -714.111328125,
+      1.220703125,
+      357.666015625,
+      715.33203125,
+      1429.443359375,
+      2143.5546875,
+      2857.666015625,
+      3571.77734375,
+      4285.888671875,
+      5000.0
+     ],
+     "value": [
+      -65.00201122127689,
+      -78.5400575439923,
+      -72.40645544684398,
+      -60.20101074243658,
+      -61.72071216055184,
+      -34.635195006263686,
+      -21.04727232721099,
+      5.415649224985572,
+      13.005898579600036,
+      -22.559980862669924,
+      -37.8024675857565,
+      -74.15168313061359,
+      -62.03152809067255,
+      -63.34933754206034,
+      -71.36630569011717,
+      -86.18132586578297
+     ],
+     "units": "dBm"
+    }
+   },
+   "analysis": {
+    "spectrum_source": "model",
+    "abs_diff_cumsum_model": {
+     "ChannelPower_dB": 1.0658141036401503e-14,
+     "ACPRLower_dB": 1.4210854715202004e-14,
+     "ACPRUpper_dB": 1.7053025658242404e-13
+    },
+    "match": true,
+    "main_band": [
+     -1000.0,
+     1000.0
+    ],
+    "center": 0,
+    "lower_bands": [
+     [
+      -2500.0,
+      -1500.0
+     ],
+     [
+      -4000.0,
+      -3000.0
+     ]
+    ],
+    "upper_bands": [
+     [
+      1500.0,
+      2500.0
+     ],
+     [
+      3000.0,
+      4000.0
+     ]
+    ]
+   }
+  },
+  {
+   "name": "acpr_cplx_2s_default_gaussian_0p5",
+   "description": "default bands, FilterShape gaussian, FilterCoeff 0.5",
+   "run_index": 29,
+   "signal": {
+    "file": "acpr_sig_cplx.txt",
+    "columns": "re im",
+    "is_complex": true,
+    "fs": 10000,
+    "n_samples": 8192,
+    "n_calls": 1,
+    "extra_call_used": false
+   },
+   "scope": {
+    "two_sided": true,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window": "hann",
+    "window_length": 8192,
+    "overlap_percent": 0,
+    "spectral_averages": 1,
+    "averaging_method": "running",
+    "fft_length_source": "auto",
+    "nfft_effective": 8192,
+    "reference_load": 1,
+    "frequency_span": "full",
+    "frequency_offset": 0
+   },
+   "requested_measurement": {
+    "Type": "acpr",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 2000,
+    "CenterFrequency": 0,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "AdjacentBW": 1000,
+    "FilterShape": "gaussian",
+    "FilterCoeff": 0.5
+   },
+   "config": {
+    "Type": "acpr",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 2000,
+    "CenterFrequency": 0,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "AdjacentBW": 1000,
+    "FilterShape": "gaussian",
+    "FilterCoeff": 0.5,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "Enabled": true
+   },
+   "measurements": {
+    "ChannelPower": 30.534948699523614,
+    "ACPRLower": [
+     -49.98268940580044,
+     -70.0302610189553
+    ],
+    "ACPRUpper": [
+     -50.23987088042461,
+     -69.39273829757894
+    ],
+    "stable": true,
+    "SimulationTime": 0.8191
+   },
+   "display": {
+    "fresh": true,
+    "nbins": 8192,
+    "df_Hz": 1.220703125,
+    "f_first_Hz": -4998.779296875,
+    "f_last_Hz": 5000.0,
+    "nfft_implied": 8192,
+    "RBW_hann_periodic_Hz": 1.8310546874999998,
+    "vs_pwelch_hann_periodic_max_abs_dB": 2.842170943040401e-14,
+    "vs_pwelch_hann_symmetric_max_abs_dB": 0.10743538793030893,
+    "previous_capture_in_run": "acpr_cplx_2s_default_rrc_0p5",
+    "samples": {
+     "index": [
+      0,
+      585,
+      1170,
+      1755,
+      2340,
+      2925,
+      3510,
+      4096,
+      4388,
+      4681,
+      5266,
+      5851,
+      6436,
+      7021,
+      7606,
+      8191
+     ],
+     "f_Hz": [
+      -4998.779296875,
+      -4284.66796875,
+      -3570.556640625,
+      -2856.4453125,
+      -2142.333984375,
+      -1428.22265625,
+      -714.111328125,
+      1.220703125,
+      357.666015625,
+      715.33203125,
+      1429.443359375,
+      2143.5546875,
+      2857.666015625,
+      3571.77734375,
+      4285.888671875,
+      5000.0
+     ],
+     "value": [
+      -65.00201122127689,
+      -78.5400575439923,
+      -72.40645544684398,
+      -60.20101074243658,
+      -61.72071216055184,
+      -34.635195006263686,
+      -21.04727232721099,
+      5.415649224985572,
+      13.005898579600036,
+      -22.559980862669924,
+      -37.8024675857565,
+      -74.15168313061359,
+      -62.03152809067255,
+      -63.34933754206034,
+      -71.36630569011717,
+      -86.18132586578297
+     ],
+     "units": "dBm"
+    }
+   },
+   "analysis": {
+    "spectrum_source": "model",
+    "abs_diff_cumsum_model": {
+     "ChannelPower_dB": 1.0658141036401503e-14,
+     "ACPRLower_dB": 1.4210854715202004e-14,
+     "ACPRUpper_dB": 3.380762336746557e-11
+    },
+    "match": true,
+    "main_band": [
+     -1000.0,
+     1000.0
+    ],
+    "center": 0,
+    "lower_bands": [
+     [
+      -2500.0,
+      -1500.0
+     ],
+     [
+      -4000.0,
+      -3000.0
+     ]
+    ],
+    "upper_bands": [
+     [
+      1500.0,
+      2500.0
+     ],
+     [
+      3000.0,
+      4000.0
+     ]
+    ]
+   }
+  },
+  {
+   "name": "acpr_cplx_2s_default_gaussian_1p0",
+   "description": "gaussian, coeff 1",
+   "run_index": 34,
+   "signal": {
+    "file": "acpr_sig_cplx.txt",
+    "columns": "re im",
+    "is_complex": true,
+    "fs": 10000,
+    "n_samples": 8192,
+    "n_calls": 1,
+    "extra_call_used": false
+   },
+   "scope": {
+    "two_sided": true,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window": "hann",
+    "window_length": 8192,
+    "overlap_percent": 0,
+    "spectral_averages": 1,
+    "averaging_method": "running",
+    "fft_length_source": "auto",
+    "nfft_effective": 8192,
+    "reference_load": 1,
+    "frequency_span": "full",
+    "frequency_offset": 0
+   },
+   "requested_measurement": {
+    "Type": "acpr",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 2000,
+    "CenterFrequency": 0,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "AdjacentBW": 1000,
+    "FilterShape": "gaussian",
+    "FilterCoeff": 1
+   },
+   "config": {
+    "Type": "acpr",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 2000,
+    "CenterFrequency": 0,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "AdjacentBW": 1000,
+    "FilterShape": "gaussian",
+    "FilterCoeff": 1,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "Enabled": true
+   },
+   "measurements": {
+    "ChannelPower": 30.735565534966142,
+    "ACPRLower": [
+     -49.73889706748865,
+     -70.04149813012862
+    ],
+    "ACPRUpper": [
+     -50.00997662011529,
+     -69.41048830344488
+    ],
+    "stable": true,
+    "SimulationTime": 0.8191
+   },
+   "display": {
+    "fresh": true,
+    "nbins": 8192,
+    "df_Hz": 1.220703125,
+    "f_first_Hz": -4998.779296875,
+    "f_last_Hz": 5000.0,
+    "nfft_implied": 8192,
+    "RBW_hann_periodic_Hz": 1.8310546874999998,
+    "vs_pwelch_hann_periodic_max_abs_dB": 2.842170943040401e-14,
+    "vs_pwelch_hann_symmetric_max_abs_dB": 0.10743538793030893,
+    "previous_capture_in_run": "acpr_cplx_2s_default_gaussian_0p25",
+    "samples": {
+     "index": [
+      0,
+      585,
+      1170,
+      1755,
+      2340,
+      2925,
+      3510,
+      4096,
+      4388,
+      4681,
+      5266,
+      5851,
+      6436,
+      7021,
+      7606,
+      8191
+     ],
+     "f_Hz": [
+      -4998.779296875,
+      -4284.66796875,
+      -3570.556640625,
+      -2856.4453125,
+      -2142.333984375,
+      -1428.22265625,
+      -714.111328125,
+      1.220703125,
+      357.666015625,
+      715.33203125,
+      1429.443359375,
+      2143.5546875,
+      2857.666015625,
+      3571.77734375,
+      4285.888671875,
+      5000.0
+     ],
+     "value": [
+      -65.00201122127689,
+      -78.5400575439923,
+      -72.40645544684398,
+      -60.20101074243658,
+      -61.72071216055184,
+      -34.635195006263686,
+      -21.04727232721099,
+      5.415649224985572,
+      13.005898579600036,
+      -22.559980862669924,
+      -37.8024675857565,
+      -74.15168313061359,
+      -62.03152809067255,
+      -63.34933754206034,
+      -71.36630569011717,
+      -86.18132586578297
+     ],
+     "units": "dBm"
+    }
+   },
+   "analysis": {
+    "spectrum_source": "model",
+    "abs_diff_cumsum_model": {
+     "ChannelPower_dB": 7.105427357601002e-15,
+     "ACPRLower_dB": 7.105427357601002e-15,
+     "ACPRUpper_dB": 6.217220516191446e-09
+    },
+    "match": true,
+    "main_band": [
+     -1000.0,
+     1000.0
+    ],
+    "center": 0,
+    "lower_bands": [
+     [
+      -2500.0,
+      -1500.0
+     ],
+     [
+      -4000.0,
+      -3000.0
+     ]
+    ],
+    "upper_bands": [
+     [
+      1500.0,
+      2500.0
+     ],
+     [
+      3000.0,
+      4000.0
+     ]
+    ]
+   }
+  },
+  {
+   "name": "acpr_cplx_2s_default_none",
+   "description": "doc defaults CF 0 Span 2000 AdjBW 1000 offsets [2000 3500], FilterShape none (research default_cplx)",
+   "run_index": 24,
+   "signal": {
+    "file": "acpr_sig_cplx.txt",
+    "columns": "re im",
+    "is_complex": true,
+    "fs": 10000,
+    "n_samples": 8192,
+    "n_calls": 1,
+    "extra_call_used": false
+   },
+   "scope": {
+    "two_sided": true,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window": "hann",
+    "window_length": 8192,
+    "overlap_percent": 0,
+    "spectral_averages": 1,
+    "averaging_method": "running",
+    "fft_length_source": "auto",
+    "nfft_effective": 8192,
+    "reference_load": 1,
+    "frequency_span": "full",
+    "frequency_offset": 0
+   },
+   "requested_measurement": {
+    "Type": "acpr",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 2000,
+    "CenterFrequency": 0,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "AdjacentBW": 1000,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5
+   },
+   "config": {
+    "Type": "acpr",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 2000,
+    "CenterFrequency": 0,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "AdjacentBW": 1000,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "Enabled": true
+   },
+   "measurements": {
+    "ChannelPower": 30.804391095017923,
+    "ACPRLower": [
+     -49.658937292712714,
+     -70.04577221366335
+    ],
+    "ACPRUpper": [
+     -49.934781993092514,
+     -69.41691910575103
+    ],
+    "stable": true,
+    "SimulationTime": 0.8191
+   },
+   "display": {
+    "fresh": true,
+    "nbins": 8192,
+    "df_Hz": 1.220703125,
+    "f_first_Hz": -4998.779296875,
+    "f_last_Hz": 5000.0,
+    "nfft_implied": 8192,
+    "RBW_hann_periodic_Hz": 1.8310546874999998,
+    "vs_pwelch_hann_periodic_max_abs_dB": 2.842170943040401e-14,
+    "vs_pwelch_hann_symmetric_max_abs_dB": 0.10743538793030893,
+    "previous_capture_in_run": "acpr_cplx_2s_autospan_defaults",
+    "samples": {
+     "index": [
+      0,
+      585,
+      1170,
+      1755,
+      2340,
+      2925,
+      3510,
+      4096,
+      4388,
+      4681,
+      5266,
+      5851,
+      6436,
+      7021,
+      7606,
+      8191
+     ],
+     "f_Hz": [
+      -4998.779296875,
+      -4284.66796875,
+      -3570.556640625,
+      -2856.4453125,
+      -2142.333984375,
+      -1428.22265625,
+      -714.111328125,
+      1.220703125,
+      357.666015625,
+      715.33203125,
+      1429.443359375,
+      2143.5546875,
+      2857.666015625,
+      3571.77734375,
+      4285.888671875,
+      5000.0
+     ],
+     "value": [
+      -65.00201122127689,
+      -78.5400575439923,
+      -72.40645544684398,
+      -60.20101074243658,
+      -61.72071216055184,
+      -34.635195006263686,
+      -21.04727232721099,
+      5.415649224985572,
+      13.005898579600036,
+      -22.559980862669924,
+      -37.8024675857565,
+      -74.15168313061359,
+      -62.03152809067255,
+      -63.34933754206034,
+      -71.36630569011717,
+      -86.18132586578297
+     ],
+     "units": "dBm"
+    }
+   },
+   "analysis": {
+    "spectrum_source": "model",
+    "abs_diff_cumsum_model": {
+     "ChannelPower_dB": 0.0,
+     "ACPRLower_dB": 7.105427357601002e-15,
+     "ACPRUpper_dB": 4.2484074924686865e-08
+    },
+    "match": true,
+    "main_band": [
+     -1000.0,
+     1000.0
+    ],
+    "center": 0,
+    "lower_bands": [
+     [
+      -2500.0,
+      -1500.0
+     ],
+     [
+      -4000.0,
+      -3000.0
+     ]
+    ],
+    "upper_bands": [
+     [
+      1500.0,
+      2500.0
+     ],
+     [
+      3000.0,
+      4000.0
+     ]
+    ]
+   }
+  },
+  {
+   "name": "acpr_cplx_2s_default_rrc_0p0",
+   "description": "rrc, coeff 0 (brick-wall limit)",
+   "run_index": 30,
+   "signal": {
+    "file": "acpr_sig_cplx.txt",
+    "columns": "re im",
+    "is_complex": true,
+    "fs": 10000,
+    "n_samples": 8192,
+    "n_calls": 1,
+    "extra_call_used": false
+   },
+   "scope": {
+    "two_sided": true,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window": "hann",
+    "window_length": 8192,
+    "overlap_percent": 0,
+    "spectral_averages": 1,
+    "averaging_method": "running",
+    "fft_length_source": "auto",
+    "nfft_effective": 8192,
+    "reference_load": 1,
+    "frequency_span": "full",
+    "frequency_offset": 0
+   },
+   "requested_measurement": {
+    "Type": "acpr",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 2000,
+    "CenterFrequency": 0,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "AdjacentBW": 1000,
+    "FilterShape": "rrc",
+    "FilterCoeff": 0
+   },
+   "config": {
+    "Type": "acpr",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 2000,
+    "CenterFrequency": 0,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "AdjacentBW": 1000,
+    "FilterShape": "rrc",
+    "FilterCoeff": 0,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "Enabled": true
+   },
+   "measurements": {
+    "ChannelPower": 30.804391095017923,
+    "ACPRLower": [
+     -49.658937292712714,
+     -70.04577221366335
+    ],
+    "ACPRUpper": [
+     -49.934781993092514,
+     -69.41691910575103
+    ],
+    "stable": true,
+    "SimulationTime": 0.8191
+   },
+   "display": {
+    "fresh": true,
+    "nbins": 8192,
+    "df_Hz": 1.220703125,
+    "f_first_Hz": -4998.779296875,
+    "f_last_Hz": 5000.0,
+    "nfft_implied": 8192,
+    "RBW_hann_periodic_Hz": 1.8310546874999998,
+    "vs_pwelch_hann_periodic_max_abs_dB": 2.842170943040401e-14,
+    "vs_pwelch_hann_symmetric_max_abs_dB": 0.10743538793030893,
+    "previous_capture_in_run": "acpr_cplx_2s_default_gaussian_0p5",
+    "samples": {
+     "index": [
+      0,
+      585,
+      1170,
+      1755,
+      2340,
+      2925,
+      3510,
+      4096,
+      4388,
+      4681,
+      5266,
+      5851,
+      6436,
+      7021,
+      7606,
+      8191
+     ],
+     "f_Hz": [
+      -4998.779296875,
+      -4284.66796875,
+      -3570.556640625,
+      -2856.4453125,
+      -2142.333984375,
+      -1428.22265625,
+      -714.111328125,
+      1.220703125,
+      357.666015625,
+      715.33203125,
+      1429.443359375,
+      2143.5546875,
+      2857.666015625,
+      3571.77734375,
+      4285.888671875,
+      5000.0
+     ],
+     "value": [
+      -65.00201122127689,
+      -78.5400575439923,
+      -72.40645544684398,
+      -60.20101074243658,
+      -61.72071216055184,
+      -34.635195006263686,
+      -21.04727232721099,
+      5.415649224985572,
+      13.005898579600036,
+      -22.559980862669924,
+      -37.8024675857565,
+      -74.15168313061359,
+      -62.03152809067255,
+      -63.34933754206034,
+      -71.36630569011717,
+      -86.18132586578297
+     ],
+     "units": "dBm"
+    }
+   },
+   "analysis": {
+    "spectrum_source": "model",
+    "abs_diff_cumsum_model": {
+     "ChannelPower_dB": 0.0,
+     "ACPRLower_dB": 7.105427357601002e-15,
+     "ACPRUpper_dB": 1.1368683772161603e-13
+    },
+    "match": true,
+    "main_band": [
+     -1000.0,
+     1000.0
+    ],
+    "center": 0,
+    "lower_bands": [
+     [
+      -2500.0,
+      -1500.0
+     ],
+     [
+      -4000.0,
+      -3000.0
+     ]
+    ],
+    "upper_bands": [
+     [
+      1500.0,
+      2500.0
+     ],
+     [
+      3000.0,
+      4000.0
+     ]
+    ]
+   }
+  },
+  {
+   "name": "acpr_cplx_2s_default_rrc_0p25",
+   "description": "rrc, coeff 0.25",
+   "run_index": 31,
+   "signal": {
+    "file": "acpr_sig_cplx.txt",
+    "columns": "re im",
+    "is_complex": true,
+    "fs": 10000,
+    "n_samples": 8192,
+    "n_calls": 1,
+    "extra_call_used": false
+   },
+   "scope": {
+    "two_sided": true,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window": "hann",
+    "window_length": 8192,
+    "overlap_percent": 0,
+    "spectral_averages": 1,
+    "averaging_method": "running",
+    "fft_length_source": "auto",
+    "nfft_effective": 8192,
+    "reference_load": 1,
+    "frequency_span": "full",
+    "frequency_offset": 0
+   },
+   "requested_measurement": {
+    "Type": "acpr",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 2000,
+    "CenterFrequency": 0,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "AdjacentBW": 1000,
+    "FilterShape": "rrc",
+    "FilterCoeff": 0.25
+   },
+   "config": {
+    "Type": "acpr",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 2000,
+    "CenterFrequency": 0,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "AdjacentBW": 1000,
+    "FilterShape": "rrc",
+    "FilterCoeff": 0.25,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "Enabled": true
+   },
+   "measurements": {
+    "ChannelPower": 30.80430514406872,
+    "ACPRLower": [
+     -49.65885134176351,
+     -70.04568626271416
+    ],
+    "ACPRUpper": [
+     -49.9346960421433,
+     -69.41683315480182
+    ],
+    "stable": true,
+    "SimulationTime": 0.8191
+   },
+   "display": {
+    "fresh": true,
+    "nbins": 8192,
+    "df_Hz": 1.220703125,
+    "f_first_Hz": -4998.779296875,
+    "f_last_Hz": 5000.0,
+    "nfft_implied": 8192,
+    "RBW_hann_periodic_Hz": 1.8310546874999998,
+    "vs_pwelch_hann_periodic_max_abs_dB": 2.842170943040401e-14,
+    "vs_pwelch_hann_symmetric_max_abs_dB": 0.10743538793030893,
+    "previous_capture_in_run": "acpr_cplx_2s_default_rrc_0p0",
+    "samples": {
+     "index": [
+      0,
+      585,
+      1170,
+      1755,
+      2340,
+      2925,
+      3510,
+      4096,
+      4388,
+      4681,
+      5266,
+      5851,
+      6436,
+      7021,
+      7606,
+      8191
+     ],
+     "f_Hz": [
+      -4998.779296875,
+      -4284.66796875,
+      -3570.556640625,
+      -2856.4453125,
+      -2142.333984375,
+      -1428.22265625,
+      -714.111328125,
+      1.220703125,
+      357.666015625,
+      715.33203125,
+      1429.443359375,
+      2143.5546875,
+      2857.666015625,
+      3571.77734375,
+      4285.888671875,
+      5000.0
+     ],
+     "value": [
+      -65.00201122127689,
+      -78.5400575439923,
+      -72.40645544684398,
+      -60.20101074243658,
+      -61.72071216055184,
+      -34.635195006263686,
+      -21.04727232721099,
+      5.415649224985572,
+      13.005898579600036,
+      -22.559980862669924,
+      -37.8024675857565,
+      -74.15168313061359,
+      -62.03152809067255,
+      -63.34933754206034,
+      -71.36630569011717,
+      -86.18132586578297
+     ],
+     "units": "dBm"
+    }
+   },
+   "analysis": {
+    "spectrum_source": "model",
+    "abs_diff_cumsum_model": {
+     "ChannelPower_dB": 7.105427357601002e-15,
+     "ACPRLower_dB": 1.4210854715202004e-14,
+     "ACPRUpper_dB": 9.947598300641403e-14
+    },
+    "match": true,
+    "main_band": [
+     -1000.0,
+     1000.0
+    ],
+    "center": 0,
+    "lower_bands": [
+     [
+      -2500.0,
+      -1500.0
+     ],
+     [
+      -4000.0,
+      -3000.0
+     ]
+    ],
+    "upper_bands": [
+     [
+      1500.0,
+      2500.0
+     ],
+     [
+      3000.0,
+      4000.0
+     ]
+    ]
+   }
+  },
+  {
+   "name": "acpr_cplx_2s_default_rrc_0p5",
+   "description": "default bands, FilterShape rrc, FilterCoeff 0.5 (ONLY source of numbers for the filtered case)",
+   "run_index": 28,
+   "signal": {
+    "file": "acpr_sig_cplx.txt",
+    "columns": "re im",
+    "is_complex": true,
+    "fs": 10000,
+    "n_samples": 8192,
+    "n_calls": 1,
+    "extra_call_used": false
+   },
+   "scope": {
+    "two_sided": true,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window": "hann",
+    "window_length": 8192,
+    "overlap_percent": 0,
+    "spectral_averages": 1,
+    "averaging_method": "running",
+    "fft_length_source": "auto",
+    "nfft_effective": 8192,
+    "reference_load": 1,
+    "frequency_span": "full",
+    "frequency_offset": 0
+   },
+   "requested_measurement": {
+    "Type": "acpr",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 2000,
+    "CenterFrequency": 0,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "AdjacentBW": 1000,
+    "FilterShape": "rrc",
+    "FilterCoeff": 0.5
+   },
+   "config": {
+    "Type": "acpr",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 2000,
+    "CenterFrequency": 0,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "AdjacentBW": 1000,
+    "FilterShape": "rrc",
+    "FilterCoeff": 0.5,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "Enabled": true
+   },
+   "measurements": {
+    "ChannelPower": 30.80213832227868,
+    "ACPRLower": [
+     -49.65668451997347,
+     -70.04351944113714
+    ],
+    "ACPRUpper": [
+     -49.932529220353274,
+     -69.41466633347329
+    ],
+    "stable": true,
+    "SimulationTime": 0.8191
+   },
+   "display": {
+    "fresh": true,
+    "nbins": 8192,
+    "df_Hz": 1.220703125,
+    "f_first_Hz": -4998.779296875,
+    "f_last_Hz": 5000.0,
+    "nfft_implied": 8192,
+    "RBW_hann_periodic_Hz": 1.8310546874999998,
+    "vs_pwelch_hann_periodic_max_abs_dB": 2.842170943040401e-14,
+    "vs_pwelch_hann_symmetric_max_abs_dB": 0.10743538793030893,
+    "previous_capture_in_run": "acpr_cplx_2s_edge_bins_none",
+    "samples": {
+     "index": [
+      0,
+      585,
+      1170,
+      1755,
+      2340,
+      2925,
+      3510,
+      4096,
+      4388,
+      4681,
+      5266,
+      5851,
+      6436,
+      7021,
+      7606,
+      8191
+     ],
+     "f_Hz": [
+      -4998.779296875,
+      -4284.66796875,
+      -3570.556640625,
+      -2856.4453125,
+      -2142.333984375,
+      -1428.22265625,
+      -714.111328125,
+      1.220703125,
+      357.666015625,
+      715.33203125,
+      1429.443359375,
+      2143.5546875,
+      2857.666015625,
+      3571.77734375,
+      4285.888671875,
+      5000.0
+     ],
+     "value": [
+      -65.00201122127689,
+      -78.5400575439923,
+      -72.40645544684398,
+      -60.20101074243658,
+      -61.72071216055184,
+      -34.635195006263686,
+      -21.04727232721099,
+      5.415649224985572,
+      13.005898579600036,
+      -22.559980862669924,
+      -37.8024675857565,
+      -74.15168313061359,
+      -62.03152809067255,
+      -63.34933754206034,
+      -71.36630569011717,
+      -86.18132586578297
+     ],
+     "units": "dBm"
+    }
+   },
+   "analysis": {
+    "spectrum_source": "model",
+    "abs_diff_cumsum_model": {
+     "ChannelPower_dB": 0.0,
+     "ACPRLower_dB": 7.105427357601002e-15,
+     "ACPRUpper_dB": 3.126388037344441e-13
+    },
+    "match": true,
+    "main_band": [
+     -1000.0,
+     1000.0
+    ],
+    "center": 0,
+    "lower_bands": [
+     [
+      -2500.0,
+      -1500.0
+     ],
+     [
+      -4000.0,
+      -3000.0
+     ]
+    ],
+    "upper_bands": [
+     [
+      1500.0,
+      2500.0
+     ],
+     [
+      3000.0,
+      4000.0
+     ]
+    ]
+   }
+  },
+  {
+   "name": "acpr_cplx_2s_default_rrc_1p0",
+   "description": "rrc, coeff 1",
+   "run_index": 32,
+   "signal": {
+    "file": "acpr_sig_cplx.txt",
+    "columns": "re im",
+    "is_complex": true,
+    "fs": 10000,
+    "n_samples": 8192,
+    "n_calls": 1,
+    "extra_call_used": false
+   },
+   "scope": {
+    "two_sided": true,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window": "hann",
+    "window_length": 8192,
+    "overlap_percent": 0,
+    "spectral_averages": 1,
+    "averaging_method": "running",
+    "fft_length_source": "auto",
+    "nfft_effective": 8192,
+    "reference_load": 1,
+    "frequency_span": "full",
+    "frequency_offset": 0
+   },
+   "requested_measurement": {
+    "Type": "acpr",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 2000,
+    "CenterFrequency": 0,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "AdjacentBW": 1000,
+    "FilterShape": "rrc",
+    "FilterCoeff": 1
+   },
+   "config": {
+    "Type": "acpr",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 2000,
+    "CenterFrequency": 0,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "AdjacentBW": 1000,
+    "FilterShape": "rrc",
+    "FilterCoeff": 1,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "Enabled": true
+   },
+   "measurements": {
+    "ChannelPower": 30.559592806996086,
+    "ACPRLower": [
+     -49.954037564215376,
+     -70.03098160251521
+    ],
+    "ACPRUpper": [
+     -50.21238552131348,
+     -69.39429835603052
+    ],
+    "stable": true,
+    "SimulationTime": 0.8191
+   },
+   "display": {
+    "fresh": true,
+    "nbins": 8192,
+    "df_Hz": 1.220703125,
+    "f_first_Hz": -4998.779296875,
+    "f_last_Hz": 5000.0,
+    "nfft_implied": 8192,
+    "RBW_hann_periodic_Hz": 1.8310546874999998,
+    "vs_pwelch_hann_periodic_max_abs_dB": 2.842170943040401e-14,
+    "vs_pwelch_hann_symmetric_max_abs_dB": 0.10743538793030893,
+    "previous_capture_in_run": "acpr_cplx_2s_default_rrc_0p25",
+    "samples": {
+     "index": [
+      0,
+      585,
+      1170,
+      1755,
+      2340,
+      2925,
+      3510,
+      4096,
+      4388,
+      4681,
+      5266,
+      5851,
+      6436,
+      7021,
+      7606,
+      8191
+     ],
+     "f_Hz": [
+      -4998.779296875,
+      -4284.66796875,
+      -3570.556640625,
+      -2856.4453125,
+      -2142.333984375,
+      -1428.22265625,
+      -714.111328125,
+      1.220703125,
+      357.666015625,
+      715.33203125,
+      1429.443359375,
+      2143.5546875,
+      2857.666015625,
+      3571.77734375,
+      4285.888671875,
+      5000.0
+     ],
+     "value": [
+      -65.00201122127689,
+      -78.5400575439923,
+      -72.40645544684398,
+      -60.20101074243658,
+      -61.72071216055184,
+      -34.635195006263686,
+      -21.04727232721099,
+      5.415649224985572,
+      13.005898579600036,
+      -22.559980862669924,
+      -37.8024675857565,
+      -74.15168313061359,
+      -62.03152809067255,
+      -63.34933754206034,
+      -71.36630569011717,
+      -86.18132586578297
+     ],
+     "units": "dBm"
+    }
+   },
+   "analysis": {
+    "spectrum_source": "model",
+    "abs_diff_cumsum_model": {
+     "ChannelPower_dB": 3.552713678800501e-15,
+     "ACPRLower_dB": 1.4210854715202004e-14,
+     "ACPRUpper_dB": 2.531663767513237e-11
+    },
+    "match": true,
+    "main_band": [
+     -1000.0,
+     1000.0
+    ],
+    "center": 0,
+    "lower_bands": [
+     [
+      -2500.0,
+      -1500.0
+     ],
+     [
+      -4000.0,
+      -3000.0
+     ]
+    ],
+    "upper_bands": [
+     [
+      1500.0,
+      2500.0
+     ],
+     [
+      3000.0,
+      4000.0
+     ]
+    ]
+   }
+  },
+  {
+   "name": "acpr_cplx_2s_edge_bins_none",
+   "description": "band edges on bin centres of the 1024-pt grid (research edge_bins); here the grid is 8192 pts",
+   "run_index": 27,
+   "signal": {
+    "file": "acpr_sig_cplx.txt",
+    "columns": "re im",
+    "is_complex": true,
+    "fs": 10000,
+    "n_samples": 8192,
+    "n_calls": 1,
+    "extra_call_used": false
+   },
+   "scope": {
+    "two_sided": true,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window": "hann",
+    "window_length": 8192,
+    "overlap_percent": 0,
+    "spectral_averages": 1,
+    "averaging_method": "running",
+    "fft_length_source": "auto",
+    "nfft_effective": 8192,
+    "reference_load": 1,
+    "frequency_span": "full",
+    "frequency_offset": 0
+   },
+   "requested_measurement": {
+    "Type": "acpr",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 1953.125,
+    "CenterFrequency": 0,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     1953.125,
+     3417.96875
+    ],
+    "AdjacentBW": 976.5625,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5
+   },
+   "config": {
+    "Type": "acpr",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 1953.125,
+    "CenterFrequency": 0,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "AdjacentBW": 976.5625,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     1953.125,
+     3417.96875
+    ],
+    "Enabled": true
+   },
+   "measurements": {
+    "ChannelPower": 30.804349305697933,
+    "ACPRLower": [
+     -48.22553197810088,
+     -69.97286155416793
+    ],
+    "ACPRUpper": [
+     -47.84727417903257,
+     -69.36275929561761
+    ],
+    "stable": true,
+    "SimulationTime": 0.8191
+   },
+   "display": {
+    "fresh": true,
+    "nbins": 8192,
+    "df_Hz": 1.220703125,
+    "f_first_Hz": -4998.779296875,
+    "f_last_Hz": 5000.0,
+    "nfft_implied": 8192,
+    "RBW_hann_periodic_Hz": 1.8310546874999998,
+    "vs_pwelch_hann_periodic_max_abs_dB": 2.842170943040401e-14,
+    "vs_pwelch_hann_symmetric_max_abs_dB": 0.10743538793030893,
+    "previous_capture_in_run": "acpr_cplx_2s_qpsk_tight_none",
+    "samples": {
+     "index": [
+      0,
+      585,
+      1170,
+      1755,
+      2340,
+      2925,
+      3510,
+      4096,
+      4388,
+      4681,
+      5266,
+      5851,
+      6436,
+      7021,
+      7606,
+      8191
+     ],
+     "f_Hz": [
+      -4998.779296875,
+      -4284.66796875,
+      -3570.556640625,
+      -2856.4453125,
+      -2142.333984375,
+      -1428.22265625,
+      -714.111328125,
+      1.220703125,
+      357.666015625,
+      715.33203125,
+      1429.443359375,
+      2143.5546875,
+      2857.666015625,
+      3571.77734375,
+      4285.888671875,
+      5000.0
+     ],
+     "value": [
+      -65.00201122127689,
+      -78.5400575439923,
+      -72.40645544684398,
+      -60.20101074243658,
+      -61.72071216055184,
+      -34.635195006263686,
+      -21.04727232721099,
+      5.415649224985572,
+      13.005898579600036,
+      -22.559980862669924,
+      -37.8024675857565,
+      -74.15168313061359,
+      -62.03152809067255,
+      -63.34933754206034,
+      -71.36630569011717,
+      -86.18132586578297
+     ],
+     "units": "dBm"
+    }
+   },
+   "analysis": {
+    "spectrum_source": "model",
+    "abs_diff_cumsum_model": {
+     "ChannelPower_dB": 3.552713678800501e-15,
+     "ACPRLower_dB": 2.842170943040401e-14,
+     "ACPRUpper_dB": 6.570914479198109e-08
+    },
+    "match": true,
+    "main_band": [
+     -976.5625,
+     976.5625
+    ],
+    "center": 0,
+    "lower_bands": [
+     [
+      -2441.40625,
+      -1464.84375
+     ],
+     [
+      -3906.25,
+      -2929.6875
+     ]
+    ],
+    "upper_bands": [
+     [
+      1464.84375,
+      2441.40625
+     ],
+     [
+      2929.6875,
+      3906.25
+     ]
+    ]
+   }
+  },
+  {
+   "name": "acpr_cplx_2s_psd_default_none",
+   "description": "default bands with SpectrumType power-density (dBm/Hz)",
+   "run_index": 43,
+   "signal": {
+    "file": "acpr_sig_cplx.txt",
+    "columns": "re im",
+    "is_complex": true,
+    "fs": 10000,
+    "n_samples": 8192,
+    "n_calls": 1,
+    "extra_call_used": false
+   },
+   "scope": {
+    "two_sided": true,
+    "spectrum_type": "power-density",
+    "units": "dBm/Hz",
+    "window": "hann",
+    "window_length": 8192,
+    "overlap_percent": 0,
+    "spectral_averages": 1,
+    "averaging_method": "running",
+    "fft_length_source": "auto",
+    "nfft_effective": 8192,
+    "reference_load": 1,
+    "frequency_span": "full",
+    "frequency_offset": 0
+   },
+   "requested_measurement": {
+    "Type": "acpr",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 2000,
+    "CenterFrequency": 0,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "AdjacentBW": 1000,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5
+   },
+   "config": {
+    "Type": "acpr",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 2000,
+    "CenterFrequency": 0,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "AdjacentBW": 1000,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "Enabled": true
+   },
+   "measurements": {
+    "ChannelPower": 30.804391095017923,
+    "ACPRLower": [
+     -49.658937292712714,
+     -70.04577221366335
+    ],
+    "ACPRUpper": [
+     -49.934781993092514,
+     -69.41691910575103
+    ],
+    "stable": true,
+    "SimulationTime": 0.8191
+   },
+   "display": {
+    "fresh": false,
+    "nbins": 8192,
+    "df_Hz": 1.220703125,
+    "f_first_Hz": -4998.779296875,
+    "f_last_Hz": 5000.0,
+    "nfft_implied": 8192,
+    "RBW_hann_periodic_Hz": 1.8310546874999998,
+    "vs_pwelch_hann_periodic_max_abs_dB": 93.47763318602446,
+    "vs_pwelch_hann_symmetric_max_abs_dB": 93.49320989552865,
+    "previous_capture_in_run": "acpr_real_2s_2k_none",
+    "stale_note": "display stale: previous real input xr re-processed in dBm/Hz, not this capture's xc (ANALYSIS.md §0); measurement fresh, model spectrum used"
+   },
+   "analysis": {
+    "spectrum_source": "model",
+    "abs_diff_cumsum_model": {
+     "ChannelPower_dB": 0.0,
+     "ACPRLower_dB": 7.105427357601002e-15,
+     "ACPRUpper_dB": 4.2484074924686865e-08
+    },
+    "match": true,
+    "main_band": [
+     -1000.0,
+     1000.0
+    ],
+    "center": 0,
+    "lower_bands": [
+     [
+      -2500.0,
+      -1500.0
+     ],
+     [
+      -4000.0,
+      -3000.0
+     ]
+    ],
+    "upper_bands": [
+     [
+      1500.0,
+      2500.0
+     ],
+     [
+      3000.0,
+      4000.0
+     ]
+    ]
+   }
+  },
+  {
+   "name": "acpr_cplx_2s_qpsk_tight_gaussian_0p3",
+   "description": "tight bands with gaussian 0.3",
+   "run_index": 36,
+   "signal": {
+    "file": "acpr_sig_cplx.txt",
+    "columns": "re im",
+    "is_complex": true,
+    "fs": 10000,
+    "n_samples": 8192,
+    "n_calls": 1,
+    "extra_call_used": false
+   },
+   "scope": {
+    "two_sided": true,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window": "hann",
+    "window_length": 8192,
+    "overlap_percent": 0,
+    "spectral_averages": 1,
+    "averaging_method": "running",
+    "fft_length_source": "auto",
+    "nfft_effective": 8192,
+    "reference_load": 1,
+    "frequency_span": "full",
+    "frequency_offset": 0
+   },
+   "requested_measurement": {
+    "Type": "acpr",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 1350,
+    "CenterFrequency": 0,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "NumOffsets": 1,
+    "ACPROffsets": 1500,
+    "AdjacentBW": 1350,
+    "FilterShape": "gaussian",
+    "FilterCoeff": 0.3
+   },
+   "config": {
+    "Type": "acpr",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 1350,
+    "CenterFrequency": 0,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "AdjacentBW": 1350,
+    "FilterShape": "gaussian",
+    "FilterCoeff": 0.3,
+    "NumOffsets": 1,
+    "ACPROffsets": 1500,
+    "Enabled": true
+   },
+   "measurements": {
+    "ChannelPower": 29.37630711436839,
+    "ACPRLower": [
+     -38.973306210893554
+    ],
+    "ACPRUpper": [
+     -38.66425073421655
+    ],
+    "stable": true,
+    "SimulationTime": 0.8191
+   },
+   "display": {
+    "fresh": true,
+    "nbins": 8192,
+    "df_Hz": 1.220703125,
+    "f_first_Hz": -4998.779296875,
+    "f_last_Hz": 5000.0,
+    "nfft_implied": 8192,
+    "RBW_hann_periodic_Hz": 1.8310546874999998,
+    "vs_pwelch_hann_periodic_max_abs_dB": 2.842170943040401e-14,
+    "vs_pwelch_hann_symmetric_max_abs_dB": 0.10743538793030893,
+    "previous_capture_in_run": "acpr_cplx_2s_qpsk_tight_rrc_0p35",
+    "samples": {
+     "index": [
+      0,
+      585,
+      1170,
+      1755,
+      2340,
+      2925,
+      3510,
+      4096,
+      4388,
+      4681,
+      5266,
+      5851,
+      6436,
+      7021,
+      7606,
+      8191
+     ],
+     "f_Hz": [
+      -4998.779296875,
+      -4284.66796875,
+      -3570.556640625,
+      -2856.4453125,
+      -2142.333984375,
+      -1428.22265625,
+      -714.111328125,
+      1.220703125,
+      357.666015625,
+      715.33203125,
+      1429.443359375,
+      2143.5546875,
+      2857.666015625,
+      3571.77734375,
+      4285.888671875,
+      5000.0
+     ],
+     "value": [
+      -65.00201122127689,
+      -78.5400575439923,
+      -72.40645544684398,
+      -60.20101074243658,
+      -61.72071216055184,
+      -34.635195006263686,
+      -21.04727232721099,
+      5.415649224985572,
+      13.005898579600036,
+      -22.559980862669924,
+      -37.8024675857565,
+      -74.15168313061359,
+      -62.03152809067255,
+      -63.34933754206034,
+      -71.36630569011717,
+      -86.18132586578297
+     ],
+     "units": "dBm"
+    }
+   },
+   "analysis": {
+    "spectrum_source": "model",
+    "abs_diff_cumsum_model": {
+     "ChannelPower_dB": 1.7763568394002505e-14,
+     "ACPRLower_dB": 1.4210854715202004e-14,
+     "ACPRUpper_dB": 2.2026824808563106e-13
+    },
+    "match": true,
+    "main_band": [
+     -675.0,
+     675.0
+    ],
+    "center": 0,
+    "lower_bands": [
+     [
+      -2175.0,
+      -825.0
+     ]
+    ],
+    "upper_bands": [
+     [
+      825.0,
+      2175.0
+     ]
+    ]
+   }
+  },
+  {
+   "name": "acpr_cplx_2s_qpsk_tight_none",
+   "description": "CF 0 Span 1350 AdjBW 1350 offset 1500, NumOffsets 1, none (research qpsk_tight)",
+   "run_index": 26,
+   "signal": {
+    "file": "acpr_sig_cplx.txt",
+    "columns": "re im",
+    "is_complex": true,
+    "fs": 10000,
+    "n_samples": 8192,
+    "n_calls": 1,
+    "extra_call_used": false
+   },
+   "scope": {
+    "two_sided": true,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window": "hann",
+    "window_length": 8192,
+    "overlap_percent": 0,
+    "spectral_averages": 1,
+    "averaging_method": "running",
+    "fft_length_source": "auto",
+    "nfft_effective": 8192,
+    "reference_load": 1,
+    "frequency_span": "full",
+    "frequency_offset": 0
+   },
+   "requested_measurement": {
+    "Type": "acpr",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 1350,
+    "CenterFrequency": 0,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "NumOffsets": 1,
+    "ACPROffsets": 1500,
+    "AdjacentBW": 1350,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5
+   },
+   "config": {
+    "Type": "acpr",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 1350,
+    "CenterFrequency": 0,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "AdjacentBW": 1350,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5,
+    "NumOffsets": 1,
+    "ACPROffsets": 1500,
+    "Enabled": true
+   },
+   "measurements": {
+    "ChannelPower": 30.802913102324023,
+    "ACPRLower": [
+     -38.361317633094046
+    ],
+    "ACPRUpper": [
+     -38.02843128707909
+    ],
+    "stable": true,
+    "SimulationTime": 0.8191
+   },
+   "display": {
+    "fresh": true,
+    "nbins": 8192,
+    "df_Hz": 1.220703125,
+    "f_first_Hz": -4998.779296875,
+    "f_last_Hz": 5000.0,
+    "nfft_implied": 8192,
+    "RBW_hann_periodic_Hz": 1.8310546874999998,
+    "vs_pwelch_hann_periodic_max_abs_dB": 2.842170943040401e-14,
+    "vs_pwelch_hann_symmetric_max_abs_dB": 0.10743538793030893,
+    "previous_capture_in_run": "acpr_cplx_2s_three_pairs_none",
+    "samples": {
+     "index": [
+      0,
+      585,
+      1170,
+      1755,
+      2340,
+      2925,
+      3510,
+      4096,
+      4388,
+      4681,
+      5266,
+      5851,
+      6436,
+      7021,
+      7606,
+      8191
+     ],
+     "f_Hz": [
+      -4998.779296875,
+      -4284.66796875,
+      -3570.556640625,
+      -2856.4453125,
+      -2142.333984375,
+      -1428.22265625,
+      -714.111328125,
+      1.220703125,
+      357.666015625,
+      715.33203125,
+      1429.443359375,
+      2143.5546875,
+      2857.666015625,
+      3571.77734375,
+      4285.888671875,
+      5000.0
+     ],
+     "value": [
+      -65.00201122127689,
+      -78.5400575439923,
+      -72.40645544684398,
+      -60.20101074243658,
+      -61.72071216055184,
+      -34.635195006263686,
+      -21.04727232721099,
+      5.415649224985572,
+      13.005898579600036,
+      -22.559980862669924,
+      -37.8024675857565,
+      -74.15168313061359,
+      -62.03152809067255,
+      -63.34933754206034,
+      -71.36630569011717,
+      -86.18132586578297
+     ],
+     "units": "dBm"
+    }
+   },
+   "analysis": {
+    "spectrum_source": "model",
+    "abs_diff_cumsum_model": {
+     "ChannelPower_dB": 3.552713678800501e-15,
+     "ACPRLower_dB": 7.105427357601002e-15,
+     "ACPRUpper_dB": 8.660805406179861e-11
+    },
+    "match": true,
+    "main_band": [
+     -675.0,
+     675.0
+    ],
+    "center": 0,
+    "lower_bands": [
+     [
+      -2175.0,
+      -825.0
+     ]
+    ],
+    "upper_bands": [
+     [
+      825.0,
+      2175.0
+     ]
+    ]
+   }
+  },
+  {
+   "name": "acpr_cplx_2s_qpsk_tight_rrc_0p35",
+   "description": "tight bands with rrc 0.35 (compare comm.ACPR rrc_filter research case)",
+   "run_index": 35,
+   "signal": {
+    "file": "acpr_sig_cplx.txt",
+    "columns": "re im",
+    "is_complex": true,
+    "fs": 10000,
+    "n_samples": 8192,
+    "n_calls": 1,
+    "extra_call_used": false
+   },
+   "scope": {
+    "two_sided": true,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window": "hann",
+    "window_length": 8192,
+    "overlap_percent": 0,
+    "spectral_averages": 1,
+    "averaging_method": "running",
+    "fft_length_source": "auto",
+    "nfft_effective": 8192,
+    "reference_load": 1,
+    "frequency_span": "full",
+    "frequency_offset": 0
+   },
+   "requested_measurement": {
+    "Type": "acpr",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 1350,
+    "CenterFrequency": 0,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "NumOffsets": 1,
+    "ACPROffsets": 1500,
+    "AdjacentBW": 1350,
+    "FilterShape": "rrc",
+    "FilterCoeff": 0.35
+   },
+   "config": {
+    "Type": "acpr",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 1350,
+    "CenterFrequency": 0,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "AdjacentBW": 1350,
+    "FilterShape": "rrc",
+    "FilterCoeff": 0.35,
+    "NumOffsets": 1,
+    "ACPROffsets": 1500,
+    "Enabled": true
+   },
+   "measurements": {
+    "ChannelPower": 30.763353821385486,
+    "ACPRLower": [
+     -38.643549509899934
+    ],
+    "ACPRUpper": [
+     -38.288711853186456
+    ],
+    "stable": true,
+    "SimulationTime": 0.8191
+   },
+   "display": {
+    "fresh": true,
+    "nbins": 8192,
+    "df_Hz": 1.220703125,
+    "f_first_Hz": -4998.779296875,
+    "f_last_Hz": 5000.0,
+    "nfft_implied": 8192,
+    "RBW_hann_periodic_Hz": 1.8310546874999998,
+    "vs_pwelch_hann_periodic_max_abs_dB": 2.842170943040401e-14,
+    "vs_pwelch_hann_symmetric_max_abs_dB": 0.10743538793030893,
+    "previous_capture_in_run": "acpr_cplx_2s_default_gaussian_1p0",
+    "samples": {
+     "index": [
+      0,
+      585,
+      1170,
+      1755,
+      2340,
+      2925,
+      3510,
+      4096,
+      4388,
+      4681,
+      5266,
+      5851,
+      6436,
+      7021,
+      7606,
+      8191
+     ],
+     "f_Hz": [
+      -4998.779296875,
+      -4284.66796875,
+      -3570.556640625,
+      -2856.4453125,
+      -2142.333984375,
+      -1428.22265625,
+      -714.111328125,
+      1.220703125,
+      357.666015625,
+      715.33203125,
+      1429.443359375,
+      2143.5546875,
+      2857.666015625,
+      3571.77734375,
+      4285.888671875,
+      5000.0
+     ],
+     "value": [
+      -65.00201122127689,
+      -78.5400575439923,
+      -72.40645544684398,
+      -60.20101074243658,
+      -61.72071216055184,
+      -34.635195006263686,
+      -21.04727232721099,
+      5.415649224985572,
+      13.005898579600036,
+      -22.559980862669924,
+      -37.8024675857565,
+      -74.15168313061359,
+      -62.03152809067255,
+      -63.34933754206034,
+      -71.36630569011717,
+      -86.18132586578297
+     ],
+     "units": "dBm"
+    }
+   },
+   "analysis": {
+    "spectrum_source": "model",
+    "abs_diff_cumsum_model": {
+     "ChannelPower_dB": 1.4210854715202004e-14,
+     "ACPRLower_dB": 7.105427357601002e-15,
+     "ACPRUpper_dB": 1.4210854715202004e-14
+    },
+    "match": true,
+    "main_band": [
+     -675.0,
+     675.0
+    ],
+    "center": 0,
+    "lower_bands": [
+     [
+      -2175.0,
+      -825.0
+     ]
+    ],
+    "upper_bands": [
+     [
+      825.0,
+      2175.0
+     ]
+    ]
+   }
+  },
+  {
+   "name": "acpr_cplx_2s_startstop_m1000_1000_none",
+   "description": "start/stop mode [-1000 1000] (same band as default span mode)",
+   "run_index": 37,
+   "signal": {
+    "file": "acpr_sig_cplx.txt",
+    "columns": "re im",
+    "is_complex": true,
+    "fs": 10000,
+    "n_samples": 8192,
+    "n_calls": 1,
+    "extra_call_used": false
+   },
+   "scope": {
+    "two_sided": true,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window": "hann",
+    "window_length": 8192,
+    "overlap_percent": 0,
+    "spectral_averages": 1,
+    "averaging_method": "running",
+    "fft_length_source": "auto",
+    "nfft_effective": 8192,
+    "reference_load": 1,
+    "frequency_span": "full",
+    "frequency_offset": 0
+   },
+   "requested_measurement": {
+    "Type": "acpr",
+    "FrequencySpan": "start-and-stop-frequencies",
+    "Span": 2000,
+    "CenterFrequency": 0,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "AdjacentBW": 1000,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5
+   },
+   "config": {
+    "Type": "acpr",
+    "FrequencySpan": "start-and-stop-frequencies",
+    "Span": 2000,
+    "CenterFrequency": 0,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "AdjacentBW": 1000,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "Enabled": true
+   },
+   "measurements": {
+    "ChannelPower": 30.804391095017923,
+    "ACPRLower": [
+     -49.658937292712714,
+     -70.04577221366335
+    ],
+    "ACPRUpper": [
+     -49.934781993092514,
+     -69.41691910575103
+    ],
+    "stable": true,
+    "SimulationTime": 0.8191
+   },
+   "display": {
+    "fresh": true,
+    "nbins": 8192,
+    "df_Hz": 1.220703125,
+    "f_first_Hz": -4998.779296875,
+    "f_last_Hz": 5000.0,
+    "nfft_implied": 8192,
+    "RBW_hann_periodic_Hz": 1.8310546874999998,
+    "vs_pwelch_hann_periodic_max_abs_dB": 2.842170943040401e-14,
+    "vs_pwelch_hann_symmetric_max_abs_dB": 0.10743538793030893,
+    "previous_capture_in_run": "acpr_cplx_2s_qpsk_tight_gaussian_0p3",
+    "samples": {
+     "index": [
+      0,
+      585,
+      1170,
+      1755,
+      2340,
+      2925,
+      3510,
+      4096,
+      4388,
+      4681,
+      5266,
+      5851,
+      6436,
+      7021,
+      7606,
+      8191
+     ],
+     "f_Hz": [
+      -4998.779296875,
+      -4284.66796875,
+      -3570.556640625,
+      -2856.4453125,
+      -2142.333984375,
+      -1428.22265625,
+      -714.111328125,
+      1.220703125,
+      357.666015625,
+      715.33203125,
+      1429.443359375,
+      2143.5546875,
+      2857.666015625,
+      3571.77734375,
+      4285.888671875,
+      5000.0
+     ],
+     "value": [
+      -65.00201122127689,
+      -78.5400575439923,
+      -72.40645544684398,
+      -60.20101074243658,
+      -61.72071216055184,
+      -34.635195006263686,
+      -21.04727232721099,
+      5.415649224985572,
+      13.005898579600036,
+      -22.559980862669924,
+      -37.8024675857565,
+      -74.15168313061359,
+      -62.03152809067255,
+      -63.34933754206034,
+      -71.36630569011717,
+      -86.18132586578297
+     ],
+     "units": "dBm"
+    }
+   },
+   "analysis": {
+    "spectrum_source": "model",
+    "abs_diff_cumsum_model": {
+     "ChannelPower_dB": 0.0,
+     "ACPRLower_dB": 7.105427357601002e-15,
+     "ACPRUpper_dB": 4.2484074924686865e-08
+    },
+    "match": true,
+    "main_band": [
+     -1000,
+     1000
+    ],
+    "center": 0.0,
+    "lower_bands": [
+     [
+      -2500.0,
+      -1500.0
+     ],
+     [
+      -4000.0,
+      -3000.0
+     ]
+    ],
+    "upper_bands": [
+     [
+      1500.0,
+      2500.0
+     ],
+     [
+      3000.0,
+      4000.0
+     ]
+    ]
+   }
+  },
+  {
+   "name": "acpr_cplx_2s_startstop_m500_1500_none",
+   "description": "start/stop mode [-500 1500] (centre 500): shows what the offsets are measured from",
+   "run_index": 38,
+   "signal": {
+    "file": "acpr_sig_cplx.txt",
+    "columns": "re im",
+    "is_complex": true,
+    "fs": 10000,
+    "n_samples": 8192,
+    "n_calls": 1,
+    "extra_call_used": false
+   },
+   "scope": {
+    "two_sided": true,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window": "hann",
+    "window_length": 8192,
+    "overlap_percent": 0,
+    "spectral_averages": 1,
+    "averaging_method": "running",
+    "fft_length_source": "auto",
+    "nfft_effective": 8192,
+    "reference_load": 1,
+    "frequency_span": "full",
+    "frequency_offset": 0
+   },
+   "requested_measurement": {
+    "Type": "acpr",
+    "FrequencySpan": "start-and-stop-frequencies",
+    "Span": 2000,
+    "CenterFrequency": 0,
+    "StartFrequency": -500,
+    "StopFrequency": 1500,
+    "PercentOccupiedBW": 99,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "AdjacentBW": 1000,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5
+   },
+   "config": {
+    "Type": "acpr",
+    "FrequencySpan": "start-and-stop-frequencies",
+    "Span": 2000,
+    "CenterFrequency": 0,
+    "StartFrequency": -500,
+    "StopFrequency": 1500,
+    "PercentOccupiedBW": 99,
+    "AdjacentBW": 1000,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "Enabled": true
+   },
+   "measurements": {
+    "ChannelPower": 30.657850737430678,
+    "ACPRLower": [
+     -39.51806111986134,
+     -68.50088940362025
+    ],
+    "ACPRUpper": [
+     -65.89104407594976,
+     -69.72796856245554
+    ],
+    "stable": true,
+    "SimulationTime": 0.8191
+   },
+   "display": {
+    "fresh": true,
+    "nbins": 8192,
+    "df_Hz": 1.220703125,
+    "f_first_Hz": -4998.779296875,
+    "f_last_Hz": 5000.0,
+    "nfft_implied": 8192,
+    "RBW_hann_periodic_Hz": 1.8310546874999998,
+    "vs_pwelch_hann_periodic_max_abs_dB": 2.842170943040401e-14,
+    "vs_pwelch_hann_symmetric_max_abs_dB": 0.10743538793030893,
+    "previous_capture_in_run": "acpr_cplx_2s_startstop_m1000_1000_none",
+    "samples": {
+     "index": [
+      0,
+      585,
+      1170,
+      1755,
+      2340,
+      2925,
+      3510,
+      4096,
+      4388,
+      4681,
+      5266,
+      5851,
+      6436,
+      7021,
+      7606,
+      8191
+     ],
+     "f_Hz": [
+      -4998.779296875,
+      -4284.66796875,
+      -3570.556640625,
+      -2856.4453125,
+      -2142.333984375,
+      -1428.22265625,
+      -714.111328125,
+      1.220703125,
+      357.666015625,
+      715.33203125,
+      1429.443359375,
+      2143.5546875,
+      2857.666015625,
+      3571.77734375,
+      4285.888671875,
+      5000.0
+     ],
+     "value": [
+      -65.00201122127689,
+      -78.5400575439923,
+      -72.40645544684398,
+      -60.20101074243658,
+      -61.72071216055184,
+      -34.635195006263686,
+      -21.04727232721099,
+      5.415649224985572,
+      13.005898579600036,
+      -22.559980862669924,
+      -37.8024675857565,
+      -74.15168313061359,
+      -62.03152809067255,
+      -63.34933754206034,
+      -71.36630569011717,
+      -86.18132586578297
+     ],
+     "units": "dBm"
+    }
+   },
+   "analysis": {
+    "spectrum_source": "model",
+    "abs_diff_cumsum_model": {
+     "ChannelPower_dB": 1.4210854715202004e-14,
+     "ACPRLower_dB": 1.2789769243681803e-13,
+     "ACPRUpper_dB": 3.356524302944308e-08
+    },
+    "match": true,
+    "main_band": [
+     -500,
+     1500
+    ],
+    "center": 500.0,
+    "lower_bands": [
+     [
+      -2000.0,
+      -1000.0
+     ],
+     [
+      -3500.0,
+      -2500.0
+     ]
+    ],
+    "upper_bands": [
+     [
+      2000.0,
+      3000.0
+     ],
+     [
+      3500.0,
+      4500.0
+     ]
+    ]
+   }
+  },
+  {
+   "name": "acpr_cplx_2s_three_pairs_none",
+   "description": "CF 100 Span 1200 AdjBW 800 offsets [1000 2000 3000], none (research three_pairs)",
+   "run_index": 25,
+   "signal": {
+    "file": "acpr_sig_cplx.txt",
+    "columns": "re im",
+    "is_complex": true,
+    "fs": 10000,
+    "n_samples": 8192,
+    "n_calls": 1,
+    "extra_call_used": false
+   },
+   "scope": {
+    "two_sided": true,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window": "hann",
+    "window_length": 8192,
+    "overlap_percent": 0,
+    "spectral_averages": 1,
+    "averaging_method": "running",
+    "fft_length_source": "auto",
+    "nfft_effective": 8192,
+    "reference_load": 1,
+    "frequency_span": "full",
+    "frequency_offset": 0
+   },
+   "requested_measurement": {
+    "Type": "acpr",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 1200,
+    "CenterFrequency": 100,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "NumOffsets": 3,
+    "ACPROffsets": [
+     1000,
+     2000,
+     3000
+    ],
+    "AdjacentBW": 800,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5
+   },
+   "config": {
+    "Type": "acpr",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 1200,
+    "CenterFrequency": 100,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "AdjacentBW": 800,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5,
+    "NumOffsets": 3,
+    "ACPROffsets": [
+     1000,
+     2000,
+     3000
+    ],
+    "Enabled": true
+   },
+   "measurements": {
+    "ChannelPower": 30.65670635042735,
+    "ACPRLower": [
+     -14.622919671175008,
+     -49.5287891271369,
+     -69.16577353004277
+    ],
+    "ACPRUpper": [
+     -35.79154173765786,
+     -63.04449974325338,
+     -69.50518749239129
+    ],
+    "stable": true,
+    "SimulationTime": 0.8191
+   },
+   "display": {
+    "fresh": true,
+    "nbins": 8192,
+    "df_Hz": 1.220703125,
+    "f_first_Hz": -4998.779296875,
+    "f_last_Hz": 5000.0,
+    "nfft_implied": 8192,
+    "RBW_hann_periodic_Hz": 1.8310546874999998,
+    "vs_pwelch_hann_periodic_max_abs_dB": 2.842170943040401e-14,
+    "vs_pwelch_hann_symmetric_max_abs_dB": 0.10743538793030893,
+    "previous_capture_in_run": "acpr_cplx_2s_default_none",
+    "samples": {
+     "index": [
+      0,
+      585,
+      1170,
+      1755,
+      2340,
+      2925,
+      3510,
+      4096,
+      4388,
+      4681,
+      5266,
+      5851,
+      6436,
+      7021,
+      7606,
+      8191
+     ],
+     "f_Hz": [
+      -4998.779296875,
+      -4284.66796875,
+      -3570.556640625,
+      -2856.4453125,
+      -2142.333984375,
+      -1428.22265625,
+      -714.111328125,
+      1.220703125,
+      357.666015625,
+      715.33203125,
+      1429.443359375,
+      2143.5546875,
+      2857.666015625,
+      3571.77734375,
+      4285.888671875,
+      5000.0
+     ],
+     "value": [
+      -65.00201122127689,
+      -78.5400575439923,
+      -72.40645544684398,
+      -60.20101074243658,
+      -61.72071216055184,
+      -34.635195006263686,
+      -21.04727232721099,
+      5.415649224985572,
+      13.005898579600036,
+      -22.559980862669924,
+      -37.8024675857565,
+      -74.15168313061359,
+      -62.03152809067255,
+      -63.34933754206034,
+      -71.36630569011717,
+      -86.18132586578297
+     ],
+     "units": "dBm"
+    }
+   },
+   "analysis": {
+    "spectrum_source": "model",
+    "abs_diff_cumsum_model": {
+     "ChannelPower_dB": 3.552713678800501e-15,
+     "ACPRLower_dB": 1.1368683772161603e-13,
+     "ACPRUpper_dB": 4.319534241403744e-08
+    },
+    "match": true,
+    "main_band": [
+     -500.0,
+     700.0
+    ],
+    "center": 100,
+    "lower_bands": [
+     [
+      -1300.0,
+      -500.0
+     ],
+     [
+      -2300.0,
+      -1500.0
+     ],
+     [
+      -3300.0,
+      -2500.0
+     ]
+    ],
+    "upper_bands": [
+     [
+      700.0,
+      1500.0
+     ],
+     [
+      1700.0,
+      2500.0
+     ],
+     [
+      2700.0,
+      3500.0
+     ]
+    ]
+   }
+  },
+  {
+   "name": "acpr_cplx_welch1024_psd_default_none",
+   "description": "WindowLength 1024, OverlapPercent 50, SpectralAverages 15, power-density: spectrum == research c_hann PSD, so ACPR can be compared with acpr_ref.json bp_/in_/tz_ values directly",
+   "run_index": 44,
+   "signal": {
+    "file": "acpr_sig_cplx.txt",
+    "columns": "re im",
+    "is_complex": true,
+    "fs": 10000,
+    "n_samples": 8192,
+    "n_calls": 1,
+    "extra_call_used": false
+   },
+   "scope": {
+    "two_sided": true,
+    "spectrum_type": "power-density",
+    "units": "dBm/Hz",
+    "window": "hann",
+    "window_length": 1024,
+    "overlap_percent": 50,
+    "spectral_averages": 15,
+    "averaging_method": "running",
+    "fft_length_source": "auto",
+    "nfft_effective": 1024,
+    "reference_load": 1,
+    "frequency_span": "full",
+    "frequency_offset": 0
+   },
+   "requested_measurement": {
+    "Type": "acpr",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 2000,
+    "CenterFrequency": 0,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "AdjacentBW": 1000,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5
+   },
+   "config": {
+    "Type": "acpr",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 2000,
+    "CenterFrequency": 0,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "AdjacentBW": 1000,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "Enabled": true
+   },
+   "measurements": {
+    "ChannelPower": 30.753033234750028,
+    "ACPRLower": [
+     -48.88228771671954,
+     -57.860290642846806
+    ],
+    "ACPRUpper": [
+     -49.3746336438676,
+     -58.21153969698927
+    ],
+    "stable": true,
+    "SimulationTime": 0.8191
+   },
+   "display": {
+    "fresh": false,
+    "nbins": 1024,
+    "df_Hz": 9.765625,
+    "f_first_Hz": -4990.234375,
+    "f_last_Hz": 5000.0,
+    "nfft_implied": 1024,
+    "RBW_hann_periodic_Hz": 14.648437500000009,
+    "vs_pwelch_hann_periodic_max_abs_dB": 17.468550683099835,
+    "vs_pwelch_hann_symmetric_max_abs_dB": 17.46757358870738,
+    "previous_capture_in_run": "acpr_cplx_2s_psd_default_none",
+    "stale_note": "display = asynchronous intermediate running-average state (matches neither the 15-segment mean, 17.47 dB, nor any partial/exponential average); the MEASUREMENT is reproduced from this stored display exactly (ANALYSIS.md §3.4), so the display is kept",
+    "stored_spectrum": {
+     "S_file": "acpr_cplx_welch1024_psd_default_none_S.txt",
+     "f_file": "acpr_cplx_welch1024_psd_default_none_f.txt",
+     "units": "dBm/Hz",
+     "note": "whole displayed trace kept because the measurement cannot be rebuilt from the signal"
+    }
+   },
+   "analysis": {
+    "spectrum_source": "stored display (_S.txt)",
+    "abs_diff_cumsum_model": {
+     "ChannelPower_dB": 0.0,
+     "ACPRLower_dB": 0.0,
+     "ACPRUpper_dB": 1.0720100362959784e-09
+    },
+    "match": true,
+    "main_band": [
+     -1000.0,
+     1000.0
+    ],
+    "center": 0,
+    "lower_bands": [
+     [
+      -2500.0,
+      -1500.0
+     ],
+     [
+      -4000.0,
+      -3000.0
+     ]
+    ],
+    "upper_bands": [
+     [
+      1500.0,
+      2500.0
+     ],
+     [
+      3000.0,
+      4000.0
+     ]
+    ],
+    "note": "measurement reproduced exactly from the stored display (which is an intermediate averaging state, 17.47 dB from the 15-segment pwelch mean)"
+   }
+  },
+  {
+   "name": "acpr_cplx_welch1024_psd_three_pairs_none",
+   "description": "same Welch settings, three_pairs bands",
+   "run_index": 45,
+   "signal": {
+    "file": "acpr_sig_cplx.txt",
+    "columns": "re im",
+    "is_complex": true,
+    "fs": 10000,
+    "n_samples": 8192,
+    "n_calls": 1,
+    "extra_call_used": false
+   },
+   "scope": {
+    "two_sided": true,
+    "spectrum_type": "power-density",
+    "units": "dBm/Hz",
+    "window": "hann",
+    "window_length": 1024,
+    "overlap_percent": 50,
+    "spectral_averages": 15,
+    "averaging_method": "running",
+    "fft_length_source": "auto",
+    "nfft_effective": 1024,
+    "reference_load": 1,
+    "frequency_span": "full",
+    "frequency_offset": 0
+   },
+   "requested_measurement": {
+    "Type": "acpr",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 1200,
+    "CenterFrequency": 100,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "NumOffsets": 3,
+    "ACPROffsets": [
+     1000,
+     2000,
+     3000
+    ],
+    "AdjacentBW": 800,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5
+   },
+   "config": {
+    "Type": "acpr",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 1200,
+    "CenterFrequency": 100,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "AdjacentBW": 800,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5,
+    "NumOffsets": 3,
+    "ACPROffsets": [
+     1000,
+     2000,
+     3000
+    ],
+    "Enabled": true
+   },
+   "measurements": {
+    "ChannelPower": 30.600906167444464,
+    "ACPRLower": [
+     -14.491246757960557,
+     -48.93173372171035,
+     -57.456360584196915
+    ],
+    "ACPRUpper": [
+     -35.71815087438197,
+     -55.53934348420278,
+     -58.45561595398163
+    ],
+    "stable": true,
+    "SimulationTime": 0.8191
+   },
+   "display": {
+    "fresh": false,
+    "nbins": 1024,
+    "df_Hz": 9.765625,
+    "f_first_Hz": -4990.234375,
+    "f_last_Hz": 5000.0,
+    "nfft_implied": 1024,
+    "RBW_hann_periodic_Hz": 14.648437500000009,
+    "vs_pwelch_hann_periodic_max_abs_dB": 8.739595934540318,
+    "vs_pwelch_hann_symmetric_max_abs_dB": 8.738618840147865,
+    "previous_capture_in_run": "acpr_cplx_welch1024_psd_default_none",
+    "stale_note": "display and measurement fetched at different averaging states (7.2 dB apart); not assessable (ANALYSIS.md §3.4, rules.json acpr.not_assessable); stored display kept so the documented deviation can be asserted",
+    "stored_spectrum": {
+     "S_file": "acpr_cplx_welch1024_psd_three_pairs_none_S.txt",
+     "f_file": "acpr_cplx_welch1024_psd_three_pairs_none_f.txt",
+     "units": "dBm/Hz",
+     "note": "whole displayed trace kept because the measurement cannot be rebuilt from the signal"
+    }
+   },
+   "analysis": {
+    "spectrum_source": "stored display (_S.txt)",
+    "abs_diff_cumsum_model": {
+     "ChannelPower_dB": 0.03587195176564961,
+     "ACPRLower_dB": 7.260677607591774,
+     "ACPRUpper_dB": 7.122357813480299
+    },
+    "match": false,
+    "main_band": [
+     -500.0,
+     700.0
+    ],
+    "center": 100,
+    "lower_bands": [
+     [
+      -1300.0,
+      -500.0
+     ],
+     [
+      -2300.0,
+      -1500.0
+     ],
+     [
+      -3300.0,
+      -2500.0
+     ]
+    ],
+    "upper_bands": [
+     [
+      700.0,
+      1500.0
+     ],
+     [
+      1700.0,
+      2500.0
+     ],
+     [
+      2700.0,
+      3500.0
+     ]
+    ],
+    "not_assessable": true,
+    "known_difference": {
+     "what": "scope-rule ACPR computed on the stored display vs the scope's measurement",
+     "ChannelPower_dB": 0.03587195176564961,
+     "ACPRLower_dB": 7.260677607591774,
+     "ACPRUpper_dB": 7.122357813480299,
+     "numbers_note": "ChannelPower_dB/ACPRLower_dB/ACPRUpper_dB are the analysis's numbers (cumsum integration, own noise <= 6.6e-8 dB on upper bands); direct_sum holds the same deviation computed with dsv_acpr (direct per-band summation)",
+     "direct_sum": {
+      "ChannelPower_dB": 0.03587195176564606,
+      "ACPRLower_dB": 7.260677607591759,
+      "ACPRUpper_dB": 7.122357807664038,
+      "computed_on_display": {
+       "ChannelPower": 30.63677811921011,
+       "ACPRLower": [
+        -14.49128651712461,
+        -50.19427105205824,
+        -64.71703819178867
+       ],
+       "ACPRUpper": [
+        -35.86109521325958,
+        -61.075620334610335,
+        -65.57797376164567
+       ]
+      }
+     },
+     "display_vs_15_segment_pwelch_mean_dB": 8.739595934540318,
+     "why": "display and measurement were fetched at different (asynchronous) averaging states; neither matches the 15-segment mean"
+    }
+   }
+  },
+  {
+   "name": "acpr_real_1s_2k_none",
+   "description": "one-sided, CF 2000 Span 1350 AdjBW 1000 offsets [1250 2500]: lower band 2 lies entirely below 0 Hz (research real_2k)",
+   "run_index": 41,
+   "signal": {
+    "file": "acpr_sig_real.txt",
+    "columns": "x",
+    "is_complex": false,
+    "fs": 10000,
+    "n_samples": 8192,
+    "n_calls": 1,
+    "extra_call_used": false
+   },
+   "scope": {
+    "two_sided": false,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window": "hann",
+    "window_length": 8192,
+    "overlap_percent": 0,
+    "spectral_averages": 1,
+    "averaging_method": "running",
+    "fft_length_source": "auto",
+    "nfft_effective": 8192,
+    "reference_load": 1,
+    "frequency_span": "full",
+    "frequency_offset": 0
+   },
+   "requested_measurement": {
+    "Type": "acpr",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 1350,
+    "CenterFrequency": 2000,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     1250,
+     2500
+    ],
+    "AdjacentBW": 1000,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5
+   },
+   "config": {
+    "Type": "acpr",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 1350,
+    "CenterFrequency": 2000,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "AdjacentBW": 1000,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     1250,
+     2500
+    ],
+    "Enabled": true
+   },
+   "measurements": {
+    "ChannelPower": 27.792632299846765,
+    "ACPRLower": [
+     -36.948029159359834,
+     null
+    ],
+    "ACPRUpper": [
+     -36.94297375374751,
+     -64.44518853507947
+    ],
+    "stable": true,
+    "SimulationTime": 0.8191
+   },
+   "display": {
+    "fresh": true,
+    "nbins": 4097,
+    "df_Hz": 1.220703125,
+    "f_first_Hz": 0.0,
+    "f_last_Hz": 5000.0,
+    "nfft_implied": 8192,
+    "RBW_hann_periodic_Hz": 1.8310546874999998,
+    "vs_pwelch_hann_periodic_max_abs_dB": 3.339550858072471e-11,
+    "vs_pwelch_hann_symmetric_max_abs_dB": 0.06917400169344035,
+    "previous_capture_in_run": "acpr_real_1s_auto1side_none",
+    "samples": {
+     "index": [
+      0,
+      293,
+      585,
+      878,
+      1170,
+      1463,
+      1755,
+      1932,
+      2048,
+      2341,
+      2633,
+      2926,
+      3218,
+      3511,
+      3803,
+      4096
+     ],
+     "f_Hz": [
+      0.0,
+      357.666015625,
+      714.111328125,
+      1071.77734375,
+      1428.22265625,
+      1785.888671875,
+      2142.333984375,
+      2358.3984375,
+      2500.0,
+      2857.666015625,
+      3214.111328125,
+      3571.77734375,
+      3928.22265625,
+      4285.888671875,
+      4642.333984375,
+      5000.0
+     ],
+     "value": [
+      -71.08426256872986,
+      -39.420672850839566,
+      -37.887891449794296,
+      -42.43477684915702,
+      -2.7693700337255365,
+      -0.05574614287883506,
+      -3.135548174866301,
+      9.915478413643783,
+      0.6306015773717704,
+      -37.40936939464129,
+      -44.850342935651156,
+      -42.325206250379935,
+      -64.23150167489105,
+      -61.47187199197539,
+      -57.65197554132598,
+      -71.09414833836091
+     ],
+     "units": "dBm"
+    }
+   },
+   "analysis": {
+    "spectrum_source": "model",
+    "abs_diff_cumsum_model": {
+     "ChannelPower_dB": 2.1316282072803006e-14,
+     "ACPRLower_dB": 2.1316282072803006e-14,
+     "ACPRUpper_dB": 2.714284619287355e-08
+    },
+    "match": true,
+    "main_band": [
+     1325.0,
+     2675.0
+    ],
+    "center": 2000,
+    "lower_bands": [
+     [
+      250.0,
+      1250.0
+     ],
+     [
+      -1000.0,
+      0.0
+     ]
+    ],
+    "upper_bands": [
+     [
+      2750.0,
+      3750.0
+     ],
+     [
+      4000.0,
+      5000.0
+     ]
+    ]
+   }
+  },
+  {
+   "name": "acpr_real_1s_auto1side_none",
+   "description": "real passband signal, one-sided, CF 2500 Span 1000 AdjBW 500 offsets [1000 1750] (research real_auto1side)",
+   "run_index": 40,
+   "signal": {
+    "file": "acpr_sig_real.txt",
+    "columns": "x",
+    "is_complex": false,
+    "fs": 10000,
+    "n_samples": 8192,
+    "n_calls": 1,
+    "extra_call_used": false
+   },
+   "scope": {
+    "two_sided": false,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window": "hann",
+    "window_length": 8192,
+    "overlap_percent": 0,
+    "spectral_averages": 1,
+    "averaging_method": "running",
+    "fft_length_source": "auto",
+    "nfft_effective": 8192,
+    "reference_load": 1,
+    "frequency_span": "full",
+    "frequency_offset": 0
+   },
+   "requested_measurement": {
+    "Type": "acpr",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 1000,
+    "CenterFrequency": 2500,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     1000,
+     1750
+    ],
+    "AdjacentBW": 500,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5
+   },
+   "config": {
+    "Type": "acpr",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 1000,
+    "CenterFrequency": 2500,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "AdjacentBW": 500,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     1000,
+     1750
+    ],
+    "Enabled": true
+   },
+   "measurements": {
+    "ChannelPower": 24.900865749913493,
+    "ACPRLower": [
+     -2.8736575203373063,
+     -37.22926895711383
+    ],
+    "ACPRUpper": [
+     -38.838018895436356,
+     -63.63247050544161
+    ],
+    "stable": true,
+    "SimulationTime": 0.8191
+   },
+   "display": {
+    "fresh": false,
+    "nbins": 4097,
+    "df_Hz": 1.220703125,
+    "f_first_Hz": 0.0,
+    "f_last_Hz": 5000.0,
+    "nfft_implied": 8192,
+    "RBW_hann_periodic_Hz": 1.8310546874999998,
+    "vs_pwelch_hann_periodic_max_abs_dB": 93.47763318602446,
+    "vs_pwelch_hann_symmetric_max_abs_dB": 93.4783620499051,
+    "previous_capture_in_run": "acpr_cplx_2s_beyond_range",
+    "stale_note": "display stale: one-sided spectrum of the PREVIOUS capture's complex input (xc), not this capture's xr (ANALYSIS.md §0); measurement fresh, model spectrum used"
+   },
+   "analysis": {
+    "spectrum_source": "model",
+    "abs_diff_cumsum_model": {
+     "ChannelPower_dB": 4.263256414560601e-14,
+     "ACPRLower_dB": 3.552713678800501e-14,
+     "ACPRUpper_dB": 3.5371854778532e-08
+    },
+    "match": true,
+    "main_band": [
+     2000.0,
+     3000.0
+    ],
+    "center": 2500,
+    "lower_bands": [
+     [
+      1250.0,
+      1750.0
+     ],
+     [
+      500.0,
+      1000.0
+     ]
+    ],
+    "upper_bands": [
+     [
+      3250.0,
+      3750.0
+     ],
+     [
+      4000.0,
+      4500.0
+     ]
+    ]
+   }
+  },
+  {
+   "name": "acpr_real_2s_2k_none",
+   "description": "same bands, two-sided display (research real_2k_cent)",
+   "run_index": 42,
+   "signal": {
+    "file": "acpr_sig_real.txt",
+    "columns": "x",
+    "is_complex": false,
+    "fs": 10000,
+    "n_samples": 8192,
+    "n_calls": 1,
+    "extra_call_used": false
+   },
+   "scope": {
+    "two_sided": true,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window": "hann",
+    "window_length": 8192,
+    "overlap_percent": 0,
+    "spectral_averages": 1,
+    "averaging_method": "running",
+    "fft_length_source": "auto",
+    "nfft_effective": 8192,
+    "reference_load": 1,
+    "frequency_span": "full",
+    "frequency_offset": 0
+   },
+   "requested_measurement": {
+    "Type": "acpr",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 1350,
+    "CenterFrequency": 2000,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     1250,
+     2500
+    ],
+    "AdjacentBW": 1000,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5
+   },
+   "config": {
+    "Type": "acpr",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 1350,
+    "CenterFrequency": 2000,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "AdjacentBW": 1000,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     1250,
+     2500
+    ],
+    "Enabled": true
+   },
+   "measurements": {
+    "ChannelPower": 24.782332343206953,
+    "ACPRLower": [
+     -36.94802915935984,
+     -39.662301174182616
+    ],
+    "ACPRUpper": [
+     -36.94297375374751,
+     -64.44466796666038
+    ],
+    "stable": true,
+    "SimulationTime": 0.8191
+   },
+   "display": {
+    "fresh": true,
+    "nbins": 8192,
+    "df_Hz": 1.220703125,
+    "f_first_Hz": -4998.779296875,
+    "f_last_Hz": 5000.0,
+    "nfft_implied": 8192,
+    "RBW_hann_periodic_Hz": 1.8310546874999998,
+    "vs_pwelch_hann_periodic_max_abs_dB": 3.339550858072471e-11,
+    "vs_pwelch_hann_symmetric_max_abs_dB": 0.06917400169432142,
+    "previous_capture_in_run": "acpr_real_1s_2k_none",
+    "samples": {
+     "index": [
+      0,
+      585,
+      1170,
+      1755,
+      2163,
+      2340,
+      2925,
+      3510,
+      4096,
+      4681,
+      5266,
+      5851,
+      6436,
+      7021,
+      7606,
+      8191
+     ],
+     "f_Hz": [
+      -4998.779296875,
+      -4284.66796875,
+      -3570.556640625,
+      -2856.4453125,
+      -2358.3984375,
+      -2142.333984375,
+      -1428.22265625,
+      -714.111328125,
+      1.220703125,
+      715.33203125,
+      1429.443359375,
+      2143.5546875,
+      2857.666015625,
+      3571.77734375,
+      4285.888671875,
+      5000.0
+     ],
+     "value": [
+      -76.72935859001414,
+      -67.81401465312747,
+      -49.17216699486191,
+      -40.71812531618511,
+      6.90517845700397,
+      -6.145848131506106,
+      -5.779669990365349,
+      -40.898191406434165,
+      -63.59908809740833,
+      -41.37097342324016,
+      -11.587035261077432,
+      -3.8927887500761003,
+      -40.4196693512811,
+      -45.33550620701975,
+      -64.4821719486152,
+      -71.09414833836091
+     ],
+     "units": "dBm"
+    }
+   },
+   "analysis": {
+    "spectrum_source": "model",
+    "abs_diff_cumsum_model": {
+     "ChannelPower_dB": 3.552713678800501e-15,
+     "ACPRLower_dB": 5.348255172066274e-11,
+     "ACPRUpper_dB": 3.676598225865746e-08
+    },
+    "match": true,
+    "main_band": [
+     1325.0,
+     2675.0
+    ],
+    "center": 2000,
+    "lower_bands": [
+     [
+      250.0,
+      1250.0
+     ],
+     [
+      -1000.0,
+      0.0
+     ]
+    ],
+    "upper_bands": [
+     [
+      2750.0,
+      3750.0
+     ],
+     [
+      4000.0,
+      5000.0
+     ]
+    ]
+   }
+  }
+ ]
+}

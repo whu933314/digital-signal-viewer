@@ -1,0 +1,1888 @@
+{
+ "source": "MATLAB R2025a spectrumAnalyzer captures, 2026-10-24 (scope_capture/scope_capture.m -> out/<name>.json); extracted by work2/distortion/extract_scope_ref.py. Only configuration, the scope's DistortionMeasurements numbers, the signal reference and grid metadata are kept; displayed spectra are NOT copied (reproduced from the signal).",
+ "matlab_version": "R2025a (25.1.0.2943329)",
+ "json_note": "-Infinity / Infinity / NaN appear as bare literals (like MATLAB jsonencode ConvertInfAndNaN=false); Python json.load reads them.",
+ "common_scope_config": "release(sa); Method welch, Window hann, OverlapPercent 0, FrequencyResolutionMethod window-length, WindowLength = N (one call = one periodogram), FFTLengthSource auto (NFFT = max(1024, N)), AveragingMethod running, SpectralAverages 1, ReferenceLoad 1, FrequencySpan full (unless scope_props), PlotNormalTrace true, PlotMaxHoldTrace false (unless scope_props), MeasurementChannel 1.",
+ "spectrum_model": {
+  "window": "hann periodic 0.5-0.5cos(2*pi*n/L), n=0..L-1",
+  "nfft": "max(1024, L)",
+  "power": "|X|^2/(sum w)^2 (W per bin, dBm = 10log10+30)",
+  "psd": "|X|^2/(fs*sum w^2) (W/Hz)",
+  "one_sided": "k=0..NFFT/2 (odd NFFT: 0..(NFFT-1)/2), interior bins x2, DC and Nyquist not doubled",
+  "two_sided": "MATLAB centered: k=-NFFT/2+1..NFFT/2, Nyquist at +fs/2",
+  "rbw": "ENBW = fs*sum(w^2)/sum(w)^2 = 1.5*fs/L",
+  "validated": "fresh displays match to <= 4.8e-10 dB (fs 48e3) / 9.5e-13 dB (fs 1e4); ANALYSIS.md section 1"
+ },
+ "rules": {
+  "rules": [
+   {
+    "id": "D1",
+    "rule": "input = displayed trace in linear power (W/bin), positive frequencies only: one-sided trace as is; two-sided: bins f >= 0 as displayed (not doubled, +fs/2 included) -> absolute powers 3.0103 dB lower, ratios nearly unchanged; power-density trace converted by x RBW for the algorithm",
+    "proof": "dist_h_offbin_2s_N6 (23.977307037 vs 26.987606994 dBm; SNR 76.0847206906 vs 76.0854767017), dist_toi_doc_2s (TOI 28.2224990617 = 31.2327990184 - 3.0103), dist_cplx_obw_2s_harmonic_N6"
+   },
+   {
+    "id": "D2",
+    "rule": "DC: from bin 0 walk right while P[i+1] <= P[i]; clear bins 0..R0; W0 = (R0+1)*df",
+    "proof": "all harmonic captures (W0 part of the SNR match)"
+   },
+   {
+    "id": "D3",
+    "rule": "fundamental: t1 = argmax; skirt = walk left while P[L-1] <= P[L], right while P[R+1] <= P[R]; Fe1 = power centroid over [L,R] (aiming only); P1 = P[t1] PEAK-BIN value (not integrated); W1 = (R-L+1)*df; clear [L,R]; reported Frequency = f[t1]",
+    "proof": "dist_h_noisy_1s_N6: 25.832889395 dBm = 0.5 W x Hann loss at 0.45 bin offset (integrated band would be 27.0); dist_h_noiseless_1s_N6: 26.98970004336018 = exactly 0.5 W; 14 captures Power <= 1.3e-11 dB"
+   },
+   {
+    "id": "D4",
+    "rule": "harmonic k: tb = round(k*Fe1/df); if tb > last bin -> stop, row omitted (no aliasing, no width added); else t = argmax over [tb-1, tb+1] of the cleared working trace; skirt walk from t EVEN IF P[t]==0 (runs through the cleared region, which is counted again in W_k); P_k = P[t] (0 -> Power -Inf); W_k = (R-L+1)*df; clear [L,R]; Frequency = f[t]",
+    "proof": "dist_h_lowf_1s_N6 (rows 2,5,6 -Inf; Wsum must be 82 bins = 1+7+7+10+19+19+19; all fields <= 3.6e-14), dist_h_odd_1s_N6 (noise harmonics 5,6 found at bins 256, 307), dist_h_alias_1s_N6 (rows 1-2 only), dist_h_offbin_1s_N10 (9 rows)"
+   },
+   {
+    "id": "D5",
+    "rule": "Pnoise = (sum(remaining bins)*df + median(remaining non-zero bins)*Wsum)/RBW, Wsum = W0+W1+...+Wn (documented formula taken literally)",
+    "proof": "SNR matched to <= 1.9e-12 dB in 14 captures (dist_h_offbin_1s_N6 Pnoise -49.097869708 dBm)"
+   },
+   {
+    "id": "D6",
+    "rule": "THD = 10log10(sum P_k/P1); THD% = 100*10^(THD/20); SNR = 10log10(P1/Pnoise); SINAD = 10log10(P1/(sum P_k + Pnoise)); SFDR = 10log10(P1/max(P_maxspur, max P_k)) - P_k term verified, P_maxspur term NOT (see unresolved)",
+    "proof": "14 harmonic captures <= 1.3e-11 dB; SFDR = P1 - max P_k in all of them"
+   },
+   {
+    "id": "D7",
+    "rule": "intermodulation: DC as D2; tone a = strongest peak, tone b = next (skirt, centroid, peak-bin power, cleared); products at 2Fe_a-Fe_b (row 3) and 2Fe_b-Fe_a (row 4) with the +-1 bin window and peak-bin power; rows [a, b, 2a-b, 2b-a]; TOI = mean(P_a+(P_b-P_2a-b)/2, P_b+(P_a-P_2b-a)/2) in dBm; product < 0 Hz -> Power -Inf, TOI +Inf",
+    "proof": "dist_toi_doc_1s/2s, dist_toi_bin_1s, dist_toi_unequal_1s (<= 1.2e-13 dB), dist_toi_lowimd_dc_1s (-Inf / Inf)"
+   },
+   {
+    "id": "D8",
+    "rule": "measurement range = full Nyquist range of the trace, independent of scope FrequencySpan; NumHarmonics limited only by Nyquist",
+    "proof": "dist_h_offbin_1s_span_0_6000_N6 and _span_1000_24000_N6 identical to dist_h_offbin_1s_N6"
+   },
+   {
+    "id": "D9",
+    "rule": "normal trace used when Max-Hold is on",
+    "proof": "dist_h_maxhold_2calls: 70.3125 Hz / 5.882335644 dBm (0.1*h_lowf)"
+   },
+   {
+    "id": "D10",
+    "rule": "complex input: computed (no blank/error) on the positive half",
+    "proof": "dist_cplx_obw_2s_harmonic_N6 reproduced to 4.3e-14 dB"
+   },
+   {
+    "id": "D11",
+    "rule": "power-density mode: Power rows in dBm/Hz (dBm value - 10log10(RBW)); THD/SNR/SINAD/SFDR unchanged",
+    "proof": "dist_h_offbin_1s_psd_N6 (11.527582 vs 26.987607)"
+   }
+  ],
+  "rejected": [
+   {
+    "rule": "thd/snr/sinad/sfdr(...,'power') semantics (integrated tone bands, no sequential clearing)",
+    "residual": "P1 2.1e-3 dB (h_offbin) .. 1.17 dB (h_noisy); THD 8.8e-3 dB"
+   },
+   {
+    "rule": "harmonic power = integrated skirt band * df/RBW",
+    "residual": "same as above"
+   },
+   {
+    "rule": "W_k = 0 for harmonics landing in cleared regions",
+    "residual": "SNR 0.13 dB on dist_h_lowf_1s_N6"
+   }
+  ]
+ },
+ "unresolved": [
+  {
+   "item": "SFDR non-harmonic spur term (P_maxspur)",
+   "evidence": "dist_h_alias_1s_N6 SFDR 28.745379327537 implies a spur of -1.911564462 dBm; max remaining bin gives 35.47; clearing only peak+-1 bins gives 28.534 (0.21 dB off); no bin/sum/scaled candidate matches",
+   "needed": "capture with a known spur above all harmonics"
+  },
+  {
+   "item": "Frequency reported for a non-existent IM3 product",
+   "evidence": "dist_toi_lowimd_dc_1s row 4: 4171.875 Hz (one bin below the found upper product); Power -Inf and TOI Inf are clear"
+  },
+  {
+   "item": "round-off-level fields of dist_h_noiseless_1s_N6 (rows 4-6, SNR 276.91)",
+   "evidence": "FFT round-off (1e-28 W), implementation dependent"
+  },
+  {
+   "item": ">70 % leakage blanking of SNR/SINAD; FrequencyOffset != 0",
+   "evidence": "not exercised"
+  }
+ ],
+ "captures": [
+  {
+   "name": "dist_h_offbin_1s_N6",
+   "description": "harmonic, NumHarmonics 6, one-sided; tone 2531.7 Hz + H2..H9 + DC + noise (research h_offbin)",
+   "type": "harmonic",
+   "num_harmonics": 6,
+   "signal": {
+    "fs": 48000.0,
+    "complex": false,
+    "calls": [
+     {
+      "file": "distortion/h_offbin_x.txt",
+      "scale": 1.0,
+      "research": "research/distortion/inputs/h_offbin_x.txt"
+     }
+    ],
+    "n_samples": 2048,
+    "n_calls": 1
+   },
+   "config": {
+    "two_sided": false,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window_length": 2048,
+    "spectral_averages": 1,
+    "overlap_percent": 0,
+    "window": "hann",
+    "fft_length_source": "auto",
+    "averaging_method": "running",
+    "reference_load": 1,
+    "scope_props": {},
+    "meas_props": {
+     "Type": "harmonic",
+     "NumHarmonics": 6,
+     "LabelValues": false
+    },
+    "config_log_failures": [
+     "PhaseNoise/Enabled (property does not exist in R2025a; harmless)"
+    ]
+   },
+   "scope": {
+    "HarmonicNumber": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ],
+    "Frequency": [
+     2531.25,
+     5062.5,
+     7593.75,
+     10125,
+     12656.25,
+     15187.5
+    ],
+    "Power": [
+     26.987606993806132,
+     -13.017583648685445,
+     -23.020291259979587,
+     -33.0305992071347,
+     -42.91037379705175,
+     -52.90206629947052
+    ],
+    "THD": -39.54791152439296,
+    "THDPercent": 1.053426947544102,
+    "SNR": 76.08547670165046,
+    "SINAD": 39.5469477406342,
+    "SFDR": 40.00519064249158
+   },
+   "simulation_time_s": 0.042645833333333334,
+   "display": {
+    "fresh": false,
+    "nbins": 1024,
+    "df_Hz": 9.765625,
+    "f_first_Hz": -4990.234375,
+    "f_last_Hz": 5000.0,
+    "max_abs_dB_vs_model": null,
+    "note": "display lagging: not this capture's spectrum (see ANALYSIS.md)"
+   },
+   "analysis": {
+    "reproduced": true,
+    "abs_diff": {
+     "Frequency_Hz": 0.0,
+     "Power_dB": 3.694822225952521e-13,
+     "THD": 7.105427357601002e-15,
+     "THDPercent": 4.440892098500626e-16,
+     "SNR": 4.547473508864641e-13,
+     "SINAD": 0.0,
+     "SFDR": 7.105427357601002e-15
+    },
+    "note": ""
+   }
+  },
+  {
+   "name": "dist_h_offbin_2s_N6",
+   "description": "same signal, two-sided display (how the scope handles negative frequencies)",
+   "type": "harmonic",
+   "num_harmonics": 6,
+   "signal": {
+    "fs": 48000.0,
+    "complex": false,
+    "calls": [
+     {
+      "file": "distortion/h_offbin_x.txt",
+      "scale": 1.0,
+      "research": "research/distortion/inputs/h_offbin_x.txt"
+     }
+    ],
+    "n_samples": 2048,
+    "n_calls": 1
+   },
+   "config": {
+    "two_sided": true,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window_length": 2048,
+    "spectral_averages": 1,
+    "overlap_percent": 0,
+    "window": "hann",
+    "fft_length_source": "auto",
+    "averaging_method": "running",
+    "reference_load": 1,
+    "scope_props": {},
+    "meas_props": {
+     "Type": "harmonic",
+     "NumHarmonics": 6,
+     "LabelValues": false
+    },
+    "config_log_failures": [
+     "PhaseNoise/Enabled (property does not exist in R2025a; harmless)"
+    ]
+   },
+   "scope": {
+    "HarmonicNumber": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ],
+    "Frequency": [
+     2531.25,
+     5062.5,
+     7593.75,
+     10125,
+     12656.25,
+     15187.5
+    ],
+    "Power": [
+     23.97730703716632,
+     -16.027883605325258,
+     -26.0305912166194,
+     -36.04089916377451,
+     -45.92067375369156,
+     -55.91236625611033
+    ],
+    "THD": -39.54791152439296,
+    "THDPercent": 1.053426947544102,
+    "SNR": 76.08472069058438,
+    "SINAD": 39.54694757286469,
+    "SFDR": 40.00519064249158
+   },
+   "simulation_time_s": 0.042645833333333334,
+   "display": {
+    "fresh": true,
+    "nbins": 2048,
+    "df_Hz": 23.4375,
+    "f_first_Hz": -23976.5625,
+    "f_last_Hz": 24000.0,
+    "max_abs_dB_vs_model": 3.9625547287869267e-10,
+    "note": "fresh: displayed spectrum = model to max_abs_dB_vs_model"
+   },
+   "analysis": {
+    "reproduced": true,
+    "abs_diff": {
+     "Frequency_Hz": 0.0,
+     "Power_dB": 3.694822225952521e-13,
+     "THD": 7.105427357601002e-15,
+     "THDPercent": 4.440892098500626e-16,
+     "SNR": 4.405364961712621e-13,
+     "SINAD": 0.0,
+     "SFDR": 7.105427357601002e-15
+    },
+    "note": ""
+   }
+  },
+  {
+   "name": "dist_h_offbin_1s_N10",
+   "description": "NumHarmonics 10",
+   "type": "harmonic",
+   "num_harmonics": 10,
+   "signal": {
+    "fs": 48000.0,
+    "complex": false,
+    "calls": [
+     {
+      "file": "distortion/h_offbin_x.txt",
+      "scale": 1.0,
+      "research": "research/distortion/inputs/h_offbin_x.txt"
+     }
+    ],
+    "n_samples": 2048,
+    "n_calls": 1
+   },
+   "config": {
+    "two_sided": false,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window_length": 2048,
+    "spectral_averages": 1,
+    "overlap_percent": 0,
+    "window": "hann",
+    "fft_length_source": "auto",
+    "averaging_method": "running",
+    "reference_load": 1,
+    "scope_props": {},
+    "meas_props": {
+     "Type": "harmonic",
+     "NumHarmonics": 10,
+     "LabelValues": false
+    },
+    "config_log_failures": [
+     "PhaseNoise/Enabled (property does not exist in R2025a; harmless)"
+    ]
+   },
+   "scope": {
+    "HarmonicNumber": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9
+    ],
+    "Frequency": [
+     2531.25,
+     5062.5,
+     7593.75,
+     10125,
+     12656.25,
+     15187.5,
+     17718.75,
+     20250,
+     22757.8125
+    ],
+    "Power": [
+     26.987606993806132,
+     -13.017583648685445,
+     -23.020291259979587,
+     -33.0305992071347,
+     -42.91037379705175,
+     -52.90206629947052,
+     -62.32328754739822,
+     -69.79004638613354,
+     -75.76387330534843
+    ],
+    "THD": -39.547855363479954,
+    "THDPercent": 1.0534337587762135,
+    "SNR": 76.32650898670244,
+    "SINAD": 39.546943618541654,
+    "SFDR": 40.00519064249158
+   },
+   "simulation_time_s": 0.042645833333333334,
+   "display": {
+    "fresh": true,
+    "nbins": 1025,
+    "df_Hz": 23.4375,
+    "f_first_Hz": 0.0,
+    "f_last_Hz": 24000.0,
+    "max_abs_dB_vs_model": 3.9625547287869267e-10,
+    "note": "fresh: displayed spectrum = model to max_abs_dB_vs_model"
+   },
+   "analysis": {
+    "reproduced": true,
+    "abs_diff": {
+     "Frequency_Hz": 0.0,
+     "Power_dB": 3.794298208958935e-12,
+     "THD": 7.105427357601002e-15,
+     "THDPercent": 4.440892098500626e-16,
+     "SNR": 1.9184653865522705e-12,
+     "SINAD": 1.4210854715202004e-14,
+     "SFDR": 7.105427357601002e-15
+    },
+    "note": ""
+   }
+  },
+  {
+   "name": "dist_h_offbin_1s_N2",
+   "description": "NumHarmonics 2 (fundamental + H2 only)",
+   "type": "harmonic",
+   "num_harmonics": 2,
+   "signal": {
+    "fs": 48000.0,
+    "complex": false,
+    "calls": [
+     {
+      "file": "distortion/h_offbin_x.txt",
+      "scale": 1.0,
+      "research": "research/distortion/inputs/h_offbin_x.txt"
+     }
+    ],
+    "n_samples": 2048,
+    "n_calls": 1
+   },
+   "config": {
+    "two_sided": false,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window_length": 2048,
+    "spectral_averages": 1,
+    "overlap_percent": 0,
+    "window": "hann",
+    "fft_length_source": "auto",
+    "averaging_method": "running",
+    "reference_load": 1,
+    "scope_props": {},
+    "meas_props": {
+     "Type": "harmonic",
+     "NumHarmonics": 2,
+     "LabelValues": false
+    },
+    "config_log_failures": [
+     "PhaseNoise/Enabled (property does not exist in R2025a; harmless)"
+    ]
+   },
+   "scope": {
+    "HarmonicNumber": [
+     1,
+     2
+    ],
+    "Frequency": [
+     2531.25,
+     5062.5
+    ],
+    "Power": [
+     26.987606993806132,
+     -13.017583648685445
+    ],
+    "THD": -40.00519064249158,
+    "THDPercent": 0.9994025837230015,
+    "SNR": 49.5213707648697,
+    "SINAD": 39.54498409109412,
+    "SFDR": 40.00519064249158
+   },
+   "simulation_time_s": 0.042645833333333334,
+   "display": {
+    "fresh": true,
+    "nbins": 1025,
+    "df_Hz": 23.4375,
+    "f_first_Hz": 0.0,
+    "f_last_Hz": 24000.0,
+    "max_abs_dB_vs_model": 3.9625547287869267e-10,
+    "note": "fresh: displayed spectrum = model to max_abs_dB_vs_model"
+   },
+   "analysis": {
+    "reproduced": true,
+    "abs_diff": {
+     "Frequency_Hz": 0.0,
+     "Power_dB": 0.0,
+     "THD": 7.105427357601002e-15,
+     "THDPercent": 1.1102230246251565e-15,
+     "SNR": 0.0,
+     "SINAD": 7.105427357601002e-15,
+     "SFDR": 7.105427357601002e-15
+    },
+    "note": ""
+   }
+  },
+  {
+   "name": "dist_h_offbin_1s_psd_N6",
+   "description": "power-density (dBm/Hz) pass",
+   "type": "harmonic",
+   "num_harmonics": 6,
+   "signal": {
+    "fs": 48000.0,
+    "complex": false,
+    "calls": [
+     {
+      "file": "distortion/h_offbin_x.txt",
+      "scale": 1.0,
+      "research": "research/distortion/inputs/h_offbin_x.txt"
+     }
+    ],
+    "n_samples": 2048,
+    "n_calls": 1
+   },
+   "config": {
+    "two_sided": false,
+    "spectrum_type": "power-density",
+    "units": "dBm/Hz",
+    "window_length": 2048,
+    "spectral_averages": 1,
+    "overlap_percent": 0,
+    "window": "hann",
+    "fft_length_source": "auto",
+    "averaging_method": "running",
+    "reference_load": 1,
+    "scope_props": {},
+    "meas_props": {
+     "Type": "harmonic",
+     "NumHarmonics": 6,
+     "LabelValues": false
+    },
+    "config_log_failures": [
+     "PhaseNoise/Enabled (property does not exist in R2025a; harmless)"
+    ]
+   },
+   "scope": {
+    "HarmonicNumber": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ],
+    "Frequency": [
+     2531.25,
+     5062.5,
+     7593.75,
+     10125,
+     12656.25,
+     15187.5
+    ],
+    "Power": [
+     11.52758155253138,
+     -28.477609089960197,
+     -38.48031670125434,
+     -48.49062464840945,
+     -58.3703992383265,
+     -68.36209174074527
+    ],
+    "THD": -39.54791152439296,
+    "THDPercent": 1.053426947544102,
+    "SNR": 76.08547670165048,
+    "SINAD": 39.5469477406342,
+    "SFDR": 40.00519064249158
+   },
+   "simulation_time_s": 0.042645833333333334,
+   "display": {
+    "fresh": true,
+    "nbins": 1025,
+    "df_Hz": 23.4375,
+    "f_first_Hz": 0.0,
+    "f_last_Hz": 24000.0,
+    "max_abs_dB_vs_model": 3.9625547287869267e-10,
+    "note": "fresh: displayed spectrum = model to max_abs_dB_vs_model"
+   },
+   "analysis": {
+    "reproduced": true,
+    "abs_diff": {
+     "Frequency_Hz": 0.0,
+     "Power_dB": 3.694822225952521e-13,
+     "THD": 7.105427357601002e-15,
+     "THDPercent": 4.440892098500626e-16,
+     "SNR": 4.405364961712621e-13,
+     "SINAD": 0.0,
+     "SFDR": 7.105427357601002e-15
+    },
+    "note": ""
+   }
+  },
+  {
+   "name": "dist_h_offbin_1s_span_0_6000_N6",
+   "description": "scope FrequencySpan start/stop [0 6000]: only fundamental + H2 displayed -> does the measurement use the displayed range only?",
+   "type": "harmonic",
+   "num_harmonics": 6,
+   "signal": {
+    "fs": 48000.0,
+    "complex": false,
+    "calls": [
+     {
+      "file": "distortion/h_offbin_x.txt",
+      "scale": 1.0,
+      "research": "research/distortion/inputs/h_offbin_x.txt"
+     }
+    ],
+    "n_samples": 2048,
+    "n_calls": 1
+   },
+   "config": {
+    "two_sided": false,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window_length": 2048,
+    "spectral_averages": 1,
+    "overlap_percent": 0,
+    "window": "hann",
+    "fft_length_source": "auto",
+    "averaging_method": "running",
+    "reference_load": 1,
+    "scope_props": {
+     "FrequencySpan": "start-and-stop-frequencies",
+     "StartFrequency": 0,
+     "StopFrequency": 6000
+    },
+    "meas_props": {
+     "Type": "harmonic",
+     "NumHarmonics": 6,
+     "LabelValues": false
+    },
+    "config_log_failures": [
+     "PhaseNoise/Enabled (property does not exist in R2025a; harmless)"
+    ]
+   },
+   "scope": {
+    "HarmonicNumber": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ],
+    "Frequency": [
+     2531.25,
+     5062.5,
+     7593.75,
+     10125,
+     12656.25,
+     15187.5
+    ],
+    "Power": [
+     26.987606993806132,
+     -13.017583648685445,
+     -23.020291259979587,
+     -33.0305992071347,
+     -42.91037379705175,
+     -52.90206629947052
+    ],
+    "THD": -39.54791152439296,
+    "THDPercent": 1.053426947544102,
+    "SNR": 76.08547670165046,
+    "SINAD": 39.5469477406342,
+    "SFDR": 40.00519064249158
+   },
+   "simulation_time_s": 0.042645833333333334,
+   "display": {
+    "fresh": true,
+    "nbins": 1025,
+    "df_Hz": 23.4375,
+    "f_first_Hz": 0.0,
+    "f_last_Hz": 24000.0,
+    "max_abs_dB_vs_model": 3.9625547287869267e-10,
+    "note": "fresh: displayed spectrum = model to max_abs_dB_vs_model"
+   },
+   "analysis": {
+    "reproduced": true,
+    "abs_diff": {
+     "Frequency_Hz": 0.0,
+     "Power_dB": 3.694822225952521e-13,
+     "THD": 7.105427357601002e-15,
+     "THDPercent": 4.440892098500626e-16,
+     "SNR": 4.547473508864641e-13,
+     "SINAD": 0.0,
+     "SFDR": 7.105427357601002e-15
+    },
+    "note": ""
+   }
+  },
+  {
+   "name": "dist_h_offbin_1s_span_1000_24000_N6",
+   "description": "scope FrequencySpan [1000 24000]: DC excluded from the display",
+   "type": "harmonic",
+   "num_harmonics": 6,
+   "signal": {
+    "fs": 48000.0,
+    "complex": false,
+    "calls": [
+     {
+      "file": "distortion/h_offbin_x.txt",
+      "scale": 1.0,
+      "research": "research/distortion/inputs/h_offbin_x.txt"
+     }
+    ],
+    "n_samples": 2048,
+    "n_calls": 1
+   },
+   "config": {
+    "two_sided": false,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window_length": 2048,
+    "spectral_averages": 1,
+    "overlap_percent": 0,
+    "window": "hann",
+    "fft_length_source": "auto",
+    "averaging_method": "running",
+    "reference_load": 1,
+    "scope_props": {
+     "FrequencySpan": "start-and-stop-frequencies",
+     "StartFrequency": 1000,
+     "StopFrequency": 24000
+    },
+    "meas_props": {
+     "Type": "harmonic",
+     "NumHarmonics": 6,
+     "LabelValues": false
+    },
+    "config_log_failures": [
+     "PhaseNoise/Enabled (property does not exist in R2025a; harmless)"
+    ]
+   },
+   "scope": {
+    "HarmonicNumber": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ],
+    "Frequency": [
+     2531.25,
+     5062.5,
+     7593.75,
+     10125,
+     12656.25,
+     15187.5
+    ],
+    "Power": [
+     26.987606993806132,
+     -13.017583648685445,
+     -23.020291259979587,
+     -33.0305992071347,
+     -42.91037379705175,
+     -52.90206629947052
+    ],
+    "THD": -39.54791152439296,
+    "THDPercent": 1.053426947544102,
+    "SNR": 76.08547670165046,
+    "SINAD": 39.5469477406342,
+    "SFDR": 40.00519064249158
+   },
+   "simulation_time_s": 0.042645833333333334,
+   "display": {
+    "fresh": true,
+    "nbins": 1025,
+    "df_Hz": 23.4375,
+    "f_first_Hz": 0.0,
+    "f_last_Hz": 24000.0,
+    "max_abs_dB_vs_model": 3.9625547287869267e-10,
+    "note": "fresh: displayed spectrum = model to max_abs_dB_vs_model"
+   },
+   "analysis": {
+    "reproduced": true,
+    "abs_diff": {
+     "Frequency_Hz": 0.0,
+     "Power_dB": 3.694822225952521e-13,
+     "THD": 7.105427357601002e-15,
+     "THDPercent": 4.440892098500626e-16,
+     "SNR": 4.547473508864641e-13,
+     "SINAD": 0.0,
+     "SFDR": 7.105427357601002e-15
+    },
+    "note": ""
+   }
+  },
+  {
+   "name": "dist_h_bin_1s_N6",
+   "description": "fundamental exactly on a bin (research h_bin)",
+   "type": "harmonic",
+   "num_harmonics": 6,
+   "signal": {
+    "fs": 48000.0,
+    "complex": false,
+    "calls": [
+     {
+      "file": "distortion/h_bin_x.txt",
+      "scale": 1.0,
+      "research": "research/distortion/inputs/h_bin_x.txt"
+     }
+    ],
+    "n_samples": 2048,
+    "n_calls": 1
+   },
+   "config": {
+    "two_sided": false,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window_length": 2048,
+    "spectral_averages": 1,
+    "overlap_percent": 0,
+    "window": "hann",
+    "fft_length_source": "auto",
+    "averaging_method": "running",
+    "reference_load": 1,
+    "scope_props": {},
+    "meas_props": {
+     "Type": "harmonic",
+     "NumHarmonics": 6,
+     "LabelValues": false
+    },
+    "config_log_failures": [
+     "PhaseNoise/Enabled (property does not exist in R2025a; harmless)"
+    ]
+   },
+   "scope": {
+    "HarmonicNumber": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ],
+    "Frequency": [
+     2507.8125,
+     5015.625,
+     7523.4375,
+     10031.25,
+     12539.0625,
+     15046.875
+    ],
+    "Power": [
+     26.989723732720027,
+     -13.00992301632241,
+     -23.0037996589327,
+     -33.008613611531466,
+     -42.89796770225905,
+     -52.657545018653224
+    ],
+    "THD": -39.54141693910057,
+    "THDPercent": 1.0542149070809663,
+    "SNR": 76.52456044782889,
+    "SINAD": 39.54054712494942,
+    "SFDR": 39.99964674904244
+   },
+   "simulation_time_s": 0.042645833333333334,
+   "display": {
+    "fresh": false,
+    "nbins": 1025,
+    "df_Hz": 23.4375,
+    "f_first_Hz": 0.0,
+    "f_last_Hz": 24000.0,
+    "max_abs_dB_vs_model": 97.2047925563798,
+    "note": "identical to previous capture display (dist_h_offbin_1s_span_1000_24000_N6)"
+   },
+   "analysis": {
+    "reproduced": true,
+    "abs_diff": {
+     "Frequency_Hz": 0.0,
+     "Power_dB": 1.9895196601282805e-13,
+     "THD": 7.105427357601002e-15,
+     "THDPercent": 4.440892098500626e-16,
+     "SNR": 1.1368683772161603e-12,
+     "SINAD": 1.4210854715202004e-14,
+     "SFDR": 7.105427357601002e-15
+    },
+    "note": ""
+   }
+  },
+  {
+   "name": "dist_h_noisy_1s_N6",
+   "description": "low SNR ~23 dB, N 4096 (research h_noisy)",
+   "type": "harmonic",
+   "num_harmonics": 6,
+   "signal": {
+    "fs": 48000.0,
+    "complex": false,
+    "calls": [
+     {
+      "file": "distortion/h_noisy_x.txt",
+      "scale": 1.0,
+      "research": "research/distortion/inputs/h_noisy_x.txt"
+     }
+    ],
+    "n_samples": 4096,
+    "n_calls": 1
+   },
+   "config": {
+    "two_sided": false,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window_length": 4096,
+    "spectral_averages": 1,
+    "overlap_percent": 0,
+    "window": "hann",
+    "fft_length_source": "auto",
+    "averaging_method": "running",
+    "reference_load": 1,
+    "scope_props": {},
+    "meas_props": {
+     "Type": "harmonic",
+     "NumHarmonics": 6,
+     "LabelValues": false
+    },
+    "config_log_failures": [
+     "PhaseNoise/Enabled (property does not exist in R2025a; harmless)"
+    ]
+   },
+   "scope": {
+    "HarmonicNumber": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ],
+    "Frequency": [
+     445.3125,
+     878.90625,
+     1324.21875,
+     1769.53125,
+     2203.125,
+     2636.71875
+    ],
+    "Power": [
+     25.832889395068936,
+     6.900505732752464,
+     0.21939632851549376,
+     -26.75476115347756,
+     -22.84509344939658,
+     -23.634102109563564
+    ],
+    "THD": -18.079107875254433,
+    "THDPercent": 12.475116391555733,
+    "SNR": 21.820737422478103,
+    "SINAD": 16.548554437039652,
+    "SFDR": 18.932383662316475
+   },
+   "simulation_time_s": 0.0853125,
+   "display": {
+    "fresh": false,
+    "nbins": 2049,
+    "df_Hz": 11.71875,
+    "f_first_Hz": 0.0,
+    "f_last_Hz": 24000.0,
+    "max_abs_dB_vs_model": 58.60990271900957,
+    "note": "display lagging: not this capture's spectrum (see ANALYSIS.md)"
+   },
+   "analysis": {
+    "reproduced": true,
+    "abs_diff": {
+     "Frequency_Hz": 0.0,
+     "Power_dB": 7.105427357601002e-15,
+     "THD": 0.0,
+     "THDPercent": 0.0,
+     "SNR": 0.0,
+     "SINAD": 3.552713678800501e-15,
+     "SFDR": 0.0
+    },
+    "note": ""
+   }
+  },
+  {
+   "name": "dist_h_alias_1s_N6",
+   "description": "9.1 kHz fundamental, harmonics 3+ beyond Nyquist (research h_alias)",
+   "type": "harmonic",
+   "num_harmonics": 6,
+   "signal": {
+    "fs": 48000.0,
+    "complex": false,
+    "calls": [
+     {
+      "file": "distortion/h_alias_x.txt",
+      "scale": 1.0,
+      "research": "research/distortion/inputs/h_alias_x.txt"
+     }
+    ],
+    "n_samples": 2000,
+    "n_calls": 1
+   },
+   "config": {
+    "two_sided": false,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window_length": 2000,
+    "spectral_averages": 1,
+    "overlap_percent": 0,
+    "window": "hann",
+    "fft_length_source": "auto",
+    "averaging_method": "running",
+    "reference_load": 1,
+    "scope_props": {},
+    "meas_props": {
+     "Type": "harmonic",
+     "NumHarmonics": 6,
+     "LabelValues": false
+    },
+    "config_log_failures": [
+     "PhaseNoise/Enabled (property does not exist in R2025a; harmless)"
+    ]
+   },
+   "scope": {
+    "HarmonicNumber": [
+     1,
+     2
+    ],
+    "Frequency": [
+     9096,
+     18192
+    ],
+    "Power": [
+     26.83381486541547,
+     -8.637014198248856
+    ],
+    "THD": -35.470829063664326,
+    "THDPercent": 1.6844516390646713,
+    "SNR": 38.23721424928773,
+    "SINAD": 33.62708006495193,
+    "SFDR": 28.745379327536668
+   },
+   "simulation_time_s": 0.04164583333333333,
+   "display": {
+    "fresh": false,
+    "nbins": 1001,
+    "df_Hz": 24.0,
+    "f_first_Hz": 0.0,
+    "f_last_Hz": 24000.0,
+    "max_abs_dB_vs_model": 114.60976095275775,
+    "note": "display lagging: not this capture's spectrum (see ANALYSIS.md)"
+   },
+   "analysis": {
+    "reproduced": false,
+    "abs_diff": {
+     "Frequency_Hz": 0.0,
+     "Power_dB": 7.105427357601002e-15,
+     "THD": 7.105427357601002e-15,
+     "THDPercent": 1.1102230246251565e-15,
+     "SNR": 1.4210854715202004e-14,
+     "SINAD": 7.105427357601002e-15,
+     "SFDR": 6.725449736127665
+    },
+    "note": ""
+   }
+  },
+  {
+   "name": "dist_h_lowf_1s_N6",
+   "description": "60 Hz fundamental next to DC (research h_lowf)",
+   "type": "harmonic",
+   "num_harmonics": 6,
+   "signal": {
+    "fs": 48000.0,
+    "complex": false,
+    "calls": [
+     {
+      "file": "distortion/h_lowf_x.txt",
+      "scale": 1.0,
+      "research": "research/distortion/inputs/h_lowf_x.txt"
+     }
+    ],
+    "n_samples": 2048,
+    "n_calls": 1
+   },
+   "config": {
+    "two_sided": false,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window_length": 2048,
+    "spectral_averages": 1,
+    "overlap_percent": 0,
+    "window": "hann",
+    "fft_length_source": "auto",
+    "averaging_method": "running",
+    "reference_load": 1,
+    "scope_props": {},
+    "meas_props": {
+     "Type": "harmonic",
+     "NumHarmonics": 6,
+     "LabelValues": false
+    },
+    "config_log_failures": [
+     "PhaseNoise/Enabled (property does not exist in R2025a; harmless)"
+    ]
+   },
+   "scope": {
+    "HarmonicNumber": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ],
+    "Frequency": [
+     70.3125,
+     93.75,
+     187.5,
+     234.375,
+     281.25,
+     328.125
+    ],
+    "Power": [
+     25.88233564440919,
+     -Infinity,
+     -13.171392631936968,
+     -12.691773981024042,
+     -Infinity,
+     -Infinity
+    ],
+    "THD": -35.79700144390192,
+    "THDPercent": 1.6223700777729202,
+    "SNR": 55.68912668140805,
+    "SINAD": 35.75270639832736,
+    "SFDR": 38.57410962543323
+   },
+   "simulation_time_s": 0.042645833333333334,
+   "display": {
+    "fresh": false,
+    "nbins": 1001,
+    "df_Hz": 24.0,
+    "f_first_Hz": 0.0,
+    "f_last_Hz": 24000.0,
+    "max_abs_dB_vs_model": null,
+    "note": "display lagging: not this capture's spectrum (see ANALYSIS.md)"
+   },
+   "analysis": {
+    "reproduced": true,
+    "abs_diff": {
+     "Frequency_Hz": 0.0,
+     "Power_dB": 1.4210854715202004e-14,
+     "THD": 1.4210854715202004e-14,
+     "THDPercent": 3.3306690738754696e-15,
+     "SNR": 3.552713678800501e-14,
+     "SINAD": 7.105427357601002e-15,
+     "SFDR": 2.1316282072803006e-14
+    },
+    "note": ""
+   }
+  },
+  {
+   "name": "dist_h_noiseless_1s_N6",
+   "description": "no noise, N 1024 (research h_noiseless)",
+   "type": "harmonic",
+   "num_harmonics": 6,
+   "signal": {
+    "fs": 48000.0,
+    "complex": false,
+    "calls": [
+     {
+      "file": "distortion/h_noiseless_x.txt",
+      "scale": 1.0,
+      "research": "research/distortion/inputs/h_noiseless_x.txt"
+     }
+    ],
+    "n_samples": 1024,
+    "n_calls": 1
+   },
+   "config": {
+    "two_sided": false,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window_length": 1024,
+    "spectral_averages": 1,
+    "overlap_percent": 0,
+    "window": "hann",
+    "fft_length_source": "auto",
+    "averaging_method": "running",
+    "reference_load": 1,
+    "scope_props": {},
+    "meas_props": {
+     "Type": "harmonic",
+     "NumHarmonics": 6,
+     "LabelValues": false
+    },
+    "config_log_failures": [
+     "PhaseNoise/Enabled (property does not exist in R2025a; harmless)"
+    ]
+   },
+   "scope": {
+    "HarmonicNumber": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ],
+    "Frequency": [
+     3000,
+     6000,
+     9000,
+     12046.875,
+     14953.125,
+     18046.875
+    ],
+    "Power": [
+     26.98970004336018,
+     -33.010299956639706,
+     -43.01029995661568,
+     -278.1796443475279,
+     -273.4744477557214,
+     -275.82228635611267
+    ],
+    "THD": -59.58607314841545,
+    "THDPercent": 0.10488088481704287,
+    "SNR": 276.91002240686333,
+    "SINAD": 59.58607314841545,
+    "SFDR": 59.999999999999886
+   },
+   "simulation_time_s": 0.021312499999999998,
+   "display": {
+    "fresh": false,
+    "nbins": 513,
+    "df_Hz": 46.875,
+    "f_first_Hz": 0.0,
+    "f_last_Hz": 24000.0,
+    "max_abs_dB_vs_model": 309.966558818925,
+    "note": "display lagging: not this capture's spectrum (see ANALYSIS.md)"
+   },
+   "analysis": {
+    "reproduced": false,
+    "abs_diff": {
+     "Frequency_Hz": 0.0,
+     "Power_dB": 0.3484549520603082,
+     "THD": 4.973799150320701e-14,
+     "THDPercent": 6.245004513516506e-16,
+     "SNR": 0.0006479853246332823,
+     "SINAD": 4.973799150320701e-14,
+     "SFDR": 1.7053025658242404e-13
+    },
+    "note": ""
+   }
+  },
+  {
+   "name": "dist_h_odd_1s_N6",
+   "description": "odd length N 1999 (research h_odd)",
+   "type": "harmonic",
+   "num_harmonics": 6,
+   "signal": {
+    "fs": 48000.0,
+    "complex": false,
+    "calls": [
+     {
+      "file": "distortion/h_odd_x.txt",
+      "scale": 1.0,
+      "research": "research/distortion/inputs/h_odd_x.txt"
+     }
+    ],
+    "n_samples": 1999,
+    "n_calls": 1
+   },
+   "config": {
+    "two_sided": false,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window_length": 1999,
+    "spectral_averages": 1,
+    "overlap_percent": 0,
+    "window": "hann",
+    "fft_length_source": "auto",
+    "averaging_method": "running",
+    "reference_load": 1,
+    "scope_props": {},
+    "meas_props": {
+     "Type": "harmonic",
+     "NumHarmonics": 6,
+     "LabelValues": false
+    },
+    "config_log_failures": [
+     "PhaseNoise/Enabled (property does not exist in R2025a; harmless)"
+    ]
+   },
+   "scope": {
+    "HarmonicNumber": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ],
+    "Frequency": [
+     1224.6123061530764,
+     2473.2366183091544,
+     3697.848924462231,
+     4946.473236618309,
+     6147.073536768384,
+     7371.68584292146
+    ],
+    "Power": [
+     26.029327211940128,
+     -3.1805418536643373,
+     -18.325260530788476,
+     -33.756920816456685,
+     -67.93373541704746,
+     -71.50043274226852
+    ],
+    "THD": -29.07533429861939,
+    "THDPercent": 3.5174933501398575,
+    "SNR": 66.43513508663975,
+    "SINAD": 29.074536736802944,
+    "SFDR": 29.20986906560447
+   },
+   "simulation_time_s": 0.041625,
+   "display": {
+    "fresh": false,
+    "nbins": 1000,
+    "df_Hz": 24.01200600300217,
+    "f_first_Hz": 0.0,
+    "f_last_Hz": 23987.9939969985,
+    "max_abs_dB_vs_model": 110.07890000968308,
+    "note": "display lagging: not this capture's spectrum (see ANALYSIS.md)"
+   },
+   "analysis": {
+    "reproduced": true,
+    "abs_diff": {
+     "Frequency_Hz": 9.094947017729282e-13,
+     "Power_dB": 1.2889245226688217e-11,
+     "THD": 7.105427357601002e-15,
+     "THDPercent": 3.552713678800501e-15,
+     "SNR": 1.9895196601282805e-13,
+     "SINAD": 7.105427357601002e-15,
+     "SFDR": 1.4210854715202004e-14
+    },
+    "note": ""
+   }
+  },
+  {
+   "name": "dist_h_maxhold_2calls",
+   "description": "two calls (h_offbin, then 0.1*h_lowf) with Max-Hold on: reported fundamental 2531.7 Hz => max-hold trace, 60 Hz => normal trace",
+   "type": "harmonic",
+   "num_harmonics": 6,
+   "signal": {
+    "fs": 48000.0,
+    "complex": false,
+    "calls": [
+     {
+      "file": "distortion/h_offbin_x.txt",
+      "scale": 1.0,
+      "research": "research/distortion/inputs/h_offbin_x.txt"
+     },
+     {
+      "file": "distortion/h_lowf_x.txt",
+      "scale": 0.1,
+      "research": "0.1 * research/distortion/inputs/h_lowf_x.txt"
+     }
+    ],
+    "n_samples": 2048,
+    "n_calls": 2
+   },
+   "config": {
+    "two_sided": false,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window_length": 2048,
+    "spectral_averages": 1,
+    "overlap_percent": 0,
+    "window": "hann",
+    "fft_length_source": "auto",
+    "averaging_method": "running",
+    "reference_load": 1,
+    "scope_props": {
+     "PlotMaxHoldTrace": true
+    },
+    "meas_props": {
+     "Type": "harmonic",
+     "NumHarmonics": 6,
+     "LabelValues": false
+    },
+    "config_log_failures": [
+     "PhaseNoise/Enabled (property does not exist in R2025a; harmless)"
+    ]
+   },
+   "scope": {
+    "HarmonicNumber": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6
+    ],
+    "Frequency": [
+     70.3125,
+     93.75,
+     187.5,
+     234.375,
+     281.25,
+     328.125
+    ],
+    "Power": [
+     5.882335644409192,
+     -Infinity,
+     -33.17139263193697,
+     -32.691773981024035,
+     -Infinity,
+     -Infinity
+    ],
+    "THD": -35.79700144390192,
+    "THDPercent": 1.6223700777729202,
+    "SNR": 55.689126681408084,
+    "SINAD": 35.75270639832736,
+    "SFDR": 38.57410962543322
+   },
+   "simulation_time_s": 0.0853125,
+   "display": {
+    "fresh": false,
+    "nbins": 1025,
+    "df_Hz": 23.4375,
+    "f_first_Hz": 0.0,
+    "f_last_Hz": 24000.0,
+    "max_abs_dB_vs_model": 114.61574052690654,
+    "note": "display lagging: not this capture's spectrum (see ANALYSIS.md)"
+   },
+   "analysis": {
+    "reproduced": true,
+    "abs_diff": {
+     "Frequency_Hz": 0.0,
+     "Power_dB": 7.105427357601002e-15,
+     "THD": 1.4210854715202004e-14,
+     "THDPercent": 3.3306690738754696e-15,
+     "SNR": 4.263256414560601e-14,
+     "SINAD": 7.105427357601002e-15,
+     "SFDR": 1.4210854715202004e-14
+    },
+    "note": ""
+   }
+  },
+  {
+   "name": "dist_cplx_obw_2s_harmonic_N6",
+   "description": "complex input (OBW QPSK-like signal, fs 1e4), two-sided: what the scope does for complex signals",
+   "type": "harmonic",
+   "num_harmonics": 6,
+   "signal": {
+    "fs": 10000.0,
+    "complex": true,
+    "calls": [
+     {
+      "file_re": "scope/distortion/in_x_cplx_re.txt",
+      "file_im": "scope/distortion/in_x_cplx_im.txt",
+      "scale": 1.0,
+      "research": "research/obw_chpower/in_x_cplx_re.txt + in_x_cplx_im.txt (byte-identical copies)"
+     }
+    ],
+    "n_samples": 2048,
+    "n_calls": 1
+   },
+   "config": {
+    "two_sided": true,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window_length": 2048,
+    "spectral_averages": 1,
+    "overlap_percent": 0,
+    "window": "hann",
+    "fft_length_source": "auto",
+    "averaging_method": "running",
+    "reference_load": 1,
+    "scope_props": {},
+    "meas_props": {
+     "Type": "harmonic",
+     "NumHarmonics": 6,
+     "LabelValues": false
+    },
+    "config_log_failures": [
+     "PhaseNoise/Enabled (property does not exist in R2025a; harmless)"
+    ]
+   },
+   "scope": {
+    "HarmonicNumber": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "Frequency": [
+     893.5546875,
+     1791.9921875,
+     2675.78125,
+     3574.21875,
+     4467.7734375
+    ],
+    "Power": [
+     15.174985453347741,
+     -6.6047241363083415,
+     -16.25842811507937,
+     -29.603631185048826,
+     -23.535939363487522
+    ],
+    "THD": -21.235170317715806,
+    "THDPercent": 8.674440733118956,
+    "SNR": -13.793430166159535,
+    "SINAD": -13.794794297084662,
+    "SFDR": 1.397612739815912
+   },
+   "simulation_time_s": 0.20470000000000002,
+   "display": {
+    "fresh": true,
+    "nbins": 2048,
+    "df_Hz": 4.8828125,
+    "f_first_Hz": -4995.1171875,
+    "f_last_Hz": 5000.0,
+    "max_abs_dB_vs_model": 9.521272659185342e-13,
+    "note": "fresh: displayed spectrum = model to max_abs_dB_vs_model"
+   },
+   "analysis": {
+    "reproduced": true,
+    "abs_diff": {
+     "Frequency_Hz": 0.0,
+     "Power_dB": 4.263256414560601e-14,
+     "THD": 7.105427357601002e-15,
+     "THDPercent": 8.881784197001252e-15,
+     "SNR": 3.552713678800501e-15,
+     "SINAD": 5.329070518200751e-15,
+     "SFDR": 3.3306690738754696e-15
+    },
+    "note": ""
+   }
+  },
+  {
+   "name": "dist_toi_doc_1s",
+   "description": "intermodulation on the toi() help example two-tone signal, N 1000 (research toi_doc)",
+   "type": "intermodulation",
+   "num_harmonics": 6,
+   "signal": {
+    "fs": 48000.0,
+    "complex": false,
+    "calls": [
+     {
+      "file": "distortion/toi_doc_x.txt",
+      "scale": 1.0,
+      "research": "research/distortion/inputs/toi_doc_x.txt"
+     }
+    ],
+    "n_samples": 1000,
+    "n_calls": 1
+   },
+   "config": {
+    "two_sided": false,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window_length": 1000,
+    "spectral_averages": 1,
+    "overlap_percent": 0,
+    "window": "hann",
+    "fft_length_source": "auto",
+    "averaging_method": "running",
+    "reference_load": 1,
+    "scope_props": {},
+    "meas_props": {
+     "Type": "intermodulation",
+     "NumHarmonics": 6,
+     "LabelValues": false
+    },
+    "config_log_failures": [
+     "PhaseNoise/Enabled (property does not exist in R2025a; harmless)"
+    ]
+   },
+   "scope": {
+    "Frequency": [
+     6000,
+     5015.625,
+     6984.375,
+     3984.375
+    ],
+    "Power": [
+     7.087034005232557,
+     6.489443456864517,
+     -42.03101598766885,
+     -42.170747699555605
+    ],
+    "TOI": 31.23279901837892
+   },
+   "simulation_time_s": 0.020812499999999998,
+   "display": {
+    "fresh": false,
+    "nbins": 513,
+    "df_Hz": 46.875,
+    "f_first_Hz": 0.0,
+    "f_last_Hz": 24000.0,
+    "max_abs_dB_vs_model": 139.23755132997013,
+    "note": "display lagging: not this capture's spectrum (see ANALYSIS.md)"
+   },
+   "analysis": {
+    "reproduced": true,
+    "abs_diff": {
+     "Frequency_Hz": 0.0,
+     "Power_dB": 1.1368683772161603e-13,
+     "TOI": 2.842170943040401e-14
+    },
+    "note": ""
+   }
+  },
+  {
+   "name": "dist_toi_doc_2s",
+   "description": "same, two-sided display",
+   "type": "intermodulation",
+   "num_harmonics": 6,
+   "signal": {
+    "fs": 48000.0,
+    "complex": false,
+    "calls": [
+     {
+      "file": "distortion/toi_doc_x.txt",
+      "scale": 1.0,
+      "research": "research/distortion/inputs/toi_doc_x.txt"
+     }
+    ],
+    "n_samples": 1000,
+    "n_calls": 1
+   },
+   "config": {
+    "two_sided": true,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window_length": 1000,
+    "spectral_averages": 1,
+    "overlap_percent": 0,
+    "window": "hann",
+    "fft_length_source": "auto",
+    "averaging_method": "running",
+    "reference_load": 1,
+    "scope_props": {},
+    "meas_props": {
+     "Type": "intermodulation",
+     "NumHarmonics": 6,
+     "LabelValues": false
+    },
+    "config_log_failures": [
+     "PhaseNoise/Enabled (property does not exist in R2025a; harmless)"
+    ]
+   },
+   "scope": {
+    "Frequency": [
+     6000,
+     5015.625,
+     6984.375,
+     3984.375
+    ],
+    "Power": [
+     4.076734048592744,
+     3.479143500224705,
+     -45.041315944308664,
+     -45.18104765619542
+    ],
+    "TOI": 28.222499061739107
+   },
+   "simulation_time_s": 0.020812499999999998,
+   "display": {
+    "fresh": true,
+    "nbins": 1024,
+    "df_Hz": 46.875,
+    "f_first_Hz": -23953.125,
+    "f_last_Hz": 24000.0,
+    "max_abs_dB_vs_model": 4.802984676643973e-10,
+    "note": "fresh: displayed spectrum = model to max_abs_dB_vs_model"
+   },
+   "analysis": {
+    "reproduced": true,
+    "abs_diff": {
+     "Frequency_Hz": 0.0,
+     "Power_dB": 1.1368683772161603e-13,
+     "TOI": 2.842170943040401e-14
+    },
+    "note": ""
+   }
+  },
+  {
+   "name": "dist_toi_bin_1s",
+   "description": "bin-centred two tones (research toi_bin)",
+   "type": "intermodulation",
+   "num_harmonics": 6,
+   "signal": {
+    "fs": 48000.0,
+    "complex": false,
+    "calls": [
+     {
+      "file": "distortion/toi_bin_x.txt",
+      "scale": 1.0,
+      "research": "research/distortion/inputs/toi_bin_x.txt"
+     }
+    ],
+    "n_samples": 2048,
+    "n_calls": 1
+   },
+   "config": {
+    "two_sided": false,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window_length": 2048,
+    "spectral_averages": 1,
+    "overlap_percent": 0,
+    "window": "hann",
+    "fft_length_source": "auto",
+    "averaging_method": "running",
+    "reference_load": 1,
+    "scope_props": {},
+    "meas_props": {
+     "Type": "intermodulation",
+     "NumHarmonics": 6,
+     "LabelValues": false
+    },
+    "config_log_failures": [
+     "PhaseNoise/Enabled (property does not exist in R2025a; harmless)"
+    ]
+   },
+   "scope": {
+    "Frequency": [
+     5390.625,
+     4687.5,
+     6093.75,
+     3984.375
+    ],
+    "Power": [
+     27.372029580849556,
+     27.37202172382642,
+     -9.488680467114058,
+     -9.488181209548465
+    ],
+    "TOI": 45.802253897672614
+   },
+   "simulation_time_s": 0.042645833333333334,
+   "display": {
+    "fresh": false,
+    "nbins": 1024,
+    "df_Hz": 46.875,
+    "f_first_Hz": -23953.125,
+    "f_last_Hz": 24000.0,
+    "max_abs_dB_vs_model": null,
+    "note": "identical to previous capture display (dist_toi_doc_2s)"
+   },
+   "analysis": {
+    "reproduced": true,
+    "abs_diff": {
+     "Frequency_Hz": 0.0,
+     "Power_dB": 1.4210854715202004e-14,
+     "TOI": 0.0
+    },
+    "note": ""
+   }
+  },
+  {
+   "name": "dist_toi_unequal_1s",
+   "description": "unequal tones (research toi_unequal)",
+   "type": "intermodulation",
+   "num_harmonics": 6,
+   "signal": {
+    "fs": 48000.0,
+    "complex": false,
+    "calls": [
+     {
+      "file": "distortion/toi_unequal_x.txt",
+      "scale": 1.0,
+      "research": "research/distortion/inputs/toi_unequal_x.txt"
+     }
+    ],
+    "n_samples": 2048,
+    "n_calls": 1
+   },
+   "config": {
+    "two_sided": false,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window_length": 2048,
+    "spectral_averages": 1,
+    "overlap_percent": 0,
+    "window": "hann",
+    "fft_length_source": "auto",
+    "averaging_method": "running",
+    "reference_load": 1,
+    "scope_props": {},
+    "meas_props": {
+     "Type": "intermodulation",
+     "NumHarmonics": 6,
+     "LabelValues": false
+    },
+    "config_log_failures": [
+     "PhaseNoise/Enabled (property does not exist in R2025a; harmless)"
+    ]
+   },
+   "scope": {
+    "Frequency": [
+     7007.8125,
+     7593.75,
+     6398.4375,
+     8203.125
+    ],
+    "Power": [
+     24.545937567260196,
+     18.812311532588275,
+     -21.54528449642949,
+     -27.661277969831275
+    ],
+    "TOI": 44.820327441451546
+   },
+   "simulation_time_s": 0.042645833333333334,
+   "display": {
+    "fresh": false,
+    "nbins": 1025,
+    "df_Hz": 23.4375,
+    "f_first_Hz": 0.0,
+    "f_last_Hz": 24000.0,
+    "max_abs_dB_vs_model": 121.88435090791236,
+    "note": "display lagging: not this capture's spectrum (see ANALYSIS.md)"
+   },
+   "analysis": {
+    "reproduced": true,
+    "abs_diff": {
+     "Frequency_Hz": 0.0,
+     "Power_dB": 1.4210854715202004e-14,
+     "TOI": 1.4210854715202004e-14
+    },
+    "note": ""
+   }
+  },
+  {
+   "name": "dist_toi_lowimd_dc_1s",
+   "description": "2F1-F2 < 0: lower IM3 product does not exist (research toi_lowimd_dc)",
+   "type": "intermodulation",
+   "num_harmonics": 6,
+   "signal": {
+    "fs": 48000.0,
+    "complex": false,
+    "calls": [
+     {
+      "file": "distortion/toi_lowimd_dc_x.txt",
+      "scale": 1.0,
+      "research": "research/distortion/inputs/toi_lowimd_dc_x.txt"
+     }
+    ],
+    "n_samples": 2048,
+    "n_calls": 1
+   },
+   "config": {
+    "two_sided": false,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window_length": 2048,
+    "spectral_averages": 1,
+    "overlap_percent": 0,
+    "window": "hann",
+    "fft_length_source": "auto",
+    "averaging_method": "running",
+    "reference_load": 1,
+    "scope_props": {},
+    "meas_props": {
+     "Type": "intermodulation",
+     "NumHarmonics": 6,
+     "LabelValues": false
+    },
+    "config_log_failures": [
+     "PhaseNoise/Enabled (property does not exist in R2025a; harmless)"
+    ]
+   },
+   "scope": {
+    "Frequency": [
+     2601.5625,
+     1007.8125,
+     4195.3125,
+     4171.875
+    ],
+    "Power": [
+     27.5321504762689,
+     26.930161050650984,
+     -6.190778792556294,
+     -Infinity
+    ],
+    "TOI": Infinity
+   },
+   "simulation_time_s": 0.042645833333333334,
+   "display": {
+    "fresh": false,
+    "nbins": 1025,
+    "df_Hz": 23.4375,
+    "f_first_Hz": 0.0,
+    "f_last_Hz": 24000.0,
+    "max_abs_dB_vs_model": 133.38609559553908,
+    "note": "display lagging: not this capture's spectrum (see ANALYSIS.md)"
+   },
+   "analysis": {
+    "reproduced": true,
+    "abs_diff": {
+     "Frequency_Hz": 0.0,
+     "Power_dB": 7.105427357601002e-15,
+     "TOI": 0.0
+    },
+    "note": "scope reports 4171.875000 Hz for the invalid lower IM3 product (model: no frequency); Power -Inf and TOI Inf match"
+   }
+  }
+ ]
+}

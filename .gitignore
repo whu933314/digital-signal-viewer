@@ -1,0 +1,22 @@
+# build outputs
+dist/
+build/
+.venv-build/
+*.spec
+build_version_info.txt
+# python
+__pycache__/
+*.pyc
+*.pyo
+# runtime files the app writes (never in the project)
+signal_viewer.log
+signal_viewer_selftest.log
+.signal_viewer_last.json
+# OS / editor
+.DS_Store
+._*
+Thumbs.db
+# 稽核資料（本機用）
+audit/
+# 本機簽章用的專用鑰匙圈與密碼（絕不上傳）
+.signing/

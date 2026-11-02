@@ -1,0 +1,3683 @@
+{
+ "source": "MATLAB 25.1.0.2943329 (R2025a) spectrumAnalyzer captures (scope_capture/out, run 2026-10-24) — only the configuration, the scope's measurement numbers, the input-signal reference and a few sampled display bins are kept here; the displayed spectra are rebuilt from the research signals (tests/matlab_ref/obw_chpower/in_x_*.txt) with the identified model",
+ "spectrum_model": {
+  "window": "hann(L, 'periodic'), L = WindowLength",
+  "nfft": "max(1024, L) for FFTLengthSource='auto'",
+  "power": "|X|^2/(sum w)^2",
+  "power_density": "|X|^2/(fs*sum w^2)",
+  "display_dB": "10*log10(.)+30 (ReferenceLoad 1)",
+  "rbw": "ENBW = fs*sum(w^2)/sum(w)^2 = 1.5*fs/L",
+  "two_sided_grid": "k*fs/NFFT, k=-NFFT/2+1..NFFT/2 (Nyquist at +fs/2)",
+  "one_sided_grid": "k*fs/NFFT, k=0..NFFT/2, interior bins doubled",
+  "trace_used": "normal trace of the last call (also when PlotMaxHoldTrace is on)"
+ },
+ "measurement_rule": {
+  "psd": "trace/RBW in power mode; the trace itself in power-density mode",
+  "integration": "PSD piecewise constant, bin k covers [f_k-df/2, f_k+df/2] including the first/last bin; C(f) = exact integral",
+  "channel_power": "10*log10(C(b)-C(a))+30 dBm in both modes",
+  "edges": "f_lo = C^-1(C(a)+(100-P)/200*tot), f_hi = C^-1(C(a)+(100+P)/200*tot)",
+  "frequency_error": "(f_lo+f_hi)/2 - CF; CF = CenterFrequency (span mode) or (Start+Stop)/2 (start/stop mode)",
+  "outside": "a < f_first or b > f_last -> ChannelPower, OccupiedBW, FrequencyError all NaN, no error"
+ },
+ "analysis_residual_limits": {
+  "ChannelPower_dB": 1.1e-13,
+  "OccupiedBW_Hz": 1.7e-10,
+  "FrequencyError_Hz": 8.4e-11
+ },
+ "end_border_proof": {
+  "capture": "obw_real_1s_startstop_0_5000_P99",
+  "scope": {
+   "ChannelPower_dBm": 25.784661511989,
+   "OccupiedBW_Hz": 4237.047845900731,
+   "FrequencyError_Hz": -369.536400699991
+  },
+  "obw_borders_at_f_first_f_last": {
+   "ChannelPower_dBm": 25.788999787501,
+   "OccupiedBW_Hz": 4239.269468256199,
+   "FrequencyError_Hz": -370.801478181158
+  }
+ },
+ "auto_span_rule": {
+  "center": "(f_first+f_last)/2",
+  "span": "width/5",
+  "adjacent_bw": "width/10",
+  "acpr_offsets": "[4 7]*width/20",
+  "trigger": "unresolved (applied in obw_real_1s_autospan_defaults, not in acpr_cplx_2s_autospan_defaults)"
+ },
+ "captures": [
+  {
+   "name": "obw_cplx_2s_span900_3000_P50",
+   "description": "same, 50 %",
+   "signal": {
+    "files": [
+     "in_x_cplx_re.txt",
+     "in_x_cplx_im.txt"
+    ],
+    "is_complex": true,
+    "fs": 10000,
+    "n_samples": 2048,
+    "n_calls": 1,
+    "call_scales": [
+     1.0
+    ]
+   },
+   "scope": {
+    "two_sided": true,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window_length": 2048,
+    "averages": 1,
+    "extra_scope_props": {},
+    "properties_set": {
+     "Method": "welch",
+     "Window": "hann",
+     "SidelobeAttenuation": "60",
+     "OverlapPercent": "0",
+     "FrequencyResolutionMethod": "window-length",
+     "WindowLength": "2048",
+     "FFTLengthSource": "auto",
+     "PlotAsTwoSidedSpectrum": "true",
+     "AveragingMethod": "running",
+     "SpectralAverages": "1",
+     "SpectrumType": "power",
+     "SpectrumUnits": "dBm",
+     "ReferenceLoad": "1",
+     "SampleRate": "10000",
+     "FrequencySpan": "full",
+     "FrequencyOffset": "0",
+     "PlotNormalTrace": "true",
+     "PlotMaxHoldTrace": "false",
+     "PlotMinHoldTrace": "false",
+     "MeasurementChannel": "1"
+    }
+   },
+   "measurement_config": {
+    "class__": "ChannelMeasurementsConfiguration",
+    "Type": "occupied-bandwidth",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 3000,
+    "CenterFrequency": 900,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 50,
+    "AdjacentBW": 1000,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "Enabled": true
+   },
+   "measurement_config_after_identical": true,
+   "measurements": {
+    "SimulationTime": 0.20470000000000002,
+    "ChannelMeasurements": {
+     "ChannelPower": 29.168053097234242,
+     "OccupiedBW": 593.2272848884257,
+     "FrequencyError": 0.6350183505189761
+    }
+   },
+   "measurements_stable": true,
+   "extra_call_used": false,
+   "config_log_failures": [
+    [
+     "PhaseNoise",
+     "Enabled",
+     "MATLAB:noSuchMethodOrField"
+    ]
+   ],
+   "config_log_warnings": [
+    [
+     "scope",
+     "SidelobeAttenuation",
+     "shared_dspwebscopes:spectrumanalyzer:nonRelevantProperty: In this configuration of the object, the SidelobeAttenuation property is not applicable."
+    ]
+   ],
+   "display": {
+    "fresh": true,
+    "stale_note": null,
+    "analysis_max_abs_dB_vs_model": 9.521272659185342e-13,
+    "rbw_hann_periodic_Hz": 7.324218750000004,
+    "nbins": 2048,
+    "df_Hz": 4.8828125,
+    "f_first": -4995.1171875,
+    "f_last": 5000,
+    "capture_vs_hann_periodic_max_abs_dB": 1.4210854715202004e-14,
+    "sample_idx": [
+     0,
+     1,
+     127,
+     255,
+     383,
+     511,
+     639,
+     767,
+     895,
+     1023,
+     1151,
+     1206,
+     1279,
+     1407,
+     1535,
+     1663,
+     1791,
+     1919,
+     2046,
+     2047
+    ],
+    "sample_dBm": [
+     -27.73102288281885,
+     -20.464713205764497,
+     -27.31413502540542,
+     -20.96480808565193,
+     -23.78964290305244,
+     -20.598135210721168,
+     -27.660831644616565,
+     -26.173559198601225,
+     -22.768718607827545,
+     -6.4642828619715615,
+     0.5221190050059619,
+     15.174985453347741,
+     3.302508849128852,
+     -12.729145701360103,
+     -15.295947539584027,
+     -28.702045418458482,
+     -27.688226530171747,
+     -22.343431826180534,
+     -27.946965415833738,
+     -60.74645966353839
+    ],
+    "sum_linear_W": 1.2515911947824319
+   },
+   "analysis": {
+    "band": [
+     -600.0,
+     2400.0
+    ],
+    "cf": 900,
+    "percent": 50,
+    "scope": {
+     "ChannelPower": 29.168053097234242,
+     "OccupiedBW": 593.2272848884257,
+     "FrequencyError": 0.6350183505189761
+    },
+    "model": {
+     "ChannelPower": 29.168053097234253,
+     "OccupiedBW": 593.2272848884263,
+     "FrequencyError": 0.6350183505198856
+    },
+    "abs_diff": {
+     "ChannelPower_dB": 1.0658141036401503e-14,
+     "OccupiedBW_Hz": 5.684341886080801e-13,
+     "FrequencyError_Hz": 9.094947017729282e-13
+    },
+    "match": true
+   }
+  },
+  {
+   "name": "obw_cplx_2s_span900_3000_P90",
+   "description": "same, 90 %",
+   "signal": {
+    "files": [
+     "in_x_cplx_re.txt",
+     "in_x_cplx_im.txt"
+    ],
+    "is_complex": true,
+    "fs": 10000,
+    "n_samples": 2048,
+    "n_calls": 1,
+    "call_scales": [
+     1.0
+    ]
+   },
+   "scope": {
+    "two_sided": true,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window_length": 2048,
+    "averages": 1,
+    "extra_scope_props": {},
+    "properties_set": {
+     "Method": "welch",
+     "Window": "hann",
+     "SidelobeAttenuation": "60",
+     "OverlapPercent": "0",
+     "FrequencyResolutionMethod": "window-length",
+     "WindowLength": "2048",
+     "FFTLengthSource": "auto",
+     "PlotAsTwoSidedSpectrum": "true",
+     "AveragingMethod": "running",
+     "SpectralAverages": "1",
+     "SpectrumType": "power",
+     "SpectrumUnits": "dBm",
+     "ReferenceLoad": "1",
+     "SampleRate": "10000",
+     "FrequencySpan": "full",
+     "FrequencyOffset": "0",
+     "PlotNormalTrace": "true",
+     "PlotMaxHoldTrace": "false",
+     "PlotMinHoldTrace": "false",
+     "MeasurementChannel": "1"
+    }
+   },
+   "measurement_config": {
+    "class__": "ChannelMeasurementsConfiguration",
+    "Type": "occupied-bandwidth",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 3000,
+    "CenterFrequency": 900,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 90,
+    "AdjacentBW": 1000,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "Enabled": true
+   },
+   "measurement_config_after_identical": true,
+   "measurements": {
+    "SimulationTime": 0.20470000000000002,
+    "ChannelMeasurements": {
+     "ChannelPower": 29.168053097234242,
+     "OccupiedBW": 1352.5464702016195,
+     "FrequencyError": 9.323132754059884
+    }
+   },
+   "measurements_stable": true,
+   "extra_call_used": false,
+   "config_log_failures": [
+    [
+     "PhaseNoise",
+     "Enabled",
+     "MATLAB:noSuchMethodOrField"
+    ]
+   ],
+   "config_log_warnings": [
+    [
+     "scope",
+     "SidelobeAttenuation",
+     "shared_dspwebscopes:spectrumanalyzer:nonRelevantProperty: In this configuration of the object, the SidelobeAttenuation property is not applicable."
+    ]
+   ],
+   "display": {
+    "fresh": true,
+    "stale_note": null,
+    "analysis_max_abs_dB_vs_model": 9.521272659185342e-13,
+    "rbw_hann_periodic_Hz": 7.324218750000004,
+    "nbins": 2048,
+    "df_Hz": 4.8828125,
+    "f_first": -4995.1171875,
+    "f_last": 5000,
+    "capture_vs_hann_periodic_max_abs_dB": 1.4210854715202004e-14,
+    "sample_idx": [
+     0,
+     1,
+     127,
+     255,
+     383,
+     511,
+     639,
+     767,
+     895,
+     1023,
+     1151,
+     1206,
+     1279,
+     1407,
+     1535,
+     1663,
+     1791,
+     1919,
+     2046,
+     2047
+    ],
+    "sample_dBm": [
+     -27.73102288281885,
+     -20.464713205764497,
+     -27.31413502540542,
+     -20.96480808565193,
+     -23.78964290305244,
+     -20.598135210721168,
+     -27.660831644616565,
+     -26.173559198601225,
+     -22.768718607827545,
+     -6.4642828619715615,
+     0.5221190050059619,
+     15.174985453347741,
+     3.302508849128852,
+     -12.729145701360103,
+     -15.295947539584027,
+     -28.702045418458482,
+     -27.688226530171747,
+     -22.343431826180534,
+     -27.946965415833738,
+     -60.74645966353839
+    ],
+    "sum_linear_W": 1.2515911947824319
+   },
+   "analysis": {
+    "band": [
+     -600.0,
+     2400.0
+    ],
+    "cf": 900,
+    "percent": 90,
+    "scope": {
+     "ChannelPower": 29.168053097234242,
+     "OccupiedBW": 1352.5464702016195,
+     "FrequencyError": 9.323132754059884
+    },
+    "model": {
+     "ChannelPower": 29.168053097234253,
+     "OccupiedBW": 1352.5464702016207,
+     "FrequencyError": 9.323132754060907
+    },
+    "abs_diff": {
+     "ChannelPower_dB": 1.0658141036401503e-14,
+     "OccupiedBW_Hz": 1.1368683772161603e-12,
+     "FrequencyError_Hz": 1.0231815394945443e-12
+    },
+    "match": true
+   }
+  },
+  {
+   "name": "obw_cplx_2s_span900_3000_P99",
+   "description": "complex QPSK-like signal at +900 Hz, span mode CF 900 Span 3000 -> [-600 2400], 99 %",
+   "signal": {
+    "files": [
+     "in_x_cplx_re.txt",
+     "in_x_cplx_im.txt"
+    ],
+    "is_complex": true,
+    "fs": 10000,
+    "n_samples": 2048,
+    "n_calls": 1,
+    "call_scales": [
+     1.0
+    ]
+   },
+   "scope": {
+    "two_sided": true,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window_length": 2048,
+    "averages": 1,
+    "extra_scope_props": {},
+    "properties_set": {
+     "Method": "welch",
+     "Window": "hann",
+     "SidelobeAttenuation": "60",
+     "OverlapPercent": "0",
+     "FrequencyResolutionMethod": "window-length",
+     "WindowLength": "2048",
+     "FFTLengthSource": "auto",
+     "PlotAsTwoSidedSpectrum": "true",
+     "AveragingMethod": "running",
+     "SpectralAverages": "1",
+     "SpectrumType": "power",
+     "SpectrumUnits": "dBm",
+     "ReferenceLoad": "1",
+     "SampleRate": "10000",
+     "FrequencySpan": "full",
+     "FrequencyOffset": "0",
+     "PlotNormalTrace": "true",
+     "PlotMaxHoldTrace": "false",
+     "PlotMinHoldTrace": "false",
+     "MeasurementChannel": "1"
+    }
+   },
+   "measurement_config": {
+    "class__": "ChannelMeasurementsConfiguration",
+    "Type": "occupied-bandwidth",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 3000,
+    "CenterFrequency": 900,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "AdjacentBW": 1000,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "Enabled": true
+   },
+   "measurement_config_after_identical": true,
+   "measurements": {
+    "SimulationTime": 0.20470000000000002,
+    "ChannelMeasurements": {
+     "ChannelPower": 29.168053097234242,
+     "OccupiedBW": 1878.5241213786999,
+     "FrequencyError": -5.968991008554667
+    }
+   },
+   "measurements_stable": true,
+   "extra_call_used": false,
+   "config_log_failures": [
+    [
+     "PhaseNoise",
+     "Enabled",
+     "MATLAB:noSuchMethodOrField"
+    ]
+   ],
+   "config_log_warnings": [
+    [
+     "scope",
+     "SidelobeAttenuation",
+     "shared_dspwebscopes:spectrumanalyzer:nonRelevantProperty: In this configuration of the object, the SidelobeAttenuation property is not applicable."
+    ]
+   ],
+   "display": {
+    "fresh": true,
+    "stale_note": null,
+    "analysis_max_abs_dB_vs_model": 9.521272659185342e-13,
+    "rbw_hann_periodic_Hz": 7.324218750000004,
+    "nbins": 2048,
+    "df_Hz": 4.8828125,
+    "f_first": -4995.1171875,
+    "f_last": 5000,
+    "capture_vs_hann_periodic_max_abs_dB": 1.4210854715202004e-14,
+    "sample_idx": [
+     0,
+     1,
+     127,
+     255,
+     383,
+     511,
+     639,
+     767,
+     895,
+     1023,
+     1151,
+     1206,
+     1279,
+     1407,
+     1535,
+     1663,
+     1791,
+     1919,
+     2046,
+     2047
+    ],
+    "sample_dBm": [
+     -27.73102288281885,
+     -20.464713205764497,
+     -27.31413502540542,
+     -20.96480808565193,
+     -23.78964290305244,
+     -20.598135210721168,
+     -27.660831644616565,
+     -26.173559198601225,
+     -22.768718607827545,
+     -6.4642828619715615,
+     0.5221190050059619,
+     15.174985453347741,
+     3.302508849128852,
+     -12.729145701360103,
+     -15.295947539584027,
+     -28.702045418458482,
+     -27.688226530171747,
+     -22.343431826180534,
+     -27.946965415833738,
+     -60.74645966353839
+    ],
+    "sum_linear_W": 1.2515911947824319
+   },
+   "analysis": {
+    "band": [
+     -600.0,
+     2400.0
+    ],
+    "cf": 900,
+    "percent": 99,
+    "scope": {
+     "ChannelPower": 29.168053097234242,
+     "OccupiedBW": 1878.5241213786999,
+     "FrequencyError": -5.968991008554667
+    },
+    "model": {
+     "ChannelPower": 29.168053097234253,
+     "OccupiedBW": 1878.5241213787115,
+     "FrequencyError": -5.968991008548869
+    },
+    "abs_diff": {
+     "ChannelPower_dB": 1.0658141036401503e-14,
+     "OccupiedBW_Hz": 1.1596057447604835e-11,
+     "FrequencyError_Hz": 5.7980287238024175e-12
+    },
+    "match": true
+   }
+  },
+  {
+   "name": "obw_cplx_2s_startstop_400_1400_P80",
+   "description": "complex, start/stop [400 1400], 80 % (research cplx_time_range_400_1400_P80)",
+   "signal": {
+    "files": [
+     "in_x_cplx_re.txt",
+     "in_x_cplx_im.txt"
+    ],
+    "is_complex": true,
+    "fs": 10000,
+    "n_samples": 2048,
+    "n_calls": 1,
+    "call_scales": [
+     1.0
+    ]
+   },
+   "scope": {
+    "two_sided": true,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window_length": 2048,
+    "averages": 1,
+    "extra_scope_props": {},
+    "properties_set": {
+     "Method": "welch",
+     "Window": "hann",
+     "SidelobeAttenuation": "60",
+     "OverlapPercent": "0",
+     "FrequencyResolutionMethod": "window-length",
+     "WindowLength": "2048",
+     "FFTLengthSource": "auto",
+     "PlotAsTwoSidedSpectrum": "true",
+     "AveragingMethod": "running",
+     "SpectralAverages": "1",
+     "SpectrumType": "power",
+     "SpectrumUnits": "dBm",
+     "ReferenceLoad": "1",
+     "SampleRate": "10000",
+     "FrequencySpan": "full",
+     "FrequencyOffset": "0",
+     "PlotNormalTrace": "true",
+     "PlotMaxHoldTrace": "false",
+     "PlotMinHoldTrace": "false",
+     "MeasurementChannel": "1"
+    }
+   },
+   "measurement_config": {
+    "class__": "ChannelMeasurementsConfiguration",
+    "Type": "occupied-bandwidth",
+    "FrequencySpan": "start-and-stop-frequencies",
+    "Span": 2000,
+    "CenterFrequency": 0,
+    "StartFrequency": 400,
+    "StopFrequency": 1400,
+    "PercentOccupiedBW": 80,
+    "AdjacentBW": 1000,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "Enabled": true
+   },
+   "measurement_config_after_identical": true,
+   "measurements": {
+    "SimulationTime": 0.20470000000000002,
+    "ChannelMeasurements": {
+     "ChannelPower": 27.812679786257984,
+     "OccupiedBW": 733.1754008080801,
+     "FrequencyError": -27.578182025047454
+    }
+   },
+   "measurements_stable": true,
+   "extra_call_used": false,
+   "config_log_failures": [
+    [
+     "PhaseNoise",
+     "Enabled",
+     "MATLAB:noSuchMethodOrField"
+    ]
+   ],
+   "config_log_warnings": [
+    [
+     "scope",
+     "SidelobeAttenuation",
+     "shared_dspwebscopes:spectrumanalyzer:nonRelevantProperty: In this configuration of the object, the SidelobeAttenuation property is not applicable."
+    ]
+   ],
+   "display": {
+    "fresh": true,
+    "stale_note": null,
+    "analysis_max_abs_dB_vs_model": 9.521272659185342e-13,
+    "rbw_hann_periodic_Hz": 7.324218750000004,
+    "nbins": 2048,
+    "df_Hz": 4.8828125,
+    "f_first": -4995.1171875,
+    "f_last": 5000,
+    "capture_vs_hann_periodic_max_abs_dB": 1.4210854715202004e-14,
+    "sample_idx": [
+     0,
+     1,
+     127,
+     255,
+     383,
+     511,
+     639,
+     767,
+     895,
+     1023,
+     1151,
+     1206,
+     1279,
+     1407,
+     1535,
+     1663,
+     1791,
+     1919,
+     2046,
+     2047
+    ],
+    "sample_dBm": [
+     -27.73102288281885,
+     -20.464713205764497,
+     -27.31413502540542,
+     -20.96480808565193,
+     -23.78964290305244,
+     -20.598135210721168,
+     -27.660831644616565,
+     -26.173559198601225,
+     -22.768718607827545,
+     -6.4642828619715615,
+     0.5221190050059619,
+     15.174985453347741,
+     3.302508849128852,
+     -12.729145701360103,
+     -15.295947539584027,
+     -28.702045418458482,
+     -27.688226530171747,
+     -22.343431826180534,
+     -27.946965415833738,
+     -60.74645966353839
+    ],
+    "sum_linear_W": 1.2515911947824319
+   },
+   "analysis": {
+    "band": [
+     400,
+     1400
+    ],
+    "cf": 900.0,
+    "percent": 80,
+    "scope": {
+     "ChannelPower": 27.812679786257984,
+     "OccupiedBW": 733.1754008080801,
+     "FrequencyError": -27.578182025047454
+    },
+    "model": {
+     "ChannelPower": 27.812679786257984,
+     "OccupiedBW": 733.1754008080799,
+     "FrequencyError": -27.578182025047226
+    },
+    "abs_diff": {
+     "ChannelPower_dB": 0.0,
+     "OccupiedBW_Hz": 2.2737367544323206e-13,
+     "FrequencyError_Hz": 2.2737367544323206e-13
+    },
+    "match": true
+   }
+  },
+  {
+   "name": "obw_cplx_2s_startstop_m500_2500_P99",
+   "description": "complex, start/stop [-500 2500], 99 % (research cplx_time_range_m500_2500_P99)",
+   "signal": {
+    "files": [
+     "in_x_cplx_re.txt",
+     "in_x_cplx_im.txt"
+    ],
+    "is_complex": true,
+    "fs": 10000,
+    "n_samples": 2048,
+    "n_calls": 1,
+    "call_scales": [
+     1.0
+    ]
+   },
+   "scope": {
+    "two_sided": true,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window_length": 2048,
+    "averages": 1,
+    "extra_scope_props": {},
+    "properties_set": {
+     "Method": "welch",
+     "Window": "hann",
+     "SidelobeAttenuation": "60",
+     "OverlapPercent": "0",
+     "FrequencyResolutionMethod": "window-length",
+     "WindowLength": "2048",
+     "FFTLengthSource": "auto",
+     "PlotAsTwoSidedSpectrum": "true",
+     "AveragingMethod": "running",
+     "SpectralAverages": "1",
+     "SpectrumType": "power",
+     "SpectrumUnits": "dBm",
+     "ReferenceLoad": "1",
+     "SampleRate": "10000",
+     "FrequencySpan": "full",
+     "FrequencyOffset": "0",
+     "PlotNormalTrace": "true",
+     "PlotMaxHoldTrace": "false",
+     "PlotMinHoldTrace": "false",
+     "MeasurementChannel": "1"
+    }
+   },
+   "measurement_config": {
+    "class__": "ChannelMeasurementsConfiguration",
+    "Type": "occupied-bandwidth",
+    "FrequencySpan": "start-and-stop-frequencies",
+    "Span": 2000,
+    "CenterFrequency": 0,
+    "StartFrequency": -500,
+    "StopFrequency": 2500,
+    "PercentOccupiedBW": 99,
+    "AdjacentBW": 1000,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "Enabled": true
+   },
+   "measurement_config_after_identical": true,
+   "measurements": {
+    "SimulationTime": 0.20470000000000002,
+    "ChannelMeasurements": {
+     "ChannelPower": 29.16960065517507,
+     "OccupiedBW": 1890.8223662909934,
+     "FrequencyError": -95.28944938390111
+    }
+   },
+   "measurements_stable": true,
+   "extra_call_used": false,
+   "config_log_failures": [
+    [
+     "PhaseNoise",
+     "Enabled",
+     "MATLAB:noSuchMethodOrField"
+    ]
+   ],
+   "config_log_warnings": [
+    [
+     "scope",
+     "SidelobeAttenuation",
+     "shared_dspwebscopes:spectrumanalyzer:nonRelevantProperty: In this configuration of the object, the SidelobeAttenuation property is not applicable."
+    ]
+   ],
+   "display": {
+    "fresh": true,
+    "stale_note": null,
+    "analysis_max_abs_dB_vs_model": 9.521272659185342e-13,
+    "rbw_hann_periodic_Hz": 7.324218750000004,
+    "nbins": 2048,
+    "df_Hz": 4.8828125,
+    "f_first": -4995.1171875,
+    "f_last": 5000,
+    "capture_vs_hann_periodic_max_abs_dB": 1.4210854715202004e-14,
+    "sample_idx": [
+     0,
+     1,
+     127,
+     255,
+     383,
+     511,
+     639,
+     767,
+     895,
+     1023,
+     1151,
+     1206,
+     1279,
+     1407,
+     1535,
+     1663,
+     1791,
+     1919,
+     2046,
+     2047
+    ],
+    "sample_dBm": [
+     -27.73102288281885,
+     -20.464713205764497,
+     -27.31413502540542,
+     -20.96480808565193,
+     -23.78964290305244,
+     -20.598135210721168,
+     -27.660831644616565,
+     -26.173559198601225,
+     -22.768718607827545,
+     -6.4642828619715615,
+     0.5221190050059619,
+     15.174985453347741,
+     3.302508849128852,
+     -12.729145701360103,
+     -15.295947539584027,
+     -28.702045418458482,
+     -27.688226530171747,
+     -22.343431826180534,
+     -27.946965415833738,
+     -60.74645966353839
+    ],
+    "sum_linear_W": 1.2515911947824319
+   },
+   "analysis": {
+    "band": [
+     -500,
+     2500
+    ],
+    "cf": 1000.0,
+    "percent": 99,
+    "scope": {
+     "ChannelPower": 29.16960065517507,
+     "OccupiedBW": 1890.8223662909934,
+     "FrequencyError": -95.28944938390111
+    },
+    "model": {
+     "ChannelPower": 29.16960065517508,
+     "OccupiedBW": 1890.8223662910025,
+     "FrequencyError": -95.28944938389634
+    },
+    "abs_diff": {
+     "ChannelPower_dB": 1.0658141036401503e-14,
+     "OccupiedBW_Hz": 9.094947017729282e-12,
+     "FrequencyError_Hz": 4.774847184307873e-12
+    },
+    "match": true
+   }
+  },
+  {
+   "name": "obw_real_1s_autospan_defaults",
+   "description": "same, one-sided display (auto-span would give CF 2500 / span 1000 if it runs)",
+   "signal": {
+    "files": [
+     "in_x_real.txt"
+    ],
+    "is_complex": false,
+    "fs": 10000,
+    "n_samples": 2048,
+    "n_calls": 1,
+    "call_scales": [
+     1.0
+    ]
+   },
+   "scope": {
+    "two_sided": false,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window_length": 2048,
+    "averages": 1,
+    "extra_scope_props": {},
+    "properties_set": {
+     "Method": "welch",
+     "Window": "hann",
+     "SidelobeAttenuation": "60",
+     "OverlapPercent": "0",
+     "FrequencyResolutionMethod": "window-length",
+     "WindowLength": "2048",
+     "FFTLengthSource": "auto",
+     "PlotAsTwoSidedSpectrum": "false",
+     "AveragingMethod": "running",
+     "SpectralAverages": "1",
+     "SpectrumType": "power",
+     "SpectrumUnits": "dBm",
+     "ReferenceLoad": "1",
+     "SampleRate": "10000",
+     "FrequencySpan": "full",
+     "FrequencyOffset": "0",
+     "PlotNormalTrace": "true",
+     "PlotMaxHoldTrace": "false",
+     "PlotMinHoldTrace": "false",
+     "MeasurementChannel": "1"
+    }
+   },
+   "measurement_config": {
+    "class__": "ChannelMeasurementsConfiguration",
+    "Type": "occupied-bandwidth",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 1000,
+    "CenterFrequency": 2500,
+    "StartFrequency": 2000,
+    "StopFrequency": 3000,
+    "PercentOccupiedBW": 99,
+    "AdjacentBW": 500,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     1000,
+     1750
+    ],
+    "Enabled": true
+   },
+   "measurement_config_after_identical": true,
+   "measurements": {
+    "SimulationTime": 0.20470000000000002,
+    "ChannelMeasurements": {
+     "ChannelPower": 5.385971171252803,
+     "OccupiedBW": 997.2671952554442,
+     "FrequencyError": -0.3099360390660877
+    }
+   },
+   "measurements_stable": true,
+   "extra_call_used": false,
+   "config_log_failures": [
+    [
+     "PhaseNoise",
+     "Enabled",
+     "MATLAB:noSuchMethodOrField"
+    ]
+   ],
+   "config_log_warnings": [
+    [
+     "scope",
+     "SidelobeAttenuation",
+     "shared_dspwebscopes:spectrumanalyzer:nonRelevantProperty: In this configuration of the object, the SidelobeAttenuation property is not applicable."
+    ]
+   ],
+   "display": {
+    "fresh": true,
+    "stale_note": null,
+    "analysis_max_abs_dB_vs_model": 2.1032064978498966e-12,
+    "rbw_hann_periodic_Hz": 7.324218750000004,
+    "nbins": 1025,
+    "df_Hz": 4.8828125,
+    "f_first": 0,
+    "f_last": 5000,
+    "capture_vs_hann_periodic_max_abs_dB": 2.1316282072803006e-13,
+    "sample_idx": [
+     0,
+     1,
+     64,
+     128,
+     192,
+     256,
+     320,
+     384,
+     448,
+     512,
+     576,
+     640,
+     704,
+     768,
+     832,
+     896,
+     960,
+     1023,
+     1024
+    ],
+    "sample_dBm": [
+     0.5533517572555624,
+     0.7027431306734613,
+     -1.4138589425687158,
+     0.715791533814027,
+     -12.887209061517822,
+     23.88134086568801,
+     -28.56127106684596,
+     -7.363942586055174,
+     -14.979893666648053,
+     -22.379952659864145,
+     -14.190401012829845,
+     -10.919457470680612,
+     -22.543831868662153,
+     -19.805546933801956,
+     -14.980062587558045,
+     -19.966323986289687,
+     -29.634876584835055,
+     -24.41582679081563,
+     -52.85762890214812
+    ],
+    "sum_linear_W": 0.5688414539547452
+   },
+   "analysis": {
+    "band": [
+     2000.0,
+     3000.0
+    ],
+    "cf": 2500,
+    "percent": 99,
+    "scope": {
+     "ChannelPower": 5.385971171252803,
+     "OccupiedBW": 997.2671952554442,
+     "FrequencyError": -0.3099360390660877
+    },
+    "model": {
+     "ChannelPower": 5.385971171252699,
+     "OccupiedBW": 997.2671952554442,
+     "FrequencyError": -0.3099360390642687
+    },
+    "abs_diff": {
+     "ChannelPower_dB": 1.0391687510491465e-13,
+     "OccupiedBW_Hz": 0.0,
+     "FrequencyError_Hz": 1.8189894035458565e-12
+    },
+    "match": true
+   }
+  },
+  {
+   "name": "obw_real_1s_span0_2000_outside",
+   "description": "one-sided display, CF 0 Span 2000 -> [-1000 1000] partly below 0 Hz",
+   "signal": {
+    "files": [
+     "in_x_real.txt"
+    ],
+    "is_complex": false,
+    "fs": 10000,
+    "n_samples": 2048,
+    "n_calls": 1,
+    "call_scales": [
+     1.0
+    ]
+   },
+   "scope": {
+    "two_sided": false,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window_length": 2048,
+    "averages": 1,
+    "extra_scope_props": {},
+    "properties_set": {
+     "Method": "welch",
+     "Window": "hann",
+     "SidelobeAttenuation": "60",
+     "OverlapPercent": "0",
+     "FrequencyResolutionMethod": "window-length",
+     "WindowLength": "2048",
+     "FFTLengthSource": "auto",
+     "PlotAsTwoSidedSpectrum": "false",
+     "AveragingMethod": "running",
+     "SpectralAverages": "1",
+     "SpectrumType": "power",
+     "SpectrumUnits": "dBm",
+     "ReferenceLoad": "1",
+     "SampleRate": "10000",
+     "FrequencySpan": "full",
+     "FrequencyOffset": "0",
+     "PlotNormalTrace": "true",
+     "PlotMaxHoldTrace": "false",
+     "PlotMinHoldTrace": "false",
+     "MeasurementChannel": "1"
+    }
+   },
+   "measurement_config": {
+    "class__": "ChannelMeasurementsConfiguration",
+    "Type": "occupied-bandwidth",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 2000,
+    "CenterFrequency": 0,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "AdjacentBW": 1000,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "Enabled": true
+   },
+   "measurement_config_after_identical": true,
+   "measurements": {
+    "SimulationTime": 0.20470000000000002,
+    "ChannelMeasurements": {
+     "ChannelPower": null,
+     "OccupiedBW": null,
+     "FrequencyError": null
+    }
+   },
+   "measurements_stable": true,
+   "extra_call_used": false,
+   "config_log_failures": [
+    [
+     "PhaseNoise",
+     "Enabled",
+     "MATLAB:noSuchMethodOrField"
+    ]
+   ],
+   "config_log_warnings": [
+    [
+     "scope",
+     "SidelobeAttenuation",
+     "shared_dspwebscopes:spectrumanalyzer:nonRelevantProperty: In this configuration of the object, the SidelobeAttenuation property is not applicable."
+    ]
+   ],
+   "display": {
+    "fresh": true,
+    "stale_note": null,
+    "analysis_max_abs_dB_vs_model": 2.1032064978498966e-12,
+    "rbw_hann_periodic_Hz": 7.324218750000004,
+    "nbins": 1025,
+    "df_Hz": 4.8828125,
+    "f_first": 0,
+    "f_last": 5000,
+    "capture_vs_hann_periodic_max_abs_dB": 2.1316282072803006e-13,
+    "sample_idx": [
+     0,
+     1,
+     64,
+     128,
+     192,
+     256,
+     320,
+     384,
+     448,
+     512,
+     576,
+     640,
+     704,
+     768,
+     832,
+     896,
+     960,
+     1023,
+     1024
+    ],
+    "sample_dBm": [
+     0.5533517572555624,
+     0.7027431306734613,
+     -1.4138589425687158,
+     0.715791533814027,
+     -12.887209061517822,
+     23.88134086568801,
+     -28.56127106684596,
+     -7.363942586055174,
+     -14.979893666648053,
+     -22.379952659864145,
+     -14.190401012829845,
+     -10.919457470680612,
+     -22.543831868662153,
+     -19.805546933801956,
+     -14.980062587558045,
+     -19.966323986289687,
+     -29.634876584835055,
+     -24.41582679081563,
+     -52.85762890214812
+    ],
+    "sum_linear_W": 0.5688414539547452
+   },
+   "analysis": {
+    "band": [
+     -1000.0,
+     1000.0
+    ],
+    "cf": 0,
+    "percent": 99,
+    "scope": {
+     "ChannelPower": "NaN",
+     "OccupiedBW": "NaN",
+     "FrequencyError": "NaN"
+    },
+    "rule": "band outside displayed grid -> NaN",
+    "model": "NaN",
+    "match": true
+   }
+  },
+  {
+   "name": "obw_real_1s_span1250_2000_P99",
+   "description": "one-sided display, span mode CF 1250 Span 2000, 99 %",
+   "signal": {
+    "files": [
+     "in_x_real.txt"
+    ],
+    "is_complex": false,
+    "fs": 10000,
+    "n_samples": 2048,
+    "n_calls": 1,
+    "call_scales": [
+     1.0
+    ]
+   },
+   "scope": {
+    "two_sided": false,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window_length": 2048,
+    "averages": 1,
+    "extra_scope_props": {},
+    "properties_set": {
+     "Method": "welch",
+     "Window": "hann",
+     "SidelobeAttenuation": "60",
+     "OverlapPercent": "0",
+     "FrequencyResolutionMethod": "window-length",
+     "WindowLength": "2048",
+     "FFTLengthSource": "auto",
+     "PlotAsTwoSidedSpectrum": "false",
+     "AveragingMethod": "running",
+     "SpectralAverages": "1",
+     "SpectrumType": "power",
+     "SpectrumUnits": "dBm",
+     "ReferenceLoad": "1",
+     "SampleRate": "10000",
+     "FrequencySpan": "full",
+     "FrequencyOffset": "0",
+     "PlotNormalTrace": "true",
+     "PlotMaxHoldTrace": "false",
+     "PlotMinHoldTrace": "false",
+     "MeasurementChannel": "1"
+    }
+   },
+   "measurement_config": {
+    "class__": "ChannelMeasurementsConfiguration",
+    "Type": "occupied-bandwidth",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 2000,
+    "CenterFrequency": 1250,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "AdjacentBW": 1000,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "Enabled": true
+   },
+   "measurement_config_after_identical": true,
+   "measurements": {
+    "SimulationTime": 0.20470000000000002,
+    "ChannelMeasurements": {
+     "ChannelPower": 25.008122990251383,
+     "OccupiedBW": 1745.641365988178,
+     "FrequencyError": -122.76426116775042
+    }
+   },
+   "measurements_stable": true,
+   "extra_call_used": false,
+   "config_log_failures": [
+    [
+     "PhaseNoise",
+     "Enabled",
+     "MATLAB:noSuchMethodOrField"
+    ]
+   ],
+   "config_log_warnings": [
+    [
+     "scope",
+     "SidelobeAttenuation",
+     "shared_dspwebscopes:spectrumanalyzer:nonRelevantProperty: In this configuration of the object, the SidelobeAttenuation property is not applicable."
+    ]
+   ],
+   "display": {
+    "fresh": true,
+    "stale_note": null,
+    "analysis_max_abs_dB_vs_model": 2.1032064978498966e-12,
+    "rbw_hann_periodic_Hz": 7.324218750000004,
+    "nbins": 1025,
+    "df_Hz": 4.8828125,
+    "f_first": 0,
+    "f_last": 5000,
+    "capture_vs_hann_periodic_max_abs_dB": 2.1316282072803006e-13,
+    "sample_idx": [
+     0,
+     1,
+     64,
+     128,
+     192,
+     256,
+     320,
+     384,
+     448,
+     512,
+     576,
+     640,
+     704,
+     768,
+     832,
+     896,
+     960,
+     1023,
+     1024
+    ],
+    "sample_dBm": [
+     0.5533517572555624,
+     0.7027431306734613,
+     -1.4138589425687158,
+     0.715791533814027,
+     -12.887209061517822,
+     23.88134086568801,
+     -28.56127106684596,
+     -7.363942586055174,
+     -14.979893666648053,
+     -22.379952659864145,
+     -14.190401012829845,
+     -10.919457470680612,
+     -22.543831868662153,
+     -19.805546933801956,
+     -14.980062587558045,
+     -19.966323986289687,
+     -29.634876584835055,
+     -24.41582679081563,
+     -52.85762890214812
+    ],
+    "sum_linear_W": 0.5688414539547452
+   },
+   "analysis": {
+    "band": [
+     250.0,
+     2250.0
+    ],
+    "cf": 1250,
+    "percent": 99,
+    "scope": {
+     "ChannelPower": 25.008122990251383,
+     "OccupiedBW": 1745.641365988178,
+     "FrequencyError": -122.76426116775042
+    },
+    "model": {
+     "ChannelPower": 25.008122990251383,
+     "OccupiedBW": 1745.6413659881905,
+     "FrequencyError": -122.76426116774428
+    },
+    "abs_diff": {
+     "ChannelPower_dB": 0.0,
+     "OccupiedBW_Hz": 1.2505552149377763e-11,
+     "FrequencyError_Hz": 6.139089236967266e-12
+    },
+    "match": true
+   }
+  },
+  {
+   "name": "obw_real_1s_startstop_0_5000_P99",
+   "description": "one-sided, start/stop = whole one-sided range [0 5000], 99 %",
+   "signal": {
+    "files": [
+     "in_x_real.txt"
+    ],
+    "is_complex": false,
+    "fs": 10000,
+    "n_samples": 2048,
+    "n_calls": 1,
+    "call_scales": [
+     1.0
+    ]
+   },
+   "scope": {
+    "two_sided": false,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window_length": 2048,
+    "averages": 1,
+    "extra_scope_props": {},
+    "properties_set": {
+     "Method": "welch",
+     "Window": "hann",
+     "SidelobeAttenuation": "60",
+     "OverlapPercent": "0",
+     "FrequencyResolutionMethod": "window-length",
+     "WindowLength": "2048",
+     "FFTLengthSource": "auto",
+     "PlotAsTwoSidedSpectrum": "false",
+     "AveragingMethod": "running",
+     "SpectralAverages": "1",
+     "SpectrumType": "power",
+     "SpectrumUnits": "dBm",
+     "ReferenceLoad": "1",
+     "SampleRate": "10000",
+     "FrequencySpan": "full",
+     "FrequencyOffset": "0",
+     "PlotNormalTrace": "true",
+     "PlotMaxHoldTrace": "false",
+     "PlotMinHoldTrace": "false",
+     "MeasurementChannel": "1"
+    }
+   },
+   "measurement_config": {
+    "class__": "ChannelMeasurementsConfiguration",
+    "Type": "occupied-bandwidth",
+    "FrequencySpan": "start-and-stop-frequencies",
+    "Span": 2000,
+    "CenterFrequency": 0,
+    "StartFrequency": 0,
+    "StopFrequency": 5000,
+    "PercentOccupiedBW": 99,
+    "AdjacentBW": 1000,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "Enabled": true
+   },
+   "measurement_config_after_identical": true,
+   "measurements": {
+    "SimulationTime": 0.20470000000000002,
+    "ChannelMeasurements": {
+     "ChannelPower": 25.784661511988997,
+     "OccupiedBW": 4237.047845900731,
+     "FrequencyError": -369.5364006999912
+    }
+   },
+   "measurements_stable": true,
+   "extra_call_used": false,
+   "config_log_failures": [
+    [
+     "PhaseNoise",
+     "Enabled",
+     "MATLAB:noSuchMethodOrField"
+    ]
+   ],
+   "config_log_warnings": [
+    [
+     "scope",
+     "SidelobeAttenuation",
+     "shared_dspwebscopes:spectrumanalyzer:nonRelevantProperty: In this configuration of the object, the SidelobeAttenuation property is not applicable."
+    ]
+   ],
+   "display": {
+    "fresh": true,
+    "stale_note": null,
+    "analysis_max_abs_dB_vs_model": 2.1032064978498966e-12,
+    "rbw_hann_periodic_Hz": 7.324218750000004,
+    "nbins": 1025,
+    "df_Hz": 4.8828125,
+    "f_first": 0,
+    "f_last": 5000,
+    "capture_vs_hann_periodic_max_abs_dB": 2.1316282072803006e-13,
+    "sample_idx": [
+     0,
+     1,
+     64,
+     128,
+     192,
+     256,
+     320,
+     384,
+     448,
+     512,
+     576,
+     640,
+     704,
+     768,
+     832,
+     896,
+     960,
+     1023,
+     1024
+    ],
+    "sample_dBm": [
+     0.5533517572555624,
+     0.7027431306734613,
+     -1.4138589425687158,
+     0.715791533814027,
+     -12.887209061517822,
+     23.88134086568801,
+     -28.56127106684596,
+     -7.363942586055174,
+     -14.979893666648053,
+     -22.379952659864145,
+     -14.190401012829845,
+     -10.919457470680612,
+     -22.543831868662153,
+     -19.805546933801956,
+     -14.980062587558045,
+     -19.966323986289687,
+     -29.634876584835055,
+     -24.41582679081563,
+     -52.85762890214812
+    ],
+    "sum_linear_W": 0.5688414539547452
+   },
+   "analysis": {
+    "band": [
+     0,
+     5000
+    ],
+    "cf": 2500.0,
+    "percent": 99,
+    "scope": {
+     "ChannelPower": 25.784661511988997,
+     "OccupiedBW": 4237.047845900731,
+     "FrequencyError": -369.5364006999912
+    },
+    "model": {
+     "ChannelPower": 25.784661511988986,
+     "OccupiedBW": 4237.047845900716,
+     "FrequencyError": -369.53640069999847
+    },
+    "abs_diff": {
+     "ChannelPower_dB": 1.0658141036401503e-14,
+     "OccupiedBW_Hz": 1.4551915228366852e-11,
+     "FrequencyError_Hz": 7.275957614183426e-12
+    },
+    "match": true
+   }
+  },
+  {
+   "name": "obw_real_1s_startstop_500_3000_P99",
+   "description": "one-sided, start/stop [500 3000], 99 %",
+   "signal": {
+    "files": [
+     "in_x_real.txt"
+    ],
+    "is_complex": false,
+    "fs": 10000,
+    "n_samples": 2048,
+    "n_calls": 1,
+    "call_scales": [
+     1.0
+    ]
+   },
+   "scope": {
+    "two_sided": false,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window_length": 2048,
+    "averages": 1,
+    "extra_scope_props": {},
+    "properties_set": {
+     "Method": "welch",
+     "Window": "hann",
+     "SidelobeAttenuation": "60",
+     "OverlapPercent": "0",
+     "FrequencyResolutionMethod": "window-length",
+     "WindowLength": "2048",
+     "FFTLengthSource": "auto",
+     "PlotAsTwoSidedSpectrum": "false",
+     "AveragingMethod": "running",
+     "SpectralAverages": "1",
+     "SpectrumType": "power",
+     "SpectrumUnits": "dBm",
+     "ReferenceLoad": "1",
+     "SampleRate": "10000",
+     "FrequencySpan": "full",
+     "FrequencyOffset": "0",
+     "PlotNormalTrace": "true",
+     "PlotMaxHoldTrace": "false",
+     "PlotMinHoldTrace": "false",
+     "MeasurementChannel": "1"
+    }
+   },
+   "measurement_config": {
+    "class__": "ChannelMeasurementsConfiguration",
+    "Type": "occupied-bandwidth",
+    "FrequencySpan": "start-and-stop-frequencies",
+    "Span": 2000,
+    "CenterFrequency": 0,
+    "StartFrequency": 500,
+    "StopFrequency": 3000,
+    "PercentOccupiedBW": 99,
+    "AdjacentBW": 1000,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "Enabled": true
+   },
+   "measurement_config_after_identical": true,
+   "measurements": {
+    "SimulationTime": 0.20470000000000002,
+    "ChannelMeasurements": {
+     "ChannelPower": 24.47538973414057,
+     "OccupiedBW": 2063.830947227564,
+     "FrequencyError": -192.35568709327936
+    }
+   },
+   "measurements_stable": true,
+   "extra_call_used": false,
+   "config_log_failures": [
+    [
+     "PhaseNoise",
+     "Enabled",
+     "MATLAB:noSuchMethodOrField"
+    ]
+   ],
+   "config_log_warnings": [
+    [
+     "scope",
+     "SidelobeAttenuation",
+     "shared_dspwebscopes:spectrumanalyzer:nonRelevantProperty: In this configuration of the object, the SidelobeAttenuation property is not applicable."
+    ]
+   ],
+   "display": {
+    "fresh": true,
+    "stale_note": null,
+    "analysis_max_abs_dB_vs_model": 2.1032064978498966e-12,
+    "rbw_hann_periodic_Hz": 7.324218750000004,
+    "nbins": 1025,
+    "df_Hz": 4.8828125,
+    "f_first": 0,
+    "f_last": 5000,
+    "capture_vs_hann_periodic_max_abs_dB": 2.1316282072803006e-13,
+    "sample_idx": [
+     0,
+     1,
+     64,
+     128,
+     192,
+     256,
+     320,
+     384,
+     448,
+     512,
+     576,
+     640,
+     704,
+     768,
+     832,
+     896,
+     960,
+     1023,
+     1024
+    ],
+    "sample_dBm": [
+     0.5533517572555624,
+     0.7027431306734613,
+     -1.4138589425687158,
+     0.715791533814027,
+     -12.887209061517822,
+     23.88134086568801,
+     -28.56127106684596,
+     -7.363942586055174,
+     -14.979893666648053,
+     -22.379952659864145,
+     -14.190401012829845,
+     -10.919457470680612,
+     -22.543831868662153,
+     -19.805546933801956,
+     -14.980062587558045,
+     -19.966323986289687,
+     -29.634876584835055,
+     -24.41582679081563,
+     -52.85762890214812
+    ],
+    "sum_linear_W": 0.5688414539547452
+   },
+   "analysis": {
+    "band": [
+     500,
+     3000
+    ],
+    "cf": 1750.0,
+    "percent": 99,
+    "scope": {
+     "ChannelPower": 24.47538973414057,
+     "OccupiedBW": 2063.830947227564,
+     "FrequencyError": -192.35568709327936
+    },
+    "model": {
+     "ChannelPower": 24.475389734140563,
+     "OccupiedBW": 2063.8309472273986,
+     "FrequencyError": -192.35568709336258
+    },
+    "abs_diff": {
+     "ChannelPower_dB": 7.105427357601002e-15,
+     "OccupiedBW_Hz": 1.6552803572267294e-10,
+     "FrequencyError_Hz": 8.321876521222293e-11
+    },
+    "match": true
+   }
+  },
+  {
+   "name": "obw_real_2s_autospan_defaults",
+   "description": "OBW switched on without setting any span: records the span/CF the scope chooses (auto-span question)",
+   "signal": {
+    "files": [
+     "in_x_real.txt"
+    ],
+    "is_complex": false,
+    "fs": 10000,
+    "n_samples": 2048,
+    "n_calls": 1,
+    "call_scales": [
+     1.0
+    ]
+   },
+   "scope": {
+    "two_sided": true,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window_length": 2048,
+    "averages": 1,
+    "extra_scope_props": {},
+    "properties_set": {
+     "Method": "welch",
+     "Window": "hann",
+     "SidelobeAttenuation": "60",
+     "OverlapPercent": "0",
+     "FrequencyResolutionMethod": "window-length",
+     "WindowLength": "2048",
+     "FFTLengthSource": "auto",
+     "PlotAsTwoSidedSpectrum": "true",
+     "AveragingMethod": "running",
+     "SpectralAverages": "1",
+     "SpectrumType": "power",
+     "SpectrumUnits": "dBm",
+     "ReferenceLoad": "1",
+     "SampleRate": "10000",
+     "FrequencySpan": "full",
+     "FrequencyOffset": "0",
+     "PlotNormalTrace": "true",
+     "PlotMaxHoldTrace": "false",
+     "PlotMinHoldTrace": "false",
+     "MeasurementChannel": "1"
+    }
+   },
+   "measurement_config": {
+    "class__": "ChannelMeasurementsConfiguration",
+    "Type": "occupied-bandwidth",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 2000,
+    "CenterFrequency": 0,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "AdjacentBW": 1000,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "Enabled": true
+   },
+   "measurement_config_after_identical": true,
+   "measurements": {
+    "SimulationTime": 0.20470000000000002,
+    "ChannelMeasurements": {
+     "ChannelPower": 20.81307473826822,
+     "OccupiedBW": 1735.8478699357142,
+     "FrequencyError": -6.536993168992922e-12
+    }
+   },
+   "measurements_stable": true,
+   "extra_call_used": false,
+   "config_log_failures": [
+    [
+     "PhaseNoise",
+     "Enabled",
+     "MATLAB:noSuchMethodOrField"
+    ]
+   ],
+   "config_log_warnings": [
+    [
+     "scope",
+     "SidelobeAttenuation",
+     "shared_dspwebscopes:spectrumanalyzer:nonRelevantProperty: In this configuration of the object, the SidelobeAttenuation property is not applicable."
+    ]
+   ],
+   "display": {
+    "fresh": true,
+    "stale_note": null,
+    "analysis_max_abs_dB_vs_model": 2.1032064978498966e-12,
+    "rbw_hann_periodic_Hz": 7.324218750000004,
+    "nbins": 2048,
+    "df_Hz": 4.8828125,
+    "f_first": -4995.1171875,
+    "f_last": 5000,
+    "capture_vs_hann_periodic_max_abs_dB": 2.7000623958883807e-13,
+    "sample_idx": [
+     0,
+     1,
+     127,
+     255,
+     383,
+     511,
+     639,
+     767,
+     895,
+     1023,
+     1151,
+     1279,
+     1407,
+     1535,
+     1663,
+     1791,
+     1919,
+     2046,
+     2047
+    ],
+    "sample_dBm": [
+     -27.42612674745544,
+     -34.96402019346333,
+     -22.9766239429295,
+     -22.81584689044177,
+     -13.929757427320425,
+     -25.390252616503957,
+     -10.374242542694994,
+     20.871040909048197,
+     -2.2945084228257855,
+     0.5533517572555624,
+     -2.2945084228257855,
+     20.871040909048197,
+     -10.374242542694994,
+     -25.390252616503957,
+     -13.929757427320425,
+     -22.81584689044177,
+     -22.9766239429295,
+     -27.42612674745544,
+     -52.85762890214812
+    ],
+    "sum_linear_W": 0.5688414539547451
+   },
+   "analysis": {
+    "band": [
+     -1000.0,
+     1000.0
+    ],
+    "cf": 0,
+    "percent": 99,
+    "scope": {
+     "ChannelPower": 20.81307473826822,
+     "OccupiedBW": 1735.8478699357142,
+     "FrequencyError": -6.536993168992922e-12
+    },
+    "model": {
+     "ChannelPower": 20.81307473826822,
+     "OccupiedBW": 1735.8478699357167,
+     "FrequencyError": 5.5706550483591855e-12
+    },
+    "abs_diff": {
+     "ChannelPower_dB": 0.0,
+     "OccupiedBW_Hz": 2.5011104298755527e-12,
+     "FrequencyError_Hz": 1.2107648217352107e-11
+    },
+    "match": true
+   }
+  },
+  {
+   "name": "obw_real_2s_maxhold_2calls",
+   "description": "two calls (xr, then 0.1*xr) with Max-Hold on: tells which trace feeds the measurement (normal = 20 dB lower)",
+   "signal": {
+    "files": [
+     "in_x_real.txt"
+    ],
+    "is_complex": false,
+    "fs": 10000,
+    "n_samples": 2048,
+    "n_calls": 2,
+    "call_scales": [
+     1.0,
+     0.1
+    ]
+   },
+   "scope": {
+    "two_sided": true,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window_length": 2048,
+    "averages": 1,
+    "extra_scope_props": {
+     "PlotMaxHoldTrace": true
+    },
+    "properties_set": {
+     "Method": "welch",
+     "Window": "hann",
+     "SidelobeAttenuation": "60",
+     "OverlapPercent": "0",
+     "FrequencyResolutionMethod": "window-length",
+     "WindowLength": "2048",
+     "FFTLengthSource": "auto",
+     "PlotAsTwoSidedSpectrum": "true",
+     "AveragingMethod": "running",
+     "SpectralAverages": "1",
+     "SpectrumType": "power",
+     "SpectrumUnits": "dBm",
+     "ReferenceLoad": "1",
+     "SampleRate": "10000",
+     "FrequencySpan": "full",
+     "FrequencyOffset": "0",
+     "PlotNormalTrace": "true",
+     "PlotMaxHoldTrace": "true",
+     "PlotMinHoldTrace": "false",
+     "MeasurementChannel": "1"
+    }
+   },
+   "measurement_config": {
+    "class__": "ChannelMeasurementsConfiguration",
+    "Type": "occupied-bandwidth",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 2000,
+    "CenterFrequency": 1250,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "AdjacentBW": 1000,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "Enabled": true
+   },
+   "measurement_config_after_identical": true,
+   "measurements": {
+    "SimulationTime": 0.40950000000000003,
+    "ChannelMeasurements": {
+     "ChannelPower": 1.997823033611574,
+     "OccupiedBW": 1745.6413659881898,
+     "FrequencyError": -122.76426116774451
+    }
+   },
+   "measurements_stable": true,
+   "extra_call_used": false,
+   "config_log_failures": [
+    [
+     "PhaseNoise",
+     "Enabled",
+     "MATLAB:noSuchMethodOrField"
+    ]
+   ],
+   "config_log_warnings": [
+    [
+     "scope",
+     "SidelobeAttenuation",
+     "shared_dspwebscopes:spectrumanalyzer:nonRelevantProperty: In this configuration of the object, the SidelobeAttenuation property is not applicable."
+    ]
+   ],
+   "display": {
+    "fresh": true,
+    "stale_note": null,
+    "analysis_max_abs_dB_vs_model": 1.5774048733874224e-12,
+    "rbw_hann_periodic_Hz": 7.324218750000004,
+    "nbins": 2048,
+    "df_Hz": 4.8828125,
+    "f_first": -4995.1171875,
+    "f_last": 5000,
+    "capture_vs_hann_periodic_max_abs_dB": 1.5631940186722204e-13,
+    "sample_idx": [
+     0,
+     1,
+     127,
+     255,
+     383,
+     511,
+     639,
+     767,
+     895,
+     1023,
+     1151,
+     1279,
+     1407,
+     1535,
+     1663,
+     1791,
+     1919,
+     2046,
+     2047
+    ],
+    "sample_dBm": [
+     -47.42612674745543,
+     -54.96402019346334,
+     -42.976623942929564,
+     -42.81584689044196,
+     -33.92975742732044,
+     -45.39025261650386,
+     -30.374242542694965,
+     0.871040909048201,
+     -22.29450842282578,
+     -19.446648242744438,
+     -22.29450842282578,
+     0.871040909048201,
+     -30.374242542694965,
+     -45.39025261650386,
+     -33.92975742732044,
+     -42.81584689044196,
+     -42.976623942929564,
+     -47.4261267474554,
+     -72.85762890214981
+    ],
+    "sum_linear_W": 0.005688414539547454
+   },
+   "analysis": {
+    "band": [
+     250.0,
+     2250.0
+    ],
+    "cf": 1250,
+    "percent": 99,
+    "scope": {
+     "ChannelPower": 1.997823033611574,
+     "OccupiedBW": 1745.6413659881898,
+     "FrequencyError": -122.76426116774451
+    },
+    "model": {
+     "ChannelPower": 1.9978230336115672,
+     "OccupiedBW": 1745.6413659881866,
+     "FrequencyError": -122.7642611677461
+    },
+    "abs_diff": {
+     "ChannelPower_dB": 6.8833827526759706e-15,
+     "OccupiedBW_Hz": 3.183231456205249e-12,
+     "FrequencyError_Hz": 1.5916157281026244e-12
+    },
+    "match": true
+   }
+  },
+  {
+   "name": "obw_real_2s_psd_span1250_2000_P99",
+   "description": "SpectrumType power-density (dBm/Hz): shows the units/meaning of Channel Power in PSD mode",
+   "signal": {
+    "files": [
+     "in_x_real.txt"
+    ],
+    "is_complex": false,
+    "fs": 10000,
+    "n_samples": 2048,
+    "n_calls": 1,
+    "call_scales": [
+     1.0
+    ]
+   },
+   "scope": {
+    "two_sided": true,
+    "spectrum_type": "power-density",
+    "units": "dBm/Hz",
+    "window_length": 2048,
+    "averages": 1,
+    "extra_scope_props": {},
+    "properties_set": {
+     "Method": "welch",
+     "Window": "hann",
+     "SidelobeAttenuation": "60",
+     "OverlapPercent": "0",
+     "FrequencyResolutionMethod": "window-length",
+     "WindowLength": "2048",
+     "FFTLengthSource": "auto",
+     "PlotAsTwoSidedSpectrum": "true",
+     "AveragingMethod": "running",
+     "SpectralAverages": "1",
+     "SpectrumType": "power-density",
+     "SpectrumUnits": "dBm/Hz",
+     "ReferenceLoad": "1",
+     "SampleRate": "10000",
+     "FrequencySpan": "full",
+     "FrequencyOffset": "0",
+     "PlotNormalTrace": "true",
+     "PlotMaxHoldTrace": "false",
+     "PlotMinHoldTrace": "false",
+     "MeasurementChannel": "1"
+    }
+   },
+   "measurement_config": {
+    "class__": "ChannelMeasurementsConfiguration",
+    "Type": "occupied-bandwidth",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 2000,
+    "CenterFrequency": 1250,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "AdjacentBW": 1000,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "Enabled": true
+   },
+   "measurement_config_after_identical": true,
+   "measurements": {
+    "SimulationTime": 0.20470000000000002,
+    "ChannelMeasurements": {
+     "ChannelPower": 21.99782303361157,
+     "OccupiedBW": 1745.6413659881778,
+     "FrequencyError": -122.76426116775065
+    }
+   },
+   "measurements_stable": true,
+   "extra_call_used": false,
+   "config_log_failures": [
+    [
+     "PhaseNoise",
+     "Enabled",
+     "MATLAB:noSuchMethodOrField"
+    ]
+   ],
+   "config_log_warnings": [
+    [
+     "scope",
+     "SidelobeAttenuation",
+     "shared_dspwebscopes:spectrumanalyzer:nonRelevantProperty: In this configuration of the object, the SidelobeAttenuation property is not applicable."
+    ]
+   ],
+   "display": {
+    "fresh": false,
+    "stale_note": "identical to previous capture display (obw_real_1s_startstop_0_5000_P99)",
+    "analysis_max_abs_dB_vs_model": null,
+    "rbw_hann_periodic_Hz": 7.324218750000004
+   },
+   "analysis": {
+    "band": [
+     250.0,
+     2250.0
+    ],
+    "cf": 1250,
+    "percent": 99,
+    "scope": {
+     "ChannelPower": 21.99782303361157,
+     "OccupiedBW": 1745.6413659881778,
+     "FrequencyError": -122.76426116775065
+    },
+    "model": {
+     "ChannelPower": 21.997823033611574,
+     "OccupiedBW": 1745.6413659882103,
+     "FrequencyError": -122.76426116773428
+    },
+    "abs_diff": {
+     "ChannelPower_dB": 3.552713678800501e-15,
+     "OccupiedBW_Hz": 3.2514435588382185e-11,
+     "FrequencyError_Hz": 1.6370904631912708e-11
+    },
+    "match": true
+   }
+  },
+  {
+   "name": "obw_real_2s_span1250_2000_P50",
+   "description": "same span, 50 %",
+   "signal": {
+    "files": [
+     "in_x_real.txt"
+    ],
+    "is_complex": false,
+    "fs": 10000,
+    "n_samples": 2048,
+    "n_calls": 1,
+    "call_scales": [
+     1.0
+    ]
+   },
+   "scope": {
+    "two_sided": true,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window_length": 2048,
+    "averages": 1,
+    "extra_scope_props": {},
+    "properties_set": {
+     "Method": "welch",
+     "Window": "hann",
+     "SidelobeAttenuation": "60",
+     "OverlapPercent": "0",
+     "FrequencyResolutionMethod": "window-length",
+     "WindowLength": "2048",
+     "FFTLengthSource": "auto",
+     "PlotAsTwoSidedSpectrum": "true",
+     "AveragingMethod": "running",
+     "SpectralAverages": "1",
+     "SpectrumType": "power",
+     "SpectrumUnits": "dBm",
+     "ReferenceLoad": "1",
+     "SampleRate": "10000",
+     "FrequencySpan": "full",
+     "FrequencyOffset": "0",
+     "PlotNormalTrace": "true",
+     "PlotMaxHoldTrace": "false",
+     "PlotMinHoldTrace": "false",
+     "MeasurementChannel": "1"
+    }
+   },
+   "measurement_config": {
+    "class__": "ChannelMeasurementsConfiguration",
+    "Type": "occupied-bandwidth",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 2000,
+    "CenterFrequency": 1250,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 50,
+    "AdjacentBW": 1000,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "Enabled": true
+   },
+   "measurement_config_after_identical": true,
+   "measurements": {
+    "SimulationTime": 0.20470000000000002,
+    "ChannelMeasurements": {
+     "ChannelPower": 21.99782303361157,
+     "OccupiedBW": 7.216322271960962,
+     "FrequencyError": -2.1307421783615155
+    }
+   },
+   "measurements_stable": true,
+   "extra_call_used": false,
+   "config_log_failures": [
+    [
+     "PhaseNoise",
+     "Enabled",
+     "MATLAB:noSuchMethodOrField"
+    ]
+   ],
+   "config_log_warnings": [
+    [
+     "scope",
+     "SidelobeAttenuation",
+     "shared_dspwebscopes:spectrumanalyzer:nonRelevantProperty: In this configuration of the object, the SidelobeAttenuation property is not applicable."
+    ]
+   ],
+   "display": {
+    "fresh": true,
+    "stale_note": null,
+    "analysis_max_abs_dB_vs_model": 2.1032064978498966e-12,
+    "rbw_hann_periodic_Hz": 7.324218750000004,
+    "nbins": 2048,
+    "df_Hz": 4.8828125,
+    "f_first": -4995.1171875,
+    "f_last": 5000,
+    "capture_vs_hann_periodic_max_abs_dB": 2.7000623958883807e-13,
+    "sample_idx": [
+     0,
+     1,
+     127,
+     255,
+     383,
+     511,
+     639,
+     767,
+     895,
+     1023,
+     1151,
+     1279,
+     1407,
+     1535,
+     1663,
+     1791,
+     1919,
+     2046,
+     2047
+    ],
+    "sample_dBm": [
+     -27.42612674745544,
+     -34.96402019346333,
+     -22.9766239429295,
+     -22.81584689044177,
+     -13.929757427320425,
+     -25.390252616503957,
+     -10.374242542694994,
+     20.871040909048197,
+     -2.2945084228257855,
+     0.5533517572555624,
+     -2.2945084228257855,
+     20.871040909048197,
+     -10.374242542694994,
+     -25.390252616503957,
+     -13.929757427320425,
+     -22.81584689044177,
+     -22.9766239429295,
+     -27.42612674745544,
+     -52.85762890214812
+    ],
+    "sum_linear_W": 0.5688414539547451
+   },
+   "analysis": {
+    "band": [
+     250.0,
+     2250.0
+    ],
+    "cf": 1250,
+    "percent": 50,
+    "scope": {
+     "ChannelPower": 21.99782303361157,
+     "OccupiedBW": 7.216322271960962,
+     "FrequencyError": -2.1307421783615155
+    },
+    "model": {
+     "ChannelPower": 21.997823033611574,
+     "OccupiedBW": 7.216322271960962,
+     "FrequencyError": -2.1307421783615155
+    },
+    "abs_diff": {
+     "ChannelPower_dB": 3.552713678800501e-15,
+     "OccupiedBW_Hz": 0.0,
+     "FrequencyError_Hz": 0.0
+    },
+    "match": true
+   }
+  },
+  {
+   "name": "obw_real_2s_span1250_2000_P90",
+   "description": "same span, 90 %",
+   "signal": {
+    "files": [
+     "in_x_real.txt"
+    ],
+    "is_complex": false,
+    "fs": 10000,
+    "n_samples": 2048,
+    "n_calls": 1,
+    "call_scales": [
+     1.0
+    ]
+   },
+   "scope": {
+    "two_sided": true,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window_length": 2048,
+    "averages": 1,
+    "extra_scope_props": {},
+    "properties_set": {
+     "Method": "welch",
+     "Window": "hann",
+     "SidelobeAttenuation": "60",
+     "OverlapPercent": "0",
+     "FrequencyResolutionMethod": "window-length",
+     "WindowLength": "2048",
+     "FFTLengthSource": "auto",
+     "PlotAsTwoSidedSpectrum": "true",
+     "AveragingMethod": "running",
+     "SpectralAverages": "1",
+     "SpectrumType": "power",
+     "SpectrumUnits": "dBm",
+     "ReferenceLoad": "1",
+     "SampleRate": "10000",
+     "FrequencySpan": "full",
+     "FrequencyOffset": "0",
+     "PlotNormalTrace": "true",
+     "PlotMaxHoldTrace": "false",
+     "PlotMinHoldTrace": "false",
+     "MeasurementChannel": "1"
+    }
+   },
+   "measurement_config": {
+    "class__": "ChannelMeasurementsConfiguration",
+    "Type": "occupied-bandwidth",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 2000,
+    "CenterFrequency": 1250,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 90,
+    "AdjacentBW": 1000,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "Enabled": true
+   },
+   "measurement_config_after_identical": true,
+   "measurements": {
+    "SimulationTime": 0.20470000000000002,
+    "ChannelMeasurements": {
+     "ChannelPower": 21.99782303361157,
+     "OccupiedBW": 932.0805707719733,
+     "FrequencyError": -459.83932139512535
+    }
+   },
+   "measurements_stable": true,
+   "extra_call_used": false,
+   "config_log_failures": [
+    [
+     "PhaseNoise",
+     "Enabled",
+     "MATLAB:noSuchMethodOrField"
+    ]
+   ],
+   "config_log_warnings": [
+    [
+     "scope",
+     "SidelobeAttenuation",
+     "shared_dspwebscopes:spectrumanalyzer:nonRelevantProperty: In this configuration of the object, the SidelobeAttenuation property is not applicable."
+    ]
+   ],
+   "display": {
+    "fresh": true,
+    "stale_note": null,
+    "analysis_max_abs_dB_vs_model": 2.1032064978498966e-12,
+    "rbw_hann_periodic_Hz": 7.324218750000004,
+    "nbins": 2048,
+    "df_Hz": 4.8828125,
+    "f_first": -4995.1171875,
+    "f_last": 5000,
+    "capture_vs_hann_periodic_max_abs_dB": 2.7000623958883807e-13,
+    "sample_idx": [
+     0,
+     1,
+     127,
+     255,
+     383,
+     511,
+     639,
+     767,
+     895,
+     1023,
+     1151,
+     1279,
+     1407,
+     1535,
+     1663,
+     1791,
+     1919,
+     2046,
+     2047
+    ],
+    "sample_dBm": [
+     -27.42612674745544,
+     -34.96402019346333,
+     -22.9766239429295,
+     -22.81584689044177,
+     -13.929757427320425,
+     -25.390252616503957,
+     -10.374242542694994,
+     20.871040909048197,
+     -2.2945084228257855,
+     0.5533517572555624,
+     -2.2945084228257855,
+     20.871040909048197,
+     -10.374242542694994,
+     -25.390252616503957,
+     -13.929757427320425,
+     -22.81584689044177,
+     -22.9766239429295,
+     -27.42612674745544,
+     -52.85762890214812
+    ],
+    "sum_linear_W": 0.5688414539547451
+   },
+   "analysis": {
+    "band": [
+     250.0,
+     2250.0
+    ],
+    "cf": 1250,
+    "percent": 90,
+    "scope": {
+     "ChannelPower": 21.99782303361157,
+     "OccupiedBW": 932.0805707719733,
+     "FrequencyError": -459.83932139512535
+    },
+    "model": {
+     "ChannelPower": 21.997823033611574,
+     "OccupiedBW": 932.080570771973,
+     "FrequencyError": -459.83932139512524
+    },
+    "abs_diff": {
+     "ChannelPower_dB": 3.552713678800501e-15,
+     "OccupiedBW_Hz": 2.2737367544323206e-13,
+     "FrequencyError_Hz": 1.1368683772161603e-13
+    },
+    "match": true
+   }
+  },
+  {
+   "name": "obw_real_2s_span1250_2000_P99",
+   "description": "two-sided, span mode CF 1250 Span 2000 -> [250 2250], 99 %",
+   "signal": {
+    "files": [
+     "in_x_real.txt"
+    ],
+    "is_complex": false,
+    "fs": 10000,
+    "n_samples": 2048,
+    "n_calls": 1,
+    "call_scales": [
+     1.0
+    ]
+   },
+   "scope": {
+    "two_sided": true,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window_length": 2048,
+    "averages": 1,
+    "extra_scope_props": {},
+    "properties_set": {
+     "Method": "welch",
+     "Window": "hann",
+     "SidelobeAttenuation": "60",
+     "OverlapPercent": "0",
+     "FrequencyResolutionMethod": "window-length",
+     "WindowLength": "2048",
+     "FFTLengthSource": "auto",
+     "PlotAsTwoSidedSpectrum": "true",
+     "AveragingMethod": "running",
+     "SpectralAverages": "1",
+     "SpectrumType": "power",
+     "SpectrumUnits": "dBm",
+     "ReferenceLoad": "1",
+     "SampleRate": "10000",
+     "FrequencySpan": "full",
+     "FrequencyOffset": "0",
+     "PlotNormalTrace": "true",
+     "PlotMaxHoldTrace": "false",
+     "PlotMinHoldTrace": "false",
+     "MeasurementChannel": "1"
+    }
+   },
+   "measurement_config": {
+    "class__": "ChannelMeasurementsConfiguration",
+    "Type": "occupied-bandwidth",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 2000,
+    "CenterFrequency": 1250,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "AdjacentBW": 1000,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "Enabled": true
+   },
+   "measurement_config_after_identical": true,
+   "measurements": {
+    "SimulationTime": 0.20470000000000002,
+    "ChannelMeasurements": {
+     "ChannelPower": 21.99782303361157,
+     "OccupiedBW": 1745.6413659881778,
+     "FrequencyError": -122.76426116775065
+    }
+   },
+   "measurements_stable": true,
+   "extra_call_used": false,
+   "config_log_failures": [
+    [
+     "PhaseNoise",
+     "Enabled",
+     "MATLAB:noSuchMethodOrField"
+    ]
+   ],
+   "config_log_warnings": [
+    [
+     "scope",
+     "SidelobeAttenuation",
+     "shared_dspwebscopes:spectrumanalyzer:nonRelevantProperty: In this configuration of the object, the SidelobeAttenuation property is not applicable."
+    ]
+   ],
+   "display": {
+    "fresh": true,
+    "stale_note": null,
+    "analysis_max_abs_dB_vs_model": 2.1032064978498966e-12,
+    "rbw_hann_periodic_Hz": 7.324218750000004,
+    "nbins": 2048,
+    "df_Hz": 4.8828125,
+    "f_first": -4995.1171875,
+    "f_last": 5000,
+    "capture_vs_hann_periodic_max_abs_dB": 2.7000623958883807e-13,
+    "sample_idx": [
+     0,
+     1,
+     127,
+     255,
+     383,
+     511,
+     639,
+     767,
+     895,
+     1023,
+     1151,
+     1279,
+     1407,
+     1535,
+     1663,
+     1791,
+     1919,
+     2046,
+     2047
+    ],
+    "sample_dBm": [
+     -27.42612674745544,
+     -34.96402019346333,
+     -22.9766239429295,
+     -22.81584689044177,
+     -13.929757427320425,
+     -25.390252616503957,
+     -10.374242542694994,
+     20.871040909048197,
+     -2.2945084228257855,
+     0.5533517572555624,
+     -2.2945084228257855,
+     20.871040909048197,
+     -10.374242542694994,
+     -25.390252616503957,
+     -13.929757427320425,
+     -22.81584689044177,
+     -22.9766239429295,
+     -27.42612674745544,
+     -52.85762890214812
+    ],
+    "sum_linear_W": 0.5688414539547451
+   },
+   "analysis": {
+    "band": [
+     250.0,
+     2250.0
+    ],
+    "cf": 1250,
+    "percent": 99,
+    "scope": {
+     "ChannelPower": 21.99782303361157,
+     "OccupiedBW": 1745.6413659881778,
+     "FrequencyError": -122.76426116775065
+    },
+    "model": {
+     "ChannelPower": 21.997823033611574,
+     "OccupiedBW": 1745.6413659882103,
+     "FrequencyError": -122.76426116773428
+    },
+    "abs_diff": {
+     "ChannelPower_dB": 3.552713678800501e-15,
+     "OccupiedBW_Hz": 3.2514435588382185e-11,
+     "FrequencyError_Hz": 1.6370904631912708e-11
+    },
+    "match": true
+   }
+  },
+  {
+   "name": "obw_real_2s_span4500_2000_outside",
+   "description": "span partly OUTSIDE Nyquist: CF 4500 Span 2000 -> [3500 5500] on a +-5000 display (clip or error?)",
+   "signal": {
+    "files": [
+     "in_x_real.txt"
+    ],
+    "is_complex": false,
+    "fs": 10000,
+    "n_samples": 2048,
+    "n_calls": 1,
+    "call_scales": [
+     1.0
+    ]
+   },
+   "scope": {
+    "two_sided": true,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window_length": 2048,
+    "averages": 1,
+    "extra_scope_props": {},
+    "properties_set": {
+     "Method": "welch",
+     "Window": "hann",
+     "SidelobeAttenuation": "60",
+     "OverlapPercent": "0",
+     "FrequencyResolutionMethod": "window-length",
+     "WindowLength": "2048",
+     "FFTLengthSource": "auto",
+     "PlotAsTwoSidedSpectrum": "true",
+     "AveragingMethod": "running",
+     "SpectralAverages": "1",
+     "SpectrumType": "power",
+     "SpectrumUnits": "dBm",
+     "ReferenceLoad": "1",
+     "SampleRate": "10000",
+     "FrequencySpan": "full",
+     "FrequencyOffset": "0",
+     "PlotNormalTrace": "true",
+     "PlotMaxHoldTrace": "false",
+     "PlotMinHoldTrace": "false",
+     "MeasurementChannel": "1"
+    }
+   },
+   "measurement_config": {
+    "class__": "ChannelMeasurementsConfiguration",
+    "Type": "occupied-bandwidth",
+    "FrequencySpan": "span-and-center-frequency",
+    "Span": 2000,
+    "CenterFrequency": 4500,
+    "StartFrequency": -1000,
+    "StopFrequency": 1000,
+    "PercentOccupiedBW": 99,
+    "AdjacentBW": 1000,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "Enabled": true
+   },
+   "measurement_config_after_identical": true,
+   "measurements": {
+    "SimulationTime": 0.20470000000000002,
+    "ChannelMeasurements": {
+     "ChannelPower": null,
+     "OccupiedBW": null,
+     "FrequencyError": null
+    }
+   },
+   "measurements_stable": true,
+   "extra_call_used": false,
+   "config_log_failures": [
+    [
+     "PhaseNoise",
+     "Enabled",
+     "MATLAB:noSuchMethodOrField"
+    ]
+   ],
+   "config_log_warnings": [
+    [
+     "scope",
+     "SidelobeAttenuation",
+     "shared_dspwebscopes:spectrumanalyzer:nonRelevantProperty: In this configuration of the object, the SidelobeAttenuation property is not applicable."
+    ]
+   ],
+   "display": {
+    "fresh": true,
+    "stale_note": null,
+    "analysis_max_abs_dB_vs_model": 2.1032064978498966e-12,
+    "rbw_hann_periodic_Hz": 7.324218750000004,
+    "nbins": 2048,
+    "df_Hz": 4.8828125,
+    "f_first": -4995.1171875,
+    "f_last": 5000,
+    "capture_vs_hann_periodic_max_abs_dB": 2.7000623958883807e-13,
+    "sample_idx": [
+     0,
+     1,
+     127,
+     255,
+     383,
+     511,
+     639,
+     767,
+     895,
+     1023,
+     1151,
+     1279,
+     1407,
+     1535,
+     1663,
+     1791,
+     1919,
+     2046,
+     2047
+    ],
+    "sample_dBm": [
+     -27.42612674745544,
+     -34.96402019346333,
+     -22.9766239429295,
+     -22.81584689044177,
+     -13.929757427320425,
+     -25.390252616503957,
+     -10.374242542694994,
+     20.871040909048197,
+     -2.2945084228257855,
+     0.5533517572555624,
+     -2.2945084228257855,
+     20.871040909048197,
+     -10.374242542694994,
+     -25.390252616503957,
+     -13.929757427320425,
+     -22.81584689044177,
+     -22.9766239429295,
+     -27.42612674745544,
+     -52.85762890214812
+    ],
+    "sum_linear_W": 0.5688414539547451
+   },
+   "analysis": {
+    "band": [
+     3500.0,
+     5500.0
+    ],
+    "cf": 4500,
+    "percent": 99,
+    "scope": {
+     "ChannelPower": "NaN",
+     "OccupiedBW": "NaN",
+     "FrequencyError": "NaN"
+    },
+    "rule": "band outside displayed grid -> NaN",
+    "model": "NaN",
+    "match": true
+   }
+  },
+  {
+   "name": "obw_real_2s_startstop_1000_1500_P90",
+   "description": "start/stop [1000 1500], 90 % (research real_time_range_1000_1500_P90)",
+   "signal": {
+    "files": [
+     "in_x_real.txt"
+    ],
+    "is_complex": false,
+    "fs": 10000,
+    "n_samples": 2048,
+    "n_calls": 1,
+    "call_scales": [
+     1.0
+    ]
+   },
+   "scope": {
+    "two_sided": true,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window_length": 2048,
+    "averages": 1,
+    "extra_scope_props": {},
+    "properties_set": {
+     "Method": "welch",
+     "Window": "hann",
+     "SidelobeAttenuation": "60",
+     "OverlapPercent": "0",
+     "FrequencyResolutionMethod": "window-length",
+     "WindowLength": "2048",
+     "FFTLengthSource": "auto",
+     "PlotAsTwoSidedSpectrum": "true",
+     "AveragingMethod": "running",
+     "SpectralAverages": "1",
+     "SpectrumType": "power",
+     "SpectrumUnits": "dBm",
+     "ReferenceLoad": "1",
+     "SampleRate": "10000",
+     "FrequencySpan": "full",
+     "FrequencyOffset": "0",
+     "PlotNormalTrace": "true",
+     "PlotMaxHoldTrace": "false",
+     "PlotMinHoldTrace": "false",
+     "MeasurementChannel": "1"
+    }
+   },
+   "measurement_config": {
+    "class__": "ChannelMeasurementsConfiguration",
+    "Type": "occupied-bandwidth",
+    "FrequencySpan": "start-and-stop-frequencies",
+    "Span": 2000,
+    "CenterFrequency": 0,
+    "StartFrequency": 1000,
+    "StopFrequency": 1500,
+    "PercentOccupiedBW": 90,
+    "AdjacentBW": 1000,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "Enabled": true
+   },
+   "measurement_config_after_identical": true,
+   "measurements": {
+    "SimulationTime": 0.20470000000000002,
+    "ChannelMeasurements": {
+     "ChannelPower": 20.900002406348428,
+     "OccupiedBW": 11.89817745829032,
+     "FrequencyError": -0.03811615103586519
+    }
+   },
+   "measurements_stable": true,
+   "extra_call_used": false,
+   "config_log_failures": [
+    [
+     "PhaseNoise",
+     "Enabled",
+     "MATLAB:noSuchMethodOrField"
+    ]
+   ],
+   "config_log_warnings": [
+    [
+     "scope",
+     "SidelobeAttenuation",
+     "shared_dspwebscopes:spectrumanalyzer:nonRelevantProperty: In this configuration of the object, the SidelobeAttenuation property is not applicable."
+    ]
+   ],
+   "display": {
+    "fresh": true,
+    "stale_note": null,
+    "analysis_max_abs_dB_vs_model": 2.1032064978498966e-12,
+    "rbw_hann_periodic_Hz": 7.324218750000004,
+    "nbins": 2048,
+    "df_Hz": 4.8828125,
+    "f_first": -4995.1171875,
+    "f_last": 5000,
+    "capture_vs_hann_periodic_max_abs_dB": 2.7000623958883807e-13,
+    "sample_idx": [
+     0,
+     1,
+     127,
+     255,
+     383,
+     511,
+     639,
+     767,
+     895,
+     1023,
+     1151,
+     1279,
+     1407,
+     1535,
+     1663,
+     1791,
+     1919,
+     2046,
+     2047
+    ],
+    "sample_dBm": [
+     -27.42612674745544,
+     -34.96402019346333,
+     -22.9766239429295,
+     -22.81584689044177,
+     -13.929757427320425,
+     -25.390252616503957,
+     -10.374242542694994,
+     20.871040909048197,
+     -2.2945084228257855,
+     0.5533517572555624,
+     -2.2945084228257855,
+     20.871040909048197,
+     -10.374242542694994,
+     -25.390252616503957,
+     -13.929757427320425,
+     -22.81584689044177,
+     -22.9766239429295,
+     -27.42612674745544,
+     -52.85762890214812
+    ],
+    "sum_linear_W": 0.5688414539547451
+   },
+   "analysis": {
+    "band": [
+     1000,
+     1500
+    ],
+    "cf": 1250.0,
+    "percent": 90,
+    "scope": {
+     "ChannelPower": 20.900002406348428,
+     "OccupiedBW": 11.89817745829032,
+     "FrequencyError": -0.03811615103586519
+    },
+    "model": {
+     "ChannelPower": 20.90000240634842,
+     "OccupiedBW": 11.89817745829032,
+     "FrequencyError": -0.03811615103586519
+    },
+    "abs_diff": {
+     "ChannelPower_dB": 7.105427357601002e-15,
+     "OccupiedBW_Hz": 0.0,
+     "FrequencyError_Hz": 0.0
+    },
+    "match": true
+   }
+  },
+  {
+   "name": "obw_real_2s_startstop_4000_6000_outside",
+   "description": "start/stop partly outside Nyquist [4000 6000]",
+   "signal": {
+    "files": [
+     "in_x_real.txt"
+    ],
+    "is_complex": false,
+    "fs": 10000,
+    "n_samples": 2048,
+    "n_calls": 1,
+    "call_scales": [
+     1.0
+    ]
+   },
+   "scope": {
+    "two_sided": true,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window_length": 2048,
+    "averages": 1,
+    "extra_scope_props": {},
+    "properties_set": {
+     "Method": "welch",
+     "Window": "hann",
+     "SidelobeAttenuation": "60",
+     "OverlapPercent": "0",
+     "FrequencyResolutionMethod": "window-length",
+     "WindowLength": "2048",
+     "FFTLengthSource": "auto",
+     "PlotAsTwoSidedSpectrum": "true",
+     "AveragingMethod": "running",
+     "SpectralAverages": "1",
+     "SpectrumType": "power",
+     "SpectrumUnits": "dBm",
+     "ReferenceLoad": "1",
+     "SampleRate": "10000",
+     "FrequencySpan": "full",
+     "FrequencyOffset": "0",
+     "PlotNormalTrace": "true",
+     "PlotMaxHoldTrace": "false",
+     "PlotMinHoldTrace": "false",
+     "MeasurementChannel": "1"
+    }
+   },
+   "measurement_config": {
+    "class__": "ChannelMeasurementsConfiguration",
+    "Type": "occupied-bandwidth",
+    "FrequencySpan": "start-and-stop-frequencies",
+    "Span": 2000,
+    "CenterFrequency": 0,
+    "StartFrequency": 4000,
+    "StopFrequency": 6000,
+    "PercentOccupiedBW": 99,
+    "AdjacentBW": 1000,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "Enabled": true
+   },
+   "measurement_config_after_identical": true,
+   "measurements": {
+    "SimulationTime": 0.20470000000000002,
+    "ChannelMeasurements": {
+     "ChannelPower": null,
+     "OccupiedBW": null,
+     "FrequencyError": null
+    }
+   },
+   "measurements_stable": true,
+   "extra_call_used": false,
+   "config_log_failures": [
+    [
+     "PhaseNoise",
+     "Enabled",
+     "MATLAB:noSuchMethodOrField"
+    ]
+   ],
+   "config_log_warnings": [
+    [
+     "scope",
+     "SidelobeAttenuation",
+     "shared_dspwebscopes:spectrumanalyzer:nonRelevantProperty: In this configuration of the object, the SidelobeAttenuation property is not applicable."
+    ]
+   ],
+   "display": {
+    "fresh": true,
+    "stale_note": null,
+    "analysis_max_abs_dB_vs_model": 2.1032064978498966e-12,
+    "rbw_hann_periodic_Hz": 7.324218750000004,
+    "nbins": 2048,
+    "df_Hz": 4.8828125,
+    "f_first": -4995.1171875,
+    "f_last": 5000,
+    "capture_vs_hann_periodic_max_abs_dB": 2.7000623958883807e-13,
+    "sample_idx": [
+     0,
+     1,
+     127,
+     255,
+     383,
+     511,
+     639,
+     767,
+     895,
+     1023,
+     1151,
+     1279,
+     1407,
+     1535,
+     1663,
+     1791,
+     1919,
+     2046,
+     2047
+    ],
+    "sample_dBm": [
+     -27.42612674745544,
+     -34.96402019346333,
+     -22.9766239429295,
+     -22.81584689044177,
+     -13.929757427320425,
+     -25.390252616503957,
+     -10.374242542694994,
+     20.871040909048197,
+     -2.2945084228257855,
+     0.5533517572555624,
+     -2.2945084228257855,
+     20.871040909048197,
+     -10.374242542694994,
+     -25.390252616503957,
+     -13.929757427320425,
+     -22.81584689044177,
+     -22.9766239429295,
+     -27.42612674745544,
+     -52.85762890214812
+    ],
+    "sum_linear_W": 0.5688414539547451
+   },
+   "analysis": {
+    "band": [
+     4000,
+     6000
+    ],
+    "cf": 5000.0,
+    "percent": 99,
+    "scope": {
+     "ChannelPower": "NaN",
+     "OccupiedBW": "NaN",
+     "FrequencyError": "NaN"
+    },
+    "rule": "band outside displayed grid -> NaN",
+    "model": "NaN",
+    "match": true
+   }
+  },
+  {
+   "name": "obw_real_2s_startstop_500_3000_P99",
+   "description": "two-sided, start/stop mode [500 3000], 99 % (research range real_time_range_500_3000_P99)",
+   "signal": {
+    "files": [
+     "in_x_real.txt"
+    ],
+    "is_complex": false,
+    "fs": 10000,
+    "n_samples": 2048,
+    "n_calls": 1,
+    "call_scales": [
+     1.0
+    ]
+   },
+   "scope": {
+    "two_sided": true,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window_length": 2048,
+    "averages": 1,
+    "extra_scope_props": {},
+    "properties_set": {
+     "Method": "welch",
+     "Window": "hann",
+     "SidelobeAttenuation": "60",
+     "OverlapPercent": "0",
+     "FrequencyResolutionMethod": "window-length",
+     "WindowLength": "2048",
+     "FFTLengthSource": "auto",
+     "PlotAsTwoSidedSpectrum": "true",
+     "AveragingMethod": "running",
+     "SpectralAverages": "1",
+     "SpectrumType": "power",
+     "SpectrumUnits": "dBm",
+     "ReferenceLoad": "1",
+     "SampleRate": "10000",
+     "FrequencySpan": "full",
+     "FrequencyOffset": "0",
+     "PlotNormalTrace": "true",
+     "PlotMaxHoldTrace": "false",
+     "PlotMinHoldTrace": "false",
+     "MeasurementChannel": "1"
+    }
+   },
+   "measurement_config": {
+    "class__": "ChannelMeasurementsConfiguration",
+    "Type": "occupied-bandwidth",
+    "FrequencySpan": "start-and-stop-frequencies",
+    "Span": 2000,
+    "CenterFrequency": 0,
+    "StartFrequency": 500,
+    "StopFrequency": 3000,
+    "PercentOccupiedBW": 99,
+    "AdjacentBW": 1000,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "Enabled": true
+   },
+   "measurement_config_after_identical": true,
+   "measurements": {
+    "SimulationTime": 0.20470000000000002,
+    "ChannelMeasurements": {
+     "ChannelPower": 21.465089777500758,
+     "OccupiedBW": 2063.8309472275896,
+     "FrequencyError": -192.35568709326708
+    }
+   },
+   "measurements_stable": true,
+   "extra_call_used": false,
+   "config_log_failures": [
+    [
+     "PhaseNoise",
+     "Enabled",
+     "MATLAB:noSuchMethodOrField"
+    ]
+   ],
+   "config_log_warnings": [
+    [
+     "scope",
+     "SidelobeAttenuation",
+     "shared_dspwebscopes:spectrumanalyzer:nonRelevantProperty: In this configuration of the object, the SidelobeAttenuation property is not applicable."
+    ]
+   ],
+   "display": {
+    "fresh": true,
+    "stale_note": null,
+    "analysis_max_abs_dB_vs_model": 2.1032064978498966e-12,
+    "rbw_hann_periodic_Hz": 7.324218750000004,
+    "nbins": 2048,
+    "df_Hz": 4.8828125,
+    "f_first": -4995.1171875,
+    "f_last": 5000,
+    "capture_vs_hann_periodic_max_abs_dB": 2.7000623958883807e-13,
+    "sample_idx": [
+     0,
+     1,
+     127,
+     255,
+     383,
+     511,
+     639,
+     767,
+     895,
+     1023,
+     1151,
+     1279,
+     1407,
+     1535,
+     1663,
+     1791,
+     1919,
+     2046,
+     2047
+    ],
+    "sample_dBm": [
+     -27.42612674745544,
+     -34.96402019346333,
+     -22.9766239429295,
+     -22.81584689044177,
+     -13.929757427320425,
+     -25.390252616503957,
+     -10.374242542694994,
+     20.871040909048197,
+     -2.2945084228257855,
+     0.5533517572555624,
+     -2.2945084228257855,
+     20.871040909048197,
+     -10.374242542694994,
+     -25.390252616503957,
+     -13.929757427320425,
+     -22.81584689044177,
+     -22.9766239429295,
+     -27.42612674745544,
+     -52.85762890214812
+    ],
+    "sum_linear_W": 0.5688414539547451
+   },
+   "analysis": {
+    "band": [
+     500,
+     3000
+    ],
+    "cf": 1750.0,
+    "percent": 99,
+    "scope": {
+     "ChannelPower": 21.465089777500758,
+     "OccupiedBW": 2063.8309472275896,
+     "FrequencyError": -192.35568709326708
+    },
+    "model": {
+     "ChannelPower": 21.465089777500754,
+     "OccupiedBW": 2063.830947227485,
+     "FrequencyError": -192.35568709331937
+    },
+    "abs_diff": {
+     "ChannelPower_dB": 3.552713678800501e-15,
+     "OccupiedBW_Hz": 1.0459189070388675e-10,
+     "FrequencyError_Hz": 5.2295945351943374e-11
+    },
+    "match": true
+   }
+  },
+  {
+   "name": "obw_real_2s_startstop_full_m5000_5000_P99",
+   "description": "start/stop = whole two-sided Nyquist range [-5000 5000], 99 %",
+   "signal": {
+    "files": [
+     "in_x_real.txt"
+    ],
+    "is_complex": false,
+    "fs": 10000,
+    "n_samples": 2048,
+    "n_calls": 1,
+    "call_scales": [
+     1.0
+    ]
+   },
+   "scope": {
+    "two_sided": true,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window_length": 2048,
+    "averages": 1,
+    "extra_scope_props": {},
+    "properties_set": {
+     "Method": "welch",
+     "Window": "hann",
+     "SidelobeAttenuation": "60",
+     "OverlapPercent": "0",
+     "FrequencyResolutionMethod": "window-length",
+     "WindowLength": "2048",
+     "FFTLengthSource": "auto",
+     "PlotAsTwoSidedSpectrum": "true",
+     "AveragingMethod": "running",
+     "SpectralAverages": "1",
+     "SpectrumType": "power",
+     "SpectrumUnits": "dBm",
+     "ReferenceLoad": "1",
+     "SampleRate": "10000",
+     "FrequencySpan": "full",
+     "FrequencyOffset": "0",
+     "PlotNormalTrace": "true",
+     "PlotMaxHoldTrace": "false",
+     "PlotMinHoldTrace": "false",
+     "MeasurementChannel": "1"
+    }
+   },
+   "measurement_config": {
+    "class__": "ChannelMeasurementsConfiguration",
+    "Type": "occupied-bandwidth",
+    "FrequencySpan": "start-and-stop-frequencies",
+    "Span": 2000,
+    "CenterFrequency": 0,
+    "StartFrequency": -5000,
+    "StopFrequency": 5000,
+    "PercentOccupiedBW": 99,
+    "AdjacentBW": 1000,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "Enabled": true
+   },
+   "measurement_config_after_identical": true,
+   "measurements": {
+    "SimulationTime": 0.20470000000000002,
+    "ChannelMeasurements": {
+     "ChannelPower": null,
+     "OccupiedBW": null,
+     "FrequencyError": null
+    }
+   },
+   "measurements_stable": true,
+   "extra_call_used": false,
+   "config_log_failures": [
+    [
+     "PhaseNoise",
+     "Enabled",
+     "MATLAB:noSuchMethodOrField"
+    ]
+   ],
+   "config_log_warnings": [
+    [
+     "scope",
+     "SidelobeAttenuation",
+     "shared_dspwebscopes:spectrumanalyzer:nonRelevantProperty: In this configuration of the object, the SidelobeAttenuation property is not applicable."
+    ]
+   ],
+   "display": {
+    "fresh": true,
+    "stale_note": null,
+    "analysis_max_abs_dB_vs_model": 2.1032064978498966e-12,
+    "rbw_hann_periodic_Hz": 7.324218750000004,
+    "nbins": 2048,
+    "df_Hz": 4.8828125,
+    "f_first": -4995.1171875,
+    "f_last": 5000,
+    "capture_vs_hann_periodic_max_abs_dB": 2.7000623958883807e-13,
+    "sample_idx": [
+     0,
+     1,
+     127,
+     255,
+     383,
+     511,
+     639,
+     767,
+     895,
+     1023,
+     1151,
+     1279,
+     1407,
+     1535,
+     1663,
+     1791,
+     1919,
+     2046,
+     2047
+    ],
+    "sample_dBm": [
+     -27.42612674745544,
+     -34.96402019346333,
+     -22.9766239429295,
+     -22.81584689044177,
+     -13.929757427320425,
+     -25.390252616503957,
+     -10.374242542694994,
+     20.871040909048197,
+     -2.2945084228257855,
+     0.5533517572555624,
+     -2.2945084228257855,
+     20.871040909048197,
+     -10.374242542694994,
+     -25.390252616503957,
+     -13.929757427320425,
+     -22.81584689044177,
+     -22.9766239429295,
+     -27.42612674745544,
+     -52.85762890214812
+    ],
+    "sum_linear_W": 0.5688414539547451
+   },
+   "analysis": {
+    "band": [
+     -5000,
+     5000
+    ],
+    "cf": 0.0,
+    "percent": 99,
+    "scope": {
+     "ChannelPower": "NaN",
+     "OccupiedBW": "NaN",
+     "FrequencyError": "NaN"
+    },
+    "rule": "band outside displayed grid -> NaN",
+    "model": "NaN",
+    "match": true
+   }
+  },
+  {
+   "name": "obw_real_2s_startstop_offgrid_P99",
+   "description": "start/stop off-grid [1234.5 2345.6], 99 % (edge-bin interpolation)",
+   "signal": {
+    "files": [
+     "in_x_real.txt"
+    ],
+    "is_complex": false,
+    "fs": 10000,
+    "n_samples": 2048,
+    "n_calls": 1,
+    "call_scales": [
+     1.0
+    ]
+   },
+   "scope": {
+    "two_sided": true,
+    "spectrum_type": "power",
+    "units": "dBm",
+    "window_length": 2048,
+    "averages": 1,
+    "extra_scope_props": {},
+    "properties_set": {
+     "Method": "welch",
+     "Window": "hann",
+     "SidelobeAttenuation": "60",
+     "OverlapPercent": "0",
+     "FrequencyResolutionMethod": "window-length",
+     "WindowLength": "2048",
+     "FFTLengthSource": "auto",
+     "PlotAsTwoSidedSpectrum": "true",
+     "AveragingMethod": "running",
+     "SpectralAverages": "1",
+     "SpectrumType": "power",
+     "SpectrumUnits": "dBm",
+     "ReferenceLoad": "1",
+     "SampleRate": "10000",
+     "FrequencySpan": "full",
+     "FrequencyOffset": "0",
+     "PlotNormalTrace": "true",
+     "PlotMaxHoldTrace": "false",
+     "PlotMinHoldTrace": "false",
+     "MeasurementChannel": "1"
+    }
+   },
+   "measurement_config": {
+    "class__": "ChannelMeasurementsConfiguration",
+    "Type": "occupied-bandwidth",
+    "FrequencySpan": "start-and-stop-frequencies",
+    "Span": 2000,
+    "CenterFrequency": 0,
+    "StartFrequency": 1234.5,
+    "StopFrequency": 2345.6,
+    "PercentOccupiedBW": 99,
+    "AdjacentBW": 1000,
+    "FilterShape": "none",
+    "FilterCoeff": 0.5,
+    "NumOffsets": 2,
+    "ACPROffsets": [
+     2000,
+     3500
+    ],
+    "Enabled": true
+   },
+   "measurement_config_after_identical": true,
+   "measurements": {
+    "SimulationTime": 0.20470000000000002,
+    "ChannelMeasurements": {
+     "ChannelPower": 20.989003662492664,
+     "OccupiedBW": 820.7771197499521,
+     "FrequencyError": -136.83589620573707
+    }
+   },
+   "measurements_stable": true,
+   "extra_call_used": false,
+   "config_log_failures": [
+    [
+     "PhaseNoise",
+     "Enabled",
+     "MATLAB:noSuchMethodOrField"
+    ]
+   ],
+   "config_log_warnings": [
+    [
+     "scope",
+     "SidelobeAttenuation",
+     "shared_dspwebscopes:spectrumanalyzer:nonRelevantProperty: In this configuration of the object, the SidelobeAttenuation property is not applicable."
+    ]
+   ],
+   "display": {
+    "fresh": true,
+    "stale_note": null,
+    "analysis_max_abs_dB_vs_model": 2.1032064978498966e-12,
+    "rbw_hann_periodic_Hz": 7.324218750000004,
+    "nbins": 2048,
+    "df_Hz": 4.8828125,
+    "f_first": -4995.1171875,
+    "f_last": 5000,
+    "capture_vs_hann_periodic_max_abs_dB": 2.7000623958883807e-13,
+    "sample_idx": [
+     0,
+     1,
+     127,
+     255,
+     383,
+     511,
+     639,
+     767,
+     895,
+     1023,
+     1151,
+     1279,
+     1407,
+     1535,
+     1663,
+     1791,
+     1919,
+     2046,
+     2047
+    ],
+    "sample_dBm": [
+     -27.42612674745544,
+     -34.96402019346333,
+     -22.9766239429295,
+     -22.81584689044177,
+     -13.929757427320425,
+     -25.390252616503957,
+     -10.374242542694994,
+     20.871040909048197,
+     -2.2945084228257855,
+     0.5533517572555624,
+     -2.2945084228257855,
+     20.871040909048197,
+     -10.374242542694994,
+     -25.390252616503957,
+     -13.929757427320425,
+     -22.81584689044177,
+     -22.9766239429295,
+     -27.42612674745544,
+     -52.85762890214812
+    ],
+    "sum_linear_W": 0.5688414539547451
+   },
+   "analysis": {
+    "band": [
+     1234.5,
+     2345.6
+    ],
+    "cf": 1790.05,
+    "percent": 99,
+    "scope": {
+     "ChannelPower": 20.989003662492664,
+     "OccupiedBW": 820.7771197499521,
+     "FrequencyError": -136.83589620573707
+    },
+    "model": {
+     "ChannelPower": 20.989003662492664,
+     "OccupiedBW": 820.7771197499626,
+     "FrequencyError": -136.83589620573161
+    },
+    "abs_diff": {
+     "ChannelPower_dB": 0.0,
+     "OccupiedBW_Hz": 1.0459189070388675e-11,
+     "FrequencyError_Hz": 5.4569682106375694e-12
+    },
+    "match": true
+   }
+  }
+ ]
+}

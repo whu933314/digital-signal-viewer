@@ -1,0 +1,333 @@
+{
+  "cfg_class": "SpectralMaskConfiguration",
+  "cfg_props": [
+    "EnabledMasks",
+    "UpperMask",
+    "LowerMask",
+    "ReferenceLevel",
+    "CustomReferenceLevel",
+    "SelectedChannel",
+    "MaskFrequencyOffset",
+    "Enabled"
+  ],
+  "cfg_def_EnabledMasks": "none",
+  "cfg_def_UpperMask": null,
+  "cfg_def_LowerMask": null,
+  "cfg_def_ReferenceLevel": "custom",
+  "cfg_def_CustomReferenceLevel": 0,
+  "cfg_def_SelectedChannel": 1,
+  "cfg_def_MaskFrequencyOffset": 0,
+  "cfg_def_Enabled": false,
+  "cfg_events": [
+    "MaskTestFailed",
+    "ObjectBeingDestroyed"
+  ],
+  "cfg_methods": [
+    "SpectralMaskConfiguration",
+    "addlistener",
+    "eq",
+    "findobj",
+    "findprop",
+    "ge",
+    "get",
+    "gt",
+    "isvalid",
+    "le",
+    "listener",
+    "lt",
+    "ne",
+    "notify"
+  ],
+  "cfg_cases": [
+    {
+      "prop": "EnabledMasks",
+      "value": "'bogus'",
+      "ok": false,
+      "msg": "bogus is not a valid value for the EnabledMasks property. Value must be a member of this set: \n    'none'\n    'upper'\n    'lower'\n    'upper-and-lower'",
+      "id": "shared_dspwebscopes:dspwebscopes:invalidEnumValue",
+      "after": ""
+    },
+    {
+      "prop": "EnabledMasks",
+      "value": "'Upper'",
+      "ok": true,
+      "msg": "",
+      "id": "",
+      "after": "'upper'"
+    },
+    {
+      "prop": "EnabledMasks",
+      "value": "'upper and lower'",
+      "ok": true,
+      "msg": "",
+      "id": "",
+      "after": "'upper-and-lower'"
+    },
+    {
+      "prop": "EnabledMasks",
+      "value": "\"upper-and-lower\"",
+      "ok": true,
+      "msg": "",
+      "id": "",
+      "after": "'upper-and-lower'"
+    },
+    {
+      "prop": "UpperMask",
+      "value": "[1 2 3]",
+      "ok": false,
+      "msg": "The UpperMask property value must be a real, numeric scalar or two-column matrix with at least two rows.",
+      "id": "shared_dspwebscopes:spectrumanalyzer:invalidMaskData",
+      "after": ""
+    },
+    {
+      "prop": "UpperMask",
+      "value": "[0 1]",
+      "ok": false,
+      "msg": "The UpperMask property value must be a real, numeric scalar or two-column matrix with at least two rows.",
+      "id": "shared_dspwebscopes:spectrumanalyzer:invalidMaskData",
+      "after": ""
+    },
+    {
+      "prop": "UpperMask",
+      "value": "[0 1;1 2]",
+      "ok": true,
+      "msg": "",
+      "id": "",
+      "after": "[0 1;1 2]"
+    },
+    {
+      "prop": "UpperMask",
+      "value": "[2 1;1 2]",
+      "ok": false,
+      "msg": "When the UpperMask property value is a matrix, the first column representing frequency values of the mask must be non-NaN and non-decreasing.",
+      "id": "shared_dspwebscopes:spectrumanalyzer:invalidMaskFrequencyData",
+      "after": ""
+    },
+    {
+      "prop": "UpperMask",
+      "value": "[NaN 1;1 2]",
+      "ok": false,
+      "msg": "When the UpperMask property value is a matrix, the first column representing frequency values of the mask must be non-NaN and non-decreasing.",
+      "id": "shared_dspwebscopes:spectrumanalyzer:invalidMaskFrequencyData",
+      "after": ""
+    },
+    {
+      "prop": "UpperMask",
+      "value": "[0 NaN;1 2]",
+      "ok": true,
+      "msg": "",
+      "id": "",
+      "after": "[0 NaN;1 2]"
+    },
+    {
+      "prop": "UpperMask",
+      "value": "NaN",
+      "ok": true,
+      "msg": "",
+      "id": "",
+      "after": "NaN"
+    },
+    {
+      "prop": "UpperMask",
+      "value": "[-Inf 1;Inf 2]",
+      "ok": true,
+      "msg": "",
+      "id": "",
+      "after": "[-Inf 1;Inf 2]"
+    },
+    {
+      "prop": "UpperMask",
+      "value": "1+1i",
+      "ok": false,
+      "msg": "Expected UpperMask to be real.",
+      "id": "MATLAB:expectedReal",
+      "after": ""
+    },
+    {
+      "prop": "UpperMask",
+      "value": "'a'",
+      "ok": false,
+      "msg": "Expected UpperMask to be one of these types:\n\ndouble, single, uint8, uint16, uint32, uint64, int8, int16, int32, int64",
+      "id": "MATLAB:invalidType",
+      "after": ""
+    },
+    {
+      "prop": "UpperMask",
+      "value": "[]",
+      "ok": false,
+      "msg": "Expected UpperMask to be nonempty.",
+      "id": "MATLAB:expectedNonempty",
+      "after": ""
+    },
+    {
+      "prop": "UpperMask",
+      "value": "[0 1;0 2;0 3]",
+      "ok": true,
+      "msg": "",
+      "id": "",
+      "after": "[0 1;0 2;0 3]"
+    },
+    {
+      "prop": "LowerMask",
+      "value": "[1 2 3]",
+      "ok": false,
+      "msg": "The LowerMask property value must be a real, numeric scalar or two-column matrix with at least two rows.",
+      "id": "shared_dspwebscopes:spectrumanalyzer:invalidMaskData",
+      "after": ""
+    },
+    {
+      "prop": "LowerMask",
+      "value": "[3 1;1 2]",
+      "ok": false,
+      "msg": "When the LowerMask property value is a matrix, the first column representing frequency values of the mask must be non-NaN and non-decreasing.",
+      "id": "shared_dspwebscopes:spectrumanalyzer:invalidMaskFrequencyData",
+      "after": ""
+    },
+    {
+      "prop": "ReferenceLevel",
+      "value": "'bogus'",
+      "ok": false,
+      "msg": "bogus is not a valid value for the ReferenceLevel property. Value must be a member of this set: \n    'spectrum-peak'\n    'custom'",
+      "id": "shared_dspwebscopes:dspwebscopes:invalidEnumValue",
+      "after": ""
+    },
+    {
+      "prop": "ReferenceLevel",
+      "value": "'Spectrum peak'",
+      "ok": true,
+      "msg": "",
+      "id": "",
+      "after": "'spectrum-peak'"
+    },
+    {
+      "prop": "ReferenceLevel",
+      "value": "'spectrum-peak'",
+      "ok": true,
+      "msg": "",
+      "id": "",
+      "after": "'spectrum-peak'"
+    },
+    {
+      "prop": "CustomReferenceLevel",
+      "value": "Inf",
+      "ok": true,
+      "msg": "",
+      "id": "",
+      "after": "Inf"
+    },
+    {
+      "prop": "CustomReferenceLevel",
+      "value": "NaN",
+      "ok": false,
+      "msg": "Expected CustomReferenceLevel to be non-NaN.",
+      "id": "MATLAB:expectedNonNaN",
+      "after": ""
+    },
+    {
+      "prop": "CustomReferenceLevel",
+      "value": "[1 2]",
+      "ok": false,
+      "msg": "Expected CustomReferenceLevel to be a scalar.",
+      "id": "MATLAB:expectedScalar",
+      "after": ""
+    },
+    {
+      "prop": "CustomReferenceLevel",
+      "value": "-3.5",
+      "ok": true,
+      "msg": "",
+      "id": "",
+      "after": "-3.5"
+    },
+    {
+      "prop": "SelectedChannel",
+      "value": "0",
+      "ok": false,
+      "msg": "Expected SelectedChannel to be positive.",
+      "id": "MATLAB:expectedPositive",
+      "after": ""
+    },
+    {
+      "prop": "SelectedChannel",
+      "value": "1.5",
+      "ok": false,
+      "msg": "Expected SelectedChannel to be integer-valued.",
+      "id": "MATLAB:expectedInteger",
+      "after": ""
+    },
+    {
+      "prop": "SelectedChannel",
+      "value": "3",
+      "ok": true,
+      "msg": "",
+      "id": "",
+      "after": "3"
+    },
+    {
+      "prop": "SelectedChannel",
+      "value": "-1",
+      "ok": false,
+      "msg": "Expected SelectedChannel to be positive.",
+      "id": "MATLAB:expectedPositive",
+      "after": ""
+    },
+    {
+      "prop": "MaskFrequencyOffset",
+      "value": "Inf",
+      "ok": false,
+      "msg": "Expected MaskFrequencyOffset to be finite.",
+      "id": "MATLAB:expectedFinite",
+      "after": ""
+    },
+    {
+      "prop": "MaskFrequencyOffset",
+      "value": "NaN",
+      "ok": false,
+      "msg": "Expected MaskFrequencyOffset to be finite.",
+      "id": "MATLAB:expectedFinite",
+      "after": ""
+    },
+    {
+      "prop": "MaskFrequencyOffset",
+      "value": "[1 2]",
+      "ok": false,
+      "msg": "Expected MaskFrequencyOffset to be a scalar.",
+      "id": "MATLAB:expectedScalar",
+      "after": ""
+    },
+    {
+      "prop": "MaskFrequencyOffset",
+      "value": "-10",
+      "ok": true,
+      "msg": "",
+      "id": "",
+      "after": "-10"
+    }
+  ],
+  "spec_class": "SpectralMaskConfiguration",
+  "spec_props": [
+    "EnabledMasks",
+    "UpperMask",
+    "LowerMask",
+    "ReferenceLevel",
+    "CustomReferenceLevel",
+    "SelectedChannel",
+    "MaskFrequencyOffset",
+    "Enabled"
+  ],
+  "spec_def_EnabledMasks": "none",
+  "spec_def_UpperMask": null,
+  "spec_def_LowerMask": null,
+  "spec_def_ReferenceLevel": "custom",
+  "spec_def_CustomReferenceLevel": 0,
+  "spec_def_SelectedChannel": 1,
+  "spec_def_MaskFrequencyOffset": 0,
+  "spec_def_Enabled": false,
+  "spec_events": [
+    "MaskTestFailed",
+    "ObjectBeingDestroyed"
+  ],
+  "spec_enum_err": "bogus is not a valid value for the EnabledMasks property. Value must be a member of this set: \n    'none'\n    'upper'\n    'lower'\n    'upper-and-lower'",
+  "spec_mask_err": "The UpperMask property value must be a real, numeric scalar or two-column matrix with at least two rows.",
+  "spec_freq_err": "When the UpperMask property value is a matrix, the first column representing frequency values of the mask must be non-NaN and non-decreasing."
+}

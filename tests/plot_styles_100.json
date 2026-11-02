@@ -1,0 +1,447 @@
+{
+ "meta": {
+  "src": "1.0.0 rel/1.0.0 4bd23fd（＝使用者 2026-11-01 看過的試用版 918268c 的數值；只有註解的間隔號不同）",
+  "what": "六個外觀繪圖風格 plotkit.styles.STYLES[...] 整份（json 往返：tuple → list）"
+ },
+ "styles": {
+  "apple-dark": {
+   "annotation_box": "#1e1e1e",
+   "annotation_color": "#e5e5ea",
+   "annotation_fontsize": 10,
+   "axes_edge": "#98989d",
+   "axes_face": "#141414",
+   "axes_lw": 0.5,
+   "box": true,
+   "colors": [
+    "#bf5af2",
+    "#ff9f0a",
+    "#30d158",
+    "#ffd60a",
+    "#ff375f",
+    "#64d2ff",
+    "#ac8e68"
+   ],
+   "fig_face": "#1e1e1e",
+   "fonts": [
+    "Arial",
+    "Helvetica",
+    "Microsoft JhengHei",
+    "Microsoft YaHei",
+    "PingFang TC",
+    "Heiti TC",
+    "Noto Sans CJK TC",
+    "Noto Sans TC",
+    "Arial Unicode MS",
+    "DejaVu Sans"
+   ],
+   "fontsize": 10.0,
+   "grid": {
+    "alpha": 0.25,
+    "color": "#ffffff",
+    "ls": "-",
+    "lw": 0.5
+   },
+   "label": {
+    "scale": 1.1
+   },
+   "legend": {
+    "edgecolor": "#98989d",
+    "facecolor": "#141414",
+    "fancybox": false,
+    "fontsize": 9,
+    "framealpha": 1.0,
+    "frameon": true,
+    "loc": "upper right",
+    "lw": 0.5,
+    "textcolor": "#e5e5ea"
+   },
+   "lw": 0.5,
+   "ms": 6.0,
+   "name": "apple-dark",
+   "selected_lw_scale": 2.5,
+   "text_color": "#e5e5ea",
+   "tick_dir": "in",
+   "tip": {
+    "ec": "#545458",
+    "ec_selected": "#bf5af2",
+    "fc": "#141414",
+    "fontsize": 10,
+    "lw": 1.0,
+    "marker_edge": "#ffffdc",
+    "marker_face": "#141414",
+    "ms": 5.0,
+    "text": "#e5e5ea"
+   },
+   "title": {
+    "scale": 1.1,
+    "weight": "bold"
+   }
+  },
+  "apple-dark-black": {
+   "annotation_box": "#000000",
+   "annotation_color": "#e5e5ea",
+   "annotation_fontsize": 10,
+   "axes_edge": "#98989d",
+   "axes_face": "#000000",
+   "axes_lw": 0.5,
+   "box": true,
+   "colors": [
+    "#30d158",
+    "#ff9f0a",
+    "#ff375f",
+    "#ffd60a",
+    "#bf5af2",
+    "#64d2ff",
+    "#ac8e68"
+   ],
+   "fig_face": "#000000",
+   "fonts": [
+    "Arial",
+    "Helvetica",
+    "Microsoft JhengHei",
+    "Microsoft YaHei",
+    "PingFang TC",
+    "Heiti TC",
+    "Noto Sans CJK TC",
+    "Noto Sans TC",
+    "Arial Unicode MS",
+    "DejaVu Sans"
+   ],
+   "fontsize": 10.0,
+   "grid": {
+    "alpha": 0.25,
+    "color": "#ffffff",
+    "ls": "-",
+    "lw": 0.5
+   },
+   "label": {
+    "scale": 1.1
+   },
+   "legend": {
+    "edgecolor": "#98989d",
+    "facecolor": "#1c1c1e",
+    "fancybox": false,
+    "fontsize": 9,
+    "framealpha": 1.0,
+    "frameon": true,
+    "loc": "upper right",
+    "lw": 0.5,
+    "textcolor": "#e5e5ea"
+   },
+   "lw": 0.5,
+   "ms": 6.0,
+   "name": "apple-dark-black",
+   "selected_lw_scale": 2.5,
+   "text_color": "#e5e5ea",
+   "tick_dir": "in",
+   "tip": {
+    "ec": "#545458",
+    "ec_selected": "#30d158",
+    "fc": "#000000",
+    "fontsize": 10,
+    "lw": 1.0,
+    "marker_edge": "#ffffdc",
+    "marker_face": "#000000",
+    "ms": 5.0,
+    "text": "#e5e5ea"
+   },
+   "title": {
+    "scale": 1.1,
+    "weight": "bold"
+   }
+  },
+  "apple-dark-graphite": {
+   "annotation_box": "#1e1e1e",
+   "annotation_color": "#e5e5ea",
+   "annotation_fontsize": 10,
+   "axes_edge": "#98989d",
+   "axes_face": "#141414",
+   "axes_lw": 0.5,
+   "box": true,
+   "colors": [
+    "#ff9f0a",
+    "#e5e5ea",
+    "#30d158",
+    "#ff375f",
+    "#bf5af2",
+    "#ffd60a",
+    "#64d2ff"
+   ],
+   "fig_face": "#1e1e1e",
+   "fonts": [
+    "Arial",
+    "Helvetica",
+    "Microsoft JhengHei",
+    "Microsoft YaHei",
+    "PingFang TC",
+    "Heiti TC",
+    "Noto Sans CJK TC",
+    "Noto Sans TC",
+    "Arial Unicode MS",
+    "DejaVu Sans"
+   ],
+   "fontsize": 10.0,
+   "grid": {
+    "alpha": 0.25,
+    "color": "#ffffff",
+    "ls": "-",
+    "lw": 0.5
+   },
+   "label": {
+    "scale": 1.1
+   },
+   "legend": {
+    "edgecolor": "#98989d",
+    "facecolor": "#141414",
+    "fancybox": false,
+    "fontsize": 9,
+    "framealpha": 1.0,
+    "frameon": true,
+    "loc": "upper right",
+    "lw": 0.5,
+    "textcolor": "#e5e5ea"
+   },
+   "lw": 0.5,
+   "ms": 6.0,
+   "name": "apple-dark-graphite",
+   "selected_lw_scale": 2.5,
+   "text_color": "#e5e5ea",
+   "tick_dir": "in",
+   "tip": {
+    "ec": "#545458",
+    "ec_selected": "#ff9f0a",
+    "fc": "#141414",
+    "fontsize": 10,
+    "lw": 1.0,
+    "marker_edge": "#ffffdc",
+    "marker_face": "#141414",
+    "ms": 5.0,
+    "text": "#e5e5ea"
+   },
+   "title": {
+    "scale": 1.1,
+    "weight": "bold"
+   }
+  },
+  "apple-light": {
+   "annotation_box": "white",
+   "annotation_color": "#1d1d1f",
+   "annotation_fontsize": 10,
+   "axes_edge": "#8e8e93",
+   "axes_face": "white",
+   "axes_lw": 0.5,
+   "box": true,
+   "colors": [
+    "#8944ab",
+    "#c93400",
+    "#248a3d",
+    "#d30f45",
+    "#008299",
+    "#3634a3",
+    "#7f6545",
+    "#007aff"
+   ],
+   "fig_face": "#ececec",
+   "fonts": [
+    "Arial",
+    "Helvetica",
+    "Microsoft JhengHei",
+    "Microsoft YaHei",
+    "PingFang TC",
+    "Heiti TC",
+    "Noto Sans CJK TC",
+    "Noto Sans TC",
+    "Arial Unicode MS",
+    "DejaVu Sans"
+   ],
+   "fontsize": 10.0,
+   "grid": {
+    "alpha": 1.0,
+    "color": "#d2d2d7",
+    "ls": "-",
+    "lw": 0.5
+   },
+   "label": {
+    "scale": 1.1
+   },
+   "legend": {
+    "edgecolor": "#d2d2d7",
+    "facecolor": "white",
+    "fancybox": false,
+    "fontsize": 9,
+    "framealpha": 1.0,
+    "frameon": true,
+    "loc": "upper right",
+    "lw": 0.5,
+    "textcolor": "#1d1d1f"
+   },
+   "lw": 0.5,
+   "ms": 6.0,
+   "name": "apple-light",
+   "selected_lw_scale": 2.5,
+   "text_color": "#1d1d1f",
+   "tick_dir": "in",
+   "tip": {
+    "ec": "#aeaeb2",
+    "ec_selected": "#af52de",
+    "fc": "white",
+    "fontsize": 10,
+    "lw": 1.0,
+    "marker_edge": "#ffffdc",
+    "marker_face": "#1d1d1f",
+    "ms": 5.0,
+    "text": "#1d1d1f"
+   },
+   "title": {
+    "scale": 1.1,
+    "weight": "bold"
+   }
+  },
+  "sony-black": {
+   "annotation_box": "#1c1b19",
+   "annotation_color": "#dcdad5",
+   "annotation_fontsize": 10,
+   "axes_edge": "#dcdad5",
+   "axes_face": "#121110",
+   "axes_lw": 0.5,
+   "box": true,
+   "colors": [
+    "#f27a1a",
+    "#6cf4ff",
+    "#ffe864",
+    "#c05cfb",
+    "#49db40",
+    "#f267c5",
+    "#268cdd"
+   ],
+   "fig_face": "#1c1b19",
+   "fonts": [
+    "Arial",
+    "Helvetica",
+    "Microsoft JhengHei",
+    "Microsoft YaHei",
+    "PingFang TC",
+    "Heiti TC",
+    "Noto Sans CJK TC",
+    "Noto Sans TC",
+    "Arial Unicode MS",
+    "DejaVu Sans"
+   ],
+   "fontsize": 10.0,
+   "grid": {
+    "alpha": 0.25,
+    "color": "#ffffff",
+    "ls": "-",
+    "lw": 0.5
+   },
+   "label": {
+    "scale": 1.1
+   },
+   "legend": {
+    "edgecolor": "#dcdad5",
+    "facecolor": "#121110",
+    "fancybox": false,
+    "fontsize": 9,
+    "framealpha": 1.0,
+    "frameon": true,
+    "loc": "upper right",
+    "lw": 0.5,
+    "textcolor": "#dcdad5"
+   },
+   "lw": 0.5,
+   "ms": 6.0,
+   "name": "sony-black",
+   "selected_lw_scale": 2.5,
+   "text_color": "#dcdad5",
+   "tick_dir": "in",
+   "tip": {
+    "ec": "#7d7d7d",
+    "ec_selected": "#f27a1a",
+    "fc": "#121110",
+    "fontsize": 10,
+    "lw": 1.0,
+    "marker_edge": "#ffffdc",
+    "marker_face": "#121110",
+    "ms": 5.0,
+    "text": "#dcdad5"
+   },
+   "title": {
+    "scale": 1.1,
+    "weight": "bold"
+   }
+  },
+  "sony-blue": {
+   "annotation_box": "#0f1621",
+   "annotation_color": "#e6ecf5",
+   "annotation_fontsize": 10,
+   "axes_edge": "#c5d0e0",
+   "axes_face": "#0a0f17",
+   "axes_lw": 0.5,
+   "box": true,
+   "colors": [
+    "#2e8cff",
+    "#ff8a3d",
+    "#ffd84d",
+    "#c56cff",
+    "#4fd96a",
+    "#5ce6ff",
+    "#ff6ec7"
+   ],
+   "fig_face": "#0f1621",
+   "fonts": [
+    "Arial",
+    "Helvetica",
+    "Microsoft JhengHei",
+    "Microsoft YaHei",
+    "PingFang TC",
+    "Heiti TC",
+    "Noto Sans CJK TC",
+    "Noto Sans TC",
+    "Arial Unicode MS",
+    "DejaVu Sans"
+   ],
+   "fontsize": 10.0,
+   "grid": {
+    "alpha": 0.25,
+    "color": "#ffffff",
+    "ls": "-",
+    "lw": 0.5
+   },
+   "label": {
+    "scale": 1.1
+   },
+   "legend": {
+    "edgecolor": "#e6ecf5",
+    "facecolor": "#0a0f17",
+    "fancybox": false,
+    "fontsize": 9,
+    "framealpha": 1.0,
+    "frameon": true,
+    "loc": "upper right",
+    "lw": 0.5,
+    "textcolor": "#e6ecf5"
+   },
+   "lw": 0.5,
+   "ms": 6.0,
+   "name": "sony-blue",
+   "selected_lw_scale": 2.5,
+   "text_color": "#e6ecf5",
+   "tick_dir": "in",
+   "tip": {
+    "ec": "#7d7d7d",
+    "ec_selected": "#2e8cff",
+    "fc": "#0a0f17",
+    "fontsize": 10,
+    "lw": 1.0,
+    "marker_edge": "#ffffdc",
+    "marker_face": "#0a0f17",
+    "ms": 5.0,
+    "text": "#e6ecf5"
+   },
+   "title": {
+    "scale": 1.1,
+    "weight": "bold"
+   }
+  }
+ }
+}

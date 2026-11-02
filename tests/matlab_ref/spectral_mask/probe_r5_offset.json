@@ -1,0 +1,95 @@
+{
+  "matlab_version": "25.1.0.2943329 (R2025a)",
+  "cases": [
+    {
+      "value": "NaN",
+      "ok": false,
+      "id": "MATLAB:expectedFinite",
+      "msg": "Expected FrequencyOffset to be finite."
+    },
+    {
+      "value": "Inf",
+      "ok": false,
+      "id": "MATLAB:expectedFinite",
+      "msg": "Expected FrequencyOffset to be finite."
+    },
+    {
+      "value": "-Inf",
+      "ok": false,
+      "id": "MATLAB:expectedFinite",
+      "msg": "Expected FrequencyOffset to be finite."
+    },
+    {
+      "value": "[0 NaN]",
+      "ok": false,
+      "id": "MATLAB:expectedFinite",
+      "msg": "Expected FrequencyOffset to be finite."
+    },
+    {
+      "value": "[0 -Inf]",
+      "ok": false,
+      "id": "MATLAB:expectedFinite",
+      "msg": "Expected FrequencyOffset to be finite."
+    },
+    {
+      "value": "'abc'",
+      "ok": false,
+      "id": "MATLAB:invalidType",
+      "msg": "Expected FrequencyOffset to be one of these types:\n\ndouble"
+    },
+    {
+      "value": "true",
+      "ok": false,
+      "id": "MATLAB:invalidType",
+      "msg": "Expected FrequencyOffset to be one of these types:\n\ndouble\n\nInstead its type was logical."
+    },
+    {
+      "value": "0+1i",
+      "ok": false,
+      "id": "MATLAB:expectedReal",
+      "msg": "Expected FrequencyOffset to be real."
+    },
+    {
+      "value": "[1;2]",
+      "ok": true,
+      "id": "",
+      "msg": "[1;2]"
+    },
+    {
+      "value": "5",
+      "ok": false,
+      "id": "MATLAB:invalidType",
+      "msg": "Expected FrequencyOffset to be one of these types:\n\ndouble\n\nInstead its type was single."
+    },
+    {
+      "value": "5",
+      "ok": false,
+      "id": "MATLAB:invalidType",
+      "msg": "Expected FrequencyOffset to be one of these types:\n\ndouble\n\nInstead its type was int32."
+    },
+    {
+      "value": "[]",
+      "ok": false,
+      "id": "MATLAB:expectedVector",
+      "msg": "Expected FrequencyOffset to be a vector."
+    },
+    {
+      "value": "[1 2 3]",
+      "ok": true,
+      "id": "",
+      "msg": "[1 2 3]"
+    },
+    {
+      "value": "1e+308",
+      "ok": true,
+      "id": "",
+      "msg": "1e+308"
+    },
+    {
+      "value": "-1e+308",
+      "ok": true,
+      "id": "",
+      "msg": "-1e+308"
+    }
+  ]
+}
